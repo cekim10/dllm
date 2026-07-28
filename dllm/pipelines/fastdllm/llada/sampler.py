@@ -4,7 +4,7 @@ reference: https://github.com/NVlabs/Fast-dLLM/blob/main/llada/generate.py
 
 import math
 from dataclasses import dataclass
-from typing import Optional, Tuple, List, Union
+from typing import Any, Optional, Tuple, List, Union
 
 import torch
 import torch.nn.functional as F
@@ -215,6 +215,7 @@ class FastdLLMLLaDASampler(BaseSampler):
         use_cache = kwargs.get("use_cache", config.use_cache)
         threshold = kwargs.get("threshold", config.threshold)
         factor = kwargs.get("factor", config.factor)
+        block_observer = kwargs.get("block_observer")
 
         assert block_size >= 1
         assert steps >= 1
@@ -287,6 +288,7 @@ class FastdLLMLLaDASampler(BaseSampler):
             attention_mask[i, :gen_end] = 1
 
         histories = [x.clone()] if return_dict else None
+        observer_call_index = 0
 
         # ----- Block scheduling -----
         num_blocks = math.ceil(max_new_tokens / block_size)
@@ -321,6 +323,37 @@ class FastdLLMLLaDASampler(BaseSampler):
                 # Simple interpretation: always suppress these tokens (you can specialize if needed)
                 for tid in begin_suppress_tokens:
                     logits_[:, :, tid] = -torch.inf
+
+        def _make_observer_context(
+            *,
+            phase: str,
+            cache_mode: str,
+            block_index: int,
+            step_index: int,
+            block_ranges: list[tuple[int, int]],
+            mask_counts: list[int],
+        ) -> dict[str, Any] | None:
+            nonlocal observer_call_index
+            if block_observer is None:
+                return None
+            context = {
+                "phase": phase,
+                "cache_mode": cache_mode,
+                "block_index": int(block_index),
+                "step_index": int(step_index),
+                "steps_per_block": int(steps_per_block),
+                "num_blocks": int(num_blocks),
+                "block_size": int(block_size),
+                "block_ranges": tuple(
+                    (int(start), int(end)) for start, end in block_ranges
+                ),
+                "mask_counts": tuple(int(count) for count in mask_counts),
+                "prompt_lens": tuple(int(length) for length in prompt_lens),
+                "model_call_index": int(observer_call_index),
+                "sequence_length": int(T),
+            }
+            observer_call_index += 1
+            return context
 
         # =============================
         # Main block loop
@@ -387,7 +420,25 @@ class FastdLLMLLaDASampler(BaseSampler):
                     if mask_allowed.sum() == 0:
                         break
 
-                    out = self.model(x, attention_mask=attention_mask)
+                    block_ranges = [(start_j, end_j) for start_j, end_j, _ in widths]
+                    mask_counts = [
+                        int(mask_allowed[j, start_j:end_j].sum().item())
+                        for j, (start_j, end_j, _) in enumerate(widths)
+                    ]
+                    out = self.model(
+                        x,
+                        attention_mask=attention_mask,
+                        output_hidden_states=block_observer is not None,
+                        block_observer=block_observer,
+                        observer_context=_make_observer_context(
+                            phase="refine",
+                            cache_mode="none",
+                            block_index=b,
+                            step_index=i,
+                            block_ranges=block_ranges,
+                            mask_counts=mask_counts,
+                        ),
+                    )
                     logits = out.logits
                     _apply_suppressions(logits)
 
@@ -419,7 +470,25 @@ class FastdLLMLLaDASampler(BaseSampler):
             # -------------------------
             if use_cache == "prefix":
                 # Warm cache on full x once per block
-                out_full = self.model(x, attention_mask=attention_mask, use_cache=True)
+                shared_ranges = [(s, e) for _ in range(B)]
+                out_full = self.model(
+                    x,
+                    attention_mask=attention_mask,
+                    use_cache=True,
+                    output_hidden_states=block_observer is not None,
+                    block_observer=block_observer,
+                    observer_context=_make_observer_context(
+                        phase="warmup",
+                        cache_mode="prefix",
+                        block_index=b,
+                        step_index=0,
+                        block_ranges=shared_ranges,
+                        mask_counts=[
+                            int((x[row, s:e] == mask_id).sum().item())
+                            for row in range(B)
+                        ],
+                    ),
+                )
                 logits_full = out_full.logits
                 past_key_values = out_full.past_key_values
 
@@ -472,11 +541,27 @@ class FastdLLMLLaDASampler(BaseSampler):
                     if mask_suffix.sum() == 0:
                         break
 
+                    suffix_ranges = [
+                        (0, min(block_len, int(x_suffix.shape[1]))) for _ in range(B)
+                    ]
                     out_suf = self.model(
                         x_suffix,
                         attention_mask=attention_mask,  # full-length mask is OK for this model
                         past_key_values=past_key_values,
                         use_cache=True,
+                        output_hidden_states=block_observer is not None,
+                        block_observer=block_observer,
+                        observer_context=_make_observer_context(
+                            phase="refine",
+                            cache_mode="prefix",
+                            block_index=b,
+                            step_index=i,
+                            block_ranges=suffix_ranges,
+                            mask_counts=[
+                                int(mask_suffix[row, :block_len].sum().item())
+                                for row in range(B)
+                            ],
+                        ),
                     )
                     logits_suf = out_suf.logits
                     _apply_suppressions(logits_suf)
@@ -516,7 +601,25 @@ class FastdLLMLLaDASampler(BaseSampler):
             # -------------------------
             if use_cache == "dual":
                 # Warm cache on full x once per block
-                out_full = self.model(x, attention_mask=attention_mask, use_cache=True)
+                shared_ranges = [(s, e) for _ in range(B)]
+                out_full = self.model(
+                    x,
+                    attention_mask=attention_mask,
+                    use_cache=True,
+                    output_hidden_states=block_observer is not None,
+                    block_observer=block_observer,
+                    observer_context=_make_observer_context(
+                        phase="warmup",
+                        cache_mode="dual",
+                        block_index=b,
+                        step_index=0,
+                        block_ranges=shared_ranges,
+                        mask_counts=[
+                            int((x[row, s:e] == mask_id).sum().item())
+                            for row in range(B)
+                        ],
+                    ),
+                )
                 logits_full = out_full.logits
                 past_key_values = out_full.past_key_values
                 if past_key_values is None:
@@ -569,6 +672,18 @@ class FastdLLMLLaDASampler(BaseSampler):
                         past_key_values=past_key_values,
                         use_cache=True,
                         replace_position=replace_position,
+                        output_hidden_states=block_observer is not None,
+                        block_observer=block_observer,
+                        observer_context=_make_observer_context(
+                            phase="refine",
+                            cache_mode="dual",
+                            block_index=b,
+                            step_index=i_step,
+                            block_ranges=[(0, int(blk.shape[1])) for _ in range(B)],
+                            mask_counts=[
+                                int(mask_blk[row].sum().item()) for row in range(B)
+                            ],
+                        ),
                     )
                     logits_blk = out_blk.logits
                     _apply_suppressions(logits_blk)

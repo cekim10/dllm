@@ -20,6 +20,7 @@ from __future__ import annotations
 import logging
 import math
 import sys
+import time
 from abc import abstractmethod
 from collections import defaultdict
 from functools import partial
@@ -96,6 +97,31 @@ __all__ = [
 
 
 log = logging.getLogger(__name__)
+
+
+def _sync_for_observer(device: torch.device) -> None:
+    if device.type == "cuda":
+        torch.cuda.synchronize(device)
+
+
+def _emit_block_observer(
+    block_observer: Optional[Callable[..., None]],
+    observer_context: Optional[dict[str, object]],
+    layer_index: int,
+    layer_latency_ms: float,
+    hidden_before: torch.Tensor,
+    hidden_after: torch.Tensor,
+) -> None:
+    if block_observer is None:
+        return
+    layer_context = dict(observer_context or {})
+    layer_context["layer_index"] = int(layer_index)
+    layer_context["layer_latency_ms"] = float(layer_latency_ms)
+    block_observer(
+        observer_context=layer_context,
+        hidden_before=hidden_before,
+        hidden_after=hidden_after,
+    )
 
 
 @torch.compile()
@@ -1375,6 +1401,8 @@ class FastdLLMLLaDABlockGroup(nn.ModuleList):
         attention_bias: Optional[torch.FloatTensor] = None,
         layers_past: Optional[List[Tuple[torch.Tensor, torch.Tensor]]] = None,
         use_cache: bool = False,
+        block_observer: Optional[Callable[..., None]] = None,
+        observer_context: Optional[dict[str, object]] = None,
     ) -> Tuple[torch.Tensor, Optional[List[Tuple[torch.Tensor, torch.Tensor]]]]:
         attn_key_values: Optional[List[Tuple[torch.Tensor, torch.Tensor]]] = (
             [] if use_cache else None
@@ -1382,6 +1410,10 @@ class FastdLLMLLaDABlockGroup(nn.ModuleList):
         for block_idx, block in enumerate(self):
             layer_past = None if layers_past is None else layers_past[block_idx]
             block_idx += self.layer_offset
+            hidden_before = x
+            if block_observer is not None:
+                _sync_for_observer(x.device)
+                block_start_time = time.perf_counter()
             if (
                 (
                     self.activation_checkpointing_strategy
@@ -1418,6 +1450,16 @@ class FastdLLMLLaDABlockGroup(nn.ModuleList):
                     attention_bias=attention_bias,
                     layer_past=layer_past,
                     use_cache=use_cache,
+                )
+            if block_observer is not None:
+                _sync_for_observer(x.device)
+                _emit_block_observer(
+                    block_observer=block_observer,
+                    observer_context=observer_context,
+                    layer_index=block_idx,
+                    layer_latency_ms=(time.perf_counter() - block_start_time) * 1000.0,
+                    hidden_before=hidden_before,
+                    hidden_after=x,
                 )
             if attn_key_values is not None:
                 assert cache is not None
@@ -1620,6 +1662,8 @@ class FastdLLMLLaDAModel(nn.Module):
         last_logits_only: bool = False,
         output_hidden_states: Optional[bool] = None,
         replace_position: Optional[torch.Tensor] = None,
+        block_observer: Optional[Callable[..., None]] = None,
+        observer_context: Optional[dict[str, object]] = None,
     ) -> FastdLLMLLaDAOutput:
         """
         :param input_ids: A tensor of shape `(batch_size, seq_len)`.
@@ -1789,6 +1833,10 @@ class FastdLLMLLaDAModel(nn.Module):
                     )
                 ):
                     # shape: (batch_size, seq_len, d_model)
+                    hidden_before = x
+                    if block_observer is not None:
+                        _sync_for_observer(x.device)
+                        block_start_time = time.perf_counter()
                     x, cache = self._activation_checkpoint_fn(
                         block,
                         x,
@@ -1799,12 +1847,27 @@ class FastdLLMLLaDAModel(nn.Module):
                     )
                 else:
                     # shape: (batch_size, seq_len, d_model)
+                    hidden_before = x
+                    if block_observer is not None:
+                        _sync_for_observer(x.device)
+                        block_start_time = time.perf_counter()
                     x, cache = block(
                         x,
                         attention_bias=attention_bias,
                         layer_past=layer_past,
                         use_cache=use_cache,
                         replace_position=replace_position,
+                    )
+                if block_observer is not None:
+                    _sync_for_observer(x.device)
+                    _emit_block_observer(
+                        block_observer=block_observer,
+                        observer_context=observer_context,
+                        layer_index=block_idx,
+                        layer_latency_ms=(time.perf_counter() - block_start_time)
+                        * 1000.0,
+                        hidden_before=hidden_before,
+                        hidden_after=x,
                     )
                 if attn_key_values is not None:
                     assert cache is not None
@@ -1829,6 +1892,8 @@ class FastdLLMLLaDAModel(nn.Module):
                     attention_bias=attention_bias,
                     layers_past=layers_past,
                     use_cache=use_cache,
+                    block_observer=block_observer,
+                    observer_context=observer_context,
                 )
                 if attn_key_values is not None:
                     assert cache is not None
@@ -1916,6 +1981,8 @@ class FastdLLMLLaDAModelLM(PreTrainedModel):
         replace_position: Optional[
             torch.Tensor
         ] = None,  # This is a hack mitigation of an issue in transformers `4.39.x`
+        block_observer: Optional[Callable[..., None]] = None,
+        observer_context: Optional[dict[str, object]] = None,
     ) -> Union[Tuple, CausalLMOutputWithPast]:
         if use_cache is None:
             use_cache = self.config.use_cache
@@ -1938,6 +2005,8 @@ class FastdLLMLLaDAModelLM(PreTrainedModel):
             use_cache=use_cache,
             output_hidden_states=output_hidden_states,
             replace_position=replace_position,
+            block_observer=block_observer,
+            observer_context=observer_context,
         )
         # import pdb; pdb.set_trace()
         logits = outputs.logits

@@ -1,4 +1,5 @@
 from .models import FastdLLMLLaDAConfig, FastdLLMLLaDAModelLM
+from .profiling import BlockUsefulnessProfiler
 from .sampler import FastdLLMLLaDASampler, FastdLLMLLaDASamplerConfig
 
 # Optional: register with transformers Auto classes when available
@@ -16,4 +17,5 @@ __all__ = [
     "FastdLLMLLaDAModelLM",
     "FastdLLMLLaDASampler",
     "FastdLLMLLaDASamplerConfig",
+    "BlockUsefulnessProfiler",
 ]
