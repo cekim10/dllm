@@ -1664,6 +1664,8 @@ class FastdLLMLLaDAModel(nn.Module):
         replace_position: Optional[torch.Tensor] = None,
         block_observer: Optional[Callable[..., None]] = None,
         observer_context: Optional[dict[str, object]] = None,
+        start_layer: int = 0,
+        hidden_state_input: bool = False,
     ) -> FastdLLMLLaDAOutput:
         """
         :param input_ids: A tensor of shape `(batch_size, seq_len)`.
@@ -1705,9 +1707,29 @@ class FastdLLMLLaDAModel(nn.Module):
         output_hidden_states = (
             output_hidden_states if output_hidden_states is not None else False
         )
+        if not 0 <= start_layer < self.config.n_layers:
+            raise ValueError(
+                f"start_layer must be in [0, {self.config.n_layers}), got {start_layer}"
+            )
+        if hidden_state_input and input_embeddings is None:
+            raise ValueError(
+                "input_embeddings must be provided when hidden_state_input=True"
+            )
+        if hidden_state_input and start_layer == 0:
+            raise ValueError(
+                "hidden_state_input=True is only supported when start_layer > 0"
+            )
 
         if past_key_values:
-            assert len(past_key_values) == self.config.n_layers
+            valid_lengths = {self.config.n_layers, self.config.n_layers - start_layer}
+            if len(past_key_values) not in valid_lengths:
+                raise ValueError(
+                    "past_key_values length must match either the full model "
+                    f"({self.config.n_layers}) or executed suffix "
+                    f"({self.config.n_layers - start_layer}), got {len(past_key_values)}"
+                )
+            if len(past_key_values) == self.config.n_layers and start_layer > 0:
+                past_key_values = past_key_values[start_layer:]
 
         batch_size, seq_len = (
             input_ids.size()
@@ -1723,22 +1745,26 @@ class FastdLLMLLaDAModel(nn.Module):
         # shape: (batch_size, seq_len, d_model)
         x = self.transformer.wte(input_ids) if input_embeddings is None else input_embeddings  # type: ignore
 
-        if self.config.input_emb_norm:
-            x = x * (self.config.d_model**0.5)
+        if not hidden_state_input:
+            if self.config.input_emb_norm:
+                x = x * (self.config.d_model**0.5)
 
-        if not (self.config.alibi or self.config.rope):
-            # Get positional embeddings.
-            # shape: (1, seq_len)
-            pos = torch.arange(
-                past_length, past_length + seq_len, dtype=torch.long, device=x.device
-            ).unsqueeze(0)
-            # shape: (1, seq_len, d_model)
-            pos_emb = self.transformer.wpe(pos)  # type: ignore
-            x = pos_emb + x
+            if not (self.config.alibi or self.config.rope):
+                # Get positional embeddings.
+                # shape: (1, seq_len)
+                pos = torch.arange(
+                    past_length,
+                    past_length + seq_len,
+                    dtype=torch.long,
+                    device=x.device,
+                ).unsqueeze(0)
+                # shape: (1, seq_len, d_model)
+                pos_emb = self.transformer.wpe(pos)  # type: ignore
+                x = pos_emb + x
 
-        # Add input + positional embeddings and apply dropout.
-        # shape: (batch_size, seq_len, d_model)
-        x = self.transformer.emb_drop(x)  # type: ignore
+            # Add input + positional embeddings and apply dropout.
+            # shape: (batch_size, seq_len, d_model)
+            x = self.transformer.emb_drop(x)  # type: ignore
 
         # Transform the attention mask into what the blocks expect.
         if attention_mask is not None and 0.0 in attention_mask:
@@ -1801,15 +1827,25 @@ class FastdLLMLLaDAModel(nn.Module):
         # decoder layers
         all_hidden_states = []
 
+        if self.config.block_group_size != 1 and start_layer != 0:
+            raise NotImplementedError(
+                "start_layer > 0 is only supported when block_group_size == 1"
+            )
+
         # Apply blocks one-by-one.
         if self.config.block_group_size == 1:
-            for block_idx, block in enumerate(self.transformer.blocks):
+            for relative_block_idx, block in enumerate(
+                self.transformer.blocks[start_layer:]
+            ):
+                block_idx = start_layer + relative_block_idx
                 if output_hidden_states:
                     # add hidden states
                     all_hidden_states.append(x)
 
                 layer_past = (
-                    None if past_key_values is None else past_key_values[block_idx]
+                    None
+                    if past_key_values is None
+                    else past_key_values[relative_block_idx]
                 )
                 if (
                     (
@@ -1983,6 +2019,8 @@ class FastdLLMLLaDAModelLM(PreTrainedModel):
         ] = None,  # This is a hack mitigation of an issue in transformers `4.39.x`
         block_observer: Optional[Callable[..., None]] = None,
         observer_context: Optional[dict[str, object]] = None,
+        start_layer: int = 0,
+        hidden_state_input: bool = False,
     ) -> Union[Tuple, CausalLMOutputWithPast]:
         if use_cache is None:
             use_cache = self.config.use_cache
@@ -2007,6 +2045,8 @@ class FastdLLMLLaDAModelLM(PreTrainedModel):
             replace_position=replace_position,
             block_observer=block_observer,
             observer_context=observer_context,
+            start_layer=start_layer,
+            hidden_state_input=hidden_state_input,
         )
         # import pdb; pdb.set_trace()
         logits = outputs.logits
