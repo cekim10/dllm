@@ -1,0 +1,108 @@
+{
+  "model_name_or_path": "GSAI-ML/LLaDA-8B-Instruct",
+  "num_requests": 10,
+  "initial_canvas": 32,
+  "final_canvas": 256,
+  "expansion_after_steps": [
+    0,
+    1,
+    2,
+    4,
+    8,
+    12,
+    16
+  ],
+  "block_size": 32,
+  "steps": 256,
+  "threshold": 0.9,
+  "factor": null,
+  "tail_width": 8,
+  "length_source": "decoded_tokens",
+  "note": "deadline=0 is the fixed/full-canvas oracle. deadline=k starts with initial_canvas visible and expands to final_canvas before the first block's k-th model call.",
+  "variants": {
+    "expand_after_0": {
+      "num_requests": 10,
+      "avg_text_similarity_vs_fixed": 1.0,
+      "avg_token_edit_ratio_vs_fixed": 0.0,
+      "avg_length_delta_vs_fixed": 0.0,
+      "avg_useful_generated_tokens": 159.2,
+      "avg_response_token_work_ratio_vs_fixed": 1.0,
+      "avg_total_attention_work_ratio_vs_fixed": 1.0,
+      "avg_elapsed_seconds": 9.018402945398702,
+      "avg_peak_memory_mb": 15643.52431640625,
+      "avg_model_calls": 115.0
+    },
+    "expand_after_1": {
+      "num_requests": 10,
+      "avg_text_similarity_vs_fixed": 0.36895483657022854,
+      "avg_token_edit_ratio_vs_fixed": 0.53125,
+      "avg_length_delta_vs_fixed": -124.5,
+      "avg_useful_generated_tokens": 34.7,
+      "avg_response_token_work_ratio_vs_fixed": 0.5346667588596217,
+      "avg_total_attention_work_ratio_vs_fixed": 0.5330547752912732,
+      "avg_elapsed_seconds": 3.2099779782030966,
+      "avg_peak_memory_mb": 15643.52431640625,
+      "avg_model_calls": 41.6
+    },
+    "expand_after_12": {
+      "num_requests": 10,
+      "avg_text_similarity_vs_fixed": 0.29191565104324124,
+      "avg_token_edit_ratio_vs_fixed": 0.605078125,
+      "avg_length_delta_vs_fixed": -137.2,
+      "avg_useful_generated_tokens": 22.0,
+      "avg_response_token_work_ratio_vs_fixed": 0.24816059099120724,
+      "avg_total_attention_work_ratio_vs_fixed": 0.23662516613347545,
+      "avg_elapsed_seconds": 1.6087904340034584,
+      "avg_peak_memory_mb": 15643.52431640625,
+      "avg_model_calls": 27.0
+    },
+    "expand_after_16": {
+      "num_requests": 10,
+      "avg_text_similarity_vs_fixed": 0.2908066559593137,
+      "avg_token_edit_ratio_vs_fixed": 0.6046875,
+      "avg_length_delta_vs_fixed": -137.2,
+      "avg_useful_generated_tokens": 22.0,
+      "avg_response_token_work_ratio_vs_fixed": 0.223193016859967,
+      "avg_total_attention_work_ratio_vs_fixed": 0.2093194750820097,
+      "avg_elapsed_seconds": 1.4797384842036991,
+      "avg_peak_memory_mb": 15643.52431640625,
+      "avg_model_calls": 27.1
+    },
+    "expand_after_2": {
+      "num_requests": 10,
+      "avg_text_similarity_vs_fixed": 0.2617577624367107,
+      "avg_token_edit_ratio_vs_fixed": 0.608203125,
+      "avg_length_delta_vs_fixed": -139.7,
+      "avg_useful_generated_tokens": 19.5,
+      "avg_response_token_work_ratio_vs_fixed": 0.3640227236565089,
+      "avg_total_attention_work_ratio_vs_fixed": 0.3607987565198119,
+      "avg_elapsed_seconds": 2.1930812405014874,
+      "avg_peak_memory_mb": 15643.52431640625,
+      "avg_model_calls": 29.1
+    },
+    "expand_after_4": {
+      "num_requests": 10,
+      "avg_text_similarity_vs_fixed": 0.2848041949726868,
+      "avg_token_edit_ratio_vs_fixed": 0.604296875,
+      "avg_length_delta_vs_fixed": -138.4,
+      "avg_useful_generated_tokens": 20.8,
+      "avg_response_token_work_ratio_vs_fixed": 0.3181022646241901,
+      "avg_total_attention_work_ratio_vs_fixed": 0.31250433035079617,
+      "avg_elapsed_seconds": 2.004047546902439,
+      "avg_peak_memory_mb": 15643.52431640625,
+      "avg_model_calls": 27.8
+    },
+    "expand_after_8": {
+      "num_requests": 10,
+      "avg_text_similarity_vs_fixed": 0.295046574729907,
+      "avg_token_edit_ratio_vs_fixed": 0.605078125,
+      "avg_length_delta_vs_fixed": -137.2,
+      "avg_useful_generated_tokens": 22.0,
+      "avg_response_token_work_ratio_vs_fixed": 0.275881701289931,
+      "avg_total_attention_work_ratio_vs_fixed": 0.2672358327431431,
+      "avg_elapsed_seconds": 1.7549857926002006,
+      "avg_peak_memory_mb": 15643.52431640625,
+      "avg_model_calls": 26.8
+    }
+  }
+}

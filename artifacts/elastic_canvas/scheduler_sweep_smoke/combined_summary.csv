@@ -1,0 +1,5 @@
+file,workload,arrival_rate_rps,arrival_process,slo_policy,policy,throughput_rps,throughput_speedup,p95_latency_ms,p95_latency_ratio,p95_first_wait_ms,slo_miss_rate,gpu_time_ratio,token_coupling_waste_ratio,attention_coupling_waste_ratio,avg_batch_size
+rare_r0p1_summary.json,rare,0.1,poisson,by_canvas,arrival_dense,0.10774812031803042,1.0,589.4462683502875,1.0,0.0,0.0,1.0,0.0,0.0,1
+rare_r0p1_summary.json,rare,0.1,poisson,by_canvas,exact_bucket,0.10774812031803042,1.0,589.4462683502875,1.0,0.0,0.0,1.0,0.0,0.0,1
+rare_r0p1_summary.json,rare,0.1,poisson,by_canvas,exact_bucket_wait,0.1070273704437867,0.9933107893472632,2811.058510406153,4.7689817738156215,2374.199851065455,0.03125,0.8969204404455331,0.0,0.0,1.1851851851851851
+rare_r0p1_summary.json,rare,0.1,poisson,by_canvas,canvas_aware,0.10774812031803042,1.0,589.4462683502875,1.0,0.0,0.0,1.0,0.0,0.0,1

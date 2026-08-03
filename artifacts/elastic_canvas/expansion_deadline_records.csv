@@ -1,0 +1,216 @@
+request_index,variant,expansion_after_steps,prompt_tokens,initial_canvas,final_canvas,expanded_at_first_block_step,expansion_reason,model_calls,steps_per_block,response_token_work,total_token_work,response_attention_work,total_attention_work,useful_generated_tokens,decoded_chars,elapsed_seconds,peak_memory_mb,pre_expand_tail_mask_fraction,pre_expand_eos_margin_mean,pre_expand_eos_margin_max,pre_expand_boundary_confidence_mean,pre_expand_boundary_confidence_max,decoded_text,text_similarity_vs_fixed,token_edit_distance_vs_fixed,token_edit_ratio_vs_fixed,length_delta_vs_fixed,response_token_work_ratio_vs_fixed,total_attention_work_ratio_vs_fixed
+0,expand_after_0,0,24,32,256,0,initial_full_canvas,10,32,2560,2800,655360,784000,8,15,1.4681764410051983,15640.64501953125,,,,,,2 + 2 equals 4.,1.0,0,0.0,0,1.0,1.0
+0,expand_after_1,1,24,32,256,1,deadline_before_model_call@first_block_step_1,9,32,2080,2296,525312,630336,8,15,0.7374784559942782,15640.64501953125,1.0,6.6875,7.25,0.423772931098938,0.9700552225112915,2 + 2 equals 4.,1.0,0,0.0,0,0.8125,0.804
+0,expand_after_2,2,24,32,256,2,deadline_before_model_call@first_block_step_2,10,32,2112,2352,526336,633472,8,15,0.6850603659986518,15640.64501953125,0.0,20.75,28.875,0.8261858224868774,0.9952651262283325,2 + 2 equals 4.,1.0,0,0.0,0,0.825,0.808
+0,expand_after_4,4,24,32,256,3,needed_for_next_block@first_block_step_3,10,32,1888,2128,461824,558208,8,15,0.6384196530270856,15640.64501953125,0.0,19.78125,24.875,0.8576571345329285,0.979282796382904,2 + 2 equals 4.,1.0,0,0.0,0,0.7375,0.712
+0,expand_after_8,8,24,32,256,3,needed_for_next_block@first_block_step_3,10,32,1888,2128,461824,558208,8,15,0.6391175509779714,15640.64501953125,0.0,19.78125,24.875,0.8576571345329285,0.979282796382904,2 + 2 equals 4.,1.0,0,0.0,0,0.7375,0.712
+0,expand_after_12,12,24,32,256,3,needed_for_next_block@first_block_step_3,10,32,1888,2128,461824,558208,8,15,0.6383393919968512,15640.64501953125,0.0,19.78125,24.875,0.8576571345329285,0.979282796382904,2 + 2 equals 4.,1.0,0,0.0,0,0.7375,0.712
+0,expand_after_16,16,24,32,256,3,needed_for_next_block@first_block_step_3,10,32,1888,2128,461824,558208,8,15,0.639366871007951,15640.64501953125,0.0,19.78125,24.875,0.8576571345329285,0.979282796382904,2 + 2 equals 4.,1.0,0,0.0,0,0.7375,0.712
+1,expand_after_0,0,24,32,256,0,initial_full_canvas,45,32,11520,12600,2949120,3528000,37,231,3.372779786994215,15640.64501953125,,,,,,"GPU memory fragmentation refers to the distribution of available memory on a GPU, making it difficult to allocate contiguous blocks of memory for large datasets or computations, leading to reduced performance and increased latency.",1.0,0,0.0,0,1.0,1.0
+1,expand_after_1,1,24,32,256,1,deadline_before_model_call@first_block_step_1,45,32,11296,12376,2884608,3452736,37,231,3.3431439039995894,15640.64501953125,1.0,-1.6328125,2.125,0.4200790524482727,0.9990713596343994,"GPU memory fragmentation refers to the distribution of available memory on a GPU, making it difficult to allocate contiguous blocks of memory for large datasets or computations, leading to reduced performance and increased latency.",1.0,0,0.0,0,0.9805555555555555,0.9786666666666667
+1,expand_after_2,2,24,32,256,2,deadline_before_model_call@first_block_step_2,37,32,9024,9912,2295808,2750272,17,112,2.7088436869962607,15640.64501953125,1.0,-1.578125,1.875,0.4120112955570221,0.9990522265434265,"GPU memory fragmentation occurs when GPU memory is inefficient allocated, leading to reduced system performance.",0.5306122448979592,35,0.13671875,-20,0.7833333333333333,0.7795555555555556
+1,expand_after_4,4,24,32,256,4,deadline_before_model_call@first_block_step_4,34,32,7808,8624,1970176,2364544,30,180,2.396198352013016,15640.64501953125,0.625,-3.25,11.5,0.43657681345939636,0.9994422793388367,"GPU memory fragmentation occurs when a GPU's memory is divided into small, non-contiguous blocks, leading to inefficient memory access and potentially impacting system performance.",0.49148418491484186,33,0.12890625,-7,0.6777777777777778,0.6702222222222223
+1,expand_after_8,8,24,32,256,8,deadline_before_model_call@first_block_step_8,34,32,6912,7728,1712128,2063488,30,180,2.2181890060019214,15640.64501953125,0.625,-3.142578125,12.0,0.44371283054351807,0.998137354850769,"GPU memory fragmentation occurs when a GPU's memory is divided into small, non-contiguous blocks, leading to inefficient memory access and potentially impacting system performance.",0.49148418491484186,33,0.12890625,-7,0.6,0.5848888888888889
+1,expand_after_12,12,24,32,256,12,deadline_before_model_call@first_block_step_12,34,32,6016,6832,1454080,1762432,30,180,2.0382473939971533,15640.64501953125,0.625,-3.357421875,11.75,0.42519739270210266,0.9989516735076904,"GPU memory fragmentation occurs when a GPU's memory is divided into small, non-contiguous blocks, leading to inefficient memory access and potentially impacting system performance.",0.49148418491484186,33,0.12890625,-7,0.5222222222222223,0.49955555555555553
+1,expand_after_16,16,24,32,256,16,deadline_before_model_call@first_block_step_16,34,32,5120,5936,1196032,1461376,30,180,1.858766179997474,15640.64501953125,0.625,-4.587890625,12.125,0.4506467878818512,0.9990383386611938,"GPU memory fragmentation occurs when a GPU's memory is divided into small, non-contiguous blocks, leading to inefficient memory access and potentially impacting system performance.",0.49148418491484186,33,0.12890625,-7,0.4444444444444444,0.4142222222222222
+2,expand_after_0,0,22,32,256,0,initial_full_canvas,212,32,54272,58936,13893632,16384208,234,1339,16.041748579009436,15636.87158203125,,,,,,"Caching in model serving offers several benefits that can significantly enhance the performance and efficiency of machine learning models. Here are three key benefits:
+
+1. **Reduced Computational Overhead**: By storing the results of expensive computations, caching reduces the need to recompute the same results multiple times. This can lead to substantial savings in computational resources, especially in scenarios where the model is frequently queried with the same or similar inputs.
+
+2. **Improved Response Times**: When a model is queried with the same inputs multiple times, caching can drastically reduce response times. This is particularly important in real-time applications where quick results are critical. By storing intermediate results, the model can provide responses faster, improving user experience and satisfaction.
+
+3. **Better Resource Management**: Caching can help in more efficient use of system resources. By reducing the number of computations needed, caching can help in managing the load on the server, ensuring that it can handle more requests without becoming overwhelmed. This can lead to better scalability and reliability of the model serving system.
+
+These benefits make caching a valuable technique in model serving, helping to optimize the performance and efficiency of machine learning applications.",1.0,0,0.0,0,1.0,1.0
+2,expand_after_1,1,22,32,256,1,deadline_before_model_call@first_block_step_1,39,32,9760,10618,2491392,2939708,1,1,2.955361332016764,15636.87158203125,1.0,0.6171875,3.5625,0.379097044467926,0.9851559400558472,​,0.0,235,0.91796875,-233,0.17983490566037735,0.17942325927502872
+2,expand_after_2,2,22,32,256,2,deadline_before_model_call@first_block_step_2,31,32,7488,8170,1902592,2247068,18,112,2.3040581160166766,15636.87158203125,0.875,0.2421875,1.125,0.338067889213562,0.9989111423492432,"Three benefits of caching in model serving are improved performance, reduced latency, and increased scalability.",0.11026878015161957,233,0.91015625,-216,0.13797169811320756,0.1371484053425103
+2,expand_after_4,4,22,32,256,4,deadline_before_model_call@first_block_step_4,33,32,7552,8278,1904640,2252900,18,112,2.3687758339801803,15636.87158203125,0.875,0.2578125,1.375,0.3750809133052826,0.9993818998336792,"Three benefits of caching in model serving are improved performance, reduced latency, and increased scalability.",0.11026878015161957,233,0.91015625,-216,0.1391509433962264,0.13750435785483192
+2,expand_after_8,8,22,32,256,8,deadline_before_model_call@first_block_step_8,33,32,6656,7382,1646592,1955428,30,129,2.1818806730152573,15636.87158203125,0.625,-2.435546875,11.125,0.41185784339904785,0.99993896484375,"Three benefits of caching in model serving are: 1. Improved performance, 2. Reduced resource usage, and 3. Faster response times.",0.11852861035422343,233,0.91015625,-204,0.12264150943396226,0.11934833835117327
+2,expand_after_12,12,22,32,256,12,deadline_before_model_call@first_block_step_12,34,32,6016,6764,1454080,1735240,30,132,2.073493358999258,15636.87158203125,0.625,-4.283203125,16.125,0.5163242816925049,0.9999954700469971,"Three benefits of caching in model serving are:
+1. Faster response times.
+2. Reduced resource usage.
+3. Improved system scalability.",0.12780421481985044,233,0.91015625,-204,0.11084905660377359,0.1059092999795901
+2,expand_after_16,16,22,32,256,16,deadline_before_model_call@first_block_step_16,34,32,5120,5868,1196032,1437768,30,132,1.8861561639932916,15636.87158203125,0.375,-7.4296875,12.75,0.707765519618988,0.999992847442627,"Three benefits of caching in model serving are:
+1. Faster response times.
+2. Reduced resource usage.
+3. Improved system scalability.",0.12780421481985044,233,0.91015625,-204,0.09433962264150944,0.08775328047593146
+3,expand_after_0,0,22,32,256,0,initial_full_canvas,88,32,22528,24464,5767168,6800992,70,452,6.783337565982947,15636.87158203125,,,,,,"Batching improves throughput by combining multiple requests or operations into a single batch, which reduces the overhead associated with individual requests and allows the system to process more requests per unit of time. This is particularly beneficial in scenarios where each request requires significant processing time or resources, as batching can optimize the utilization of system resources and minimize the time spent waiting between requests.",1.0,0,0.0,0,1.0,1.0
+3,expand_after_1,1,22,32,256,1,deadline_before_model_call@first_block_step_1,89,32,22560,24518,5768192,6803908,70,452,6.828500511997845,15636.87158203125,1.0,-1.91796875,2.125,0.4428516626358032,0.9988278746604919,"Batching improves throughput by combining multiple requests or operations into a single batch, which reduces the overhead associated with individual requests and allows the system to process more requests per unit of time. This is particularly beneficial in scenarios where each request requires significant processing time or resources, as batching can optimize the utilization of system resources and minimize the time spent waiting between requests.",1.0,0,0.0,0,1.0014204545454546,1.000428760980751
+3,expand_after_2,2,22,32,256,2,deadline_before_model_call@first_block_step_2,39,32,9536,10394,2426880,2865340,5,31,2.942952924000565,15636.87158203125,1.0,-1.734375,2.375,0.43855589628219604,0.9990015625953674,Batching improves throughput by,0.12836438923395446,66,0.2578125,-65,0.42329545454545453,0.42131206741604754
+3,expand_after_4,4,22,32,256,4,deadline_before_model_call@first_block_step_4,36,32,8320,9112,2101248,2484752,30,199,2.619310404988937,15636.87158203125,0.75,-2.7578125,11.75,0.48928332328796387,0.9996554851531982,"Batching improves throughput by combining multiple requests into a single batch, reducing the overhead of handling individual requests and allowing the system to process more requests simultaneously.",0.543778801843318,50,0.1953125,-40,0.3693181818181818,0.3653514075593678
+3,expand_after_8,8,22,32,256,8,deadline_before_model_call@first_block_step_8,36,32,7424,8216,1843200,2187280,30,199,2.435062395001296,15636.87158203125,0.625,-2.333984375,11.25,0.4173034727573395,0.9991673231124878,"Batching improves throughput by combining multiple requests into a single batch, reducing the overhead of handling individual requests and allowing the system to process more requests simultaneously.",0.543778801843318,50,0.1953125,-40,0.32954545454545453,0.3216119060278265
+3,expand_after_12,12,22,32,256,12,deadline_before_model_call@first_block_step_12,36,32,6528,7320,1585152,1889808,30,199,2.243493775022216,15636.87158203125,0.625,-2.62109375,10.625,0.4531194269657135,0.9994776844978333,"Batching improves throughput by combining multiple requests into a single batch, reducing the overhead of handling individual requests and allowing the system to process more requests simultaneously.",0.543778801843318,50,0.1953125,-40,0.2897727272727273,0.27787240449628525
+3,expand_after_16,16,22,32,256,16,deadline_before_model_call@first_block_step_16,36,32,5632,6424,1327104,1592336,30,199,2.0545402750140056,15636.87158203125,0.625,-3.0859375,10.875,0.43684160709381104,0.9998513460159302,"Batching improves throughput by combining multiple requests into a single batch, reducing the overhead of handling individual requests and allowing the system to process more requests simultaneously.",0.543778801843318,50,0.1953125,-40,0.25,0.23413290296474396
+4,expand_after_0,0,25,32,256,0,initial_full_canvas,64,32,16384,17984,4194304,5053504,202,685,4.986580264987424,15640.64501953125,,,,,,"Certainly! Here is a short Python function that returns the factorial of a given number `n`:
+
+```python
+def factorial(n):
+    if n < 0:
+        raise ValueError(""Factorial is not defined for negative numbers"")
+    elif n == 0 or n == 1:
+        return 1
+    else:
+        result = 1
+        for i in range(2, n + 1):
+            result *= i
+        return result
+
+# Example usage:
+print(factorial(5))  # Output: 120
+```
+
+This function first checks if `n` is negative and raises a `ValueError` if it is. If `n` is 0 or 1, it returns 1, as the factorial of 0 and 1 is 1. For other positive integers, it uses a loop to calculate the factorial by multiplying all integers from 2 up to `n`.",1.0,0,0.0,0,1.0,1.0
+4,expand_after_1,1,25,32,256,1,deadline_before_model_call@first_block_step_1,77,32,19488,21413,4981760,6004285,221,753,5.962267702998361,15640.64501953125,1.0,-1.765625,0.375,0.3673819303512573,0.9959802627563477,"The factorial of a number \( n \) is the product of all positive integers less than or equal to \( n \). Here's a simple Python function to calculate the factorial of \( n \):
+
+```python
+def factorial(n):
+    if n < 0:
+        raise ValueError(""Factorial is not defined for negative numbers"")
+    elif n == 0 or n == 1:
+        return 1
+    else:
+        result = 1
+        for i in range(2, n + 1):
+            result *= i
+        return result
+
+# Example usage:
+# print(factorial(5))  # Output: 120
+```
+
+This function first checks if \( n \) is negative and raises a `ValueError` if it is. If \( n \) is 0 or 1, it returns 1 because the factorial of 0 and 1 is 1. For other values of \( n \), it uses a loop to multiply all integers from 2 to \( n \).",0.6425591098748261,79,0.30859375,19,1.189453125,1.1881429202391054
+4,expand_after_2,2,25,32,256,2,deadline_before_model_call@first_block_step_2,23,32,5440,6015,1378304,1664679,55,168,1.723700982023729,15640.64501953125,1.0,-2.2578125,1.375,0.4444560408592224,0.9966241121292114,"def factorial(n):
+    if n == 0 or n == 1:
+        return 1
+    else:
+        result = 1
+        for i in range(2, n + 1):
+            result *= i
+        return result",0.3939038686987104,194,0.7578125,-147,0.33203125,0.3294108404782108
+4,expand_after_4,4,25,32,256,4,deadline_before_model_call@first_block_step_4,17,32,3456,3881,856064,1039489,30,97,1.163188455015188,15640.64501953125,1.0,-1.7734375,1.5,0.47288990020751953,0.9950048327445984,"def factorial(n):
+    result = 1
+    for i in range(n + 1):
+        result *= i
+    return result",0.24808184143222506,202,0.7890625,-172,0.2109375,0.20569668095642152
+4,expand_after_8,8,25,32,256,8,deadline_before_model_call@first_block_step_8,17,32,2560,2985,598016,736641,30,96,0.9702924769953825,15640.64501953125,0.375,-12.828125,17.125,0.9789100885391235,0.9999996423721313,"def factorial(n):
+    result = 1
+    for i in range(1, n):
+        result *= i
+    return result",0.24327784891165172,202,0.7890625,-172,0.15625,0.14576836191284304
+4,expand_after_12,12,25,32,256,12,deadline_before_model_call@first_block_step_12,20,32,2432,2932,536576,670676,30,96,1.0133910340082366,15640.64501953125,0.0,-13.8203125,14.5,0.9993326663970947,0.9999995231628418,"def factorial(n):
+    result = 1
+    for i in range(1, n):
+        result *= i
+    return result",0.24327784891165172,202,0.7890625,-172,0.1484375,0.13271504286926458
+4,expand_after_16,16,25,32,256,13,needed_for_next_block@first_block_step_13,20,32,2208,2708,472064,594964,30,96,0.9648259310051799,15640.64501953125,0.0,-14.109375,14.125,0.999441385269165,0.9999997615814209,"def factorial(n):
+    result = 1
+    for i in range(1, n):
+        result *= i
+    return result",0.24327784891165172,202,0.7890625,-172,0.134765625,0.11773296310836995
+5,expand_after_0,0,27,32,256,0,initial_full_canvas,185,32,47360,52355,12124160,14816465,231,1216,14.466932793002343,15641.95849609375,,,,,,"The main tradeoff between latency and throughput in online serving refers to the trade-off between the time it takes for a request to be processed and the number of requests that can be processed in a given time.
+
+Latency refers to the time it takes for a request to be processed, from the request to the response. Lower latency means that the request is processed quickly, and the response is delivered promptly. However, reducing latency can come at the cost of reducing throughput, as the system may not be able to process as many requests in a given time.
+
+Throughput, on the other hand, refers to the number of requests that can be processed in a given time. Higher throughput means that the system can handle more requests simultaneously, and the response is delivered quickly. However, increasing throughput can come at the cost of increasing latency, as the system may not be able to process requests as quickly.
+
+In summary, the tradeoff between latency and throughput in online serving is a fundamental aspect that must be considered when designing and optimizing systems. Balancing latency and throughput is essential to ensure that the system can handle requests efficiently and provide timely responses.",1.0,0,0.0,0,1.0,1.0
+5,expand_after_1,1,27,32,256,1,deadline_before_model_call@first_block_step_1,39,32,9760,10813,2491392,3046863,4,26,3.032779858011054,15641.95849609375,1.0,0.1484375,1.875,0.3816625475883484,0.9986659288406372,Latency versus throughput.,0.030595813204508857,232,0.90625,-227,0.20608108108108109,0.20564034673587794
+5,expand_after_2,2,27,32,256,2,deadline_before_model_call@first_block_step_2,30,32,7232,8042,1837056,2249454,30,164,2.281166155997198,15641.95849609375,0.875,1.2421875,6.0625,0.40874484181404114,0.9997344613075256,"The main tradeoff between latency and throughput in online serving is that as latency decreases, the number of requests served per second increases, and vice versa.",0.2028985507246377,220,0.859375,-201,0.1527027027027027,0.15182123401229647
+5,expand_after_4,4,27,32,256,4,deadline_before_model_call@first_block_step_4,29,32,6528,7311,1642496,2016149,30,164,2.1077152399811894,15641.95849609375,0.625,-1.712890625,11.5,0.4558141231536865,0.9994671940803528,"The main tradeoff between latency and throughput in online serving is that as latency decreases, the number of requests served per second increases, and vice versa.",0.2028985507246377,220,0.859375,-201,0.13783783783783785,0.13607490045702533
+5,expand_after_8,8,27,32,256,8,deadline_before_model_call@first_block_step_8,29,32,5632,6415,1384448,1709717,30,164,1.9157064750033896,15641.95849609375,0.625,-2.529296875,11.5,0.5134302973747253,0.9996351003646851,"The main tradeoff between latency and throughput in online serving is that as latency decreases, the number of requests served per second increases, and vice versa.",0.2028985507246377,220,0.859375,-201,0.11891891891891893,0.11539304415729393
+5,expand_after_12,12,27,32,256,12,deadline_before_model_call@first_block_step_12,29,32,4736,5519,1126400,1403285,30,164,1.7229659990116488,15641.95849609375,0.125,-5.86328125,13.875,0.8848907947540283,0.9991920590400696,"The main tradeoff between latency and throughput in online serving is that as latency decreases, the number of requests served per second increases, and vice versa.",0.2028985507246377,220,0.859375,-201,0.1,0.09471118785756251
+5,expand_after_16,16,27,32,256,16,deadline_before_model_call@first_block_step_16,29,32,3840,4623,868352,1096853,30,164,1.5309911600197665,15641.95849609375,0.125,-5.6640625,14.875,0.8711958527565002,0.9999978542327881,"The main tradeoff between latency and throughput in online serving is that as latency decreases, the number of requests served per second increases, and vice versa.",0.2028985507246377,220,0.859375,-201,0.08108108108108109,0.0740293315578311
+6,expand_after_0,0,41,32,256,0,initial_full_canvas,68,32,17408,20196,4456448,5998212,215,605,5.4195642819977365,15660.28466796875,,,,,,"To determine how far Lily runs in 8 hours at the same speed, we can use the formula for distance, which is:
+
+\[ \text{Distance} = \text{Speed} \times \text{Time} \]
+
+First, let's calculate the distance Lily runs in 4 hours at a speed of 12 km/h:
+
+\[ \text{Distance} = 12 \, \text{km/h} \times 4 \, \text{hours} = 48 \, \text{km} \]
+
+Now, we know Lily runs 48 km in 4 hours. To find out how far she runs in 8 hours at the same speed, we can use the same formula:
+
+\[ \text{Distance} = 12 \, \text{km/h} \times 8 \, \text{hours} = 96 \, \text{km} \]
+
+Therefore, Lily runs 96 km in 8 hours at the same speed.",1.0,0,0.0,0,1.0,1.0
+6,expand_after_1,1,41,32,256,1,deadline_before_model_call@first_block_step_1,31,32,7712,8983,1967104,2651599,3,5,2.450219767022645,15660.28466796875,1.0,0.09375,3.625,0.48960426449775696,0.9910416007041931,96 km,0.01639344262295082,216,0.84375,-212,0.4430147058823529,0.4420649020074649
+6,expand_after_2,2,41,32,256,2,deadline_before_model_call@first_block_step_2,33,32,8000,9353,2033664,2745137,30,70,2.5592000350006856,15660.28466796875,0.875,0.59375,6.6875,0.5043506026268005,0.9994927644729614,"Lily runs 96 km.
+
+Distance = speed × time = 12 km/h × 8 hours = 96 km.",0.08888888888888889,216,0.84375,-185,0.45955882352941174,0.45765921577963564
+6,expand_after_4,4,41,32,256,4,deadline_before_model_call@first_block_step_4,33,32,7552,8905,1904640,2579377,30,70,2.4675047210184857,15660.28466796875,0.625,-3.2890625,15.5,0.6180657148361206,0.9999644756317139,"Lily runs 96 km.
+
+Distance = speed × time = 12 km/h × 8 hours = 96 km.",0.08888888888888889,216,0.84375,-185,0.4338235294117647,0.4300243139122125
+6,expand_after_8,8,41,32,256,8,deadline_before_model_call@first_block_step_8,30,32,5888,7118,1449984,1983230,30,69,2.0439187540032435,15660.28466796875,0.0,-6.55859375,15.75,0.9955106973648071,0.9996498823165894,"If Lily runs at 12 km/h, then in 8 hours she will run 12 * 8 = 96 km.",0.142433234421365,216,0.84375,-185,0.3382352941176471,0.3306368631185427
+6,expand_after_12,12,41,32,256,12,deadline_before_model_call@first_block_step_12,30,32,4992,6222,1191936,1651710,30,69,1.8552832409914117,15660.28466796875,0.0,-8.14453125,15.375,0.9968603849411011,0.9999897480010986,"If Lily runs at 12 km/h, then in 8 hours she will run 12 * 8 = 96 km.",0.142433234421365,216,0.84375,-185,0.2867647058823529,0.2753670593836963
+6,expand_after_16,16,41,32,256,16,deadline_before_model_call@first_block_step_16,30,32,4096,5326,933888,1320190,30,65,1.669736882991856,15660.28466796875,0.0,-9.22265625,14.75,0.9954628944396973,0.9999972581863403,"Lily runs at 12 km/h, so in 8 hours, she will run 12 * 8 = 96 km.",0.13134328358208955,215,0.83984375,-185,0.23529411764705882,0.22009725564885002
+7,expand_after_0,0,31,32,256,0,initial_full_canvas,199,32,50944,57113,13041664,16391431,254,1088,15.672646821010858,15646.78271484375,,,,,,"**Incident Report: P95 Latency Increase Post-Deployment**
+
+**Incident Summary:**
+
+**Date:** [Insert Date]
+
+**Time:** [Insert Time]
+
+**Location:** [Insert Location]
+
+**Service:** [Insert Service Name]
+
+**Description:**
+
+After the recent deployment, the P95 latency for [Insert Service Name] has doubled, increasing from [Insert Previous Latency] to [Insert New Latency]. This significant increase in latency has impacted service performance and user experience.
+
+**Impact:**
+
+* Users reported slower response times and increased latency.
+* Service performance has degraded, affecting business operations and customer satisfaction.
+
+**Action Items:**
+
+* Investigate the cause of the latency increase.
+* Implement corrective actions to reduce P95 latency.
+* Monitor service performance to ensure the issue is resolved.
+
+**Next Steps:**
+
+* Schedule a meeting with relevant teams to discuss the incident and prioritize corrective actions.
+* Develop a plan to address the issue and prevent future occurrences.
+
+**Prepared by:**
+
+[Insert Name]
+
+[Insert Title]
+
+[Insert Department]
+
+[Insert Date]",1.0,0,0.0,0,1.0,1.0
+7,expand_after_1,1,31,32,256,1,deadline_before_model_call@first_block_step_1,40,32,10016,11256,2556928,3216360,1,1,3.1279890580044594,15646.78271484375,1.0,0.39453125,1.625,0.35775062441825867,0.9961667656898499,​,0.0,255,0.99609375,-253,0.19660804020100503,0.1962220382100867
+7,expand_after_2,2,31,32,256,2,deadline_before_model_call@first_block_step_2,39,32,9536,10745,2426880,3055591,30,154,3.005454090976855,15646.78271484375,0.875,1.83203125,5.75,0.38838738203048706,0.9996426105499268,Incident Report: The p95 latency of the service doubled after a deployment. Further investigation is required to identify the cause and resolve the issue.,0.16264090177133655,250,0.9765625,-224,0.1871859296482412,0.1864139256664046
+7,expand_after_4,4,31,32,256,4,deadline_before_model_call@first_block_step_4,39,32,9088,10297,2297856,2898791,30,154,2.909955152979819,15646.78271484375,0.625,-2.75,11.125,0.3880848288536072,0.999053418636322,Incident Report: The p95 latency of the service doubled after a deployment. Further investigation is required to identify the cause and resolve the issue.,0.16264090177133655,250,0.9765625,-224,0.17839195979899497,0.17684795183532176
+7,expand_after_8,8,31,32,256,8,deadline_before_model_call@first_block_step_8,37,32,7680,8827,1908736,2420453,30,152,2.557008569012396,15646.78271484375,0.625,-2.9482421875,11.0,0.39932066202163696,0.9983354210853577,"Incident Report:
+
+Service's p95 latency doubled post-deployment. Investigate root cause and implement corrective actions to restore optimal performance.",0.20806451612903226,252,0.984375,-224,0.1507537688442211,0.14766575291687467
+7,expand_after_12,12,31,32,256,12,deadline_before_model_call@first_block_step_12,36,32,6528,7644,1585152,2024484,30,142,2.2850261220009997,15646.78271484375,0.625,-2.9765625,12.25,0.40812820196151733,0.9991030693054199,"Incident Report:
+
+Service's p95 latency doubled after deployment. Investigate cause, assess impact, and implement fixes to prevent recurrence.",0.16747967479674797,252,0.984375,-224,0.12814070351758794,0.1235086796265683
+7,expand_after_16,16,31,32,256,16,deadline_before_model_call@first_block_step_16,36,32,5632,6748,1327104,1710884,30,142,2.0904437260178383,15646.78271484375,0.625,-3.1357421875,11.625,0.41039523482322693,0.9997584223747253,"Incident Report:
+
+Service's p95 latency doubled after deployment. Investigate cause, assess impact, and implement fixes to prevent recurrence.",0.16747967479674797,252,0.984375,-224,0.11055276381909548,0.10437673196440261
+8,expand_after_0,0,28,32,256,0,initial_full_canvas,179,32,45824,50836,11730944,14437424,233,1216,14.077870145993074,15645.14892578125,,,,,,"Fixed output canvases can waste compute in masked diffusion language models because they limit the ability of the model to generate diverse and creative outputs. When the output canvas is fixed, the model is forced to generate outputs that fit within the same constraints, which can result in repetitive and predictable outputs. This can lead to a lack of diversity and creativity in the generated text, which can reduce the overall performance of the model.
+
+Additionally, fixed output canvases can also limit the ability of the model to capture the nuances and complexities of the input text. When the output canvas is fixed, the model may not be able to generate outputs that are as detailed and accurate as the input text. This can result in outputs that are too simplistic or too vague, which can reduce the overall quality of the model.
+
+Finally, fixed output canvases can also limit the ability of the model to generate outputs that are coherent and meaningful. When the output canvas is fixed, the model may not be able to generate outputs that are as coherent and meaningful as the input text. This can result in outputs that are incoherent or nonsensical, which can reduce the overall quality of the model.",1.0,0,0.0,0,1.0,1.0
+8,expand_after_1,1,28,32,256,1,deadline_before_model_call@first_block_step_1,27,32,6688,7444,1704960,2100656,1,1,2.1060600969940424,15645.14892578125,1.0,2.58203125,3.3125,0.28227880597114563,0.9904142022132874,​,0.0,234,0.9140625,-232,0.14594972067039105,0.14550074861000134
+8,expand_after_2,2,28,32,256,2,deadline_before_model_call@first_block_step_2,28,32,6720,7504,1705984,2104256,1,1,2.1333540700143203,15645.14892578125,0.875,2.01953125,2.9375,0.2968378961086273,0.9992982149124146,​,0.0,234,0.9140625,-232,0.14664804469273743,0.145750100571958
+8,expand_after_4,4,28,32,256,4,deadline_before_model_call@first_block_step_4,27,32,6016,6772,1511424,1869488,1,1,1.9594700610032305,15645.14892578125,0.125,11.796875,18.25,0.8965319395065308,0.9991927742958069,​,0.0,234,0.9140625,-232,0.13128491620111732,0.12948902795955844
+8,expand_after_8,8,28,32,256,8,deadline_before_model_call@first_block_step_8,24,32,4352,5024,1056768,1319296,1,1,1.5295484120142646,15645.14892578125,0.0,15.0546875,23.625,0.9220212697982788,0.9932952523231506,​,0.0,234,0.9140625,-232,0.09497206703910614,0.09138029055598838
+8,expand_after_12,12,28,32,256,12,deadline_before_model_call@first_block_step_12,24,32,3456,4128,798720,1011072,1,1,1.3351091369986534,15645.14892578125,0.0,14.34375,20.375,0.8474040031433105,0.991031289100647,​,0.0,234,0.9140625,-232,0.07541899441340782,0.07003132968873117
+8,expand_after_16,16,28,32,256,16,deadline_before_model_call@first_block_step_16,25,32,2816,3516,606208,783504,1,1,1.2197365819883998,15645.14892578125,0.0,14.8046875,22.0,0.7937273979187012,0.9795278310775757,​,0.0,234,0.9140625,-232,0.061452513966480445,0.05426896100024492
+9,expand_after_0,0,29,32,256,0,initial_full_canvas,100,32,25600,28500,6553600,8122500,108,615,7.894392774003791,15645.39013671875,,,,,,"Autoregressive decoding and masked diffusion decoding are two popular methods for serving systems in natural language processing (NLP). Autoregressive decoding is a straightforward approach that involves predicting the next word in a sequence based on the previous words. This method is efficient and easy to implement, but it may not produce the best quality text. Masked diffusion decoding, on the other hand, is a more complex approach that involves training a diffusion model to generate text. This method can produce higher quality text, but it requires more computational resources and expertise to implement.",1.0,0,0.0,0,1.0,1.0
+9,expand_after_1,1,29,32,256,1,deadline_before_model_call@first_block_step_1,20,32,4896,5476,1246208,1546996,1,1,1.555979094991926,15645.39013671875,1.0,3.15625,3.8125,0.2787708640098572,0.980254590511322,​,0.0,109,0.42578125,-107,0.19125,0.19045811018775008
+9,expand_after_2,2,29,32,256,2,deadline_before_model_call@first_block_step_2,21,32,4928,5537,1247232,1550717,1,1,1.5870219779899344,15645.39013671875,0.875,3.4609375,6.5,0.37831270694732666,0.9994016885757446,​,0.0,109,0.42578125,-107,0.1925,0.19091622037550016
+9,expand_after_4,4,29,32,256,4,deadline_before_model_call@first_block_step_4,20,32,4224,4804,1052672,1314484,1,1,1.4099375950172544,15645.39013671875,0.0,15.109375,24.875,0.9135046005249023,0.9908802509307861,​,0.0,109,0.42578125,-107,0.165,0.1618324407510003
+9,expand_after_8,8,29,32,256,8,deadline_before_model_call@first_block_step_8,18,32,2816,3338,663552,842018,1,1,1.0591336139768828,15645.39013671875,0.0,16.015625,22.625,0.7516144514083862,0.9811974167823792,​,0.0,109,0.42578125,-107,0.11,0.10366488150200062
+9,expand_after_12,12,29,32,256,10,needed_for_next_block@first_block_step_10,17,32,2112,2605,468992,605785,1,1,0.8825548870081548,15645.39013671875,0.0,16.0546875,25.125,0.8476864099502563,0.9983548521995544,​,0.0,109,0.42578125,-107,0.0825,0.07458110187750076
+9,expand_after_16,16,29,32,256,10,needed_for_next_block@first_block_step_10,17,32,2112,2605,468992,605785,1,1,0.8828210700012278,15645.39013671875,0.0,16.0546875,25.125,0.8476864099502563,0.9983548521995544,​,0.0,109,0.42578125,-107,0.0825,0.07458110187750076
