@@ -439,7 +439,7 @@ for request_index, message in enumerate(messages):
             int(fixed_record["useful_generated_tokens"]),
             initial_canvas=script_args.oracle_initial_canvas,
             page_size=script_args.oracle_page_size,
-            fixed_canvas=script_args.fixed_canvas,
+            max_canvas=script_args.fixed_canvas,
         )
         if oracle_canvas < script_args.fixed_canvas:
             if model.device.type == "cuda":
