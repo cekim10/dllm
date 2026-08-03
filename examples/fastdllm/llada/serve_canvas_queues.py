@@ -47,6 +47,19 @@ def _parse_int_list(value: str) -> list[int]:
     return values
 
 
+def _parse_canvas_groups(value: str) -> list[list[int]]:
+    groups = []
+    for raw_group in value.split(";"):
+        raw_group = raw_group.strip()
+        if not raw_group:
+            continue
+        group = _parse_int_list(raw_group)
+        groups.append(sorted(group))
+    if not groups:
+        raise ValueError("Expected at least one canvas group.")
+    return groups
+
+
 def _percentile(values: list[float], percentile: float) -> float:
     if not values:
         return 0.0
@@ -404,6 +417,35 @@ def _plan_exact_canvas_queue_bounded(
     return "exact_canvas_queue_bounded", group, canvas
 
 
+def _coarse_canvas_for(request_canvas: int, coarse_canvas_groups: list[list[int]]) -> int:
+    for group in coarse_canvas_groups:
+        if request_canvas in group:
+            return max(group)
+    return request_canvas
+
+
+def _plan_coarse_canvas_queue(
+    ready: list[Request],
+    *,
+    max_batch_size: int,
+    coarse_canvas_groups: list[list[int]],
+    **_: Any,
+) -> tuple[str, list[Request], int] | None:
+    buckets: dict[int, list[Request]] = defaultdict(list)
+    for request in ready:
+        buckets[_coarse_canvas_for(request.canvas, coarse_canvas_groups)].append(request)
+    if not buckets:
+        return None
+    candidates = []
+    for physical_canvas, bucket in buckets.items():
+        ordered = _oldest(bucket)
+        candidates.append(
+            (ordered[0].arrival_ms, -len(ordered), physical_canvas, ordered[:max_batch_size])
+        )
+    _, _, physical_canvas, group = min(candidates)
+    return "coarse_canvas_queue", group, physical_canvas
+
+
 def _build_batch(
     *,
     prompt_ids: list[int],
@@ -502,12 +544,14 @@ def _simulate_policy(
     max_bucket_wait_ms: float,
     default_step_ms: float,
     deadline_safety_margin_ms: float,
+    coarse_canvas_groups: list[list[int]],
 ) -> tuple[list[Request], list[Operation]]:
     planners = {
         "arrival_dense": _plan_arrival_dense,
         "exact_canvas_queue": _plan_exact_canvas_queue,
         "exact_canvas_queue_wait": _plan_exact_canvas_queue_wait,
         "exact_canvas_queue_bounded": _plan_exact_canvas_queue_bounded,
+        "coarse_canvas_queue": _plan_coarse_canvas_queue,
     }
     if policy not in planners:
         raise ValueError(f"Unknown policy: {policy}")
@@ -536,6 +580,7 @@ def _simulate_policy(
             observed_ms=observed_ms,
             default_step_ms=default_step_ms,
             deadline_safety_margin_ms=deadline_safety_margin_ms,
+            coarse_canvas_groups=coarse_canvas_groups,
         )
         if plan is None:
             next_arrival = _next_arrival_ms(requests, now_ms)
@@ -762,7 +807,8 @@ class ScriptArguments:
     refinement_steps: int = 16
     max_batch_size: int = 16
     canvas_classes: str = "32,64,128,256"
-    policies: str = "arrival_dense,exact_canvas_queue,exact_canvas_queue_wait,exact_canvas_queue_bounded"
+    policies: str = "arrival_dense,coarse_canvas_queue,exact_canvas_queue,exact_canvas_queue_wait,exact_canvas_queue_bounded"
+    coarse_canvas_groups: str = "32,64;128,256"
     min_bucket_size: int = 4
     target_bucket_size: int = 8
     max_bucket_wait_ms: float = 20.0
@@ -804,6 +850,7 @@ if eos_token_id is None:
     raise ValueError("tokenizer.eos_token_id is required")
 
 canvas_classes = _parse_int_list(script_args.canvas_classes)
+coarse_canvas_groups = _parse_canvas_groups(script_args.coarse_canvas_groups)
 canvas_lengths = _workload_lengths(
     workload=script_args.workload,
     num_requests=script_args.num_requests,
@@ -858,6 +905,7 @@ for policy in [part.strip() for part in script_args.policies.split(",") if part.
         max_bucket_wait_ms=script_args.max_bucket_wait_ms,
         default_step_ms=script_args.default_step_ms,
         deadline_safety_margin_ms=script_args.deadline_safety_margin_ms,
+        coarse_canvas_groups=coarse_canvas_groups,
     )
     summary = _summarize(
         policy=policy,
@@ -954,6 +1002,7 @@ output = {
     "refinement_steps": script_args.refinement_steps,
     "max_batch_size": script_args.max_batch_size,
     "canvas_classes": canvas_classes,
+    "coarse_canvas_groups": coarse_canvas_groups,
     "prompt_tokens": len(prompt_ids),
     "slo_policy": script_args.slo_policy,
     "slo_scale": script_args.slo_scale,
