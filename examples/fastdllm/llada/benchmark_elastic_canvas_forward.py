@@ -5,7 +5,8 @@ Run from repo root on a GPU server:
   source .venv/bin/activate
   python -u examples/fastdllm/llada/benchmark_elastic_canvas_forward.py \
     --model_name_or_path "GSAI-ML/LLaDA-8B-Instruct" \
-    --patterns short,medium,long,mixed,adversarial,trace \
+    --batch_sizes 1,2,4,8,16 \
+    --patterns short,medium,long,mixed,mix50,mix75,mix90,lowvar,highvar,adversarial,trace \
     --trace_summary_path artifacts/elastic_canvas/llada256_summary.json \
     --output_path artifacts/elastic_canvas/forward_bench.json
 """
@@ -50,6 +51,12 @@ def _parse_int_list(value: str) -> list[int]:
     return lengths
 
 
+def _parse_batch_sizes(value: str | None, batch_size: int) -> list[int]:
+    if value is None:
+        return [batch_size]
+    return _parse_int_list(value)
+
+
 def _repeat_to_batch(lengths: list[int], batch_size: int) -> list[int]:
     if batch_size <= 0:
         raise ValueError(f"batch_size must be positive, got {batch_size}")
@@ -76,6 +83,29 @@ def _pattern_lengths(
         return [fixed_canvas] * batch_size
     if pattern == "mixed":
         return _repeat_to_batch([32, 64, 128, fixed_canvas], batch_size)
+    if pattern == "mix50":
+        num_short = batch_size // 2
+        return [32] * num_short + [fixed_canvas] * (batch_size - num_short)
+    if pattern == "mix75":
+        num_short = int(round(batch_size * 0.75))
+        num_short = min(max(num_short, 0), batch_size)
+        return [32] * num_short + [fixed_canvas] * (batch_size - num_short)
+    if pattern == "mix90":
+        num_short = int(round(batch_size * 0.90))
+        if batch_size > 1:
+            num_short = min(num_short, batch_size - 1)
+        return [32] * num_short + [fixed_canvas] * (batch_size - num_short)
+    if pattern == "lowvar":
+        center = min(max(128, 1), fixed_canvas)
+        candidates = [
+            max(1, min(fixed_canvas, center + offset))
+            for offset in (-16, -8, 0, 8, 16)
+        ]
+        return _repeat_to_batch(candidates, batch_size)
+    if pattern == "highvar":
+        candidates = [32, 48, 64, 128, 192, fixed_canvas]
+        candidates = [min(length, fixed_canvas) for length in candidates]
+        return _repeat_to_batch(candidates, batch_size)
     if pattern == "adversarial":
         return [32] * max(0, batch_size - 1) + [fixed_canvas]
     if pattern == "trace":
@@ -229,7 +259,8 @@ class ScriptArguments:
     prompt: str = "Explain elastic canvas serving in one sentence."
     fixed_canvas: int = 256
     batch_size: int = 8
-    patterns: str = "short,medium,long,mixed,adversarial"
+    batch_sizes: str | None = None
+    patterns: str = "short,medium,long,mixed,mix50,mix75,mix90,lowvar,highvar,adversarial"
     trace_summary_path: str | None = None
     warmup: int = 2
     repeats: int = 5
@@ -266,110 +297,116 @@ if eos_token_id is None:
     raise ValueError("tokenizer.eos_token_id is required")
 
 results = []
-for pattern in [part.strip() for part in script_args.patterns.split(",") if part.strip()]:
-    canvas_lengths = _pattern_lengths(
-        pattern=pattern,
-        batch_size=script_args.batch_size,
-        fixed_canvas=script_args.fixed_canvas,
-        trace_summary_path=script_args.trace_summary_path,
-    )
-    max_canvas = max(canvas_lengths)
+for batch_size in _parse_batch_sizes(script_args.batch_sizes, script_args.batch_size):
+    for pattern in [
+        part.strip() for part in script_args.patterns.split(",") if part.strip()
+    ]:
+        canvas_lengths = _pattern_lengths(
+            pattern=pattern,
+            batch_size=batch_size,
+            fixed_canvas=script_args.fixed_canvas,
+            trace_summary_path=script_args.trace_summary_path,
+        )
+        max_canvas = max(canvas_lengths)
 
-    dense_fixed_call = _build_batch(
-        prompt_ids=prompt_ids,
-        canvas_lengths=[script_args.fixed_canvas] * len(canvas_lengths),
-        physical_canvas=script_args.fixed_canvas,
-        mask_token_id=mask_token_id,
-        eos_token_id=eos_token_id,
-        device=model.device,
-        mask_inactive_tail=False,
-    )
-    elastic_dense_call = _build_batch(
-        prompt_ids=prompt_ids,
-        canvas_lengths=canvas_lengths,
-        physical_canvas=max_canvas,
-        mask_token_id=mask_token_id,
-        eos_token_id=eos_token_id,
-        device=model.device,
-        mask_inactive_tail=True,
-    )
-    bucketed_calls = _bucket_calls(
-        prompt_ids=prompt_ids,
-        canvas_lengths=canvas_lengths,
-        mask_token_id=mask_token_id,
-        eos_token_id=eos_token_id,
-        device=model.device,
-    )
+        dense_fixed_call = _build_batch(
+            prompt_ids=prompt_ids,
+            canvas_lengths=[script_args.fixed_canvas] * len(canvas_lengths),
+            physical_canvas=script_args.fixed_canvas,
+            mask_token_id=mask_token_id,
+            eos_token_id=eos_token_id,
+            device=model.device,
+            mask_inactive_tail=False,
+        )
+        elastic_dense_call = _build_batch(
+            prompt_ids=prompt_ids,
+            canvas_lengths=canvas_lengths,
+            physical_canvas=max_canvas,
+            mask_token_id=mask_token_id,
+            eos_token_id=eos_token_id,
+            device=model.device,
+            mask_inactive_tail=True,
+        )
+        bucketed_calls = _bucket_calls(
+            prompt_ids=prompt_ids,
+            canvas_lengths=canvas_lengths,
+            mask_token_id=mask_token_id,
+            eos_token_id=eos_token_id,
+            device=model.device,
+        )
 
-    dense_fixed = _measure(
-        model=model,
-        calls=[dense_fixed_call],
-        warmup=script_args.warmup,
-        repeats=script_args.repeats,
-    )
-    elastic_dense = _measure(
-        model=model,
-        calls=[elastic_dense_call],
-        warmup=script_args.warmup,
-        repeats=script_args.repeats,
-    )
-    bucketed = _measure(
-        model=model,
-        calls=bucketed_calls,
-        warmup=script_args.warmup,
-        repeats=script_args.repeats,
-    )
+        dense_fixed = _measure(
+            model=model,
+            calls=[dense_fixed_call],
+            warmup=script_args.warmup,
+            repeats=script_args.repeats,
+        )
+        elastic_dense = _measure(
+            model=model,
+            calls=[elastic_dense_call],
+            warmup=script_args.warmup,
+            repeats=script_args.repeats,
+        )
+        bucketed = _measure(
+            model=model,
+            calls=bucketed_calls,
+            warmup=script_args.warmup,
+            repeats=script_args.repeats,
+        )
 
-    dense_fixed_ms = float(dense_fixed["avg_ms"])
-    elastic_dense_ms = float(elastic_dense["avg_ms"])
-    bucketed_ms = float(bucketed["avg_ms"])
-    result = {
-        "pattern": pattern,
-        "batch_size": len(canvas_lengths),
-        "prompt_tokens": len(prompt_ids),
-        "canvas_lengths": canvas_lengths,
-        "fixed_canvas": script_args.fixed_canvas,
-        "max_elastic_canvas": max_canvas,
-        "num_bucketed_calls": len(bucketed_calls),
-        "fixed_physical_tokens": _token_units(
-            len(prompt_ids), canvas_lengths, script_args.fixed_canvas
-        ),
-        "elastic_dense_physical_tokens": _token_units(
-            len(prompt_ids), canvas_lengths, max_canvas
-        ),
-        "bucketed_physical_tokens": sum(
-            input_ids.numel() for input_ids, _ in bucketed_calls
-        ),
-        "fixed_attention_units": _attention_units(
-            len(prompt_ids), canvas_lengths, script_args.fixed_canvas
-        ),
-        "elastic_dense_attention_units": _attention_units(
-            len(prompt_ids), canvas_lengths, max_canvas
-        ),
-        "bucketed_attention_units": _attention_units(
-            len(prompt_ids), canvas_lengths, None
-        ),
-        "dense_fixed": dense_fixed,
-        "elastic_dense": elastic_dense,
-        "bucketed_shape_decoupled": bucketed,
-        "elastic_dense_speedup_vs_fixed": dense_fixed_ms / elastic_dense_ms
-        if elastic_dense_ms > 0
-        else 0.0,
-        "bucketed_speedup_vs_fixed": dense_fixed_ms / bucketed_ms
-        if bucketed_ms > 0
-        else 0.0,
-        "bucketed_speedup_vs_elastic_dense": elastic_dense_ms / bucketed_ms
-        if bucketed_ms > 0
-        else 0.0,
-    }
-    results.append(result)
-    print(json.dumps(result, ensure_ascii=True, indent=2))
+        dense_fixed_ms = float(dense_fixed["avg_ms"])
+        elastic_dense_ms = float(elastic_dense["avg_ms"])
+        bucketed_ms = float(bucketed["avg_ms"])
+        result = {
+            "pattern": pattern,
+            "batch_size": len(canvas_lengths),
+            "prompt_tokens": len(prompt_ids),
+            "canvas_lengths": canvas_lengths,
+            "fixed_canvas": script_args.fixed_canvas,
+            "max_elastic_canvas": max_canvas,
+            "num_bucketed_calls": len(bucketed_calls),
+            "fixed_physical_tokens": _token_units(
+                len(prompt_ids), canvas_lengths, script_args.fixed_canvas
+            ),
+            "elastic_dense_physical_tokens": _token_units(
+                len(prompt_ids), canvas_lengths, max_canvas
+            ),
+            "bucketed_physical_tokens": sum(
+                input_ids.numel() for input_ids, _ in bucketed_calls
+            ),
+            "fixed_attention_units": _attention_units(
+                len(prompt_ids), canvas_lengths, script_args.fixed_canvas
+            ),
+            "elastic_dense_attention_units": _attention_units(
+                len(prompt_ids), canvas_lengths, max_canvas
+            ),
+            "bucketed_attention_units": _attention_units(
+                len(prompt_ids), canvas_lengths, None
+            ),
+            "dense_fixed": dense_fixed,
+            "elastic_dense": elastic_dense,
+            "bucketed_shape_decoupled": bucketed,
+            "elastic_dense_speedup_vs_fixed": dense_fixed_ms / elastic_dense_ms
+            if elastic_dense_ms > 0
+            else 0.0,
+            "bucketed_speedup_vs_fixed": dense_fixed_ms / bucketed_ms
+            if bucketed_ms > 0
+            else 0.0,
+            "bucketed_speedup_vs_elastic_dense": elastic_dense_ms / bucketed_ms
+            if bucketed_ms > 0
+            else 0.0,
+        }
+        results.append(result)
+        print(json.dumps(result, ensure_ascii=True, indent=2))
 
 output = {
     "model_name_or_path": script_args.model_name_or_path,
     "prompt": script_args.prompt,
     "warmup": script_args.warmup,
     "repeats": script_args.repeats,
+    "batch_sizes": _parse_batch_sizes(
+        script_args.batch_sizes, script_args.batch_size
+    ),
     "results": results,
 }
 output_path = Path(script_args.output_path)
