@@ -1,0 +1,10 @@
+{"prompt": "What is 2 + 2? Answer briefly."}
+{"prompt": "Give a one-sentence definition of GPU memory fragmentation."}
+{"prompt": "List three benefits of caching in model serving."}
+{"prompt": "Explain in one paragraph why batching improves throughput."}
+{"prompt": "Write a short Python function that returns the factorial of n."}
+{"prompt": "Summarize the main tradeoff between latency and throughput in online serving."}
+{"prompt": "Solve: Lily runs 12 km/h for 4 hours. How far does she run in 8 hours at the same speed?"}
+{"prompt": "Draft a concise incident report for a service whose p95 latency doubled after a deployment."}
+{"prompt": "Explain why fixed output canvases can waste compute in masked diffusion language models."}
+{"prompt": "Write a brief comparison of autoregressive decoding and masked diffusion decoding for serving systems."}

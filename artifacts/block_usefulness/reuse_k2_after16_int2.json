@@ -1,0 +1,24 @@
+{
+  "model_name_or_path": "GSAI-ML/LLaDA-8B-Instruct",
+  "reuse_prefix_layers": 2,
+  "reuse_after_step": 16,
+  "refresh_interval": 2,
+  "baseline_elapsed_seconds": 11.082718135992764,
+  "reuse_elapsed_seconds": 9.89595660098712,
+  "speedup": 1.1199238823346562,
+  "reuse_layer_execution_ratio": 0.9857954545454546,
+  "refresh_steps": 153,
+  "reuse_steps": 45,
+  "exact_match_per_request": [
+    false
+  ],
+  "token_differences_per_request": [
+    231
+  ],
+  "baseline_texts": [
+    "Caching helps diffusion language model serving in several ways:\n\n1. Improved performance: Diffusion language models can be computationally expensive to run, especially when dealing with large datasets or complex queries. By caching the results of previous computations, the model can quickly generate responses to repeated queries without having to recompute them. This can significantly improve the performance of the model.\n\n2. Reduced resource usage: Caching can also reduce the amount of memory and computational resources required to serve the model. By storing the results of previous computations, the model can reuse them for subsequent queries, reducing the need for repeated computations.\n\n3. Better scalability: Caching can also help improve the scalability of the model. By caching the results of previous computations, the model can handle more queries and users without significant performance degradation.\n\n4. Increased reliability: Caching can also help improve the reliability of the model. By caching the results of previous computations, the model can quickly generate responses to repeated queries without having to recompute them. This can help ensure that the model is always available and responsive, even in the event of hardware failures or other issues.\n\nOverall, caching can help improve diffusion language model serving by improving performance, resource usage, scalability, and reliability."
+  ],
+  "reuse_texts": [
+    "Caching helps diffusion language model serving in several ways:\n\n1. Improved performance: Diffusion language models require large amounts of computational power and memory to process inputs. By caching the results of previous computations, the model can be served more quickly and efficiently.\n\n2. Reduced latency times: Caching reduces the time it takes for the model to process inputs, which can significantly improve the user experience.\n\n3. Better resource utilization: By caching the results of previous computations, the model can reuse the same computations for subsequent inputs, reducing the need for redundant computations and improving resource utilization.\n\n4. Increased scalability: Caching can help the model scale horizontally by reducing the need for repeated computations and allowing the model to handle more requests simultaneously.\n\n5. Improved security:: Caching can also help improve the security of the model by reducing the amount of data that needs to be transmitted over the network, which can reduce the risk of data breaches and other security threats.\n\nOverall, caching can help improve the performance, scalability, and security of diffusion language model serving,"
+  ]
+}
