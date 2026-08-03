@@ -1,0 +1,102 @@
+{
+  "model_name_or_path": "GSAI-ML/LLaDA-8B-Instruct",
+  "num_requests": 10,
+  "fixed_canvas": 256,
+  "block_size": 32,
+  "steps": 256,
+  "steps_reference_canvas": 256,
+  "threshold": 0.9,
+  "factor": null,
+  "length_source": "decoded_tokens",
+  "note": "Expansion variants reveal only the currently allocated canvas. Previously generated blocks remain committed, matching the existing blockwise sampler's no-remasking behavior.",
+  "variants": {
+    "expand_32_64_128_256": {
+      "num_requests": 10,
+      "avg_text_similarity_vs_fixed": 0.2907608570595432,
+      "avg_token_edit_ratio_vs_fixed": 0.608203125,
+      "avg_length_delta_vs_fixed": -137.2,
+      "avg_useful_generated_tokens": 22.0,
+      "avg_elapsed_seconds": 1.062425305900979,
+      "avg_peak_memory_mb": 15643.52431640625,
+      "avg_expansion_events": 3.0,
+      "avg_model_calls": 27.0
+    },
+    "expand_64_128_256": {
+      "num_requests": 10,
+      "avg_text_similarity_vs_fixed": 0.2663119511089612,
+      "avg_token_edit_ratio_vs_fixed": 0.59453125,
+      "avg_length_delta_vs_fixed": -105.7,
+      "avg_useful_generated_tokens": 53.5,
+      "avg_elapsed_seconds": 1.791615939696203,
+      "avg_peak_memory_mb": 15643.52431640625,
+      "avg_expansion_events": 2.0,
+      "avg_model_calls": 49.0
+    },
+    "fixed_from_start": {
+      "num_requests": 10,
+      "avg_text_similarity_vs_fixed": 1.0,
+      "avg_token_edit_ratio_vs_fixed": 0.0,
+      "avg_length_delta_vs_fixed": 0.0,
+      "avg_useful_generated_tokens": 159.2,
+      "avg_elapsed_seconds": 8.921702115202788,
+      "avg_peak_memory_mb": 15643.52431640625,
+      "avg_expansion_events": 0.0,
+      "avg_model_calls": 115.0
+    },
+    "oracle_canvas_128_from_start": {
+      "num_requests": 1,
+      "avg_text_similarity_vs_fixed": 0.18740399385560677,
+      "avg_token_edit_ratio_vs_fixed": 0.82421875,
+      "avg_length_delta_vs_fixed": 18.0,
+      "avg_useful_generated_tokens": 126.0,
+      "avg_elapsed_seconds": 4.187822281004628,
+      "avg_peak_memory_mb": 15489.99169921875,
+      "avg_expansion_events": 0.0,
+      "avg_model_calls": 96.0
+    },
+    "oracle_canvas_224_from_start": {
+      "num_requests": 2,
+      "avg_text_similarity_vs_fixed": 0.9625,
+      "avg_token_edit_ratio_vs_fixed": 0.177734375,
+      "avg_length_delta_vs_fixed": 10.0,
+      "avg_useful_generated_tokens": 218.5,
+      "avg_elapsed_seconds": 4.702693121507764,
+      "avg_peak_memory_mb": 15610.60009765625,
+      "avg_expansion_events": 0.0,
+      "avg_model_calls": 66.0
+    },
+    "oracle_canvas_32_from_start": {
+      "num_requests": 1,
+      "avg_text_similarity_vs_fixed": 1.0,
+      "avg_token_edit_ratio_vs_fixed": 0.875,
+      "avg_length_delta_vs_fixed": 0.0,
+      "avg_useful_generated_tokens": 8.0,
+      "avg_elapsed_seconds": 0.0933087820012588,
+      "avg_peak_memory_mb": 15368.63720703125,
+      "avg_expansion_events": 0.0,
+      "avg_model_calls": 3.0
+    },
+    "oracle_canvas_64_from_start": {
+      "num_requests": 1,
+      "avg_text_similarity_vs_fixed": 0.46588235294117647,
+      "avg_token_edit_ratio_vs_fixed": 0.81640625,
+      "avg_length_delta_vs_fixed": -6.0,
+      "avg_useful_generated_tokens": 31.0,
+      "avg_elapsed_seconds": 0.9455548799887765,
+      "avg_peak_memory_mb": 15406.77197265625,
+      "avg_expansion_events": 0.0,
+      "avg_model_calls": 30.0
+    },
+    "oracle_canvas_96_from_start": {
+      "num_requests": 1,
+      "avg_text_similarity_vs_fixed": 0.11372549019607843,
+      "avg_token_edit_ratio_vs_fixed": 0.890625,
+      "avg_length_delta_vs_fixed": 24.0,
+      "avg_useful_generated_tokens": 94.0,
+      "avg_elapsed_seconds": 3.0001178669917863,
+      "avg_peak_memory_mb": 15442.95361328125,
+      "avg_expansion_events": 0.0,
+      "avg_model_calls": 91.0
+    }
+  }
+}

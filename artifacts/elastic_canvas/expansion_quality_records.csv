@@ -1,0 +1,181 @@
+request_index,variant,schedule,prompt_tokens,final_canvas,initial_canvas,expansion_events,model_calls,steps_per_block,useful_generated_tokens,decoded_chars,elapsed_seconds,peak_memory_mb,decoded_text,text_similarity_vs_fixed,token_edit_distance_vs_fixed,token_edit_ratio_vs_fixed,length_delta_vs_fixed
+0,fixed_from_start,256,24,256,256,0,10,32,8,15,1.4552548069914337,15640.64501953125,2 + 2 equals 4.,1.0,0,0.0,0
+0,expand_32_64_128_256,"32,64,128,256",24,256,32,3,10,32,8,15,0.6117643989855424,15640.64501953125,2 + 2 equals 4.,1.0,0,0.0,0
+0,expand_64_128_256,"64,128,256",24,256,64,2,10,32,8,15,0.5393825760111213,15640.64501953125,2 + 2 equals 4.,1.0,0,0.0,0
+0,oracle_canvas_32_from_start,32,24,32,32,0,3,32,8,15,0.0933087820012588,15368.63720703125,2 + 2 equals 4.,1.0,224,0.875,0
+1,fixed_from_start,256,24,256,256,0,45,32,37,231,3.397844046994578,15640.64501953125,"GPU memory fragmentation refers to the distribution of available memory on a GPU, making it difficult to allocate contiguous blocks of memory for large datasets or computations, leading to reduced performance and increased latency.",1.0,0,0.0,0
+1,expand_32_64_128_256,"32,64,128,256",24,256,32,3,34,32,30,180,1.231917873985367,15640.64501953125,"GPU memory fragmentation occurs when a GPU's memory is divided into small, non-contiguous blocks, leading to inefficient memory access and potentially impacting system performance.",0.49148418491484186,33,0.12890625,-7
+1,expand_64_128_256,"64,128,256",24,256,64,2,36,32,31,194,1.3509631699998863,15640.64501953125,"GPU memory fragmentation refers to the distribution of memory blocks on a GPU that leads to inefficient use of available memory, causing performance degradation and potential memory bottlenecks.",0.46588235294117647,27,0.10546875,-6
+1,oracle_canvas_64_from_start,64,24,64,64,0,30,32,31,194,0.9455548799887765,15406.77197265625,"GPU memory fragmentation refers to the distribution of memory blocks on a GPU that leads to inefficient use of available memory, causing performance degradation and potential memory bottlenecks.",0.46588235294117647,209,0.81640625,-6
+2,fixed_from_start,256,22,256,256,0,212,32,234,1339,15.850454859028105,15636.87158203125,"Caching in model serving offers several benefits that can significantly enhance the performance and efficiency of machine learning models. Here are three key benefits:
+
+1. **Reduced Computational Overhead**: By storing the results of expensive computations, caching reduces the need to recompute the same results multiple times. This can lead to substantial savings in computational resources, especially in scenarios where the model is frequently queried with the same or similar inputs.
+
+2. **Improved Response Times**: When a model is queried with the same inputs multiple times, caching can drastically reduce response times. This is particularly important in real-time applications where quick results are critical. By storing intermediate results, the model can provide responses faster, improving user experience and satisfaction.
+
+3. **Better Resource Management**: Caching can help in more efficient use of system resources. By reducing the number of computations needed, caching can help in managing the load on the server, ensuring that it can handle more requests without becoming overwhelmed. This can lead to better scalability and reliability of the model serving system.
+
+These benefits make caching a valuable technique in model serving, helping to optimize the performance and efficiency of machine learning applications.",1.0,0,0.0,0
+2,expand_32_64_128_256,"32,64,128,256",22,256,32,3,34,32,30,132,1.2410121819993947,15636.87158203125,"Three benefits of caching in model serving are:
+1. Faster response times.
+2. Reduced resource usage.
+3. Improved system scalability.",0.12780421481985044,233,0.91015625,-204
+2,expand_64_128_256,"64,128,256",22,256,64,2,63,32,62,308,2.203141539997887,15636.87158203125,"1. Reduces the number of requests to the model server, improving scalability and performance.
+2. Reduces the amount of data transferred between the client and the model server, improving network efficiency.
+3. Reduces the load on the model server, allowing it to handle more requests and improve reliability.",0.04735883424408015,234,0.9140625,-172
+3,fixed_from_start,256,22,256,256,0,88,32,70,452,6.655503708985634,15636.87158203125,"Batching improves throughput by combining multiple requests or operations into a single batch, which reduces the overhead associated with individual requests and allows the system to process more requests per unit of time. This is particularly beneficial in scenarios where each request requires significant processing time or resources, as batching can optimize the utilization of system resources and minimize the time spent waiting between requests.",1.0,0,0.0,0
+3,expand_32_64_128_256,"32,64,128,256",22,256,32,3,37,32,30,179,1.3321586700039916,15636.87158203125,"Batching improves throughput by combining multiple requests into a single request, reducing the number of network round trips and minimizing the time spent waiting for a response.",0.4595879556259905,59,0.23046875,-40
+3,expand_64_128_256,"64,128,256",22,256,64,2,62,32,62,364,2.1787756650010124,15636.87158203125,"Batching improves throughput by reducing the number of individual requests that need to be processed, which can lead to increased latency and resource utilization. By combining multiple requests into a single batch, the system can process more requests per cycle, reducing the time taken for each request to be handled, and ultimately improving overall throughput.",0.1323529411764706,64,0.25,-8
+3,oracle_canvas_96_from_start,96,22,96,96,0,91,32,94,568,3.0001178669917863,15442.95361328125,"Batching improves throughput by grouping multiple requests or operations into a single batch, which reduces the overhead of network communication and minimizes the impact of network latency. By reducing the number of round trips between the client and the server, batching allows for more efficient use of network resources and reduces the overall time required to process multiple requests. Additionally, batching can also help to optimize the server's resource utilization, as the server can process multiple requests in one go, further improving overall throughput.",0.11372549019607843,228,0.890625,24
+4,fixed_from_start,256,25,256,256,0,64,32,202,685,4.90010101601365,15640.64501953125,"Certainly! Here is a short Python function that returns the factorial of a given number `n`:
+
+```python
+def factorial(n):
+    if n < 0:
+        raise ValueError(""Factorial is not defined for negative numbers"")
+    elif n == 0 or n == 1:
+        return 1
+    else:
+        result = 1
+        for i in range(2, n + 1):
+            result *= i
+        return result
+
+# Example usage:
+print(factorial(5))  # Output: 120
+```
+
+This function first checks if `n` is negative and raises a `ValueError` if it is. If `n` is 0 or 1, it returns 1, as the factorial of 0 and 1 is 1. For other positive integers, it uses a loop to calculate the factorial by multiplying all integers from 2 up to `n`.",1.0,0,0.0,0
+4,expand_32_64_128_256,"32,64,128,256",25,256,32,3,20,32,30,96,0.838238285999978,15640.64501953125,"def factorial(n):
+    result = 1
+    for i in range(1, n):
+        result *= i
+    return result",0.24327784891165172,202,0.7890625,-172
+4,expand_64_128_256,"64,128,256",25,256,64,2,33,32,62,171,1.276059092982905,15640.64501953125,"```python
+def factorial(n):
+    if n == 0 or n == 1:
+        return 1
+    else:
+        return n * factorial(n - 1)
+
+# Example usage:
+print(factorial(5)) # returns 120
+```",0.35046728971962615,200,0.78125,-140
+4,oracle_canvas_224_from_start,224,25,224,224,0,63,32,222,755,4.116188965999754,15600.95068359375,"Certainly! Here is a short Python function that returns the factorial of a given number `n`:
+
+```python
+def factorial(n):
+    if n < 0:
+        raise ValueError(""Factorial is not defined for negative numbers"")
+    elif n == 0 or n == 1:
+        return 1
+    else:
+        result = 1
+        for i in range(2, n + 1):
+            result *= i
+        return result
+
+# Example usage:
+print(factorial(5))  # Output: 120
+```
+
+This function first checks if `n` is negative and raises a `ValueError` if it is. If `n` is 0 or 1, it returns 1, as the factorial of 0 and 1 is 1. For other values of `n`, it uses a loop to calculate the factorial by multiplying all integers from 2 to `n`.
+
+You can test this function with different values of `n` to see the results.",0.925,59,0.23046875,20
+5,fixed_from_start,256,27,256,256,0,185,32,231,1216,14.246132805012167,15641.95849609375,"The main tradeoff between latency and throughput in online serving refers to the trade-off between the time it takes for a request to be processed and the number of requests that can be processed in a given time.
+
+Latency refers to the time it takes for a request to be processed, from the request to the response. Lower latency means that the request is processed quickly, and the response is delivered promptly. However, reducing latency can come at the cost of reducing throughput, as the system may not be able to process as many requests in a given time.
+
+Throughput, on the other hand, refers to the number of requests that can be processed in a given time. Higher throughput means that the system can handle more requests simultaneously, and the response is delivered quickly. However, increasing throughput can come at the cost of increasing latency, as the system may not be able to process requests as quickly.
+
+In summary, the tradeoff between latency and throughput in online serving is a fundamental aspect that must be considered when designing and optimizing systems. Balancing latency and throughput is essential to ensure that the system can handle requests efficiently and provide timely responses.",1.0,0,0.0,0
+5,expand_32_64_128_256,"32,64,128,256",27,256,32,3,29,32,30,164,1.1121640780183952,15641.95849609375,"The main tradeoff between latency and throughput in online serving is that as latency decreases, the number of requests served per second increases, and vice versa.",0.2028985507246377,220,0.859375,-201
+5,expand_64_128_256,"64,128,256",27,256,64,2,56,32,62,358,2.0175579779897816,15641.95849609375,"The main tradeoff between latency and throughput in online serving is that reducing latency generally increases the number of requests that can be served in a given time, and vice versa. This tradeoff is often managed by optimizing system parameters, such as resource allocation and network configuration, to achieve a balance between latency and throughput.",0.09275730622617535,218,0.8515625,-169
+6,fixed_from_start,256,41,256,256,0,68,32,215,605,5.350970444007544,15660.28466796875,"To determine how far Lily runs in 8 hours at the same speed, we can use the formula for distance, which is:
+
+\[ \text{Distance} = \text{Speed} \times \text{Time} \]
+
+First, let's calculate the distance Lily runs in 4 hours at a speed of 12 km/h:
+
+\[ \text{Distance} = 12 \, \text{km/h} \times 4 \, \text{hours} = 48 \, \text{km} \]
+
+Now, we know Lily runs 48 km in 4 hours. To find out how far she runs in 8 hours at the same speed, we can use the same formula:
+
+\[ \text{Distance} = 12 \, \text{km/h} \times 8 \, \text{hours} = 96 \, \text{km} \]
+
+Therefore, Lily runs 96 km in 8 hours at the same speed.",1.0,0,0.0,0
+6,expand_32_64_128_256,"32,64,128,256",41,256,32,3,29,32,30,68,1.1874820590019226,15660.28466796875,"If Lily runs 12 km/h, then in 8 hours, she would run 12 * 8 = 96 km.",0.1812778603268945,215,0.83984375,-185
+6,expand_64_128_256,"64,128,256",41,256,64,2,42,32,62,152,1.6034483769908547,15660.28466796875,"Lily runs 12 km/h for 4 hours, so she runs a total of 12 km/h * 4 hours = 48 km.
+
+In 8 hours at the same speed, she would run 12 km/h * 8 hours = 96 km.",0.20343461030383092,215,0.83984375,-153
+6,oracle_canvas_224_from_start,224,41,224,224,0,69,32,215,605,5.289197277015774,15620.24951171875,"To determine how far Lily runs in 8 hours at the same speed, we can use the formula for distance, which is:
+
+\[ \text{Distance} = \text{Speed} \times \text{Time} \]
+
+First, let's calculate the distance Lily runs in 4 hours at a speed of 12 km/h:
+
+\[ \text{Distance} = 12 \, \text{km/h} \times 4 \, \text{hours} = 48 \, \text{km} \]
+
+Now, we know Lily runs 48 km in 4 hours. To find out how far she runs in 8 hours at the same speed, we can use the same formula:
+
+\[ \text{Distance} = 12 \, \text{km/h} \times 8 \, \text{hours} = 96 \, \text{km} \]
+
+Therefore, Lily runs 96 km in 8 hours at the same speed.",1.0,32,0.125,0
+7,fixed_from_start,256,31,256,256,0,199,32,254,1088,15.520300125994254,15646.78271484375,"**Incident Report: P95 Latency Increase Post-Deployment**
+
+**Incident Summary:**
+
+**Date:** [Insert Date]
+
+**Time:** [Insert Time]
+
+**Location:** [Insert Location]
+
+**Service:** [Insert Service Name]
+
+**Description:**
+
+After the recent deployment, the P95 latency for [Insert Service Name] has doubled, increasing from [Insert Previous Latency] to [Insert New Latency]. This significant increase in latency has impacted service performance and user experience.
+
+**Impact:**
+
+* Users reported slower response times and increased latency.
+* Service performance has degraded, affecting business operations and customer satisfaction.
+
+**Action Items:**
+
+* Investigate the cause of the latency increase.
+* Implement corrective actions to reduce P95 latency.
+* Monitor service performance to ensure the issue is resolved.
+
+**Next Steps:**
+
+* Schedule a meeting with relevant teams to discuss the incident and prioritize corrective actions.
+* Develop a plan to address the issue and prevent future occurrences.
+
+**Prepared by:**
+
+[Insert Name]
+
+[Insert Title]
+
+[Insert Department]
+
+[Insert Date]",1.0,0,0.0,0
+7,expand_32_64_128_256,"32,64,128,256",31,256,32,3,36,32,30,164,1.3331078170158435,15646.78271484375,"Incident Report:
+
+Service's p95 latency doubled after deployment. Investigate root cause and implement corrective actions to prevent future performance degradation.",0.2012779552715655,252,0.984375,-224
+7,expand_64_128_256,"64,128,256",31,256,64,2,66,32,62,330,2.3576122020022012,15646.78271484375,"Incident Report: Increased P95 Latency Post-Deployment
+
+After the recent deployment, the p95 latency of the service has doubled, causing significant performance degradation and user dissatisfaction. It is essential to investigate the cause of this issue and implement corrective actions to prevent it from recurring in the future.",0.1325811001410437,244,0.953125,-192
+8,fixed_from_start,256,28,256,256,0,179,32,233,1216,13.992653510009404,15645.14892578125,"Fixed output canvases can waste compute in masked diffusion language models because they limit the ability of the model to generate diverse and creative outputs. When the output canvas is fixed, the model is forced to generate outputs that fit within the same constraints, which can result in repetitive and predictable outputs. This can lead to a lack of diversity and creativity in the generated text, which can reduce the overall performance of the model.
+
+Additionally, fixed output canvases can also limit the ability of the model to capture the nuances and complexities of the input text. When the output canvas is fixed, the model may not be able to generate outputs that are as detailed and accurate as the input text. This can result in outputs that are too simplistic or too vague, which can reduce the overall quality of the model.
+
+Finally, fixed output canvases can also limit the ability of the model to generate outputs that are coherent and meaningful. When the output canvas is fixed, the model may not be able to generate outputs that are as coherent and meaningful as the input text. This can result in outputs that are incoherent or nonsensical, which can reduce the overall quality of the model.",1.0,0,0.0,0
+8,expand_32_64_128_256,"32,64,128,256",28,256,32,3,24,32,1,1,0.9720099290134385,15645.14892578125,​,0.0,234,0.9140625,-232
+8,expand_64_128_256,"64,128,256",28,256,64,2,62,32,62,348,2.223764594004024,15645.14892578125,"Fixed output canvases can waste compute in masked diffusion language models because they require the model to generate a fixed number of tokens, which may not be necessary for the given task. This can lead to unnecessary computations and wasted resources, as the model is forced to generate a predetermined number of tokens regardless of the input.",0.12915601023017903,217,0.84765625,-171
+9,fixed_from_start,256,29,256,256,0,100,32,108,615,7.847805828991113,15645.39013671875,"Autoregressive decoding and masked diffusion decoding are two popular methods for serving systems in natural language processing (NLP). Autoregressive decoding is a straightforward approach that involves predicting the next word in a sequence based on the previous words. This method is efficient and easy to implement, but it may not produce the best quality text. Masked diffusion decoding, on the other hand, is a more complex approach that involves training a diffusion model to generate text. This method can produce higher quality text, but it requires more computational resources and expertise to implement.",1.0,0,0.0,0
+9,expand_32_64_128_256,"32,64,128,256",29,256,32,3,17,32,1,1,0.7643977649859153,15645.39013671875,​,0.0,109,0.42578125,-107
+9,expand_64_128_256,"64,128,256",29,256,64,2,60,32,62,338,2.1654542019823566,15645.39013671875,"Autoregressive decoding is faster and more efficient than masked diffusion decoding, but it may not be as effective in generating coherent and fluent text. Masked diffusion decoding, on the other hand, is more effective in generating coherent and fluent text, but it can be slower and more resource-intensive than autoregressive decoding.",0.10912906610703044,103,0.40234375,-46
+9,oracle_canvas_128_from_start,128,29,128,128,0,96,32,126,687,4.187822281004628,15489.99169921875,"Autoregressive decoding and masked diffusion decoding are two popular approaches for serving systems. Autoregressive decoding is based on the idea of predicting the next word in a sequence based on the previous words. Masked diffusion decoding, on the other hand, is based on the idea of predicting the next word in a sequence based on the masked words. Autoregressive decoding is generally faster than masked diffusion decoding, but it may not be as accurate. Masked diffusion decoding is more accurate, but it may be slower. Ultimately, the choice between autoregressive decoding and masked diffusion decoding depends on the specific requirements and constraints of the serving system.",0.18740399385560677,211,0.82421875,18
