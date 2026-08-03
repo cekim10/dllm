@@ -16,6 +16,7 @@ from __future__ import annotations
 import json
 import statistics
 import time
+import warnings
 from collections import defaultdict
 from dataclasses import dataclass
 from pathlib import Path
@@ -111,7 +112,14 @@ def _pattern_lengths(
     if pattern == "trace":
         if trace_summary_path is None:
             raise ValueError("pattern 'trace' requires --trace_summary_path")
-        with Path(trace_summary_path).open("r", encoding="utf-8") as f:
+        path = Path(trace_summary_path)
+        if not path.exists():
+            warnings.warn(
+                f"Skipping trace pattern because trace summary does not exist: {path}",
+                stacklevel=2,
+            )
+            return []
+        with path.open("r", encoding="utf-8") as f:
             summary = json.load(f)
         lengths = [int(x) for x in summary["per_request_elastic_lengths"]]
         return _repeat_to_batch(lengths, batch_size)
@@ -307,6 +315,8 @@ for batch_size in _parse_batch_sizes(script_args.batch_sizes, script_args.batch_
             fixed_canvas=script_args.fixed_canvas,
             trace_summary_path=script_args.trace_summary_path,
         )
+        if not canvas_lengths:
+            continue
         max_canvas = max(canvas_lengths)
 
         dense_fixed_call = _build_batch(
