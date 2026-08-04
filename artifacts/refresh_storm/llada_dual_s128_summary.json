@@ -1,0 +1,310 @@
+{
+  "num_records": 180,
+  "rows": [
+    {
+      "batch_size": 1,
+      "cache_mode": "dual",
+      "phase": "refine",
+      "model_query_length": 32,
+      "has_past_key_values": true,
+      "num_calls": 41,
+      "total_latency_ms": 1826.9190060382243,
+      "mean_latency_ms": 44.559000147273764,
+      "p50_latency_ms": 44.41972999484278,
+      "p95_latency_ms": 45.36524598370306,
+      "mean_memory_peak_delta_mb": 11.665825076219512,
+      "p95_memory_peak_delta_mb": 12.220703125
+    },
+    {
+      "batch_size": 1,
+      "cache_mode": "dual",
+      "phase": "warmup",
+      "model_query_length": 153,
+      "has_past_key_values": false,
+      "num_calls": 4,
+      "total_latency_ms": 154.79512297315523,
+      "mean_latency_ms": 38.69878074328881,
+      "p50_latency_ms": 38.66754149203189,
+      "p95_latency_ms": 40.354620304424316,
+      "mean_memory_peak_delta_mb": 117.51123046875,
+      "p95_memory_peak_delta_mb": 117.5458984375
+    },
+    {
+      "batch_size": 2,
+      "cache_mode": "dual",
+      "phase": "refine",
+      "model_query_length": 32,
+      "has_past_key_values": true,
+      "num_calls": 41,
+      "total_latency_ms": 1957.6418348879088,
+      "mean_latency_ms": 47.74736182653436,
+      "p50_latency_ms": 47.6788459927775,
+      "p95_latency_ms": 47.99770799581893,
+      "mean_memory_peak_delta_mb": 22.658203125,
+      "p95_memory_peak_delta_mb": 22.658203125
+    },
+    {
+      "batch_size": 2,
+      "cache_mode": "dual",
+      "phase": "warmup",
+      "model_query_length": 153,
+      "has_past_key_values": false,
+      "num_calls": 4,
+      "total_latency_ms": 288.01790601573884,
+      "mean_latency_ms": 72.00447650393471,
+      "p50_latency_ms": 71.93312649906147,
+      "p95_latency_ms": 72.72626556223258,
+      "mean_memory_peak_delta_mb": 233.48388671875,
+      "p95_memory_peak_delta_mb": 235.28125
+    },
+    {
+      "batch_size": 4,
+      "cache_mode": "dual",
+      "phase": "refine",
+      "model_query_length": 32,
+      "has_past_key_values": true,
+      "num_calls": 41,
+      "total_latency_ms": 2205.9640679799486,
+      "mean_latency_ms": 53.804001658047525,
+      "p50_latency_ms": 53.48711399710737,
+      "p95_latency_ms": 56.527687003836036,
+      "mean_memory_peak_delta_mb": 45.799209222560975,
+      "p95_memory_peak_delta_mb": 46.439453125
+    },
+    {
+      "batch_size": 4,
+      "cache_mode": "dual",
+      "phase": "warmup",
+      "model_query_length": 153,
+      "has_past_key_values": false,
+      "num_calls": 4,
+      "total_latency_ms": 441.6897670016624,
+      "mean_latency_ms": 110.4224417504156,
+      "p50_latency_ms": 110.56565200851765,
+      "p95_latency_ms": 110.93236969754798,
+      "mean_memory_peak_delta_mb": 465.123046875,
+      "p95_memory_peak_delta_mb": 467.0625
+    },
+    {
+      "batch_size": 8,
+      "cache_mode": "dual",
+      "phase": "refine",
+      "model_query_length": 32,
+      "has_past_key_values": true,
+      "num_calls": 41,
+      "total_latency_ms": 3771.1970669042785,
+      "mean_latency_ms": 91.98041626595801,
+      "p50_latency_ms": 91.81196501594968,
+      "p95_latency_ms": 92.17708400683478,
+      "mean_memory_peak_delta_mb": 92.08846227134147,
+      "p95_memory_peak_delta_mb": 95.673828125
+    },
+    {
+      "batch_size": 8,
+      "cache_mode": "dual",
+      "phase": "warmup",
+      "model_query_length": 153,
+      "has_past_key_values": false,
+      "num_calls": 4,
+      "total_latency_ms": 818.589344038628,
+      "mean_latency_ms": 204.647336009657,
+      "p50_latency_ms": 204.73272001254372,
+      "p95_latency_ms": 204.83223611518042,
+      "mean_memory_peak_delta_mb": 928.685546875,
+      "p95_memory_peak_delta_mb": 930.625
+    }
+  ],
+  "phase_rows": [
+    {
+      "batch_size": 1,
+      "cache_mode": "dual",
+      "phase": "refine",
+      "num_calls": 41,
+      "total_latency_ms": 1826.9190060382243,
+      "mean_latency_ms": 44.559000147273764,
+      "p50_latency_ms": 44.41972999484278,
+      "p95_latency_ms": 45.36524598370306,
+      "mean_memory_peak_delta_mb": 11.665825076219512,
+      "p95_memory_peak_delta_mb": 12.220703125
+    },
+    {
+      "batch_size": 1,
+      "cache_mode": "dual",
+      "phase": "warmup",
+      "num_calls": 4,
+      "total_latency_ms": 154.79512297315523,
+      "mean_latency_ms": 38.69878074328881,
+      "p50_latency_ms": 38.66754149203189,
+      "p95_latency_ms": 40.354620304424316,
+      "mean_memory_peak_delta_mb": 117.51123046875,
+      "p95_memory_peak_delta_mb": 117.5458984375
+    },
+    {
+      "batch_size": 2,
+      "cache_mode": "dual",
+      "phase": "refine",
+      "num_calls": 41,
+      "total_latency_ms": 1957.6418348879088,
+      "mean_latency_ms": 47.74736182653436,
+      "p50_latency_ms": 47.6788459927775,
+      "p95_latency_ms": 47.99770799581893,
+      "mean_memory_peak_delta_mb": 22.658203125,
+      "p95_memory_peak_delta_mb": 22.658203125
+    },
+    {
+      "batch_size": 2,
+      "cache_mode": "dual",
+      "phase": "warmup",
+      "num_calls": 4,
+      "total_latency_ms": 288.01790601573884,
+      "mean_latency_ms": 72.00447650393471,
+      "p50_latency_ms": 71.93312649906147,
+      "p95_latency_ms": 72.72626556223258,
+      "mean_memory_peak_delta_mb": 233.48388671875,
+      "p95_memory_peak_delta_mb": 235.28125
+    },
+    {
+      "batch_size": 4,
+      "cache_mode": "dual",
+      "phase": "refine",
+      "num_calls": 41,
+      "total_latency_ms": 2205.9640679799486,
+      "mean_latency_ms": 53.804001658047525,
+      "p50_latency_ms": 53.48711399710737,
+      "p95_latency_ms": 56.527687003836036,
+      "mean_memory_peak_delta_mb": 45.799209222560975,
+      "p95_memory_peak_delta_mb": 46.439453125
+    },
+    {
+      "batch_size": 4,
+      "cache_mode": "dual",
+      "phase": "warmup",
+      "num_calls": 4,
+      "total_latency_ms": 441.6897670016624,
+      "mean_latency_ms": 110.4224417504156,
+      "p50_latency_ms": 110.56565200851765,
+      "p95_latency_ms": 110.93236969754798,
+      "mean_memory_peak_delta_mb": 465.123046875,
+      "p95_memory_peak_delta_mb": 467.0625
+    },
+    {
+      "batch_size": 8,
+      "cache_mode": "dual",
+      "phase": "refine",
+      "num_calls": 41,
+      "total_latency_ms": 3771.1970669042785,
+      "mean_latency_ms": 91.98041626595801,
+      "p50_latency_ms": 91.81196501594968,
+      "p95_latency_ms": 92.17708400683478,
+      "mean_memory_peak_delta_mb": 92.08846227134147,
+      "p95_memory_peak_delta_mb": 95.673828125
+    },
+    {
+      "batch_size": 8,
+      "cache_mode": "dual",
+      "phase": "warmup",
+      "num_calls": 4,
+      "total_latency_ms": 818.589344038628,
+      "mean_latency_ms": 204.647336009657,
+      "p50_latency_ms": 204.73272001254372,
+      "p95_latency_ms": 204.83223611518042,
+      "mean_memory_peak_delta_mb": 928.685546875,
+      "p95_memory_peak_delta_mb": 930.625
+    }
+  ],
+  "warmup_refine_ratios": [
+    {
+      "batch_size": 1,
+      "warmup_mean_latency_ms": 38.69878074328881,
+      "refine_mean_latency_ms": 44.559000147273764,
+      "warmup_to_refine_latency_ratio": 0.8684840462170133,
+      "warmup_mean_memory_delta_mb": 117.51123046875,
+      "refine_mean_memory_delta_mb": 11.665825076219512,
+      "warmup_to_refine_memory_delta_ratio": 10.073117820726942,
+      "warmup_time_fraction": 0.07811173201372798
+    },
+    {
+      "batch_size": 2,
+      "warmup_mean_latency_ms": 72.00447650393471,
+      "refine_mean_latency_ms": 47.74736182653436,
+      "warmup_to_refine_latency_ratio": 1.508030470155109,
+      "warmup_mean_memory_delta_mb": 233.48388671875,
+      "refine_mean_memory_delta_mb": 22.658203125,
+      "warmup_to_refine_memory_delta_ratio": 10.304607361434359,
+      "warmup_time_fraction": 0.12825536334362087
+    },
+    {
+      "batch_size": 4,
+      "warmup_mean_latency_ms": 110.4224417504156,
+      "refine_mean_latency_ms": 53.804001658047525,
+      "warmup_to_refine_latency_ratio": 2.0523090912866997,
+      "warmup_mean_memory_delta_mb": 465.123046875,
+      "refine_mean_memory_delta_mb": 45.799209222560975,
+      "warmup_to_refine_memory_delta_ratio": 10.155700388073022,
+      "warmup_time_fraction": 0.1668230798021714
+    },
+    {
+      "batch_size": 8,
+      "warmup_mean_latency_ms": 204.647336009657,
+      "refine_mean_latency_ms": 91.98041626595801,
+      "warmup_to_refine_latency_ratio": 2.2249011726357786,
+      "warmup_mean_memory_delta_mb": 928.685546875,
+      "refine_mean_memory_delta_mb": 92.08846227134147,
+      "warmup_to_refine_memory_delta_ratio": 10.084711200178363,
+      "warmup_time_fraction": 0.17835020428988993
+    }
+  ],
+  "model_name_or_path": "GSAI-ML/LLaDA-8B-Instruct",
+  "batch_sizes": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "steps": 128,
+  "max_new_tokens": 128,
+  "block_size": 32,
+  "use_cache": "dual",
+  "threshold": 0.9,
+  "factor": null,
+  "prompt_count": 1,
+  "wall_elapsed_s": 24.92480859500938,
+  "runs": [
+    {
+      "batch_size": 1,
+      "num_model_calls": 45,
+      "wall_elapsed_s": 2.0450640030030627,
+      "output_shape": [
+        1,
+        153
+      ]
+    },
+    {
+      "batch_size": 2,
+      "num_model_calls": 45,
+      "wall_elapsed_s": 2.3406734870222863,
+      "output_shape": [
+        2,
+        153
+      ]
+    },
+    {
+      "batch_size": 4,
+      "num_model_calls": 45,
+      "wall_elapsed_s": 2.8069385169947054,
+      "output_shape": [
+        4,
+        153
+      ]
+    },
+    {
+      "batch_size": 8,
+      "num_model_calls": 45,
+      "wall_elapsed_s": 4.877599603001727,
+      "output_shape": [
+        8,
+        153
+      ]
+    }
+  ]
+}
