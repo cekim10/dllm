@@ -3,6 +3,7 @@ reference: https://github.com/NVlabs/Fast-dLLM/blob/main/llada/generate.py
 """
 
 import math
+import time
 from dataclasses import dataclass
 from typing import Any, Optional, Tuple, List, Union
 
@@ -216,6 +217,7 @@ class FastdLLMLLaDASampler(BaseSampler):
         threshold = kwargs.get("threshold", config.threshold)
         factor = kwargs.get("factor", config.factor)
         block_observer = kwargs.get("block_observer")
+        model_call_observer = kwargs.get("model_call_observer")
 
         assert block_size >= 1
         assert steps >= 1
@@ -334,7 +336,7 @@ class FastdLLMLLaDASampler(BaseSampler):
             mask_counts: list[int],
         ) -> dict[str, Any] | None:
             nonlocal observer_call_index
-            if block_observer is None:
+            if block_observer is None and model_call_observer is None:
                 return None
             context = {
                 "phase": phase,
@@ -354,6 +356,58 @@ class FastdLLMLLaDASampler(BaseSampler):
             }
             observer_call_index += 1
             return context
+
+        def _sync_device() -> None:
+            if self.model.device.type == "cuda":
+                torch.cuda.synchronize(self.model.device)
+
+        def _call_model(**model_kwargs):
+            if model_call_observer is None:
+                return self.model(**model_kwargs)
+
+            context = dict(model_kwargs.get("observer_context") or {})
+            input_tensor = model_kwargs.get("input_ids")
+            if input_tensor is None:
+                input_tensor = model_kwargs.get("inputs_embeds")
+            if input_tensor is not None:
+                context["model_batch_size"] = int(input_tensor.shape[0])
+                context["model_query_length"] = int(input_tensor.shape[1])
+            attention_mask = model_kwargs.get("attention_mask")
+            if attention_mask is not None:
+                context["attention_mask_tokens"] = int(attention_mask.sum().item())
+                context["attention_mask_length"] = int(attention_mask.shape[-1])
+            past_key_values = model_kwargs.get("past_key_values")
+            context["has_past_key_values"] = past_key_values is not None
+            if past_key_values is not None and len(past_key_values) > 0:
+                context["past_length"] = int(past_key_values[0][0].shape[-2])
+            replace_position = model_kwargs.get("replace_position")
+            if replace_position is not None:
+                context["replace_position_count"] = int(replace_position.sum().item())
+            context["use_cache"] = bool(model_kwargs.get("use_cache", False))
+
+            _sync_device()
+            if self.model.device.type == "cuda":
+                torch.cuda.reset_peak_memory_stats(self.model.device)
+                memory_before = torch.cuda.memory_allocated(self.model.device)
+            else:
+                memory_before = 0
+            start = time.perf_counter()
+            output = self.model(**model_kwargs)
+            _sync_device()
+            elapsed_ms = (time.perf_counter() - start) * 1000.0
+            if self.model.device.type == "cuda":
+                memory_peak = torch.cuda.max_memory_allocated(self.model.device)
+                memory_after = torch.cuda.memory_allocated(self.model.device)
+            else:
+                memory_peak = 0
+                memory_after = 0
+            context["model_call_latency_ms"] = float(elapsed_ms)
+            context["memory_before_bytes"] = int(memory_before)
+            context["memory_after_bytes"] = int(memory_after)
+            context["memory_peak_bytes"] = int(memory_peak)
+            context["memory_peak_delta_bytes"] = int(max(0, memory_peak - memory_before))
+            model_call_observer(context)
+            return output
 
         # =============================
         # Main block loop
@@ -425,8 +479,8 @@ class FastdLLMLLaDASampler(BaseSampler):
                         int(mask_allowed[j, start_j:end_j].sum().item())
                         for j, (start_j, end_j, _) in enumerate(widths)
                     ]
-                    out = self.model(
-                        x,
+                    out = _call_model(
+                        input_ids=x,
                         attention_mask=attention_mask,
                         output_hidden_states=block_observer is not None,
                         block_observer=block_observer,
@@ -471,8 +525,8 @@ class FastdLLMLLaDASampler(BaseSampler):
             if use_cache == "prefix":
                 # Warm cache on full x once per block
                 shared_ranges = [(s, e) for _ in range(B)]
-                out_full = self.model(
-                    x,
+                out_full = _call_model(
+                    input_ids=x,
                     attention_mask=attention_mask,
                     use_cache=True,
                     output_hidden_states=block_observer is not None,
@@ -544,8 +598,8 @@ class FastdLLMLLaDASampler(BaseSampler):
                     suffix_ranges = [
                         (0, min(block_len, int(x_suffix.shape[1]))) for _ in range(B)
                     ]
-                    out_suf = self.model(
-                        x_suffix,
+                    out_suf = _call_model(
+                        input_ids=x_suffix,
                         attention_mask=attention_mask,  # full-length mask is OK for this model
                         past_key_values=past_key_values,
                         use_cache=True,
@@ -602,8 +656,8 @@ class FastdLLMLLaDASampler(BaseSampler):
             if use_cache == "dual":
                 # Warm cache on full x once per block
                 shared_ranges = [(s, e) for _ in range(B)]
-                out_full = self.model(
-                    x,
+                out_full = _call_model(
+                    input_ids=x,
                     attention_mask=attention_mask,
                     use_cache=True,
                     output_hidden_states=block_observer is not None,
@@ -666,8 +720,8 @@ class FastdLLMLLaDASampler(BaseSampler):
                         break
 
                     # This requires model forward supports replace_position (as in your first modeling_llada.py)
-                    out_blk = self.model(
-                        blk,
+                    out_blk = _call_model(
+                        input_ids=blk,
                         attention_mask=attention_mask,
                         past_key_values=past_key_values,
                         use_cache=True,
