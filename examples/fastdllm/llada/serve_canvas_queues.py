@@ -10,7 +10,7 @@ Run from repo root on a GPU server:
     --arrival_rate_rps 2 \
     --refinement_steps 16 \
     --max_batch_size 16 \
-    --policies arrival_dense,exact_canvas_queue,exact_canvas_queue_wait,exact_canvas_queue_bounded \
+    --policies arrival_dense,packed_mixed_fixed_canvas,exact_canvas_queue,exact_canvas_queue_wait,exact_canvas_queue_bounded \
     --output_prefix artifacts/elastic_canvas/serve_canvas_queues_mix75
 """
 
@@ -323,6 +323,18 @@ def _plan_arrival_dense(
     return "dense", group, max(request.canvas for request in group)
 
 
+def _plan_packed_mixed_fixed_canvas(
+    ready: list[Request],
+    *,
+    max_batch_size: int,
+    **_: Any,
+) -> tuple[str, list[Request], int] | None:
+    group = _oldest(ready)[:max_batch_size]
+    if not group:
+        return None
+    return "packed_mixed_fixed_canvas", group, max(request.canvas for request in group)
+
+
 def _plan_exact_canvas_queue(
     ready: list[Request],
     *,
@@ -555,6 +567,7 @@ def _simulate_policy(
 ) -> tuple[list[Request], list[Operation]]:
     planners = {
         "arrival_dense": _plan_arrival_dense,
+        "packed_mixed_fixed_canvas": _plan_packed_mixed_fixed_canvas,
         "exact_canvas_queue": _plan_exact_canvas_queue,
         "exact_canvas_queue_wait": _plan_exact_canvas_queue_wait,
         "exact_canvas_queue_bounded": _plan_exact_canvas_queue_bounded,
@@ -613,25 +626,50 @@ def _simulate_policy(
                 break
 
         mode, group, physical_canvas = plan
-        input_ids, attention_mask = _build_batch(
-            prompt_ids=prompt_ids,
-            group=group,
-            physical_canvas=physical_canvas,
-            mask_token_id=mask_token_id,
-            eos_token_id=eos_token_id,
-            device=model.device,
-        )
-        latency_ms = _run_forward_ms(
-            model=model,
-            input_ids=input_ids,
-            attention_mask=attention_mask,
-        )
+        canvases = [request.canvas for request in group]
+        if mode == "packed_mixed_fixed_canvas":
+            latency_ms = 0.0
+            by_canvas: dict[int, list[Request]] = defaultdict(list)
+            for request in group:
+                by_canvas[request.canvas].append(request)
+            for canvas, subgroup in sorted(by_canvas.items()):
+                input_ids, attention_mask = _build_batch(
+                    prompt_ids=prompt_ids,
+                    group=subgroup,
+                    physical_canvas=canvas,
+                    mask_token_id=mask_token_id,
+                    eos_token_id=eos_token_id,
+                    device=model.device,
+                )
+                subgroup_latency_ms = _run_forward_ms(
+                    model=model,
+                    input_ids=input_ids,
+                    attention_mask=attention_mask,
+                )
+                latency_ms += subgroup_latency_ms
+                observed_ms[canvas].append(subgroup_latency_ms)
+            token_waste = 0
+            attention_waste = 0
+        else:
+            input_ids, attention_mask = _build_batch(
+                prompt_ids=prompt_ids,
+                group=group,
+                physical_canvas=physical_canvas,
+                mask_token_id=mask_token_id,
+                eos_token_id=eos_token_id,
+                device=model.device,
+            )
+            latency_ms = _run_forward_ms(
+                model=model,
+                input_ids=input_ids,
+                attention_mask=attention_mask,
+            )
+            token_waste, attention_waste = _dense_waste(
+                len(prompt_ids), canvases, physical_canvas
+            )
+            observed_ms[physical_canvas].append(latency_ms)
         start_ms = now_ms
         end_ms = now_ms + latency_ms
-        canvases = [request.canvas for request in group]
-        token_waste, attention_waste = _dense_waste(
-            len(prompt_ids), canvases, physical_canvas
-        )
         operation = Operation(
             policy=policy,
             operation_index=len(operations),
@@ -646,7 +684,6 @@ def _simulate_policy(
             attention_waste=attention_waste,
         )
         operations.append(operation)
-        observed_ms[physical_canvas].append(latency_ms)
 
         for request in group:
             if request.first_start_ms is None:
@@ -659,6 +696,18 @@ def _simulate_policy(
         now_ms = end_ms
 
     return requests, operations
+
+
+def _operation_physical_tokens(operation: Operation) -> int:
+    if operation.mode == "packed_mixed_fixed_canvas":
+        return sum(operation.canvas_lengths)
+    return len(operation.canvas_lengths) * operation.physical_canvas
+
+
+def _operation_physical_attention(operation: Operation, prompt_tokens: int) -> int:
+    if operation.mode == "packed_mixed_fixed_canvas":
+        return sum((prompt_tokens + canvas) ** 2 for canvas in operation.canvas_lengths)
+    return len(operation.canvas_lengths) * (prompt_tokens + operation.physical_canvas) ** 2
 
 
 def _summarize(
@@ -690,13 +739,10 @@ def _summarize(
     last_completion = max((request.completion_ms or first_arrival) for request in requests)
     makespan_ms = max(last_completion - first_arrival, 1e-9)
     total_gpu_ms = sum(operation.latency_ms for operation in operations)
-    physical_tokens = sum(
-        len(operation.canvas_lengths) * operation.physical_canvas
-        for operation in operations
-    )
+    physical_tokens = sum(_operation_physical_tokens(operation) for operation in operations)
     useful_tokens = sum(sum(operation.canvas_lengths) for operation in operations)
     physical_attention = sum(
-        len(operation.canvas_lengths) * (prompt_tokens + operation.physical_canvas) ** 2
+        _operation_physical_attention(operation, prompt_tokens)
         for operation in operations
     )
     useful_attention = sum(
@@ -814,7 +860,7 @@ class ScriptArguments:
     refinement_steps: int = 16
     max_batch_size: int = 16
     canvas_classes: str = "32,64,128,256"
-    policies: str = "arrival_dense,coarse_canvas_queue,exact_canvas_queue,exact_canvas_queue_wait,exact_canvas_queue_bounded"
+    policies: str = "arrival_dense,packed_mixed_fixed_canvas,coarse_canvas_queue,exact_canvas_queue,exact_canvas_queue_wait,exact_canvas_queue_bounded"
     coarse_canvas_groups: str = "32,64;128,256"
     min_bucket_size: int = 4
     target_bucket_size: int = 8

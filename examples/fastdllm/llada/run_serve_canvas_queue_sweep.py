@@ -44,7 +44,7 @@ parser.add_argument("--max_batch_size", type=int, default=16)
 parser.add_argument(
     "--policies",
     default=(
-        "arrival_dense,coarse_canvas_queue,exact_canvas_queue,"
+        "arrival_dense,packed_mixed_fixed_canvas,coarse_canvas_queue,exact_canvas_queue,"
         "exact_canvas_queue_wait,exact_canvas_queue_bounded"
     ),
 )

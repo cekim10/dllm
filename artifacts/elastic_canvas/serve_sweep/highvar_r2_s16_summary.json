@@ -1,0 +1,354 @@
+{
+  "model_name_or_path": "GSAI-ML/LLaDA-8B-Instruct",
+  "workload": "highvar",
+  "canvas_distribution": {
+    "128": 18,
+    "32": 24,
+    "256": 15,
+    "64": 7
+  },
+  "num_requests": 64,
+  "arrival_rate_rps": 2.0,
+  "arrival_process": "poisson",
+  "refinement_steps": 16,
+  "max_batch_size": 16,
+  "canvas_classes": [
+    32,
+    64,
+    128,
+    256
+  ],
+  "coarse_canvas_groups": [
+    [
+      32,
+      64
+    ],
+    [
+      128,
+      256
+    ]
+  ],
+  "prompt_tokens": 24,
+  "slo_policy": "by_canvas",
+  "slo_scale": 10.0,
+  "target_bucket_size": 8,
+  "max_bucket_wait_ms": 20.0,
+  "wall_elapsed_s": 198.94798178199562,
+  "summaries": [
+    {
+      "policy": "arrival_dense",
+      "completed_requests": 64,
+      "makespan_ms": 50601.509095416724,
+      "throughput_rps": 1.2647844134315918,
+      "gpu_busy_fraction": 0.9908330281481272,
+      "total_gpu_ms": 50137.64648587676,
+      "num_dispatches": 118,
+      "mean_batch_size": 8.677966101694915,
+      "p50_batch_size": 9.0,
+      "p95_batch_size": 16.0,
+      "partial_dispatch_ratio": 0.4661016949152542,
+      "mean_latency_ms": 13605.915234105592,
+      "p50_latency_ms": 14298.281601724488,
+      "p95_latency_ms": 18308.656814335733,
+      "p99_latency_ms": 18814.93180193378,
+      "mean_first_wait_ms": 2989.450883299665,
+      "p95_first_wait_ms": 8593.458892404768,
+      "mean_service_ms": 10616.464350805927,
+      "p95_service_ms": 12641.805789117643,
+      "mean_inter_iteration_delay_ms": 1.4033219031261979e-13,
+      "p95_inter_iteration_delay_ms": 9.094947017729282e-13,
+      "slo_requests": 64,
+      "slo_miss_rate": 0.0,
+      "token_coupling_waste_ratio": 0.5362318840579711,
+      "attention_coupling_waste_ratio": 0.6433529805671399,
+      "mode_counts": {
+        "dense": 118
+      },
+      "per_canvas": {
+        "32": {
+          "num_requests": 24,
+          "p95_latency_ms": 18606.581701107036,
+          "p99_latency_ms": 18990.355318359278,
+          "p95_first_wait_ms": 7906.887912440183,
+          "mean_service_ms": 10422.437796794839
+        },
+        "64": {
+          "num_requests": 7,
+          "p95_latency_ms": 18011.41357006958,
+          "p99_latency_ms": 18155.028825997393,
+          "p95_first_wait_ms": 7432.978041940785,
+          "mean_service_ms": 11440.394594982665
+        },
+        "128": {
+          "num_requests": 18,
+          "p95_latency_ms": 17998.156169591548,
+          "p99_latency_ms": 18263.176568825445,
+          "p95_first_wait_ms": 10781.18577977828,
+          "mean_service_ms": 10092.578123598489
+        },
+        "256": {
+          "num_requests": 15,
+          "p95_latency_ms": 17644.894840197136,
+          "p99_latency_ms": 17876.05775521477,
+          "p95_first_wait_ms": 8017.468143595985,
+          "mean_service_ms": 11171.069529256783
+        }
+      },
+      "throughput_speedup_vs_arrival_dense": 1.0,
+      "p95_latency_ratio_vs_arrival_dense": 1.0,
+      "gpu_time_ratio_vs_arrival_dense": 1.0
+    },
+    {
+      "policy": "coarse_canvas_queue",
+      "completed_requests": 64,
+      "makespan_ms": 39041.91082419129,
+      "throughput_rps": 1.6392640280389168,
+      "gpu_busy_fraction": 1.0,
+      "total_gpu_ms": 39041.91082419129,
+      "num_dispatches": 289,
+      "mean_batch_size": 3.5432525951557095,
+      "p50_batch_size": 3.0,
+      "p95_batch_size": 7.599999999999966,
+      "partial_dispatch_ratio": 0.9480968858131488,
+      "mean_latency_ms": 4263.967248212559,
+      "p50_latency_ms": 4476.0075504667,
+      "p95_latency_ms": 6316.6705908536815,
+      "p99_latency_ms": 6467.359407186512,
+      "mean_first_wait_ms": 797.965362775123,
+      "p95_first_wait_ms": 3684.931499148341,
+      "mean_service_ms": 2869.65549841716,
+      "p95_service_ms": 5117.7124110399745,
+      "mean_inter_iteration_delay_ms": 596.3463870202759,
+      "p95_inter_iteration_delay_ms": 2066.837345919339,
+      "slo_requests": 64,
+      "slo_miss_rate": 0.0,
+      "token_coupling_waste_ratio": 0.294478527607362,
+      "attention_coupling_waste_ratio": 0.39116262223831944,
+      "mode_counts": {
+        "coarse_canvas_queue": 289
+      },
+      "per_canvas": {
+        "32": {
+          "num_requests": 24,
+          "p95_latency_ms": 6141.891310397737,
+          "p99_latency_ms": 6300.883048020268,
+          "p95_first_wait_ms": 3356.4593213876688,
+          "mean_service_ms": 1593.404124105291
+        },
+        "64": {
+          "num_requests": 7,
+          "p95_latency_ms": 5719.828827474776,
+          "p99_latency_ms": 5749.945140688586,
+          "p95_first_wait_ms": 4754.891252065971,
+          "mean_service_ms": 1470.4141806952455
+        },
+        "128": {
+          "num_requests": 18,
+          "p95_latency_ms": 6030.344088162389,
+          "p99_latency_ms": 6252.418829977348,
+          "p95_first_wait_ms": 1315.1787607219012,
+          "mean_service_ms": 3954.7851278912276
+        },
+        "256": {
+          "num_requests": 15,
+          "p95_latency_ms": 6466.3954735748985,
+          "p99_latency_ms": 6474.10694246781,
+          "p95_first_wait_ms": 881.6061667602788,
+          "mean_service_ms": 4262.481423550828
+        }
+      },
+      "throughput_speedup_vs_arrival_dense": 1.296081775384386,
+      "p95_latency_ratio_vs_arrival_dense": 0.34501004933948565,
+      "gpu_time_ratio_vs_arrival_dense": 0.7786945251845633
+    },
+    {
+      "policy": "exact_canvas_queue",
+      "completed_requests": 64,
+      "makespan_ms": 37099.31851558013,
+      "throughput_rps": 1.725099073534807,
+      "gpu_busy_fraction": 0.9727206746812884,
+      "total_gpu_ms": 36087.27413669112,
+      "num_dispatches": 606,
+      "mean_batch_size": 1.6897689768976898,
+      "p50_batch_size": 1.0,
+      "p95_batch_size": 3.0,
+      "partial_dispatch_ratio": 1.0,
+      "mean_latency_ms": 2280.3694777631895,
+      "p50_latency_ms": 2286.0563584529873,
+      "p95_latency_ms": 3942.461585468302,
+      "p99_latency_ms": 4953.256571717205,
+      "mean_first_wait_ms": 926.2736903952933,
+      "p95_first_wait_ms": 2331.6890190416525,
+      "mean_service_ms": 1133.3126262534279,
+      "p95_service_ms": 2359.7758954987503,
+      "mean_inter_iteration_delay_ms": 220.78316111446833,
+      "p95_inter_iteration_delay_ms": 1254.3851659575012,
+      "slo_requests": 64,
+      "slo_miss_rate": 0.0,
+      "token_coupling_waste_ratio": 0.0,
+      "attention_coupling_waste_ratio": 0.0,
+      "mode_counts": {
+        "exact_canvas_queue": 606
+      },
+      "per_canvas": {
+        "32": {
+          "num_requests": 24,
+          "p95_latency_ms": 3666.601234022812,
+          "p99_latency_ms": 4069.8378825029513,
+          "p95_first_wait_ms": 2331.689019041653,
+          "mean_service_ms": 738.1229128186533
+        },
+        "64": {
+          "num_requests": 7,
+          "p95_latency_ms": 2709.0571796442046,
+          "p99_latency_ms": 2713.209823370791,
+          "p95_first_wait_ms": 2209.2403490744427,
+          "mean_service_ms": 558.7350530217269
+        },
+        "128": {
+          "num_requests": 18,
+          "p95_latency_ms": 3805.3340063667965,
+          "p99_latency_ms": 3938.543654636831,
+          "p95_first_wait_ms": 2425.036244272527,
+          "mean_service_ms": 1127.4905044087468
+        },
+        "256": {
+          "num_requests": 15,
+          "p95_latency_ms": 4950.959334735952,
+          "p99_latency_ms": 4969.33723058597,
+          "p95_first_wait_ms": 1529.6271875560137,
+          "mean_service_ms": 2040.738914804145
+        }
+      },
+      "throughput_speedup_vs_arrival_dense": 1.3639471321869767,
+      "p95_latency_ratio_vs_arrival_dense": 0.21533319595467773,
+      "gpu_time_ratio_vs_arrival_dense": 0.7197640229653883
+    },
+    {
+      "policy": "exact_canvas_queue_wait",
+      "completed_requests": 64,
+      "makespan_ms": 37079.7387902506,
+      "throughput_rps": 1.7260100013656936,
+      "gpu_busy_fraction": 0.970875035887657,
+      "total_gpu_ms": 35999.7927286895,
+      "num_dispatches": 603,
+      "mean_batch_size": 1.6981757877280266,
+      "p50_batch_size": 1.0,
+      "p95_batch_size": 3.0,
+      "partial_dispatch_ratio": 1.0,
+      "mean_latency_ms": 2283.2315221113563,
+      "p50_latency_ms": 2264.6319398231717,
+      "p95_latency_ms": 3923.80051615419,
+      "p99_latency_ms": 4971.641781540231,
+      "mean_first_wait_ms": 934.2985854606301,
+      "p95_first_wait_ms": 2349.168914899048,
+      "mean_service_ms": 1136.587634339321,
+      "p95_service_ms": 2358.633314569305,
+      "mean_inter_iteration_delay_ms": 212.3453023114052,
+      "p95_inter_iteration_delay_ms": 1252.8887449589092,
+      "slo_requests": 64,
+      "slo_miss_rate": 0.0,
+      "token_coupling_waste_ratio": 0.0,
+      "attention_coupling_waste_ratio": 0.0,
+      "mode_counts": {
+        "exact_canvas_queue_wait": 603
+      },
+      "per_canvas": {
+        "32": {
+          "num_requests": 24,
+          "p95_latency_ms": 3696.485387923014,
+          "p99_latency_ms": 4099.722036403154,
+          "p95_first_wait_ms": 2349.168914899048,
+          "mean_service_ms": 743.811218184419
+        },
+        "64": {
+          "num_requests": 7,
+          "p95_latency_ms": 2749.0080845538423,
+          "p99_latency_ms": 2768.6502793352083,
+          "p95_first_wait_ms": 2249.291846359464,
+          "mean_service_ms": 558.9264832628293
+        },
+        "128": {
+          "num_requests": 18,
+          "p95_latency_ms": 3790.9599984579745,
+          "p99_latency_ms": 3920.0050727914413,
+          "p95_first_wait_ms": 2412.51986401567,
+          "mean_service_ms": 1127.500855866755
+        },
+        "256": {
+          "num_requests": 15,
+          "p95_latency_ms": 4969.34454455898,
+          "p99_latency_ms": 4987.7224404089975,
+          "p95_first_wait_ms": 1542.9942310457204,
+          "mean_service_ms": 2045.50923818994
+        }
+      },
+      "throughput_speedup_vs_arrival_dense": 1.3646673559825997,
+      "p95_latency_ratio_vs_arrival_dense": 0.21431394754648755,
+      "gpu_time_ratio_vs_arrival_dense": 0.7180191981853448
+    },
+    {
+      "policy": "exact_canvas_queue_bounded",
+      "completed_requests": 64,
+      "makespan_ms": 37649.145836209966,
+      "throughput_rps": 1.6999057635577608,
+      "gpu_busy_fraction": 0.9855220853405826,
+      "total_gpu_ms": 37104.064715793356,
+      "num_dispatches": 700,
+      "mean_batch_size": 1.4628571428571429,
+      "p50_batch_size": 1.0,
+      "p95_batch_size": 3.0,
+      "partial_dispatch_ratio": 1.0,
+      "mean_latency_ms": 2557.235069141585,
+      "p50_latency_ms": 1123.2462054547568,
+      "p95_latency_ms": 8988.235345800926,
+      "p99_latency_ms": 11166.540420114401,
+      "mean_first_wait_ms": 375.08540004113064,
+      "p95_first_wait_ms": 1605.7270118566603,
+      "mean_service_ms": 1224.628643610231,
+      "p95_service_ms": 3592.2437681365377,
+      "mean_inter_iteration_delay_ms": 957.5210254902231,
+      "p95_inter_iteration_delay_ms": 5512.310268793954,
+      "slo_requests": 64,
+      "slo_miss_rate": 0.0,
+      "token_coupling_waste_ratio": 0.0,
+      "attention_coupling_waste_ratio": 0.0,
+      "mode_counts": {
+        "exact_canvas_queue_bounded": 700
+      },
+      "per_canvas": {
+        "32": {
+          "num_requests": 24,
+          "p95_latency_ms": 625.420816466793,
+          "p99_latency_ms": 633.3155699775996,
+          "p95_first_wait_ms": 131.69813093211613,
+          "mean_service_ms": 495.64810816203436
+        },
+        "64": {
+          "num_requests": 7,
+          "p95_latency_ms": 1868.25420113573,
+          "p99_latency_ms": 1891.8711900026394,
+          "p95_first_wait_ms": 611.953892827715,
+          "mean_service_ms": 559.1816185707493
+        },
+        "128": {
+          "num_requests": 18,
+          "p95_latency_ms": 2638.7793474651908,
+          "p99_latency_ms": 2743.404743920567,
+          "p95_first_wait_ms": 445.5248457283879,
+          "mean_service_ms": 995.9456700598821
+        },
+        "256": {
+          "num_requests": 15,
+          "p95_latency_ms": 10996.51085306875,
+          "p99_latency_ms": 12356.747389433996,
+          "p95_first_wait_ms": 2362.9848546928124,
+          "mean_service_ms": 2975.959013606189
+        }
+      },
+      "throughput_speedup_vs_arrival_dense": 1.3440280774378024,
+      "p95_latency_ratio_vs_arrival_dense": 0.49092816785790155,
+      "gpu_time_ratio_vs_arrival_dense": 0.7400440051817186
+    }
+  ]
+}

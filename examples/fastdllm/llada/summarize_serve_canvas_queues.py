@@ -52,6 +52,8 @@ print("\t".join(columns))
 for raw_path in sys.argv[1:]:
     path = Path(raw_path)
     data = json.loads(path.read_text())
+    if not isinstance(data, dict) or "summaries" not in data:
+        continue
     baseline = data["summaries"][0]["policy"]
     for summary in data["summaries"]:
         row = {
