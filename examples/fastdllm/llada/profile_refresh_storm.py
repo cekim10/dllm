@@ -225,8 +225,9 @@ def _write_jsonl(path: Path, rows: list[dict[str, Any]]) -> None:
 def _write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
     if not rows:
         return
+    fieldnames = sorted({key for row in rows for key in row})
     with path.open("w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(rows)
 
