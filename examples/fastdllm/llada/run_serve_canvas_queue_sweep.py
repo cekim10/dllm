@@ -56,6 +56,11 @@ parser.add_argument("--max_bucket_wait_ms", type=float, default=20.0)
 parser.add_argument("--coarse_canvas_groups", default="32,64;128,256")
 parser.add_argument("--warmup", type=int, default=2)
 parser.add_argument("--seed", type=int, default=42)
+parser.add_argument(
+    "--rerun_existing",
+    action="store_true",
+    help="Rerun experiments even when the expected summary JSON already exists.",
+)
 args = parser.parse_args()
 
 output_dir = Path(args.output_dir)
@@ -106,9 +111,13 @@ for workload in _parse_csv(args.workloads):
                 "--output_prefix",
                 str(prefix),
             ]
-            print("Running:", " ".join(cmd), flush=True)
-            subprocess.run(cmd, check=True)
-            summary_paths.append(prefix.with_name(prefix.name + "_summary.json"))
+            summary_path = prefix.with_name(prefix.name + "_summary.json")
+            if summary_path.exists() and not args.rerun_existing:
+                print("Skipping existing:", summary_path, flush=True)
+            else:
+                print("Running:", " ".join(cmd), flush=True)
+                subprocess.run(cmd, check=True)
+            summary_paths.append(summary_path)
 
 rows = []
 for path in summary_paths:

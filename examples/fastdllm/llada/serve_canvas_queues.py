@@ -148,6 +148,13 @@ def _workload_lengths(
         base = classes if len(classes) >= 4 else [min_canvas, 64, 128, max_canvas]
         weights = [0.70, 0.20, 0.08, 0.02][: len(base)]
         return rng.choices(base, weights=weights, k=num_requests)
+    elif workload == "lowvar":
+        base = [length for length in classes if 64 <= length <= 192] or classes
+    elif workload == "highvar":
+        base = classes
+        weights = [0.30, 0.20, 0.20, 0.30][: len(base)]
+        if len(weights) == len(base):
+            return rng.choices(base, weights=weights, k=num_requests)
     elif workload == "shift":
         first = rng.choices([min_canvas, max_canvas], weights=[0.90, 0.10], k=num_requests // 2)
         second = rng.choices([min_canvas, max_canvas], weights=[0.35, 0.65], k=num_requests - len(first))
