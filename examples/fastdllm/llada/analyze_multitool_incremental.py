@@ -98,6 +98,34 @@ def _mean(rows: list[dict[str, Any]], key: str) -> float | None:
     return statistics.mean(values) if values else None
 
 
+def _percentile(values: list[float], q: float) -> float | None:
+    if not values:
+        return None
+    ordered = sorted(values)
+    index = (len(ordered) - 1) * q
+    lower = int(index)
+    upper = min(lower + 1, len(ordered) - 1)
+    weight = index - lower
+    return ordered[lower] * (1 - weight) + ordered[upper] * weight
+
+
+def _summarize_values(
+    rows: list[dict[str, Any]],
+    key: str,
+    *,
+    prefix: str,
+    output: dict[str, Any],
+) -> None:
+    values = [float(row[key]) for row in rows if row.get(key) not in (None, "")]
+    if not values:
+        return
+    name_prefix = f"{prefix}_" if prefix else ""
+    output[f"{name_prefix}mean_{key}"] = statistics.mean(values)
+    output[f"{name_prefix}p50_{key}"] = _percentile(values, 0.50)
+    output[f"{name_prefix}p90_{key}"] = _percentile(values, 0.90)
+    output[f"{name_prefix}p95_{key}"] = _percentile(values, 0.95)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--requests_csv", required=True)
@@ -245,6 +273,22 @@ def main() -> None:
         "tool_latencies_ms": tool_latencies,
         "ar_probe_ms": args.ar_probe_ms,
     }
+    aggregate["dllm_false_start_rate"] = (
+        sum(
+            1
+            for row in call_rows
+            if float(row.get("dllm_false_starts") or 0) > 0
+        )
+        / max(len(call_rows), 1)
+    )
+    aggregate["ar_false_start_rate"] = (
+        sum(
+            1
+            for row in call_rows
+            if float(row.get("ar_false_starts") or 0) > 0
+        )
+        / max(len(call_rows), 1)
+    )
     for key in [
         "dllm_call_ready_spread_ms",
         "ar_call_ready_spread_ms",
@@ -253,9 +297,7 @@ def main() -> None:
         "ar_first_call_ms",
         "ar_last_call_ms",
     ]:
-        value = _mean(per_request_rows, key)
-        if value is not None:
-            aggregate[f"mean_{key}"] = value
+        _summarize_values(per_request_rows, key, prefix="", output=aggregate)
     for latency_ms in tool_latencies:
         rows = [
             row
@@ -272,9 +314,12 @@ def main() -> None:
             "dllm_saved_vs_ar_verified_parallel_ms",
             "dllm_saved_vs_ar_verified_serial_ms",
         ]:
-            value = _mean(rows, key)
-            if value is not None:
-                aggregate[f"tool{latency_ms:g}_mean_{key}"] = value
+            _summarize_values(
+                rows,
+                key,
+                prefix=f"tool{latency_ms:g}",
+                output=aggregate,
+            )
 
     prefix = Path(args.output_prefix)
     prefix.parent.mkdir(parents=True, exist_ok=True)
