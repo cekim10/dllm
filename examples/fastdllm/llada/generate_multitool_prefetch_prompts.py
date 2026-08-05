@@ -5,6 +5,7 @@ Run from repo root:
   python3 examples/fastdllm/llada/generate_multitool_prefetch_prompts.py \
     --output_path examples/fastdllm/llada/multitool_prefetch_prompts_120.jsonl \
     --num_records 120 \
+    --num_calls 3 \
     --seed 42
 
 The output schema matches test_multitool_prefetch_signals.py:
@@ -71,11 +72,15 @@ def _date(year: int, month: int, day: int) -> str:
     return f"{year:04d}-{month:02d}-{day:02d}"
 
 
-def _record(index: int, rng: random.Random) -> dict[str, object]:
+def _record(index: int, rng: random.Random, num_calls: int) -> dict[str, object]:
     city, airport = CITY_AIRPORTS[index % len(CITY_AIRPORTS)]
+    alt_city, alt_airport = CITY_AIRPORTS[(index + 7) % len(CITY_AIRPORTS)]
     origin = ORIGINS[(index * 3 + 1) % len(ORIGINS)]
     if origin == airport:
         origin = ORIGINS[(index * 3 + 2) % len(ORIGINS)]
+    return_origin = ORIGINS[(index * 5 + 4) % len(ORIGINS)]
+    if return_origin == alt_airport:
+        return_origin = ORIGINS[(index * 5 + 5) % len(ORIGINS)]
     year = 2026 + (index % 2)
     month = 1 + ((index * 5) % 12)
     day = 1 + ((index * 7) % 24)
@@ -116,11 +121,27 @@ def _record(index: int, rng: random.Random) -> dict[str, object]:
             "args": {"company": company, "role": role, "city": city},
             "phrase": f"fetch CRM contacts at company {company} with role {role} in city {city}",
         },
+        {
+            "tool": "weather",
+            "args": {"location": alt_city, "date": end_date},
+            "phrase": f"check weather in {alt_city} on {end_date}",
+        },
+        {
+            "tool": "flight_search",
+            "args": {"origin": return_origin, "destination": alt_airport, "date": end_date},
+            "phrase": f"find flights from {return_origin} to {alt_airport} on {end_date}",
+        },
     ]
-    selected = rng.sample(candidate_calls, 3)
+    if num_calls > len(candidate_calls):
+        raise ValueError(f"num_calls must be <= {len(candidate_calls)}")
+    selected = rng.sample(candidate_calls, num_calls)
     task = TASKS[index % len(TASKS)].format(city=city)
     phrases = [str(call["phrase"]) for call in selected]
-    prompt = f"{task}: {phrases[0]}, {phrases[1]}, and {phrases[2]}."
+    if len(phrases) == 1:
+        actions_text = phrases[0]
+    else:
+        actions_text = ", ".join(phrases[:-1]) + f", and {phrases[-1]}"
+    prompt = f"{task}: {actions_text}."
     return {
         "prompt": prompt,
         "calls": [
@@ -134,11 +155,12 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output_path", required=True)
     parser.add_argument("--num_records", type=int, default=120)
+    parser.add_argument("--num_calls", type=int, default=3)
     parser.add_argument("--seed", type=int, default=42)
     args = parser.parse_args()
 
     rng = random.Random(args.seed)
-    rows = [_record(index, rng) for index in range(args.num_records)]
+    rows = [_record(index, rng, args.num_calls) for index in range(args.num_records)]
     output_path = Path(args.output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with output_path.open("w", encoding="utf-8") as f:

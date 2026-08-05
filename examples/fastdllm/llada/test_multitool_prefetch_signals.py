@@ -108,27 +108,33 @@ def _format_prompt_for_style(
         + f"\n\nUser request: {record['prompt']}"
     )
     if prompt_format == "action_list":
+        format_lines = []
+        for index in range(1, len(record["calls"]) + 1):
+            format_lines.extend(
+                [
+                    f"ACTION {index}:",
+                    "TOOL: <tool_name>",
+                    "ARGS: key=value; key=value",
+                ]
+            )
         content = (
             header
             + "Return only this format:\n"
-            "ACTION 1:\n"
-            "TOOL: <tool_name>\n"
-            "ARGS: key=value; key=value\n"
-            "ACTION 2:\n"
-            "TOOL: <tool_name>\n"
-            "ARGS: key=value; key=value\n"
-            "ACTION 3:\n"
-            "TOOL: <tool_name>\n"
-            "ARGS: key=value; key=value\n\n"
+            + "\n".join(format_lines)
+            + "\n\n"
             + footer
         )
     elif prompt_format == "json_array":
+        array_items = ",".join(
+            ['{"tool":"<tool_name>","args":{"key":"value"}}']
+            * len(record["calls"])
+        )
         content = (
             header
             + "Return only compact JSON with this shape:\n"
-            '{"actions":[{"tool":"<tool_name>","args":{"key":"value"}},'
-            '{"tool":"<tool_name>","args":{"key":"value"}},'
-            '{"tool":"<tool_name>","args":{"key":"value"}}]}\n\n'
+            + '{"actions":['
+            + array_items
+            + "]}\n\n"
             + footer
         )
     elif prompt_format == "named_object":

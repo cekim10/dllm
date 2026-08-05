@@ -8,6 +8,7 @@ Run from repo root on a GPU server:
     --input_path examples/fastdllm/llada/multitool_prefetch_prompts_120.jsonl \
     --native_requests_csv artifacts/action_completeness/multitool_llada_scaleup_requests.csv \
     --limit 120 \
+    --probe_mode full_actions \
     --max_new_tokens 192 \
     --output_prefix artifacts/action_completeness/probe_vs_native_multitool_scaleup
 
@@ -119,6 +120,54 @@ def _effective_latency(
     return max(generation_ms, ready_ms + tool_latency_ms)
 
 
+def _format_probe_prompt(
+    record: dict[str, Any],
+    *,
+    prompt_format: str,
+    probe_mode: str,
+) -> list[dict[str, str]]:
+    if probe_mode == "full_actions":
+        return _format_prompt_for_style(record, prompt_format=prompt_format)
+    tool_lines = [
+        "- flight_search(origin, destination, date)",
+        "- weather(location, date)",
+        "- calendar_api(calendar, start_date, end_date, keyword)",
+        "- crm_api(company, role, city)",
+    ]
+    if probe_mode == "tool_names":
+        content = (
+            "You are a fast tool-name predictor. The user request may require "
+            "multiple read-only actions. Return only the tool names needed, in "
+            "a comma-separated list. Do not include arguments.\n"
+            f"Available tools:\n" + "\n".join(tool_lines) + "\n\n"
+            f"User request: {record['prompt']}"
+        )
+    elif probe_mode == "first_call":
+        content = (
+            "You are a fast tool router. Return only the first read-only action "
+            "needed for the user request.\n"
+            f"Available tools:\n" + "\n".join(tool_lines) + "\n\n"
+            "Return only this format:\n"
+            "TOOL: <tool_name>\n"
+            "ARGS: key=value; key=value\n\n"
+            f"User request: {record['prompt']}"
+        )
+    else:
+        raise ValueError(f"Unknown probe_mode: {probe_mode}")
+    return [{"role": "user", "content": content}]
+
+
+def _tool_name_counts(text: str, calls: list[dict[str, Any]]) -> tuple[int, int]:
+    normalized = text.lower()
+    remaining = [str(call["tool"]) for call in calls]
+    matched = 0
+    for tool in sorted(set(remaining)):
+        available = normalized.count(tool)
+        for _ in range(min(available, remaining.count(tool))):
+            matched += 1
+    return matched, len(calls)
+
+
 @dataclass
 class ProbeResult:
     text: str
@@ -179,6 +228,12 @@ def _summarize(rows: list[dict[str, Any]], tool_latencies: list[float]) -> dict[
         return aggregate
     aggregate["probe_all_ready_rate"] = (
         sum(bool(row["probe_all_ready"]) for row in rows) / len(rows)
+    )
+    aggregate["probe_first_call_ready_rate"] = (
+        sum(bool(row["probe_first_call_ready"]) for row in rows) / len(rows)
+    )
+    aggregate["mean_probe_tool_name_ready_fraction"] = statistics.mean(
+        [float(row["probe_tool_name_ready_fraction"]) for row in rows]
     )
     aggregate["mean_probe_ready_count"] = statistics.mean(
         [float(row["probe_ready_count"]) for row in rows]
@@ -254,6 +309,7 @@ def main() -> None:
     parser.add_argument("--max_new_tokens", type=int, default=192)
     parser.add_argument("--tool_latencies_ms", default="100,300,500,1000,2000")
     parser.add_argument("--prompt_format", default="action_list", choices=["action_list", "json_array", "named_object"])
+    parser.add_argument("--probe_mode", default="full_actions", choices=["full_actions", "tool_names", "first_call"])
     parser.add_argument("--torch_dtype", default="bfloat16", choices=["auto", "bfloat16", "float16", "float32"])
     parser.add_argument("--device_map", default="auto")
     parser.add_argument("--trust_remote_code", action="store_true")
@@ -280,7 +336,11 @@ def main() -> None:
     request_rows: list[dict[str, Any]] = []
     decoded_rows: list[dict[str, Any]] = []
     for request_index, record in enumerate(records):
-        messages = _format_prompt_for_style(record, prompt_format=args.prompt_format)
+        messages = _format_probe_prompt(
+            record,
+            prompt_format=args.prompt_format,
+            probe_mode=args.probe_mode,
+        )
         probe = _run_probe(
             model=model,
             tokenizer=tokenizer,
@@ -289,11 +349,17 @@ def main() -> None:
         )
         scores = [_call_score(probe.text, call) for call in record["calls"]]
         ready_count = sum(bool(score["ready"]) for score in scores)
+        tool_name_ready_count, tool_name_total = _tool_name_counts(probe.text, record["calls"])
+        first_call_ready = bool(scores[0]["ready"]) if scores else False
         row: dict[str, Any] = {
             "request_index": request_index,
             "prompt_format": args.prompt_format,
+            "probe_mode": args.probe_mode,
             "num_calls": len(record["calls"]),
             "probe_all_ready": ready_count == len(record["calls"]),
+            "probe_first_call_ready": first_call_ready,
+            "probe_tool_name_ready_count": tool_name_ready_count,
+            "probe_tool_name_ready_fraction": tool_name_ready_count / max(tool_name_total, 1),
             "probe_ready_count": ready_count,
             "probe_latency_ms": probe.latency_ms,
             "probe_prompt_tokens": probe.prompt_tokens,
@@ -325,6 +391,7 @@ def main() -> None:
                 {
                     "request_index": request_index,
                     "probe_ready_count": ready_count,
+                    "probe_tool_name_ready_count": tool_name_ready_count,
                     "probe_latency_ms": probe.latency_ms,
                 },
                 ensure_ascii=True,
@@ -338,6 +405,7 @@ def main() -> None:
             "ar_model_name_or_path": args.ar_model_name_or_path,
             "input_path": args.input_path,
             "native_requests_csv": args.native_requests_csv,
+            "probe_mode": args.probe_mode,
         }
     )
 
