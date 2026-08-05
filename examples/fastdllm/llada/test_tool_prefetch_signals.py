@@ -33,13 +33,23 @@ import transformers
 import dllm
 
 
-TOOL_NAMES = ["flight_search", "weather", "web_search", "vector_search", "sql_query"]
+TOOL_NAMES = [
+    "flight_search",
+    "weather",
+    "web_search",
+    "vector_search",
+    "sql_query",
+    "calendar_api",
+    "crm_api",
+]
 TOOL_ALIASES = {
     "flight_search": ["flight_search", "flight search", "flights", "flight"],
     "weather": ["weather", "forecast"],
     "web_search": ["web_search", "web search", "search the web", "search online"],
     "vector_search": ["vector_search", "vector search", "retrieve", "knowledge base"],
     "sql_query": ["sql_query", "sql query", "query"],
+    "calendar_api": ["calendar_api", "calendar api", "calendar"],
+    "crm_api": ["crm_api", "crm api", "crm", "contacts"],
 }
 DATE_PATTERN = re.compile(r"\b(20\d{2})[-/](\d{1,2})[-/](\d{1,2})\b")
 
@@ -137,9 +147,12 @@ def _score_extraction(text: str, target_tool: str, target_args: dict[str, str]) 
     tool_correct = detected_tool == target_tool
     arg_scores = {}
     for key, value in target_args.items():
-        if key in {"query", "filter"}:
+        if key in {"query", "filter", "where", "select"}:
             score = _query_overlap(text, str(value))
             arg_scores[key] = score >= 0.67
+        elif " " in str(value).strip():
+            score = _query_overlap(text, str(value))
+            arg_scores[key] = score >= 0.80
         else:
             arg_scores[key] = _contains_value(text, str(value))
     args_correct = all(arg_scores.values()) if arg_scores else True
@@ -159,7 +172,9 @@ def _format_prompt(record: dict[str, Any]) -> list[dict[str, str]]:
             "- weather(location, date)",
             "- web_search(query)",
             "- vector_search(query)",
-            "- sql_query(table, filter)",
+            "- sql_query(table, select, where, order_by, limit)",
+            "- calendar_api(calendar, start_date, end_date, keyword)",
+            "- crm_api(company, role, city)",
         ]
     )
     content = (
