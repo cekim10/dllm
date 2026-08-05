@@ -225,6 +225,7 @@ class FastdLLMLLaDASampler(BaseSampler):
         block_observer = kwargs.get("block_observer")
         model_call_observer = kwargs.get("model_call_observer")
         transfer_bias = kwargs.get("transfer_bias")
+        canvas_update_hook = kwargs.get("canvas_update_hook")
 
         assert block_size >= 1
         assert steps >= 1
@@ -302,6 +303,7 @@ class FastdLLMLLaDASampler(BaseSampler):
         # ----- Block scheduling -----
         num_blocks = math.ceil(max_new_tokens / block_size)
         steps_per_block = math.ceil(steps / num_blocks)
+        canvas_update_index = 0
 
         # Cache modes assume a single shared prompt length (like NVLabs reference code)
         if use_cache == "none":
@@ -423,6 +425,29 @@ class FastdLLMLLaDASampler(BaseSampler):
                 return transfer_bias[:, start:]
             return transfer_bias[:, start:end]
 
+        def _apply_canvas_update_hook(
+            x_: torch.Tensor,
+            *,
+            phase: str,
+            cache_mode: str,
+            block_index: int,
+            step_index: int,
+        ) -> torch.Tensor:
+            nonlocal canvas_update_index
+            if canvas_update_hook is None:
+                canvas_update_index += 1
+                return x_
+            context = {
+                "phase": phase,
+                "cache_mode": cache_mode,
+                "block_index": int(block_index),
+                "step_index": int(step_index),
+                "canvas_update_index": int(canvas_update_index),
+            }
+            canvas_update_index += 1
+            hooked = canvas_update_hook(x_, context)
+            return x_ if hooked is None else hooked
+
         # =============================
         # Main block loop
         # =============================
@@ -527,6 +552,13 @@ class FastdLLMLLaDASampler(BaseSampler):
                     )
 
                     x = torch.where(transfer_idx, x0, x)
+                    x = _apply_canvas_update_hook(
+                        x,
+                        phase="refine",
+                        cache_mode="none",
+                        block_index=b,
+                        step_index=i,
+                    )
                     i += 1
 
                     if histories is not None:
@@ -586,6 +618,13 @@ class FastdLLMLLaDASampler(BaseSampler):
                     )
 
                     x = torch.where(transfer_idx, x0, x)
+                    x = _apply_canvas_update_hook(
+                        x,
+                        phase="warmup",
+                        cache_mode="prefix",
+                        block_index=b,
+                        step_index=0,
+                    )
                     if histories is not None:
                         histories.append(x.clone())
 
@@ -660,6 +699,13 @@ class FastdLLMLLaDASampler(BaseSampler):
 
                     x_suffix_new = torch.where(transfer_suf, x0_suf, x_suffix)
                     x = torch.cat([x[:, :s], x_suffix_new], dim=1)
+                    x = _apply_canvas_update_hook(
+                        x,
+                        phase="refine",
+                        cache_mode="prefix",
+                        block_index=b,
+                        step_index=i,
+                    )
 
                     i += 1
                     if histories is not None:
@@ -727,6 +773,13 @@ class FastdLLMLLaDASampler(BaseSampler):
                     )
 
                     x = torch.where(transfer_idx, x0, x)
+                    x = _apply_canvas_update_hook(
+                        x,
+                        phase="warmup",
+                        cache_mode="dual",
+                        block_index=b,
+                        step_index=0,
+                    )
                     if histories is not None:
                         histories.append(x.clone())
 
@@ -784,6 +837,13 @@ class FastdLLMLLaDASampler(BaseSampler):
 
                     blk_new = torch.where(transfer_blk, x0_blk, blk)
                     x = torch.cat([x[:, :s], blk_new, x[:, e:]], dim=1)
+                    x = _apply_canvas_update_hook(
+                        x,
+                        phase="refine",
+                        cache_mode="dual",
+                        block_index=b,
+                        step_index=i_step,
+                    )
 
                     if histories is not None:
                         histories.append(x.clone())
