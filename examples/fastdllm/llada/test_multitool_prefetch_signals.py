@@ -9,6 +9,8 @@ Run from repo root on a GPU server:
     --input_path examples/fastdllm/llada/multitool_prefetch_prompts.jsonl \
     --limit 10 \
     --tool_latencies_ms 100,300,500,1000,2000 \
+    --prompt_format action_list \
+    --bias_strengths 0,0.2 \
     --steps 128 \
     --max_new_tokens 192 \
     --block_size 48 \
@@ -39,6 +41,7 @@ import dllm
 
 from test_tool_prefetch_signals import (
     _ar_prefix_texts,
+    _compact,
     _decode_generated,
     _history_texts,
     _normalize_inputs,
@@ -76,6 +79,14 @@ def _load_multitool_records(path: str, limit: int) -> list[dict[str, Any]]:
 
 
 def _format_prompt(record: dict[str, Any]) -> list[dict[str, str]]:
+    return _format_prompt_for_style(record, prompt_format="action_list")
+
+
+def _format_prompt_for_style(
+    record: dict[str, Any],
+    *,
+    prompt_format: str,
+) -> list[dict[str, str]]:
     tool_lines = [
         "- flight_search(origin, destination, date)",
         "- weather(location, date)",
@@ -86,24 +97,51 @@ def _format_prompt(record: dict[str, Any]) -> list[dict[str, str]]:
     for index, call in enumerate(record["calls"], start=1):
         args = "; ".join(f"{key}={value}" for key, value in call["args"].items())
         expected.append(f"ACTION {index}: TOOL: {call['tool']} ARGS: {args}")
-    content = (
+    header = (
         "You are a multi-tool router. The user request requires multiple independent "
         "read-only actions. Return every action; do not merge actions.\n"
         f"Available tools:\n" + "\n".join(tool_lines) + "\n\n"
-        "Return only this format:\n"
-        "ACTION 1:\n"
-        "TOOL: <tool_name>\n"
-        "ARGS: key=value; key=value\n"
-        "ACTION 2:\n"
-        "TOOL: <tool_name>\n"
-        "ARGS: key=value; key=value\n"
-        "ACTION 3:\n"
-        "TOOL: <tool_name>\n"
-        "ARGS: key=value; key=value\n\n"
+    )
+    footer = (
         "Expected actions, unordered in the user's wording but all required:\n"
         + "\n".join(expected)
         + f"\n\nUser request: {record['prompt']}"
     )
+    if prompt_format == "action_list":
+        content = (
+            header
+            + "Return only this format:\n"
+            "ACTION 1:\n"
+            "TOOL: <tool_name>\n"
+            "ARGS: key=value; key=value\n"
+            "ACTION 2:\n"
+            "TOOL: <tool_name>\n"
+            "ARGS: key=value; key=value\n"
+            "ACTION 3:\n"
+            "TOOL: <tool_name>\n"
+            "ARGS: key=value; key=value\n\n"
+            + footer
+        )
+    elif prompt_format == "json_array":
+        content = (
+            header
+            + "Return only compact JSON with this shape:\n"
+            '{"actions":[{"tool":"<tool_name>","args":{"key":"value"}},'
+            '{"tool":"<tool_name>","args":{"key":"value"}},'
+            '{"tool":"<tool_name>","args":{"key":"value"}}]}\n\n'
+            + footer
+        )
+    elif prompt_format == "named_object":
+        content = (
+            header
+            + "Return only compact JSON with independent named fields, not an ordered list:\n"
+            '{"weather_action":{"tool":"weather","args":{"location":"...","date":"..."}},'
+            '"flight_action":{"tool":"flight_search","args":{"origin":"...","destination":"...","date":"..."}},'
+            '"calendar_or_crm_action":{"tool":"calendar_api_or_crm_api","args":{"key":"value"}}}\n\n'
+            + footer
+        )
+    else:
+        raise ValueError(f"Unknown prompt_format: {prompt_format}")
     return [{"role": "user", "content": content}]
 
 
@@ -228,6 +266,53 @@ def _write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
         writer.writerows(rows)
 
 
+def _target_compact_for_calls(calls: list[dict[str, Any]]) -> str:
+    parts = []
+    for call in calls:
+        parts.append(str(call["tool"]))
+        for key, value in call["args"].items():
+            parts.append(str(key))
+            parts.append(str(value))
+    return _compact(" ".join(parts))
+
+
+def _oracle_action_positions(
+    *,
+    tokenizer: Any,
+    final_sequence: list[int],
+    prompt_len: int,
+    max_new_tokens: int,
+    calls: list[dict[str, Any]],
+    min_token_chars: int,
+) -> list[int]:
+    target = _target_compact_for_calls(calls)
+    positions = []
+    for offset, token_id in enumerate(final_sequence[prompt_len : prompt_len + max_new_tokens]):
+        text = tokenizer.decode([token_id], skip_special_tokens=True)
+        compact = _compact(text)
+        if len(compact) < min_token_chars:
+            continue
+        if compact in target:
+            positions.append(prompt_len + offset)
+    return positions
+
+
+def _make_transfer_bias(
+    *,
+    shape: tuple[int, int],
+    positions: list[int],
+    strength: float,
+    device: torch.device,
+) -> torch.Tensor | None:
+    if strength <= 0:
+        return None
+    bias = torch.zeros(shape, dtype=torch.float32, device=device)
+    for position in positions:
+        if 0 <= position < shape[1]:
+            bias[:, position] = float(strength)
+    return bias
+
+
 @dataclass
 class ScriptArguments:
     model_name_or_path: str = "GSAI-ML/LLaDA-8B-Instruct"
@@ -235,6 +320,9 @@ class ScriptArguments:
     limit: int = 10
     seed: int = 42
     tool_latencies_ms: str = "100,300,500,1000,2000"
+    prompt_format: str = "action_list"
+    bias_strengths: str = "0"
+    min_token_chars: int = 2
     output_prefix: str = "artifacts/action_completeness/multitool_llada_s128"
 
     def __post_init__(self):
@@ -262,6 +350,7 @@ def main() -> None:
     script_args, sampler_config = parser.parse_args_into_dataclasses()
     transformers.set_seed(script_args.seed)
     tool_latencies = _parse_float_list(script_args.tool_latencies_ms)
+    bias_strengths = _parse_float_list(script_args.bias_strengths)
 
     records = _load_multitool_records(script_args.input_path, script_args.limit)
     fastdllm_config = dllm.pipelines.fastdllm.llada.FastdLLMLLaDAConfig.from_pretrained(
@@ -281,7 +370,10 @@ def main() -> None:
 
     for request_index, record in enumerate(records):
         calls = list(record["calls"])
-        messages = _format_prompt(record)
+        messages = _format_prompt_for_style(
+            record,
+            prompt_format=script_args.prompt_format,
+        )
         inputs = tokenizer.apply_chat_template(
             [messages],
             add_generation_prompt=True,
@@ -289,188 +381,228 @@ def main() -> None:
         )
         prompt_ids = _normalize_inputs(inputs)[0]
 
-        _sync_device(model.device)
-        start = time.perf_counter()
-        outputs = sampler.sample(inputs, config=sampler_config, return_dict=True)
-        _sync_device(model.device)
-        generation_ms = (time.perf_counter() - start) * 1000.0
+        baseline_outputs = None
+        baseline_positions: list[int] = []
+        for bias_strength in bias_strengths:
+            transfer_bias = None
+            if bias_strength > 0:
+                if baseline_outputs is None:
+                    raise RuntimeError("Run bias_strength=0 before steered strengths.")
+                transfer_bias = _make_transfer_bias(
+                    shape=baseline_outputs.sequences.shape,
+                    positions=baseline_positions,
+                    strength=bias_strength,
+                    device=model.device,
+                )
 
-        if outputs.histories is None:
-            raise RuntimeError("Sampler did not return histories.")
-        final_text = _decode_generated(
-            tokenizer=tokenizer,
-            sequence=outputs.sequences[0].tolist(),
-            prompt_len=len(prompt_ids),
-            max_new_tokens=sampler_config.max_new_tokens,
-        )
-        dllm_texts = _history_texts(
-            tokenizer=tokenizer,
-            histories=outputs.histories,
-            prompt_len=len(prompt_ids),
-            max_new_tokens=sampler_config.max_new_tokens,
-        )
-        ar_texts = _ar_prefix_texts(final_text, len(dllm_texts))
+            _sync_device(model.device)
+            start = time.perf_counter()
+            outputs = sampler.sample(
+                inputs,
+                config=sampler_config,
+                return_dict=True,
+                transfer_bias=transfer_bias,
+            )
+            _sync_device(model.device)
+            generation_ms = (time.perf_counter() - start) * 1000.0
 
-        dllm_first_steps, dllm_first_fracs, dllm_stable_steps, dllm_stable_fracs, dllm_false_starts = _call_ready_fractions(
-            texts=dllm_texts,
-            calls=calls,
-        )
-        ar_first_steps, ar_first_fracs, ar_stable_steps, ar_stable_fracs, ar_false_starts = _call_ready_fractions(
-            texts=ar_texts,
-            calls=calls,
-        )
-        dllm_all_step, dllm_all_fraction = _all_ready_step(texts=dllm_texts, calls=calls)
-        ar_all_step, ar_all_fraction = _all_ready_step(texts=ar_texts, calls=calls)
-        dllm_all_stable_step, dllm_all_stable_fraction = _all_stable_step(
-            texts=dllm_texts,
-            calls=calls,
-        )
-        ar_all_stable_step, ar_all_stable_fraction = _all_stable_step(
-            texts=ar_texts,
-            calls=calls,
-        )
+            if outputs.histories is None:
+                raise RuntimeError("Sampler did not return histories.")
+            final_sequence = outputs.sequences[0].tolist()
+            final_text = _decode_generated(
+                tokenizer=tokenizer,
+                sequence=final_sequence,
+                prompt_len=len(prompt_ids),
+                max_new_tokens=sampler_config.max_new_tokens,
+            )
+            dllm_texts = _history_texts(
+                tokenizer=tokenizer,
+                histories=outputs.histories,
+                prompt_len=len(prompt_ids),
+                max_new_tokens=sampler_config.max_new_tokens,
+            )
+            ar_texts = _ar_prefix_texts(final_text, len(dllm_texts))
+            if bias_strength == 0:
+                baseline_outputs = outputs
+                baseline_positions = _oracle_action_positions(
+                    tokenizer=tokenizer,
+                    final_sequence=final_sequence,
+                    prompt_len=len(prompt_ids),
+                    max_new_tokens=sampler_config.max_new_tokens,
+                    calls=calls,
+                    min_token_chars=script_args.min_token_chars,
+                )
 
-        final_ready = [bool(_call_score(final_text, call)["ready"]) for call in calls]
-        request_row: dict[str, Any] = {
-            "request_index": request_index,
-            "prompt": record["prompt"],
-            "num_calls": len(calls),
-            "generation_ms": generation_ms,
-            "num_history_steps": len(dllm_texts),
-            "final_all_ready": all(final_ready),
-            "final_ready_count": sum(final_ready),
-            "dllm_all_ready_step": dllm_all_step,
-            "dllm_all_ready_fraction": dllm_all_fraction,
-            "dllm_all_stable_step": dllm_all_stable_step,
-            "dllm_all_stable_fraction": dllm_all_stable_fraction,
-            "dllm_call_ready_spread": _spread(dllm_first_fracs),
-            "dllm_call_stable_spread": _spread(dllm_stable_fracs),
-            "dllm_mean_call_ready_fraction": statistics.mean(
-                [float(value) for value in dllm_first_fracs if value is not None]
-            ) if any(value is not None for value in dllm_first_fracs) else None,
-            "ar_all_ready_step": ar_all_step,
-            "ar_all_ready_fraction": ar_all_fraction,
-            "ar_all_stable_step": ar_all_stable_step,
-            "ar_all_stable_fraction": ar_all_stable_fraction,
-            "ar_call_ready_spread": _spread(ar_first_fracs),
-            "ar_call_stable_spread": _spread(ar_stable_fracs),
-            "ar_mean_call_ready_fraction": statistics.mean(
-                [float(value) for value in ar_first_fracs if value is not None]
-            ) if any(value is not None for value in ar_first_fracs) else None,
-            "dllm_beats_ar_all_ready": (
-                dllm_all_fraction is not None
-                and (ar_all_fraction is None or dllm_all_fraction < ar_all_fraction)
-            ),
-            "dllm_all_ready_lead_fraction": (
-                ar_all_fraction - dllm_all_fraction
-                if ar_all_fraction is not None and dllm_all_fraction is not None
-                else None
-            ),
-        }
-        request_rows.append(request_row)
-
-        for call_index, call in enumerate(calls):
-            call_rows.append(
-                {
-                    "request_index": request_index,
-                    "call_index": call_index,
-                    "tool": call["tool"],
-                    "args": json.dumps(call["args"], sort_keys=True),
-                    "final_ready": final_ready[call_index],
-                    "dllm_ready_step": dllm_first_steps[call_index],
-                    "dllm_ready_fraction": dllm_first_fracs[call_index],
-                    "dllm_stable_step": dllm_stable_steps[call_index],
-                    "dllm_stable_fraction": dllm_stable_fracs[call_index],
-                    "dllm_false_starts": dllm_false_starts[call_index],
-                    "ar_ready_step": ar_first_steps[call_index],
-                    "ar_ready_fraction": ar_first_fracs[call_index],
-                    "ar_stable_step": ar_stable_steps[call_index],
-                    "ar_stable_fraction": ar_stable_fracs[call_index],
-                    "ar_false_starts": ar_false_starts[call_index],
-                }
+            dllm_first_steps, dllm_first_fracs, dllm_stable_steps, dllm_stable_fracs, dllm_false_starts = _call_ready_fractions(
+                texts=dllm_texts,
+                calls=calls,
+            )
+            ar_first_steps, ar_first_fracs, ar_stable_steps, ar_stable_fracs, ar_false_starts = _call_ready_fractions(
+                texts=ar_texts,
+                calls=calls,
+            )
+            dllm_all_step, dllm_all_fraction = _all_ready_step(texts=dllm_texts, calls=calls)
+            ar_all_step, ar_all_fraction = _all_ready_step(texts=ar_texts, calls=calls)
+            dllm_all_stable_step, dllm_all_stable_fraction = _all_stable_step(
+                texts=dllm_texts,
+                calls=calls,
+            )
+            ar_all_stable_step, ar_all_stable_fraction = _all_stable_step(
+                texts=ar_texts,
+                calls=calls,
             )
 
-        for latency_ms in tool_latencies:
-            no_spec_parallel = generation_ms + latency_ms
-            no_spec_serial = generation_ms + latency_ms * len(calls)
-            dllm_parallel = _finish_time_parallel(
-                generation_ms=generation_ms,
-                ready_fractions=dllm_first_fracs,
-                tool_latency_ms=latency_ms,
-            )
-            ar_parallel = _finish_time_parallel(
-                generation_ms=generation_ms,
-                ready_fractions=ar_first_fracs,
-                tool_latency_ms=latency_ms,
-            )
-            dllm_serial = _finish_time_serial(
-                generation_ms=generation_ms,
-                ready_fractions=dllm_first_fracs,
-                tool_latency_ms=latency_ms,
-            )
-            ar_serial = _finish_time_serial(
-                generation_ms=generation_ms,
-                ready_fractions=ar_first_fracs,
-                tool_latency_ms=latency_ms,
-            )
-            latency_rows.append(
-                {
-                    "request_index": request_index,
-                    "tool_latency_ms": latency_ms,
-                    "num_calls": len(calls),
-                    "generation_ms": generation_ms,
-                    "no_spec_parallel_ms": no_spec_parallel,
-                    "no_spec_serial_ms": no_spec_serial,
-                    "dllm_parallel_ms": dllm_parallel,
-                    "ar_parallel_ms": ar_parallel,
-                    "dllm_serial_ms": dllm_serial,
-                    "ar_serial_ms": ar_serial,
-                    "dllm_vs_ar_parallel_speedup": _safe_ratio(
-                        ar_parallel,
-                        dllm_parallel,
-                    ),
-                    "dllm_vs_ar_serial_speedup": _safe_ratio(
-                        ar_serial,
-                        dllm_serial,
-                    ),
-                    "dllm_vs_no_spec_parallel_speedup": _safe_ratio(
-                        no_spec_parallel,
-                        dllm_parallel,
-                    ),
-                    "dllm_vs_no_spec_serial_speedup": _safe_ratio(
-                        no_spec_serial,
-                        dllm_serial,
-                    ),
-                }
-            )
-
-        decoded_rows.append(
-            {
+            final_ready = [bool(_call_score(final_text, call)["ready"]) for call in calls]
+            request_row: dict[str, Any] = {
                 "request_index": request_index,
                 "prompt": record["prompt"],
-                "calls": calls,
-                "final_text": final_text,
-                "dllm_all_ready_text": (
-                    dllm_texts[dllm_all_step] if dllm_all_step is not None else None
+                "prompt_format": script_args.prompt_format,
+                "bias_strength": bias_strength,
+                "oracle_action_position_count": len(baseline_positions),
+                "num_calls": len(calls),
+                "generation_ms": generation_ms,
+                "num_history_steps": len(dllm_texts),
+                "final_all_ready": all(final_ready),
+                "final_ready_count": sum(final_ready),
+                "dllm_all_ready_step": dllm_all_step,
+                "dllm_all_ready_fraction": dllm_all_fraction,
+                "dllm_all_stable_step": dllm_all_stable_step,
+                "dllm_all_stable_fraction": dllm_all_stable_fraction,
+                "dllm_call_ready_spread": _spread(dllm_first_fracs),
+                "dllm_call_stable_spread": _spread(dllm_stable_fracs),
+                "dllm_mean_call_ready_fraction": statistics.mean(
+                    [float(value) for value in dllm_first_fracs if value is not None]
+                ) if any(value is not None for value in dllm_first_fracs) else None,
+                "ar_all_ready_step": ar_all_step,
+                "ar_all_ready_fraction": ar_all_fraction,
+                "ar_all_stable_step": ar_all_stable_step,
+                "ar_all_stable_fraction": ar_all_stable_fraction,
+                "ar_call_ready_spread": _spread(ar_first_fracs),
+                "ar_call_stable_spread": _spread(ar_stable_fracs),
+                "ar_mean_call_ready_fraction": statistics.mean(
+                    [float(value) for value in ar_first_fracs if value is not None]
+                ) if any(value is not None for value in ar_first_fracs) else None,
+                "dllm_beats_ar_all_ready": (
+                    dllm_all_fraction is not None
+                    and (ar_all_fraction is None or dllm_all_fraction < ar_all_fraction)
                 ),
-                "ar_all_ready_text": (
-                    ar_texts[ar_all_step] if ar_all_step is not None else None
+                "dllm_all_ready_lead_fraction": (
+                    ar_all_fraction - dllm_all_fraction
+                    if ar_all_fraction is not None and dllm_all_fraction is not None
+                    else None
                 ),
             }
-        )
-        print(
-            json.dumps(
+            request_rows.append(request_row)
+
+            for call_index, call in enumerate(calls):
+                call_rows.append(
+                    {
+                        "request_index": request_index,
+                        "prompt_format": script_args.prompt_format,
+                        "bias_strength": bias_strength,
+                        "call_index": call_index,
+                        "tool": call["tool"],
+                        "args": json.dumps(call["args"], sort_keys=True),
+                        "final_ready": final_ready[call_index],
+                        "dllm_ready_step": dllm_first_steps[call_index],
+                        "dllm_ready_fraction": dllm_first_fracs[call_index],
+                        "dllm_stable_step": dllm_stable_steps[call_index],
+                        "dllm_stable_fraction": dllm_stable_fracs[call_index],
+                        "dllm_false_starts": dllm_false_starts[call_index],
+                        "ar_ready_step": ar_first_steps[call_index],
+                        "ar_ready_fraction": ar_first_fracs[call_index],
+                        "ar_stable_step": ar_stable_steps[call_index],
+                        "ar_stable_fraction": ar_stable_fracs[call_index],
+                        "ar_false_starts": ar_false_starts[call_index],
+                    }
+                )
+
+            for latency_ms in tool_latencies:
+                no_spec_parallel = generation_ms + latency_ms
+                no_spec_serial = generation_ms + latency_ms * len(calls)
+                dllm_parallel = _finish_time_parallel(
+                    generation_ms=generation_ms,
+                    ready_fractions=dllm_first_fracs,
+                    tool_latency_ms=latency_ms,
+                )
+                ar_parallel = _finish_time_parallel(
+                    generation_ms=generation_ms,
+                    ready_fractions=ar_first_fracs,
+                    tool_latency_ms=latency_ms,
+                )
+                dllm_serial = _finish_time_serial(
+                    generation_ms=generation_ms,
+                    ready_fractions=dllm_first_fracs,
+                    tool_latency_ms=latency_ms,
+                )
+                ar_serial = _finish_time_serial(
+                    generation_ms=generation_ms,
+                    ready_fractions=ar_first_fracs,
+                    tool_latency_ms=latency_ms,
+                )
+                latency_rows.append(
+                    {
+                        "request_index": request_index,
+                        "prompt_format": script_args.prompt_format,
+                        "bias_strength": bias_strength,
+                        "tool_latency_ms": latency_ms,
+                        "num_calls": len(calls),
+                        "generation_ms": generation_ms,
+                        "no_spec_parallel_ms": no_spec_parallel,
+                        "no_spec_serial_ms": no_spec_serial,
+                        "dllm_parallel_ms": dllm_parallel,
+                        "ar_parallel_ms": ar_parallel,
+                        "dllm_serial_ms": dllm_serial,
+                        "ar_serial_ms": ar_serial,
+                        "dllm_vs_ar_parallel_speedup": _safe_ratio(
+                            ar_parallel,
+                            dllm_parallel,
+                        ),
+                        "dllm_vs_ar_serial_speedup": _safe_ratio(
+                            ar_serial,
+                            dllm_serial,
+                        ),
+                        "dllm_vs_no_spec_parallel_speedup": _safe_ratio(
+                            no_spec_parallel,
+                            dllm_parallel,
+                        ),
+                        "dllm_vs_no_spec_serial_speedup": _safe_ratio(
+                            no_spec_serial,
+                            dllm_serial,
+                        ),
+                    }
+                )
+
+            decoded_rows.append(
                 {
                     "request_index": request_index,
-                    "final_ready_count": sum(final_ready),
-                    "dllm_all_ready_fraction": dllm_all_fraction,
-                    "ar_all_ready_fraction": ar_all_fraction,
-                    "dllm_ready_spread": _spread(dllm_first_fracs),
-                },
-                ensure_ascii=True,
-            ),
-            flush=True,
-        )
+                    "prompt_format": script_args.prompt_format,
+                    "bias_strength": bias_strength,
+                    "prompt": record["prompt"],
+                    "calls": calls,
+                    "final_text": final_text,
+                    "dllm_all_ready_text": (
+                        dllm_texts[dllm_all_step] if dllm_all_step is not None else None
+                    ),
+                    "ar_all_ready_text": (
+                        ar_texts[ar_all_step] if ar_all_step is not None else None
+                    ),
+                }
+            )
+            print(
+                json.dumps(
+                    {
+                        "request_index": request_index,
+                        "bias_strength": bias_strength,
+                        "final_ready_count": sum(final_ready),
+                        "dllm_all_ready_fraction": dllm_all_fraction,
+                        "ar_all_ready_fraction": ar_all_fraction,
+                        "dllm_ready_spread": _spread(dllm_first_fracs),
+                    },
+                    ensure_ascii=True,
+                ),
+                flush=True,
+            )
 
     aggregate: dict[str, Any] = {
         "num_requests": len(request_rows),
@@ -481,54 +613,66 @@ def main() -> None:
         "use_cache": sampler_config.use_cache,
         "threshold": sampler_config.threshold,
         "tool_latencies_ms": tool_latencies,
-        "final_all_ready_rate": (
-            sum(bool(row["final_all_ready"]) for row in request_rows)
-            / max(len(request_rows), 1)
-        ),
+        "prompt_format": script_args.prompt_format,
+        "bias_strengths": bias_strengths,
     }
-    for key in [
-        "generation_ms",
-        "dllm_all_ready_fraction",
-        "dllm_all_stable_fraction",
-        "dllm_call_ready_spread",
-        "dllm_call_stable_spread",
-        "dllm_mean_call_ready_fraction",
-        "ar_all_ready_fraction",
-        "ar_all_stable_fraction",
-        "ar_call_ready_spread",
-        "ar_call_stable_spread",
-        "ar_mean_call_ready_fraction",
-        "dllm_all_ready_lead_fraction",
-    ]:
-        values = [
-            float(row[key])
+    for bias_strength in bias_strengths:
+        tag = f"bias{bias_strength:g}"
+        rows_for_bias = [
+            row
             for row in request_rows
-            if row.get(key) is not None
+            if abs(float(row["bias_strength"]) - float(bias_strength)) < 1e-9
         ]
-        if values:
-            aggregate[f"mean_{key}"] = statistics.mean(values)
-            aggregate[f"p95_{key}"] = _percentile(values, 0.95)
-    aggregate["dllm_beats_ar_all_ready_rate"] = (
-        sum(bool(row["dllm_beats_ar_all_ready"]) for row in request_rows)
-        / max(len(request_rows), 1)
-    )
-    for latency_ms in tool_latencies:
-        rows = [
-            row for row in latency_rows if float(row["tool_latency_ms"]) == latency_ms
-        ]
+        aggregate[f"{tag}_final_all_ready_rate"] = (
+            sum(bool(row["final_all_ready"]) for row in rows_for_bias)
+            / max(len(rows_for_bias), 1)
+        )
         for key in [
-            "dllm_vs_ar_parallel_speedup",
-            "dllm_vs_ar_serial_speedup",
-            "dllm_vs_no_spec_parallel_speedup",
-            "dllm_vs_no_spec_serial_speedup",
+            "generation_ms",
+            "dllm_all_ready_fraction",
+            "dllm_all_stable_fraction",
+            "dllm_call_ready_spread",
+            "dllm_call_stable_spread",
+            "dllm_mean_call_ready_fraction",
+            "ar_all_ready_fraction",
+            "ar_all_stable_fraction",
+            "ar_call_ready_spread",
+            "ar_call_stable_spread",
+            "ar_mean_call_ready_fraction",
+            "dllm_all_ready_lead_fraction",
         ]:
             values = [
                 float(row[key])
-                for row in rows
-                if row.get(key) not in (None, "")
+                for row in rows_for_bias
+                if row.get(key) is not None
             ]
             if values:
-                aggregate[f"tool{latency_ms:g}_mean_{key}"] = statistics.mean(values)
+                aggregate[f"{tag}_mean_{key}"] = statistics.mean(values)
+                aggregate[f"{tag}_p95_{key}"] = _percentile(values, 0.95)
+        aggregate[f"{tag}_dllm_beats_ar_all_ready_rate"] = (
+            sum(bool(row["dllm_beats_ar_all_ready"]) for row in rows_for_bias)
+            / max(len(rows_for_bias), 1)
+        )
+        for latency_ms in tool_latencies:
+            rows = [
+                row
+                for row in latency_rows
+                if abs(float(row["bias_strength"]) - float(bias_strength)) < 1e-9
+                and float(row["tool_latency_ms"]) == latency_ms
+            ]
+            for key in [
+                "dllm_vs_ar_parallel_speedup",
+                "dllm_vs_ar_serial_speedup",
+                "dllm_vs_no_spec_parallel_speedup",
+                "dllm_vs_no_spec_serial_speedup",
+            ]:
+                values = [
+                    float(row[key])
+                    for row in rows
+                    if row.get(key) not in (None, "")
+                ]
+                if values:
+                    aggregate[f"{tag}_tool{latency_ms:g}_mean_{key}"] = statistics.mean(values)
 
     prefix = Path(script_args.output_prefix)
     prefix.parent.mkdir(parents=True, exist_ok=True)
