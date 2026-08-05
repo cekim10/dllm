@@ -39,6 +39,7 @@ def _get_transfer_index(
     num_transfer_tokens: Optional[torch.Tensor] = None,  # (B,) long (top-k mode)
     threshold: Optional[float] = None,  # threshold mode
     factor: Optional[float] = None,  # dynamic mode (highest priority)
+    transfer_bias: Optional[torch.Tensor] = None,  # (B, L) additive score bias
 ) -> Tuple[torch.Tensor, torch.Tensor]:
     """
     Returns:
@@ -73,6 +74,11 @@ def _get_transfer_index(
     confidence = torch.where(
         mask_index, conf, torch.tensor(neg, device=conf.device, dtype=conf.dtype)
     )  # (B, L)
+    if transfer_bias is not None:
+        confidence = confidence + transfer_bias.to(
+            device=confidence.device,
+            dtype=confidence.dtype,
+        )
 
     # --------------------------
     # A) Dynamic factor schedule
@@ -218,6 +224,7 @@ class FastdLLMLLaDASampler(BaseSampler):
         factor = kwargs.get("factor", config.factor)
         block_observer = kwargs.get("block_observer")
         model_call_observer = kwargs.get("model_call_observer")
+        transfer_bias = kwargs.get("transfer_bias")
 
         assert block_size >= 1
         assert steps >= 1
@@ -409,6 +416,13 @@ class FastdLLMLLaDASampler(BaseSampler):
             model_call_observer(context)
             return output
 
+        def _bias_slice(start: int, end: int | None = None) -> torch.Tensor | None:
+            if transfer_bias is None:
+                return None
+            if end is None:
+                return transfer_bias[:, start:]
+            return transfer_bias[:, start:end]
+
         # =============================
         # Main block loop
         # =============================
@@ -509,6 +523,7 @@ class FastdLLMLLaDASampler(BaseSampler):
                         num_transfer_tokens=quota,
                         threshold=threshold,
                         factor=factor,
+                        transfer_bias=transfer_bias,
                     )
 
                     x = torch.where(transfer_idx, x0, x)
@@ -567,6 +582,7 @@ class FastdLLMLLaDASampler(BaseSampler):
                         num_transfer_tokens=quota,
                         threshold=threshold,
                         factor=factor,
+                        transfer_bias=transfer_bias,
                     )
 
                     x = torch.where(transfer_idx, x0, x)
@@ -639,6 +655,7 @@ class FastdLLMLLaDASampler(BaseSampler):
                         num_transfer_tokens=quota,
                         threshold=threshold,
                         factor=factor,
+                        transfer_bias=_bias_slice(s),
                     )
 
                     x_suffix_new = torch.where(transfer_suf, x0_suf, x_suffix)
@@ -706,6 +723,7 @@ class FastdLLMLLaDASampler(BaseSampler):
                         num_transfer_tokens=quota,
                         threshold=threshold,
                         factor=factor,
+                        transfer_bias=transfer_bias,
                     )
 
                     x = torch.where(transfer_idx, x0, x)
@@ -761,6 +779,7 @@ class FastdLLMLLaDASampler(BaseSampler):
                         num_transfer_tokens=quota,
                         threshold=threshold,
                         factor=factor,
+                        transfer_bias=_bias_slice(s, e),
                     )
 
                     blk_new = torch.where(transfer_blk, x0_blk, blk)

@@ -1,101 +1,123 @@
 detected_tool,fraction,ready,request_index,source,step,text
 ,0.0,False,0,dllm,0,
-flight_search,0.16666666666666666,False,0,dllm,1,"TOOL: flight_search
-: origin"
-flight_search,0.3333333333333333,False,0,dllm,2,"TOOL: flight_search
+flight_search,0.1,False,0,dllm,1,"TOOL: flight_search
 ARGS: originFO"
-flight_search,0.5,True,0,dllm,3,"TOOL: flight_search
-ARGS: origin=SFO; destination=ICN; date=2026-09-14"
-flight_search,0.6666666666666666,True,0,dllm,4,"TOOL: flight_search
-ARGS: origin=SFO; destination=ICN; date=2026-09-14"
-flight_search,0.8333333333333334,True,0,dllm,5,"TOOL: flight_search
-ARGS: origin=SFO; destination=ICN; date=2026-09-14"
-flight_search,1.0,True,0,dllm,6,"TOOL: flight_search
-ARGS: origin=SFO; destination=ICN; date=2026-09-14"
+flight_search,0.2,False,0,dllm,2,"TOOL: flight_search
+ARGS: originFO destinationN"
+flight_search,0.3,False,0,dllm,3,"TOOL: flight_search
+ARGS: originFO destinationICN date"
+flight_search,0.4,False,0,dllm,4,"TOOL: flight_search
+ARGS: originSFO destinationICN date2009-14"
+flight_search,0.5,True,0,dllm,5,"TOOL: flight_search
+ARGS: originSFO destinationICN date2026-09-14"
+flight_search,0.6,True,0,dllm,6,"TOOL: flight_search
+ARGS: origin=""SFO destinationICN date2026-09-14"
+flight_search,0.7,True,0,dllm,7,"TOOL: flight_search
+ARGS: origin=""SFO""; destination=""ICN""; date=""2026-09-14"""
+flight_search,0.8,True,0,dllm,8,"TOOL: flight_search
+ARGS: origin=""SFO""; destination=""ICN""; date=""2026-09-14"""
+flight_search,0.9,True,0,dllm,9,"TOOL: flight_search
+ARGS: origin=""SFO""; destination=""ICN""; date=""2026-09-14"""
+flight_search,1.0,True,0,dllm,10,"TOOL: flight_search
+ARGS: origin=""SFO""; destination=""ICN""; date=""2026-09-14"""
 ,0.0,False,0,ar_prefix,0,
-flight_search,0.16666666666666666,False,0,ar_prefix,1,TOOL: flight
-flight_search,0.3333333333333333,False,0,ar_prefix,2,"TOOL: flight_search
-ARGS"
-flight_search,0.5,False,0,ar_prefix,3,"TOOL: flight_search
-ARGS: origin=SF"
-flight_search,0.6666666666666666,False,0,ar_prefix,4,"TOOL: flight_search
-ARGS: origin=SFO; destinati"
-flight_search,0.8333333333333334,False,0,ar_prefix,5,"TOOL: flight_search
-ARGS: origin=SFO; destination=ICN; date"
-flight_search,1.0,True,0,ar_prefix,6,"TOOL: flight_search
-ARGS: origin=SFO; destination=ICN; date=2026-09-14"
+,0.1,False,0,ar_prefix,1,TOOL: fl
+flight_search,0.2,False,0,ar_prefix,2,TOOL: flight_sea
+flight_search,0.3,False,0,ar_prefix,3,"TOOL: flight_search
+ARG"
+flight_search,0.4,False,0,ar_prefix,4,"TOOL: flight_search
+ARGS: origi"
+flight_search,0.5,False,0,ar_prefix,5,"TOOL: flight_search
+ARGS: origin=""SFO"""
+flight_search,0.6,False,0,ar_prefix,6,"TOOL: flight_search
+ARGS: origin=""SFO""; destin"
+flight_search,0.7,False,0,ar_prefix,7,"TOOL: flight_search
+ARGS: origin=""SFO""; destination=""I"
+flight_search,0.8,False,0,ar_prefix,8,"TOOL: flight_search
+ARGS: origin=""SFO""; destination=""ICN""; da"
+flight_search,0.9,False,0,ar_prefix,9,"TOOL: flight_search
+ARGS: origin=""SFO""; destination=""ICN""; date=""2026"
+flight_search,1.0,True,0,ar_prefix,10,"TOOL: flight_search
+ARGS: origin=""SFO""; destination=""ICN""; date=""2026-09-14"""
 ,0.0,False,1,dllm,0,
-flight_search,0.1111111111111111,False,1,dllm,1,"TOOL: flight_search
+flight_search,0.1,False,1,dllm,1,"TOOL: flight_search
 ARGS: origin"
-flight_search,0.2222222222222222,False,1,dllm,2,"TOOL: flight_search
-ARGS: originJ"
-flight_search,0.3333333333333333,False,1,dllm,3,"TOOL: flight_search
-ARGS: originJFK destination0--"
-flight_search,0.4444444444444444,True,1,dllm,4,"TOOL: flight_search
-ARGS: originJFK destinationLAX date2026-12-03"
-flight_search,0.5555555555555556,True,1,dllm,5,"TOOL: flight_search
-ARGS: originJFK destination=""LAX date2026-12-03"
-flight_search,0.6666666666666666,True,1,dllm,6,"TOOL: flight_search
-ARGS: origin=""JFK""; destination=""LAX""; date=""2026-12-03"""
-flight_search,0.7777777777777778,True,1,dllm,7,"TOOL: flight_search
-ARGS: origin=""JFK""; destination=""LAX""; date=""2026-12-03"""
-flight_search,0.8888888888888888,True,1,dllm,8,"TOOL: flight_search
-ARGS: origin=""JFK""; destination=""LAX""; date=""2026-12-03"""
-flight_search,1.0,True,1,dllm,9,"TOOL: flight_search
-ARGS: origin=""JFK""; destination=""LAX""; date=""2026-12-03"""
+flight_search,0.2,False,1,dllm,2,"TOOL: flight_search
+ARGS: origin"
+flight_search,0.3,False,1,dllm,3,"TOOL: flight_search
+ARGS: origin"
+flight_search,0.4,False,1,dllm,4,"TOOL: flight_search
+ARGS: origin"
+flight_search,0.5,False,1,dllm,5,"TOOL: flight_search
+ARGS: origin; destination=LAX; date=2026-12-03"
+flight_search,0.6,False,1,dllm,6,"TOOL: flight_search
+ARGS: originFK; destination=LAX; date=2026-12-03"
+flight_search,0.7,True,1,dllm,7,"TOOL: flight_search
+ARGS: origin=jFK; destination=LAX; date=2026-12-03"
+flight_search,0.8,True,1,dllm,8,"TOOL: flight_search
+ARGS: origin=jFK; destination=LAX; date=2026-12-03"
+flight_search,0.9,True,1,dllm,9,"TOOL: flight_search
+ARGS: origin=jFK; destination=LAX; date=2026-12-03"
+flight_search,1.0,True,1,dllm,10,"TOOL: flight_search
+ARGS: origin=jFK; destination=LAX; date=2026-12-03"
 ,0.0,False,1,ar_prefix,0,
-,0.1111111111111111,False,1,ar_prefix,1,TOOL: fli
-flight_search,0.2222222222222222,False,1,ar_prefix,2,TOOL: flight_sear
-flight_search,0.3333333333333333,False,1,ar_prefix,3,"TOOL: flight_search
-ARGS: "
-flight_search,0.4444444444444444,False,1,ar_prefix,4,"TOOL: flight_search
-ARGS: origin="""
-flight_search,0.5555555555555556,False,1,ar_prefix,5,"TOOL: flight_search
-ARGS: origin=""JFK""; des"
-flight_search,0.6666666666666666,False,1,ar_prefix,6,"TOOL: flight_search
-ARGS: origin=""JFK""; destination"
-flight_search,0.7777777777777778,False,1,ar_prefix,7,"TOOL: flight_search
-ARGS: origin=""JFK""; destination=""LAX""; d"
-flight_search,0.8888888888888888,False,1,ar_prefix,8,"TOOL: flight_search
-ARGS: origin=""JFK""; destination=""LAX""; date=""202"
-flight_search,1.0,True,1,ar_prefix,9,"TOOL: flight_search
-ARGS: origin=""JFK""; destination=""LAX""; date=""2026-12-03"""
+,0.1,False,1,ar_prefix,1,TOOL: f
+flight_search,0.2,False,1,ar_prefix,2,TOOL: flight_s
+flight_search,0.3,False,1,ar_prefix,3,"TOOL: flight_search
+A"
+flight_search,0.4,False,1,ar_prefix,4,"TOOL: flight_search
+ARGS: or"
+flight_search,0.5,False,1,ar_prefix,5,"TOOL: flight_search
+ARGS: origin=jF"
+flight_search,0.6,False,1,ar_prefix,6,"TOOL: flight_search
+ARGS: origin=jFK; dest"
+flight_search,0.7,False,1,ar_prefix,7,"TOOL: flight_search
+ARGS: origin=jFK; destination"
+flight_search,0.8,False,1,ar_prefix,8,"TOOL: flight_search
+ARGS: origin=jFK; destination=LAX; d"
+flight_search,0.9,False,1,ar_prefix,9,"TOOL: flight_search
+ARGS: origin=jFK; destination=LAX; date=202"
+flight_search,1.0,True,1,ar_prefix,10,"TOOL: flight_search
+ARGS: origin=jFK; destination=LAX; date=2026-12-03"
 ,0.0,False,2,dllm,0,
-flight_search,0.14285714285714285,False,2,dllm,1,"TOOL: flight_search
-ARGS: origin"
-flight_search,0.2857142857142857,False,2,dllm,2,"TOOL: flight_search
+flight_search,0.125,False,2,dllm,1,"TOOL: flight_search
 ARGS: originOS"
-flight_search,0.42857142857142855,False,2,dllm,3,"TOOL: flight_search
-ARGS: origin=BOS; destinationHR"
-flight_search,0.5714285714285714,True,2,dllm,4,"TOOL: flight_search
-ARGS: origin=BOS; destination=LHR; date=2027-01-08"
-flight_search,0.7142857142857143,True,2,dllm,5,"TOOL: flight_search
-ARGS: origin=BOS; destination=LHR; date=2027-01-08"
-flight_search,0.8571428571428571,True,2,dllm,6,"TOOL: flight_search
-ARGS: origin=BOS; destination=LHR; date=2027-01-08"
-flight_search,1.0,True,2,dllm,7,"TOOL: flight_search
-ARGS: origin=BOS; destination=LHR; date=2027-01-08"
+flight_search,0.25,False,2,dllm,2,"TOOL: flight_search
+ARGS: originBOS destinationL date"
+flight_search,0.375,True,2,dllm,3,"TOOL: flight_search
+ARGS: originBOS destinationLHR date2027-01-08"
+flight_search,0.5,True,2,dllm,4,"TOOL: flight_search
+ARGS: origin=""BOS destinationLHR date2027-01-08"
+flight_search,0.625,True,2,dllm,5,"TOOL: flight_search
+ARGS: origin=""BOS""; destination=""LHR""; date=""2027-01-08"""
+flight_search,0.75,True,2,dllm,6,"TOOL: flight_search
+ARGS: origin=""BOS""; destination=""LHR""; date=""2027-01-08"""
+flight_search,0.875,True,2,dllm,7,"TOOL: flight_search
+ARGS: origin=""BOS""; destination=""LHR""; date=""2027-01-08"""
+flight_search,1.0,True,2,dllm,8,"TOOL: flight_search
+ARGS: origin=""BOS""; destination=""LHR""; date=""2027-01-08"""
 ,0.0,False,2,ar_prefix,0,
-,0.14285714285714285,False,2,ar_prefix,1,TOOL: flig
-flight_search,0.2857142857142857,False,2,ar_prefix,2,"TOOL: flight_search
-"
-flight_search,0.42857142857142855,False,2,ar_prefix,3,"TOOL: flight_search
-ARGS: orig"
-flight_search,0.5714285714285714,False,2,ar_prefix,4,"TOOL: flight_search
-ARGS: origin=BOS; de"
-flight_search,0.7142857142857143,False,2,ar_prefix,5,"TOOL: flight_search
-ARGS: origin=BOS; destination="
-flight_search,0.8571428571428571,False,2,ar_prefix,6,"TOOL: flight_search
-ARGS: origin=BOS; destination=LHR; date="
-flight_search,1.0,True,2,ar_prefix,7,"TOOL: flight_search
-ARGS: origin=BOS; destination=LHR; date=2027-01-08"
+,0.125,False,2,ar_prefix,1,TOOL: flig
+flight_search,0.25,False,2,ar_prefix,2,TOOL: flight_search
+flight_search,0.375,False,2,ar_prefix,3,"TOOL: flight_search
+ARGS: ori"
+flight_search,0.5,False,2,ar_prefix,4,"TOOL: flight_search
+ARGS: origin=""BOS"""
+flight_search,0.625,False,2,ar_prefix,5,"TOOL: flight_search
+ARGS: origin=""BOS""; destinat"
+flight_search,0.75,False,2,ar_prefix,6,"TOOL: flight_search
+ARGS: origin=""BOS""; destination=""LHR"""
+flight_search,0.875,False,2,ar_prefix,7,"TOOL: flight_search
+ARGS: origin=""BOS""; destination=""LHR""; date=""20"
+flight_search,1.0,True,2,ar_prefix,8,"TOOL: flight_search
+ARGS: origin=""BOS""; destination=""LHR""; date=""2027-01-08"""
 ,0.0,False,3,dllm,0,
 flight_search,0.14285714285714285,False,3,dllm,1,"TOOL: flight_search
 ARGS: origin"
 flight_search,0.2857142857142857,False,3,dllm,2,"TOOL: flight_search
-ARGS: origin"
+ARGS: origin;"
 flight_search,0.42857142857142855,False,3,dllm,3,"TOOL: flight_search
-ARGS: origin=SEA; destinationRT;="
+ARGS: origin=SEA; destination=NRT; date=20"
 flight_search,0.5714285714285714,True,3,dllm,4,"TOOL: flight_search
 ARGS: origin=SEA; destination=NRT; date=2027-05-20"
 flight_search,0.7142857142857143,True,3,dllm,5,"TOOL: flight_search
@@ -119,33 +141,29 @@ ARGS: origin=SEA; destination=NRT; date="
 flight_search,1.0,True,3,ar_prefix,7,"TOOL: flight_search
 ARGS: origin=SEA; destination=NRT; date=2027-05-20"
 ,0.0,False,4,dllm,0,
-flight_search,0.14285714285714285,False,4,dllm,1,"TOOL: flight_search
+flight_search,0.16666666666666666,False,4,dllm,1,"TOOL: flight_search
 ARGS: origin"
-flight_search,0.2857142857142857,False,4,dllm,2,"TOOL: flight_search
-ARGS: originORD"
-flight_search,0.42857142857142855,False,4,dllm,3,"TOOL: flight_search
-ARGS: origin=ORD; destination=CDG;=21-"
-flight_search,0.5714285714285714,True,4,dllm,4,"TOOL: flight_search
+flight_search,0.3333333333333333,False,4,dllm,2,"TOOL: flight_search
+ARGS: origin=ORDG"
+flight_search,0.5,True,4,dllm,3,"TOOL: flight_search
 ARGS: origin=ORD; destination=CDG; date=2026-11-18"
-flight_search,0.7142857142857143,True,4,dllm,5,"TOOL: flight_search
+flight_search,0.6666666666666666,True,4,dllm,4,"TOOL: flight_search
 ARGS: origin=ORD; destination=CDG; date=2026-11-18"
-flight_search,0.8571428571428571,True,4,dllm,6,"TOOL: flight_search
+flight_search,0.8333333333333334,True,4,dllm,5,"TOOL: flight_search
 ARGS: origin=ORD; destination=CDG; date=2026-11-18"
-flight_search,1.0,True,4,dllm,7,"TOOL: flight_search
+flight_search,1.0,True,4,dllm,6,"TOOL: flight_search
 ARGS: origin=ORD; destination=CDG; date=2026-11-18"
 ,0.0,False,4,ar_prefix,0,
-,0.14285714285714285,False,4,ar_prefix,1,TOOL: flig
-flight_search,0.2857142857142857,False,4,ar_prefix,2,"TOOL: flight_search
-"
-flight_search,0.42857142857142855,False,4,ar_prefix,3,"TOOL: flight_search
-ARGS: orig"
-flight_search,0.5714285714285714,False,4,ar_prefix,4,"TOOL: flight_search
-ARGS: origin=ORD; de"
-flight_search,0.7142857142857143,False,4,ar_prefix,5,"TOOL: flight_search
-ARGS: origin=ORD; destination="
-flight_search,0.8571428571428571,False,4,ar_prefix,6,"TOOL: flight_search
-ARGS: origin=ORD; destination=CDG; date="
-flight_search,1.0,True,4,ar_prefix,7,"TOOL: flight_search
+flight_search,0.16666666666666666,False,4,ar_prefix,1,TOOL: flight
+flight_search,0.3333333333333333,False,4,ar_prefix,2,"TOOL: flight_search
+ARGS"
+flight_search,0.5,False,4,ar_prefix,3,"TOOL: flight_search
+ARGS: origin=OR"
+flight_search,0.6666666666666666,False,4,ar_prefix,4,"TOOL: flight_search
+ARGS: origin=ORD; destinati"
+flight_search,0.8333333333333334,False,4,ar_prefix,5,"TOOL: flight_search
+ARGS: origin=ORD; destination=CDG; date"
+flight_search,1.0,True,4,ar_prefix,6,"TOOL: flight_search
 ARGS: origin=ORD; destination=CDG; date=2026-11-18"
 ,0.0,False,5,dllm,0,
 flight_search,0.14285714285714285,False,5,dllm,1,"TOOL: flight_search
@@ -177,33 +195,29 @@ ARGS: origin=LAX; destination=HND; date="
 flight_search,1.0,True,5,ar_prefix,7,"TOOL: flight_search
 ARGS: origin=LAX; destination=HND; date=2027-02-22"
 ,0.0,False,6,dllm,0,
-flight_search,0.14285714285714285,False,6,dllm,1,"TOOL: flight_search
+flight_search,0.16666666666666666,False,6,dllm,1,"TOOL: flight_search
 ARGS: origin"
-flight_search,0.2857142857142857,False,6,dllm,2,"TOOL: flight_search
-ARGS: originDFAMS0"
-flight_search,0.42857142857142855,True,6,dllm,3,"TOOL: flight_search
+flight_search,0.3333333333333333,False,6,dllm,2,"TOOL: flight_search
+ARGS: origin=DF;=AMS"
+flight_search,0.5,True,6,dllm,3,"TOOL: flight_search
 ARGS: origin=DFW; destination=AMS; date=2026-10-05"
-flight_search,0.5714285714285714,True,6,dllm,4,"TOOL: flight_search
+flight_search,0.6666666666666666,True,6,dllm,4,"TOOL: flight_search
 ARGS: origin=DFW; destination=AMS; date=2026-10-05"
-flight_search,0.7142857142857143,True,6,dllm,5,"TOOL: flight_search
+flight_search,0.8333333333333334,True,6,dllm,5,"TOOL: flight_search
 ARGS: origin=DFW; destination=AMS; date=2026-10-05"
-flight_search,0.8571428571428571,True,6,dllm,6,"TOOL: flight_search
-ARGS: origin=DFW; destination=AMS; date=2026-10-05"
-flight_search,1.0,True,6,dllm,7,"TOOL: flight_search
+flight_search,1.0,True,6,dllm,6,"TOOL: flight_search
 ARGS: origin=DFW; destination=AMS; date=2026-10-05"
 ,0.0,False,6,ar_prefix,0,
-,0.14285714285714285,False,6,ar_prefix,1,TOOL: flig
-flight_search,0.2857142857142857,False,6,ar_prefix,2,"TOOL: flight_search
-"
-flight_search,0.42857142857142855,False,6,ar_prefix,3,"TOOL: flight_search
-ARGS: orig"
-flight_search,0.5714285714285714,False,6,ar_prefix,4,"TOOL: flight_search
-ARGS: origin=DFW; de"
-flight_search,0.7142857142857143,False,6,ar_prefix,5,"TOOL: flight_search
-ARGS: origin=DFW; destination="
-flight_search,0.8571428571428571,False,6,ar_prefix,6,"TOOL: flight_search
-ARGS: origin=DFW; destination=AMS; date="
-flight_search,1.0,True,6,ar_prefix,7,"TOOL: flight_search
+flight_search,0.16666666666666666,False,6,ar_prefix,1,TOOL: flight
+flight_search,0.3333333333333333,False,6,ar_prefix,2,"TOOL: flight_search
+ARGS"
+flight_search,0.5,False,6,ar_prefix,3,"TOOL: flight_search
+ARGS: origin=DF"
+flight_search,0.6666666666666666,False,6,ar_prefix,4,"TOOL: flight_search
+ARGS: origin=DFW; destinati"
+flight_search,0.8333333333333334,False,6,ar_prefix,5,"TOOL: flight_search
+ARGS: origin=DFW; destination=AMS; date"
+flight_search,1.0,True,6,ar_prefix,6,"TOOL: flight_search
 ARGS: origin=DFW; destination=AMS; date=2026-10-05"
 ,0.0,False,7,dllm,0,
 flight_search,0.14285714285714285,False,7,dllm,1,"TOOL: flight_search
@@ -211,7 +225,7 @@ ARGS: origin"
 flight_search,0.2857142857142857,False,7,dllm,2,"TOOL: flight_search
 ARGS: origin"
 flight_search,0.42857142857142855,False,7,dllm,3,"TOOL: flight_search
-ARGS: origin=MIA; destination=M"
+ARGS: origin=MIA;=M"
 flight_search,0.5714285714285714,True,7,dllm,4,"TOOL: flight_search
 ARGS: origin=MIA; destination=MAD; date=2027-03-12"
 flight_search,0.7142857142857143,True,7,dllm,5,"TOOL: flight_search
@@ -235,41 +249,48 @@ ARGS: origin=MIA; destination=MAD; date="
 flight_search,1.0,True,7,ar_prefix,7,"TOOL: flight_search
 ARGS: origin=MIA; destination=MAD; date=2027-03-12"
 ,0.0,False,8,dllm,0,
-flight_search,0.14285714285714285,False,8,dllm,1,"TOOL: flight_search
-: origin"
-flight_search,0.2857142857142857,False,8,dllm,2,"TOOL: flight_search
-ARGS: originATL"
-flight_search,0.42857142857142855,False,8,dllm,3,"TOOL: flight_search
-ARGS: originATL; destinationCO"
-flight_search,0.5714285714285714,True,8,dllm,4,"TOOL: flight_search
-ARGS: origin=ATL; destination=FCO; date=2026-08-30"
-flight_search,0.7142857142857143,True,8,dllm,5,"TOOL: flight_search
-ARGS: origin=ATL; destination=FCO; date=2026-08-30"
-flight_search,0.8571428571428571,True,8,dllm,6,"TOOL: flight_search
-ARGS: origin=ATL; destination=FCO; date=2026-08-30"
-flight_search,1.0,True,8,dllm,7,"TOOL: flight_search
-ARGS: origin=ATL; destination=FCO; date=2026-08-30"
+flight_search,0.1111111111111111,False,8,dllm,1,"TOOL: flight_search
+ARGS: origin"
+flight_search,0.2222222222222222,False,8,dllm,2,"TOOL: flight_search
+ARGS: originATLCO"
+flight_search,0.3333333333333333,False,8,dllm,3,"TOOL: flight_search
+ARGS: originATLFCO22"
+flight_search,0.4444444444444444,True,8,dllm,4,"TOOL: flight_search
+ARGS: originATLFCO2026-08-30"
+flight_search,0.5555555555555556,True,8,dllm,5,"TOOL: flight_search
+ARGS: originATL=""FCO2026-08-30"
+flight_search,0.6666666666666666,True,8,dllm,6,"TOOL: flight_search
+ARGS: origin=""ATL""; destination=""FCO""; date=""2026-08-30"""
+flight_search,0.7777777777777778,True,8,dllm,7,"TOOL: flight_search
+ARGS: origin=""ATL""; destination=""FCO""; date=""2026-08-30"""
+flight_search,0.8888888888888888,True,8,dllm,8,"TOOL: flight_search
+ARGS: origin=""ATL""; destination=""FCO""; date=""2026-08-30"""
+flight_search,1.0,True,8,dllm,9,"TOOL: flight_search
+ARGS: origin=""ATL""; destination=""FCO""; date=""2026-08-30"""
 ,0.0,False,8,ar_prefix,0,
-,0.14285714285714285,False,8,ar_prefix,1,TOOL: flig
-flight_search,0.2857142857142857,False,8,ar_prefix,2,"TOOL: flight_search
-"
-flight_search,0.42857142857142855,False,8,ar_prefix,3,"TOOL: flight_search
-ARGS: orig"
-flight_search,0.5714285714285714,False,8,ar_prefix,4,"TOOL: flight_search
-ARGS: origin=ATL; de"
-flight_search,0.7142857142857143,False,8,ar_prefix,5,"TOOL: flight_search
-ARGS: origin=ATL; destination="
-flight_search,0.8571428571428571,False,8,ar_prefix,6,"TOOL: flight_search
-ARGS: origin=ATL; destination=FCO; date="
-flight_search,1.0,True,8,ar_prefix,7,"TOOL: flight_search
-ARGS: origin=ATL; destination=FCO; date=2026-08-30"
+,0.1111111111111111,False,8,ar_prefix,1,TOOL: fli
+flight_search,0.2222222222222222,False,8,ar_prefix,2,TOOL: flight_sear
+flight_search,0.3333333333333333,False,8,ar_prefix,3,"TOOL: flight_search
+ARGS: "
+flight_search,0.4444444444444444,False,8,ar_prefix,4,"TOOL: flight_search
+ARGS: origin="""
+flight_search,0.5555555555555556,False,8,ar_prefix,5,"TOOL: flight_search
+ARGS: origin=""ATL""; des"
+flight_search,0.6666666666666666,False,8,ar_prefix,6,"TOOL: flight_search
+ARGS: origin=""ATL""; destination"
+flight_search,0.7777777777777778,False,8,ar_prefix,7,"TOOL: flight_search
+ARGS: origin=""ATL""; destination=""FCO""; d"
+flight_search,0.8888888888888888,False,8,ar_prefix,8,"TOOL: flight_search
+ARGS: origin=""ATL""; destination=""FCO""; date=""202"
+flight_search,1.0,True,8,ar_prefix,9,"TOOL: flight_search
+ARGS: origin=""ATL""; destination=""FCO""; date=""2026-08-30"""
 ,0.0,False,9,dllm,0,
 flight_search,0.14285714285714285,False,9,dllm,1,"TOOL: flight_search
 ARGS: origin"
 flight_search,0.2857142857142857,False,9,dllm,2,"TOOL: flight_search
-ARGS: origin"
+ARGS: origin=D"
 flight_search,0.42857142857142855,False,9,dllm,3,"TOOL: flight_search
-ARGS: origin=DEN;RA"
+ARGS: origin=DEN; destination="
 flight_search,0.5714285714285714,True,9,dllm,4,"TOOL: flight_search
 ARGS: origin=DEN; destination=FRA; date=2027-04-09"
 flight_search,0.7142857142857143,True,9,dllm,5,"TOOL: flight_search
@@ -293,37 +314,41 @@ ARGS: origin=DEN; destination=FRA; date="
 flight_search,1.0,True,9,ar_prefix,7,"TOOL: flight_search
 ARGS: origin=DEN; destination=FRA; date=2027-04-09"
 ,0.0,False,10,dllm,0,
-flight_search,0.16666666666666666,False,10,dllm,1,"TOOL: flight_search
+flight_search,0.14285714285714285,False,10,dllm,1,"TOOL: flight_search
 : origin"
-flight_search,0.3333333333333333,False,10,dllm,2,"TOOL: flight_search
+flight_search,0.2857142857142857,False,10,dllm,2,"TOOL: flight_search
+ARGS: origin"
+flight_search,0.42857142857142855,False,10,dllm,3,"TOOL: flight_search
 ARGS: origin=S"
-flight_search,0.5,True,10,dllm,3,"TOOL: flight_search
+flight_search,0.5714285714285714,True,10,dllm,4,"TOOL: flight_search
 ARGS: origin=SJC; destination=TPE; date=2026-09-25"
-flight_search,0.6666666666666666,True,10,dllm,4,"TOOL: flight_search
+flight_search,0.7142857142857143,True,10,dllm,5,"TOOL: flight_search
 ARGS: origin=SJC; destination=TPE; date=2026-09-25"
-flight_search,0.8333333333333334,True,10,dllm,5,"TOOL: flight_search
+flight_search,0.8571428571428571,True,10,dllm,6,"TOOL: flight_search
 ARGS: origin=SJC; destination=TPE; date=2026-09-25"
-flight_search,1.0,True,10,dllm,6,"TOOL: flight_search
+flight_search,1.0,True,10,dllm,7,"TOOL: flight_search
 ARGS: origin=SJC; destination=TPE; date=2026-09-25"
 ,0.0,False,10,ar_prefix,0,
-flight_search,0.16666666666666666,False,10,ar_prefix,1,TOOL: flight
-flight_search,0.3333333333333333,False,10,ar_prefix,2,"TOOL: flight_search
-ARGS"
-flight_search,0.5,False,10,ar_prefix,3,"TOOL: flight_search
-ARGS: origin=SJ"
-flight_search,0.6666666666666666,False,10,ar_prefix,4,"TOOL: flight_search
-ARGS: origin=SJC; destinati"
-flight_search,0.8333333333333334,False,10,ar_prefix,5,"TOOL: flight_search
-ARGS: origin=SJC; destination=TPE; date"
-flight_search,1.0,True,10,ar_prefix,6,"TOOL: flight_search
+,0.14285714285714285,False,10,ar_prefix,1,TOOL: flig
+flight_search,0.2857142857142857,False,10,ar_prefix,2,"TOOL: flight_search
+"
+flight_search,0.42857142857142855,False,10,ar_prefix,3,"TOOL: flight_search
+ARGS: orig"
+flight_search,0.5714285714285714,False,10,ar_prefix,4,"TOOL: flight_search
+ARGS: origin=SJC; de"
+flight_search,0.7142857142857143,False,10,ar_prefix,5,"TOOL: flight_search
+ARGS: origin=SJC; destination="
+flight_search,0.8571428571428571,False,10,ar_prefix,6,"TOOL: flight_search
+ARGS: origin=SJC; destination=TPE; date="
+flight_search,1.0,True,10,ar_prefix,7,"TOOL: flight_search
 ARGS: origin=SJC; destination=TPE; date=2026-09-25"
 ,0.0,False,11,dllm,0,
 flight_search,0.14285714285714285,False,11,dllm,1,"TOOL: flight_search
-ARGS: origin"
+ARGS: originAD"
 flight_search,0.2857142857142857,False,11,dllm,2,"TOOL: flight_search
-ARGS: originI"
+ARGS: originIAD destinationDXB date202-06-16"
 flight_search,0.42857142857142855,True,11,dllm,3,"TOOL: flight_search
-ARGS: origin=IAD; destinationDXB; date=2027-06-16"
+ARGS: origin=IAD; destinationDXB date=2027-06-16"
 flight_search,0.5714285714285714,True,11,dllm,4,"TOOL: flight_search
 ARGS: origin=IAD; destination=DXB; date=2027-06-16"
 flight_search,0.7142857142857143,True,11,dllm,5,"TOOL: flight_search
@@ -380,11 +405,11 @@ flight_search,1.0,True,12,ar_prefix,8,"TOOL: flight_search
 ARGS: origin=EWR; destination=ZRH; date=2026-12-21"
 ,0.0,False,13,dllm,0,
 flight_search,0.14285714285714285,False,13,dllm,1,"TOOL: flight_search
-ARGS: origin"
+ARGS: originX"
 flight_search,0.2857142857142857,False,13,dllm,2,"TOOL: flight_search
-ARGS: origin=PDX;="
+ARGS: origin=PDX; destination="
 flight_search,0.42857142857142855,False,13,dllm,3,"TOOL: flight_search
-ARGS: origin=PDX; destination=; date=2027-01-27"
+ARGS: origin=PDX; destination=;=-"
 flight_search,0.5714285714285714,True,13,dllm,4,"TOOL: flight_search
 ARGS: origin=PDX; destination=YYZ; date=2027-01-27"
 flight_search,0.7142857142857143,True,13,dllm,5,"TOOL: flight_search
@@ -411,9 +436,9 @@ ARGS: origin=PDX; destination=YYZ; date=2027-01-27"
 flight_search,0.125,False,14,dllm,1,"TOOL: flight_search
 ARGS: origin"
 flight_search,0.25,False,14,dllm,2,"TOOL: flight_search
-ARGS: origin"
+ARGS: origin;"
 flight_search,0.375,False,14,dllm,3,"TOOL: flight_search
-ARGS: origin;=M"
+ARGS: origin; destination=MEX;=2"
 flight_search,0.5,False,14,dllm,4,"TOOL: flight_search
 ARGS: originAN; destination=MEX; date=2026-10-11"
 flight_search,0.625,True,14,dllm,5,"TOOL: flight_search
@@ -441,9 +466,9 @@ flight_search,1.0,True,14,ar_prefix,8,"TOOL: flight_search
 ARGS: origin=SAN; destination=MEX; date=2026-10-11"
 ,0.0,False,15,dllm,0,
 weather,0.16666666666666666,False,15,dllm,1,"TOOL: weather
-ARGS: location"
+: location"
 weather,0.3333333333333333,False,15,dllm,2,"TOOL: weather
-ARGS: locationTokyo; date=202-09-14"
+ARGS: locationTokyo; date=20"
 weather,0.5,True,15,dllm,3,"TOOL: weather
 ARGS: location=Tokyo; date=2026-09-14"
 weather,0.6666666666666666,True,15,dllm,4,"TOOL: weather
@@ -490,39 +515,35 @@ ARGS: location=Seattle; date=20"
 weather,1.0,True,16,ar_prefix,6,"TOOL: weather
 ARGS: location=Seattle; date=2026-12-03"
 ,0.0,False,17,dllm,0,
-weather,0.14285714285714285,False,17,dllm,1,"TOOL: weather
+weather,0.16666666666666666,False,17,dllm,1,"TOOL: weather
 : location"
-weather,0.2857142857142857,False,17,dllm,2,"TOOL: weather
-ARGS: locationParis date=202-01-08"
-weather,0.42857142857142855,True,17,dllm,3,"TOOL: weather
-ARGS: locationParis; date=2027-01-08"
-weather,0.5714285714285714,True,17,dllm,4,"TOOL: weather
+weather,0.3333333333333333,False,17,dllm,2,"TOOL: weather
+ARGS: location=Paris; date=202-01-8"
+weather,0.5,True,17,dllm,3,"TOOL: weather
 ARGS: location=Paris; date=2027-01-08"
-weather,0.7142857142857143,True,17,dllm,5,"TOOL: weather
+weather,0.6666666666666666,True,17,dllm,4,"TOOL: weather
 ARGS: location=Paris; date=2027-01-08"
-weather,0.8571428571428571,True,17,dllm,6,"TOOL: weather
+weather,0.8333333333333334,True,17,dllm,5,"TOOL: weather
 ARGS: location=Paris; date=2027-01-08"
-weather,1.0,True,17,dllm,7,"TOOL: weather
+weather,1.0,True,17,dllm,6,"TOOL: weather
 ARGS: location=Paris; date=2027-01-08"
 ,0.0,False,17,ar_prefix,0,
-,0.14285714285714285,False,17,ar_prefix,1,TOOL: we
-weather,0.2857142857142857,False,17,ar_prefix,2,"TOOL: weather
-A"
-weather,0.42857142857142855,False,17,ar_prefix,3,"TOOL: weather
-ARGS: lo"
-weather,0.5714285714285714,False,17,ar_prefix,4,"TOOL: weather
-ARGS: location=P"
-weather,0.7142857142857143,False,17,ar_prefix,5,"TOOL: weather
-ARGS: location=Paris; d"
-weather,0.8571428571428571,False,17,ar_prefix,6,"TOOL: weather
-ARGS: location=Paris; date=202"
-weather,1.0,True,17,ar_prefix,7,"TOOL: weather
+,0.16666666666666666,False,17,ar_prefix,1,TOOL: wea
+weather,0.3333333333333333,False,17,ar_prefix,2,"TOOL: weather
+ARG"
+weather,0.5,False,17,ar_prefix,3,"TOOL: weather
+ARGS: locati"
+weather,0.6666666666666666,False,17,ar_prefix,4,"TOOL: weather
+ARGS: location=Paris"
+weather,0.8333333333333334,False,17,ar_prefix,5,"TOOL: weather
+ARGS: location=Paris; date=20"
+weather,1.0,True,17,ar_prefix,6,"TOOL: weather
 ARGS: location=Paris; date=2027-01-08"
 ,0.0,False,18,dllm,0,
 weather,0.16666666666666666,False,18,dllm,1,"TOOL: weather
 : location"
 weather,0.3333333333333333,False,18,dllm,2,"TOOL: weather
-ARGS: locationAustin date202-020"
+ARGS: locationAustin date202-"
 weather,0.5,True,18,dllm,3,"TOOL: weather
 ARGS: location=Austin; date=2027-05-20"
 weather,0.6666666666666666,True,18,dllm,4,"TOOL: weather
@@ -545,9 +566,9 @@ weather,1.0,True,18,ar_prefix,6,"TOOL: weather
 ARGS: location=Austin; date=2027-05-20"
 ,0.0,False,19,dllm,0,
 weather,0.16666666666666666,False,19,dllm,1,"TOOL: weather
-ARGS: location"
+: location"
 weather,0.3333333333333333,False,19,dllm,2,"TOOL: weather
-ARGS: locationLondon date202-11-8"
+ARGS: locationLondon; date20-11-8"
 weather,0.5,True,19,dllm,3,"TOOL: weather
 ARGS: location=London; date=2026-11-18"
 weather,0.6666666666666666,True,19,dllm,4,"TOOL: weather
@@ -569,93 +590,101 @@ ARGS: location=London; date=20"
 weather,1.0,True,19,ar_prefix,6,"TOOL: weather
 ARGS: location=London; date=2026-11-18"
 ,0.0,False,20,dllm,0,
-weather,0.16666666666666666,False,20,dllm,1,"TOOL: weather
-: location"
-weather,0.3333333333333333,False,20,dllm,2,"TOOL: weather
-ARGS: locationSeoul date=20--2"
-weather,0.5,True,20,dllm,3,"TOOL: weather
-ARGS: location=Seoul; date=2027-02-22"
-weather,0.6666666666666666,True,20,dllm,4,"TOOL: weather
-ARGS: location=Seoul; date=2027-02-22"
-weather,0.8333333333333334,True,20,dllm,5,"TOOL: weather
-ARGS: location=Seoul; date=2027-02-22"
-weather,1.0,True,20,dllm,6,"TOOL: weather
-ARGS: location=Seoul; date=2027-02-22"
+weather,0.1111111111111111,False,20,dllm,1,"TOOL: weather
+: locationSe"
+weather,0.2222222222222222,False,20,dllm,2,"TOOL: weather
+ARGS: location ""Seoul date2-2"
+weather,0.3333333333333333,True,20,dllm,3,"TOOL: weather
+ARGS: location ""Seoul date ""2027-02-22"""
+weather,0.4444444444444444,True,20,dllm,4,"TOOL: weather
+ARGS: location ""Seoul""; date ""2027-02-22"""
+weather,0.5555555555555556,True,20,dllm,5,"TOOL: weather
+ARGS: location = ""Seoul""; date ""2027-02-22"""
+weather,0.6666666666666666,True,20,dllm,6,"TOOL: weather
+ARGS: location = ""Seoul""; date = ""2027-02-22"""
+weather,0.7777777777777778,True,20,dllm,7,"TOOL: weather
+ARGS: location = ""Seoul""; date = ""2027-02-22"""
+weather,0.8888888888888888,True,20,dllm,8,"TOOL: weather
+ARGS: location = ""Seoul""; date = ""2027-02-22"""
+weather,1.0,True,20,dllm,9,"TOOL: weather
+ARGS: location = ""Seoul""; date = ""2027-02-22"""
 ,0.0,False,20,ar_prefix,0,
-,0.16666666666666666,False,20,ar_prefix,1,TOOL: wea
-weather,0.3333333333333333,False,20,ar_prefix,2,"TOOL: weather
-ARG"
-weather,0.5,False,20,ar_prefix,3,"TOOL: weather
-ARGS: locati"
-weather,0.6666666666666666,False,20,ar_prefix,4,"TOOL: weather
-ARGS: location=Seoul"
-weather,0.8333333333333334,False,20,ar_prefix,5,"TOOL: weather
-ARGS: location=Seoul; date=20"
-weather,1.0,True,20,ar_prefix,6,"TOOL: weather
-ARGS: location=Seoul; date=2027-02-22"
+,0.1111111111111111,False,20,ar_prefix,1,TOOL: w
+weather,0.2222222222222222,False,20,ar_prefix,2,"TOOL: weather
+"
+weather,0.3333333333333333,False,20,ar_prefix,3,"TOOL: weather
+ARGS: "
+weather,0.4444444444444444,False,20,ar_prefix,4,"TOOL: weather
+ARGS: locatio"
+weather,0.5555555555555556,False,20,ar_prefix,5,"TOOL: weather
+ARGS: location = ""S"
+weather,0.6666666666666666,False,20,ar_prefix,6,"TOOL: weather
+ARGS: location = ""Seoul""; "
+weather,0.7777777777777778,False,20,ar_prefix,7,"TOOL: weather
+ARGS: location = ""Seoul""; date ="
+weather,0.8888888888888888,False,20,ar_prefix,8,"TOOL: weather
+ARGS: location = ""Seoul""; date = ""2027-"
+weather,1.0,True,20,ar_prefix,9,"TOOL: weather
+ARGS: location = ""Seoul""; date = ""2027-02-22"""
 ,0.0,False,21,dllm,0,
-weather,0.16666666666666666,False,21,dllm,1,"TOOL: weather
-: location"
-weather,0.3333333333333333,False,21,dllm,2,"TOOL: weather
-ARGS: locationAmsterdam date20--"
-weather,0.5,True,21,dllm,3,"TOOL: weather
+weather,0.14285714285714285,False,21,dllm,1,"TOOL: weather
+:"
+weather,0.2857142857142857,False,21,dllm,2,"TOOL: weather
+ARGS: location"
+weather,0.42857142857142855,False,21,dllm,3,"TOOL: weather
+ARGS: locationAmsterdam"
+weather,0.5714285714285714,True,21,dllm,4,"TOOL: weather
 ARGS: location=Amsterdam; date=2026-10-05"
-weather,0.6666666666666666,True,21,dllm,4,"TOOL: weather
+weather,0.7142857142857143,True,21,dllm,5,"TOOL: weather
 ARGS: location=Amsterdam; date=2026-10-05"
-weather,0.8333333333333334,True,21,dllm,5,"TOOL: weather
+weather,0.8571428571428571,True,21,dllm,6,"TOOL: weather
 ARGS: location=Amsterdam; date=2026-10-05"
-weather,1.0,True,21,dllm,6,"TOOL: weather
+weather,1.0,True,21,dllm,7,"TOOL: weather
 ARGS: location=Amsterdam; date=2026-10-05"
 ,0.0,False,21,ar_prefix,0,
-,0.16666666666666666,False,21,ar_prefix,1,TOOL: weat
-weather,0.3333333333333333,False,21,ar_prefix,2,"TOOL: weather
-ARGS:"
-weather,0.5,False,21,ar_prefix,3,"TOOL: weather
-ARGS: location"
-weather,0.6666666666666666,False,21,ar_prefix,4,"TOOL: weather
-ARGS: location=Amsterda"
-weather,0.8333333333333334,False,21,ar_prefix,5,"TOOL: weather
-ARGS: location=Amsterdam; date=2"
-weather,1.0,True,21,ar_prefix,6,"TOOL: weather
+,0.14285714285714285,False,21,ar_prefix,1,TOOL: we
+weather,0.2857142857142857,False,21,ar_prefix,2,"TOOL: weather
+AR"
+weather,0.42857142857142855,False,21,ar_prefix,3,"TOOL: weather
+ARGS: loca"
+weather,0.5714285714285714,False,21,ar_prefix,4,"TOOL: weather
+ARGS: location=Ams"
+weather,0.7142857142857143,False,21,ar_prefix,5,"TOOL: weather
+ARGS: location=Amsterdam; "
+weather,0.8571428571428571,False,21,ar_prefix,6,"TOOL: weather
+ARGS: location=Amsterdam; date=202"
+weather,1.0,True,21,ar_prefix,7,"TOOL: weather
 ARGS: location=Amsterdam; date=2026-10-05"
 ,0.0,False,22,dllm,0,
-weather,0.125,False,22,dllm,1,"TOOL: weather
-: locationrid"
-weather,0.25,True,22,dllm,2,"TOOL: weather
-ARGS: location ""Madrid date2027-03-12"
-weather,0.375,True,22,dllm,3,"TOOL: weather
-ARGS: location ""Madrid""; date ""2027-03-12"""
-weather,0.5,True,22,dllm,4,"TOOL: weather
-ARGS: location = ""Madrid""; date ""2027-03-12"""
-weather,0.625,True,22,dllm,5,"TOOL: weather
-ARGS: location = ""Madrid""; date = ""2027-03-12"""
-weather,0.75,True,22,dllm,6,"TOOL: weather
-ARGS: location = ""Madrid""; date = ""2027-03-12"""
-weather,0.875,True,22,dllm,7,"TOOL: weather
-ARGS: location = ""Madrid""; date = ""2027-03-12"""
-weather,1.0,True,22,dllm,8,"TOOL: weather
-ARGS: location = ""Madrid""; date = ""2027-03-12"""
+weather,0.16666666666666666,False,22,dllm,1,"TOOL: weather
+: location"
+weather,0.3333333333333333,False,22,dllm,2,"TOOL: weather
+ARGS: location=Madrid"
+weather,0.5,True,22,dllm,3,"TOOL: weather
+ARGS: location=Madrid; date=2027-03-12"
+weather,0.6666666666666666,True,22,dllm,4,"TOOL: weather
+ARGS: location=Madrid; date=2027-03-12"
+weather,0.8333333333333334,True,22,dllm,5,"TOOL: weather
+ARGS: location=Madrid; date=2027-03-12"
+weather,1.0,True,22,dllm,6,"TOOL: weather
+ARGS: location=Madrid; date=2027-03-12"
 ,0.0,False,22,ar_prefix,0,
-,0.125,False,22,ar_prefix,1,TOOL: we
-weather,0.25,False,22,ar_prefix,2,"TOOL: weather
-A"
-weather,0.375,False,22,ar_prefix,3,"TOOL: weather
-ARGS: loc"
-weather,0.5,False,22,ar_prefix,4,"TOOL: weather
-ARGS: location ="
-weather,0.625,False,22,ar_prefix,5,"TOOL: weather
-ARGS: location = ""Madrid"
-weather,0.75,False,22,ar_prefix,6,"TOOL: weather
-ARGS: location = ""Madrid""; date"
-weather,0.875,False,22,ar_prefix,7,"TOOL: weather
-ARGS: location = ""Madrid""; date = ""2027"
-weather,1.0,True,22,ar_prefix,8,"TOOL: weather
-ARGS: location = ""Madrid""; date = ""2027-03-12"""
+,0.16666666666666666,False,22,ar_prefix,1,TOOL: wea
+weather,0.3333333333333333,False,22,ar_prefix,2,"TOOL: weather
+ARGS"
+weather,0.5,False,22,ar_prefix,3,"TOOL: weather
+ARGS: locati"
+weather,0.6666666666666666,False,22,ar_prefix,4,"TOOL: weather
+ARGS: location=Madrid"
+weather,0.8333333333333334,False,22,ar_prefix,5,"TOOL: weather
+ARGS: location=Madrid; date=20"
+weather,1.0,True,22,ar_prefix,6,"TOOL: weather
+ARGS: location=Madrid; date=2027-03-12"
 ,0.0,False,23,dllm,0,
 weather,0.125,False,23,dllm,1,"TOOL: weather
 : locationRome"
-weather,0.25,False,23,dllm,2,"TOOL: weather
-ARGS: location ""Rome date208-"
+weather,0.25,True,23,dllm,2,"TOOL: weather
+ARGS: location ""Rome date2026-08-30"
 weather,0.375,True,23,dllm,3,"TOOL: weather
 ARGS: location ""Rome""; date ""2026-08-30"""
 weather,0.5,True,23,dllm,4,"TOOL: weather
@@ -685,39 +714,47 @@ ARGS: location = ""Rome""; date = ""2026"
 weather,1.0,True,23,ar_prefix,8,"TOOL: weather
 ARGS: location = ""Rome""; date = ""2026-08-30"""
 ,0.0,False,24,dllm,0,
-weather,0.14285714285714285,False,24,dllm,1,"TOOL: weather
-: location"
-weather,0.2857142857142857,False,24,dllm,2,"TOOL: weather
-ARGS: locationBerlin date=202-04-09"
-weather,0.42857142857142855,True,24,dllm,3,"TOOL: weather
-ARGS: locationBerlin; date=2027-04-09"
-weather,0.5714285714285714,True,24,dllm,4,"TOOL: weather
-ARGS: location=Berlin; date=2027-04-09"
-weather,0.7142857142857143,True,24,dllm,5,"TOOL: weather
-ARGS: location=Berlin; date=2027-04-09"
-weather,0.8571428571428571,True,24,dllm,6,"TOOL: weather
-ARGS: location=Berlin; date=2027-04-09"
-weather,1.0,True,24,dllm,7,"TOOL: weather
-ARGS: location=Berlin; date=2027-04-09"
+weather,0.1111111111111111,False,24,dllm,1,"TOOL: weather
+: locationBerlin"
+weather,0.2222222222222222,False,24,dllm,2,"TOOL: weather
+ARGS: location ""Berlin date20-04-0"
+weather,0.3333333333333333,True,24,dllm,3,"TOOL: weather
+ARGS: location ""Berlin date ""2027-04-09"""
+weather,0.4444444444444444,True,24,dllm,4,"TOOL: weather
+ARGS: location ""Berlin""; date ""2027-04-09"""
+weather,0.5555555555555556,True,24,dllm,5,"TOOL: weather
+ARGS: location = ""Berlin""; date ""2027-04-09"""
+weather,0.6666666666666666,True,24,dllm,6,"TOOL: weather
+ARGS: location = ""Berlin""; date = ""2027-04-09"""
+weather,0.7777777777777778,True,24,dllm,7,"TOOL: weather
+ARGS: location = ""Berlin""; date = ""2027-04-09"""
+weather,0.8888888888888888,True,24,dllm,8,"TOOL: weather
+ARGS: location = ""Berlin""; date = ""2027-04-09"""
+weather,1.0,True,24,dllm,9,"TOOL: weather
+ARGS: location = ""Berlin""; date = ""2027-04-09"""
 ,0.0,False,24,ar_prefix,0,
-,0.14285714285714285,False,24,ar_prefix,1,TOOL: we
-weather,0.2857142857142857,False,24,ar_prefix,2,"TOOL: weather
-A"
-weather,0.42857142857142855,False,24,ar_prefix,3,"TOOL: weather
-ARGS: loc"
-weather,0.5714285714285714,False,24,ar_prefix,4,"TOOL: weather
-ARGS: location=B"
-weather,0.7142857142857143,False,24,ar_prefix,5,"TOOL: weather
-ARGS: location=Berlin; d"
-weather,0.8571428571428571,False,24,ar_prefix,6,"TOOL: weather
-ARGS: location=Berlin; date=202"
-weather,1.0,True,24,ar_prefix,7,"TOOL: weather
-ARGS: location=Berlin; date=2027-04-09"
+,0.1111111111111111,False,24,ar_prefix,1,TOOL: w
+weather,0.2222222222222222,False,24,ar_prefix,2,"TOOL: weather
+"
+weather,0.3333333333333333,False,24,ar_prefix,3,"TOOL: weather
+ARGS: "
+weather,0.4444444444444444,False,24,ar_prefix,4,"TOOL: weather
+ARGS: locatio"
+weather,0.5555555555555556,False,24,ar_prefix,5,"TOOL: weather
+ARGS: location = ""Be"
+weather,0.6666666666666666,False,24,ar_prefix,6,"TOOL: weather
+ARGS: location = ""Berlin"";"
+weather,0.7777777777777778,False,24,ar_prefix,7,"TOOL: weather
+ARGS: location = ""Berlin""; date ="
+weather,0.8888888888888888,False,24,ar_prefix,8,"TOOL: weather
+ARGS: location = ""Berlin""; date = ""2027-"
+weather,1.0,True,24,ar_prefix,9,"TOOL: weather
+ARGS: location = ""Berlin""; date = ""2027-04-09"""
 ,0.0,False,25,dllm,0,
 weather,0.16666666666666666,False,25,dllm,1,"TOOL: weather
-ARGS: location"
+: location"
 weather,0.3333333333333333,False,25,dllm,2,"TOOL: weather
-ARGS: locationTaipei"
+ARGS: locationTai"
 weather,0.5,True,25,dllm,3,"TOOL: weather
 ARGS: location=Taipei; date=2026-09-25"
 weather,0.6666666666666666,True,25,dllm,4,"TOOL: weather
@@ -742,7 +779,7 @@ ARGS: location=Taipei; date=2026-09-25"
 weather,0.14285714285714285,False,26,dllm,1,"TOOL: weather
 : location"
 weather,0.2857142857142857,False,26,dllm,2,"TOOL: weather
-ARGS: location; date202-"
+ARGS: location;20"
 weather,0.42857142857142855,False,26,dllm,3,"TOOL: weather
 ARGS: location=; date=2027-06-16"
 weather,0.5714285714285714,True,26,dllm,4,"TOOL: weather
@@ -771,7 +808,7 @@ ARGS: location=Dubai; date=2027-06-16"
 weather,0.16666666666666666,False,27,dllm,1,"TOOL: weather
 : location"
 weather,0.3333333333333333,False,27,dllm,2,"TOOL: weather
-ARGS: locationZ"
+ARGS: location=Z"
 weather,0.5,True,27,dllm,3,"TOOL: weather
 ARGS: location=Zurich; date=2026-12-21"
 weather,0.6666666666666666,True,27,dllm,4,"TOOL: weather
@@ -793,114 +830,110 @@ ARGS: location=Zurich; date=20"
 weather,1.0,True,27,ar_prefix,6,"TOOL: weather
 ARGS: location=Zurich; date=2026-12-21"
 ,0.0,False,28,dllm,0,
-weather,0.14285714285714285,False,28,dllm,1,"TOOL: weather
-: location"
-weather,0.2857142857142857,False,28,dllm,2,"TOOL: weather
-ARGS: locationToronto date=202-02"
-weather,0.42857142857142855,True,28,dllm,3,"TOOL: weather
-ARGS: locationToronto; date=2027-01-27"
-weather,0.5714285714285714,True,28,dllm,4,"TOOL: weather
+weather,0.16666666666666666,False,28,dllm,1,"TOOL: weather
+ARGS: location"
+weather,0.3333333333333333,False,28,dllm,2,"TOOL: weather
+ARGS: location=Toronto; date=202-0-7"
+weather,0.5,True,28,dllm,3,"TOOL: weather
 ARGS: location=Toronto; date=2027-01-27"
-weather,0.7142857142857143,True,28,dllm,5,"TOOL: weather
+weather,0.6666666666666666,True,28,dllm,4,"TOOL: weather
 ARGS: location=Toronto; date=2027-01-27"
-weather,0.8571428571428571,True,28,dllm,6,"TOOL: weather
+weather,0.8333333333333334,True,28,dllm,5,"TOOL: weather
 ARGS: location=Toronto; date=2027-01-27"
-weather,1.0,True,28,dllm,7,"TOOL: weather
+weather,1.0,True,28,dllm,6,"TOOL: weather
 ARGS: location=Toronto; date=2027-01-27"
 ,0.0,False,28,ar_prefix,0,
-,0.14285714285714285,False,28,ar_prefix,1,TOOL: we
-weather,0.2857142857142857,False,28,ar_prefix,2,"TOOL: weather
-AR"
-weather,0.42857142857142855,False,28,ar_prefix,3,"TOOL: weather
-ARGS: loc"
-weather,0.5714285714285714,False,28,ar_prefix,4,"TOOL: weather
-ARGS: location=To"
-weather,0.7142857142857143,False,28,ar_prefix,5,"TOOL: weather
-ARGS: location=Toronto; "
-weather,0.8571428571428571,False,28,ar_prefix,6,"TOOL: weather
-ARGS: location=Toronto; date=202"
-weather,1.0,True,28,ar_prefix,7,"TOOL: weather
+,0.16666666666666666,False,28,ar_prefix,1,TOOL: wea
+weather,0.3333333333333333,False,28,ar_prefix,2,"TOOL: weather
+ARGS"
+weather,0.5,False,28,ar_prefix,3,"TOOL: weather
+ARGS: locatio"
+weather,0.6666666666666666,False,28,ar_prefix,4,"TOOL: weather
+ARGS: location=Toronto"
+weather,0.8333333333333334,False,28,ar_prefix,5,"TOOL: weather
+ARGS: location=Toronto; date=20"
+weather,1.0,True,28,ar_prefix,6,"TOOL: weather
 ARGS: location=Toronto; date=2027-01-27"
 ,0.0,False,29,dllm,0,
-weather,0.14285714285714285,False,29,dllm,1,"TOOL: weather
-: location"
-weather,0.2857142857142857,False,29,dllm,2,"TOOL: weather
-ARGS: location City date202--1"
-weather,0.42857142857142855,True,29,dllm,3,"TOOL: weather
-ARGS: locationMexico City; date=2026-10-11"
-weather,0.5714285714285714,True,29,dllm,4,"TOOL: weather
-ARGS: location=Mexico City; date=2026-10-11"
-weather,0.7142857142857143,True,29,dllm,5,"TOOL: weather
-ARGS: location=Mexico City; date=2026-10-11"
-weather,0.8571428571428571,True,29,dllm,6,"TOOL: weather
-ARGS: location=Mexico City; date=2026-10-11"
-weather,1.0,True,29,dllm,7,"TOOL: weather
-ARGS: location=Mexico City; date=2026-10-11"
+weather,0.125,False,29,dllm,1,"TOOL: weather
+: location City"
+weather,0.25,True,29,dllm,2,"TOOL: weather
+ARGS: location ""Mexico City date2026-10-11"
+weather,0.375,True,29,dllm,3,"TOOL: weather
+ARGS: location ""Mexico City""; date ""2026-10-11"""
+weather,0.5,True,29,dllm,4,"TOOL: weather
+ARGS: location = ""Mexico City""; date ""2026-10-11"""
+weather,0.625,True,29,dllm,5,"TOOL: weather
+ARGS: location = ""Mexico City""; date = ""2026-10-11"""
+weather,0.75,True,29,dllm,6,"TOOL: weather
+ARGS: location = ""Mexico City""; date = ""2026-10-11"""
+weather,0.875,True,29,dllm,7,"TOOL: weather
+ARGS: location = ""Mexico City""; date = ""2026-10-11"""
+weather,1.0,True,29,dllm,8,"TOOL: weather
+ARGS: location = ""Mexico City""; date = ""2026-10-11"""
 ,0.0,False,29,ar_prefix,0,
-,0.14285714285714285,False,29,ar_prefix,1,TOOL: wea
-weather,0.2857142857142857,False,29,ar_prefix,2,"TOOL: weather
+,0.125,False,29,ar_prefix,1,TOOL: wea
+weather,0.25,False,29,ar_prefix,2,"TOOL: weather
 ARG"
-weather,0.42857142857142855,False,29,ar_prefix,3,"TOOL: weather
+weather,0.375,False,29,ar_prefix,3,"TOOL: weather
 ARGS: locat"
-weather,0.5714285714285714,False,29,ar_prefix,4,"TOOL: weather
-ARGS: location=Mexi"
-weather,0.7142857142857143,False,29,ar_prefix,5,"TOOL: weather
-ARGS: location=Mexico City;"
-weather,0.8571428571428571,False,29,ar_prefix,6,"TOOL: weather
-ARGS: location=Mexico City; date=20"
-weather,1.0,True,29,ar_prefix,7,"TOOL: weather
-ARGS: location=Mexico City; date=2026-10-11"
+weather,0.5,False,29,ar_prefix,4,"TOOL: weather
+ARGS: location = ""M"
+weather,0.625,False,29,ar_prefix,5,"TOOL: weather
+ARGS: location = ""Mexico Ci"
+weather,0.75,False,29,ar_prefix,6,"TOOL: weather
+ARGS: location = ""Mexico City""; dat"
+weather,0.875,False,29,ar_prefix,7,"TOOL: weather
+ARGS: location = ""Mexico City""; date = ""202"
+weather,1.0,True,29,ar_prefix,8,"TOOL: weather
+ARGS: location = ""Mexico City""; date = ""2026-10-11"""
 ,0.0,False,30,dllm,0,
-web_search,0.1,False,30,dllm,1,"TOOL: web_search
+web_search,0.1111111111111111,False,30,dllm,1,"TOOL: web_search
 :"
-web_search,0.2,False,30,dllm,2,"TOOL: web_search
-ARGS:"
-web_search,0.3,False,30,dllm,3,"TOOL: web_search
+web_search,0.2222222222222222,False,30,dllm,2,"TOOL: web_search
 ARGS: query"
-web_search,0.4,False,30,dllm,4,"TOOL: web_search
-ARGS: queryusion"
-web_search,0.5,True,30,dllm,5,"TOOL: web_search
+web_search,0.3333333333333333,False,30,dllm,3,"TOOL: web_search
+ARGS: queryusion systems"
+web_search,0.4444444444444444,True,30,dllm,4,"TOOL: web_search
 ARGS: querydiffusion language model serving systems"
-web_search,0.6,True,30,dllm,6,"TOOL: web_search
+web_search,0.5555555555555556,True,30,dllm,5,"TOOL: web_search
 ARGS: query=""diffusion language model serving systems"
-web_search,0.7,True,30,dllm,7,"TOOL: web_search
+web_search,0.6666666666666666,True,30,dllm,6,"TOOL: web_search
 ARGS: query=""diffusion language model serving systems"""
-web_search,0.8,True,30,dllm,8,"TOOL: web_search
+web_search,0.7777777777777778,True,30,dllm,7,"TOOL: web_search
 ARGS: query=""diffusion language model serving systems"""
-web_search,0.9,True,30,dllm,9,"TOOL: web_search
+web_search,0.8888888888888888,True,30,dllm,8,"TOOL: web_search
 ARGS: query=""diffusion language model serving systems"""
-web_search,1.0,True,30,dllm,10,"TOOL: web_search
+web_search,1.0,True,30,dllm,9,"TOOL: web_search
 ARGS: query=""diffusion language model serving systems"""
 ,0.0,False,30,ar_prefix,0,
-,0.1,False,30,ar_prefix,1,TOOL: we
-,0.2,False,30,ar_prefix,2,TOOL: web_searc
-web_search,0.3,False,30,ar_prefix,3,"TOOL: web_search
-ARGS:"
-web_search,0.4,False,30,ar_prefix,4,"TOOL: web_search
-ARGS: query="
-web_search,0.5,False,30,ar_prefix,5,"TOOL: web_search
-ARGS: query=""diffus"
-web_search,0.6,False,30,ar_prefix,6,"TOOL: web_search
-ARGS: query=""diffusion lan"
-web_search,0.7,False,30,ar_prefix,7,"TOOL: web_search
-ARGS: query=""diffusion language m"
-web_search,0.8,False,30,ar_prefix,8,"TOOL: web_search
-ARGS: query=""diffusion language model se"
-web_search,0.9,True,30,ar_prefix,9,"TOOL: web_search
+,0.1111111111111111,False,30,ar_prefix,1,TOOL: we
+web_search,0.2222222222222222,False,30,ar_prefix,2,TOOL: web_search
+web_search,0.3333333333333333,False,30,ar_prefix,3,"TOOL: web_search
+ARGS: q"
+web_search,0.4444444444444444,False,30,ar_prefix,4,"TOOL: web_search
+ARGS: query=""di"
+web_search,0.5555555555555556,False,30,ar_prefix,5,"TOOL: web_search
+ARGS: query=""diffusion "
+web_search,0.6666666666666666,False,30,ar_prefix,6,"TOOL: web_search
+ARGS: query=""diffusion language"
+web_search,0.7777777777777778,False,30,ar_prefix,7,"TOOL: web_search
+ARGS: query=""diffusion language model s"
+web_search,0.8888888888888888,True,30,ar_prefix,8,"TOOL: web_search
 ARGS: query=""diffusion language model serving s"
-web_search,1.0,True,30,ar_prefix,10,"TOOL: web_search
+web_search,1.0,True,30,ar_prefix,9,"TOOL: web_search
 ARGS: query=""diffusion language model serving systems"""
 ,0.0,False,31,dllm,0,
 web_search,0.1111111111111111,False,31,dllm,1,"TOOL: web_search
-ARGS:"
+:"
 web_search,0.2222222222222222,False,31,dllm,2,"TOOL: web_search
 ARGS: query"
 web_search,0.3333333333333333,False,31,dllm,3,"TOOL: web_search
-ARGS: queryspeculative"
-web_search,0.4444444444444444,False,31,dllm,4,"TOOL: web_search
-ARGS: queryspeculative tool agents"
+ARGS: queryulative"
+web_search,0.4444444444444444,True,31,dllm,4,"TOOL: web_search
+ARGS: queryspeculative tool execution in AI agents"
 web_search,0.5555555555555556,True,31,dllm,5,"TOOL: web_search
-ARGS: query=""speculative tool execution in AI agents"
+ARGS: queryspeculative tool execution in AI agents"""
 web_search,0.6666666666666666,True,31,dllm,6,"TOOL: web_search
 ARGS: query=""speculative tool execution in AI agents"""
 web_search,0.7777777777777778,True,31,dllm,7,"TOOL: web_search
@@ -927,45 +960,26 @@ ARGS: query=""speculative tool execution in AI "
 web_search,1.0,True,31,ar_prefix,9,"TOOL: web_search
 ARGS: query=""speculative tool execution in AI agents"""
 ,0.0,False,32,dllm,0,
-web_search,0.1,False,32,dllm,1,"TOOL: web_search
-ARGS: query"
-web_search,0.2,False,32,dllm,2,"TOOL: web_search
-ARGS: query scheduler"
-web_search,0.3,False,32,dllm,3,"TOOL: web_search
-ARGS: query scheduler"
-web_search,0.4,False,32,dllm,4,"TOOL: web_search
-ARGS: query serving scheduler"
-web_search,0.5,False,32,dllm,5,"TOOL: web_search
-ARGS: queryLLM serving scheduler tail"
-web_search,0.6,True,32,dllm,6,"TOOL: web_search
-ARGS: query=""LLM serving scheduler tail latency"
-web_search,0.7,True,32,dllm,7,"TOOL: web_search
-ARGS: query=""LLM serving scheduler tail latency"""
-web_search,0.8,True,32,dllm,8,"TOOL: web_search
-ARGS: query=""LLM serving scheduler tail latency"""
-web_search,0.9,True,32,dllm,9,"TOOL: web_search
-ARGS: query=""LLM serving scheduler tail latency"""
-web_search,1.0,True,32,dllm,10,"TOOL: web_search
-ARGS: query=""LLM serving scheduler tail latency"""
+web_search,0.2,False,32,dllm,1,"TOOL: web_search
+: query """
+web_search,0.4,True,32,dllm,2,"TOOL: web_search
+ARGS: query = ""LLM serving scheduler tail latency"""
+web_search,0.6,True,32,dllm,3,"TOOL: web_search
+ARGS: query = ""LLM serving scheduler tail latency"""
+web_search,0.8,True,32,dllm,4,"TOOL: web_search
+ARGS: query = ""LLM serving scheduler tail latency"""
+web_search,1.0,True,32,dllm,5,"TOOL: web_search
+ARGS: query = ""LLM serving scheduler tail latency"""
 ,0.0,False,32,ar_prefix,0,
-,0.1,False,32,ar_prefix,1,TOOL: w
-,0.2,False,32,ar_prefix,2,TOOL: web_sea
-web_search,0.3,False,32,ar_prefix,3,"TOOL: web_search
-ARG"
-web_search,0.4,False,32,ar_prefix,4,"TOOL: web_search
-ARGS: que"
-web_search,0.5,False,32,ar_prefix,5,"TOOL: web_search
-ARGS: query=""LLM"
-web_search,0.6,False,32,ar_prefix,6,"TOOL: web_search
-ARGS: query=""LLM servi"
-web_search,0.7,False,32,ar_prefix,7,"TOOL: web_search
-ARGS: query=""LLM serving sche"
-web_search,0.8,False,32,ar_prefix,8,"TOOL: web_search
-ARGS: query=""LLM serving scheduler "
-web_search,0.9,True,32,ar_prefix,9,"TOOL: web_search
-ARGS: query=""LLM serving scheduler tail la"
-web_search,1.0,True,32,ar_prefix,10,"TOOL: web_search
-ARGS: query=""LLM serving scheduler tail latency"""
+,0.2,False,32,ar_prefix,1,TOOL: web_sear
+web_search,0.4,False,32,ar_prefix,2,"TOOL: web_search
+ARGS: quer"
+web_search,0.6,False,32,ar_prefix,3,"TOOL: web_search
+ARGS: query = ""LLM servi"
+web_search,0.8,False,32,ar_prefix,4,"TOOL: web_search
+ARGS: query = ""LLM serving scheduler "
+web_search,1.0,True,32,ar_prefix,5,"TOOL: web_search
+ARGS: query = ""LLM serving scheduler tail latency"""
 ,0.0,False,33,dllm,0,
 web_search,0.125,False,33,dllm,1,"TOOL: web_search
 :"
@@ -1000,89 +1014,77 @@ ARGS: query=GPU memory admission control"
 web_search,1.0,True,33,ar_prefix,8,"TOOL: web_search
 ARGS: query=GPU memory admission control serving"
 ,0.0,False,34,dllm,0,
-web_search,0.09090909090909091,False,34,dllm,1,"TOOL: web_search
+web_search,0.1111111111111111,False,34,dllm,1,"TOOL: web_search
 :"
-web_search,0.18181818181818182,False,34,dllm,2,"TOOL: web_search
-ARGS: query"
-web_search,0.2727272727272727,False,34,dllm,3,"TOOL: web_search
-ARGS: querygressive decoding"
-web_search,0.36363636363636365,False,34,dllm,4,"TOOL: web_search
-ARGS: queryoregressive decoding"
-web_search,0.45454545454545453,False,34,dllm,5,"TOOL: web_search
-ARGS: queryoregressive decoding systems"
-web_search,0.5454545454545454,False,34,dllm,6,"TOOL: web_search
-ARGS: queryoregressive decoding systems"
-web_search,0.6363636363636364,False,34,dllm,7,"TOOL: web_search
-ARGS: query=oregressive decoding systems"
-web_search,0.7272727272727273,True,34,dllm,8,"TOOL: web_search
-ARGS: query=autoregressive decoding systems"
-web_search,0.8181818181818182,True,34,dllm,9,"TOOL: web_search
-ARGS: query=autoregressive decoding systems"
-web_search,0.9090909090909091,True,34,dllm,10,"TOOL: web_search
-ARGS: query=autoregressive decoding systems"
-web_search,1.0,True,34,dllm,11,"TOOL: web_search
-ARGS: query=autoregressive decoding systems"
+web_search,0.2222222222222222,False,34,dllm,2,"TOOL: web_search
+ARGS: querygressive"
+web_search,0.3333333333333333,True,34,dllm,3,"TOOL: web_search
+ARGS: queryoregressive speculative decoding systems"
+web_search,0.4444444444444444,True,34,dllm,4,"TOOL: web_search
+ARGS: queryoregressive speculative decoding systems"
+web_search,0.5555555555555556,True,34,dllm,5,"TOOL: web_search
+ARGS: query=oregressive speculative decoding systems"
+web_search,0.6666666666666666,True,34,dllm,6,"TOOL: web_search
+ARGS: query=autoregressive speculative decoding systems"
+web_search,0.7777777777777778,True,34,dllm,7,"TOOL: web_search
+ARGS: query=autoregressive speculative decoding systems"
+web_search,0.8888888888888888,True,34,dllm,8,"TOOL: web_search
+ARGS: query=autoregressive speculative decoding systems"
+web_search,1.0,True,34,dllm,9,"TOOL: web_search
+ARGS: query=autoregressive speculative decoding systems"
 ,0.0,False,34,ar_prefix,0,
-,0.09090909090909091,False,34,ar_prefix,1,TOOL: 
-,0.18181818181818182,False,34,ar_prefix,2,TOOL: web_s
-web_search,0.2727272727272727,False,34,ar_prefix,3,"TOOL: web_search
-"
-web_search,0.36363636363636365,False,34,ar_prefix,4,"TOOL: web_search
-ARGS:"
-web_search,0.45454545454545453,False,34,ar_prefix,5,"TOOL: web_search
-ARGS: query"
-web_search,0.5454545454545454,False,34,ar_prefix,6,"TOOL: web_search
-ARGS: query=auto"
-web_search,0.6363636363636364,False,34,ar_prefix,7,"TOOL: web_search
-ARGS: query=autoregres"
-web_search,0.7272727272727273,False,34,ar_prefix,8,"TOOL: web_search
-ARGS: query=autoregressive "
-web_search,0.8181818181818182,False,34,ar_prefix,9,"TOOL: web_search
-ARGS: query=autoregressive decodi"
-web_search,0.9090909090909091,False,34,ar_prefix,10,"TOOL: web_search
-ARGS: query=autoregressive decoding sy"
-web_search,1.0,True,34,ar_prefix,11,"TOOL: web_search
-ARGS: query=autoregressive decoding systems"
+,0.1111111111111111,False,34,ar_prefix,1,TOOL: we
+web_search,0.2222222222222222,False,34,ar_prefix,2,TOOL: web_search
+web_search,0.3333333333333333,False,34,ar_prefix,3,"TOOL: web_search
+ARGS: q"
+web_search,0.4444444444444444,False,34,ar_prefix,4,"TOOL: web_search
+ARGS: query=aut"
+web_search,0.5555555555555556,False,34,ar_prefix,5,"TOOL: web_search
+ARGS: query=autoregress"
+web_search,0.6666666666666666,False,34,ar_prefix,6,"TOOL: web_search
+ARGS: query=autoregressive spec"
+web_search,0.7777777777777778,False,34,ar_prefix,7,"TOOL: web_search
+ARGS: query=autoregressive speculative "
+web_search,0.8888888888888888,True,34,ar_prefix,8,"TOOL: web_search
+ARGS: query=autoregressive speculative decoding"
+web_search,1.0,True,34,ar_prefix,9,"TOOL: web_search
+ARGS: query=autoregressive speculative decoding systems"
 ,0.0,False,35,dllm,0,
-web_search,0.1,False,35,dllm,1,"TOOL: web_search
+web_search,0.1111111111111111,False,35,dllm,1,"TOOL: web_search
 :"
-web_search,0.2,False,35,dllm,2,"TOOL: web_search
+web_search,0.2222222222222222,False,35,dllm,2,"TOOL: web_search
 ARGS:"
-web_search,0.3,False,35,dllm,3,"TOOL: web_search
+web_search,0.3333333333333333,False,35,dllm,3,"TOOL: web_search
 ARGS: query"
-web_search,0.4,False,35,dllm,4,"TOOL: web_search
+web_search,0.4444444444444444,False,35,dllm,4,"TOOL: web_search
 ARGS: queryusion"
-web_search,0.5,True,35,dllm,5,"TOOL: web_search
+web_search,0.5555555555555556,True,35,dllm,5,"TOOL: web_search
 ARGS: querydiffusion model inference batching"
-web_search,0.6,True,35,dllm,6,"TOOL: web_search
-ARGS: query=""diffusion model inference batching"
-web_search,0.7,True,35,dllm,7,"TOOL: web_search
-ARGS: query=""diffusion model inference batching"""
-web_search,0.8,True,35,dllm,8,"TOOL: web_search
-ARGS: query=""diffusion model inference batching"""
-web_search,0.9,True,35,dllm,9,"TOOL: web_search
-ARGS: query=""diffusion model inference batching"""
-web_search,1.0,True,35,dllm,10,"TOOL: web_search
-ARGS: query=""diffusion model inference batching"""
+web_search,0.6666666666666666,True,35,dllm,6,"TOOL: web_search
+ARGS: query=diffusion model inference batching"
+web_search,0.7777777777777778,True,35,dllm,7,"TOOL: web_search
+ARGS: query=diffusion model inference batching"
+web_search,0.8888888888888888,True,35,dllm,8,"TOOL: web_search
+ARGS: query=diffusion model inference batching"
+web_search,1.0,True,35,dllm,9,"TOOL: web_search
+ARGS: query=diffusion model inference batching"
 ,0.0,False,35,ar_prefix,0,
-,0.1,False,35,ar_prefix,1,TOOL: w
-,0.2,False,35,ar_prefix,2,TOOL: web_sea
-web_search,0.3,False,35,ar_prefix,3,"TOOL: web_search
-ARG"
-web_search,0.4,False,35,ar_prefix,4,"TOOL: web_search
-ARGS: que"
-web_search,0.5,False,35,ar_prefix,5,"TOOL: web_search
-ARGS: query=""dif"
-web_search,0.6,False,35,ar_prefix,6,"TOOL: web_search
-ARGS: query=""diffusion"
-web_search,0.7,False,35,ar_prefix,7,"TOOL: web_search
-ARGS: query=""diffusion model "
-web_search,0.8,False,35,ar_prefix,8,"TOOL: web_search
-ARGS: query=""diffusion model infere"
-web_search,0.9,True,35,ar_prefix,9,"TOOL: web_search
-ARGS: query=""diffusion model inference bat"
-web_search,1.0,True,35,ar_prefix,10,"TOOL: web_search
-ARGS: query=""diffusion model inference batching"""
+,0.1111111111111111,False,35,ar_prefix,1,TOOL: w
+,0.2222222222222222,False,35,ar_prefix,2,TOOL: web_sear
+web_search,0.3333333333333333,False,35,ar_prefix,3,"TOOL: web_search
+ARGS"
+web_search,0.4444444444444444,False,35,ar_prefix,4,"TOOL: web_search
+ARGS: query"
+web_search,0.5555555555555556,False,35,ar_prefix,5,"TOOL: web_search
+ARGS: query=diffus"
+web_search,0.6666666666666666,False,35,ar_prefix,6,"TOOL: web_search
+ARGS: query=diffusion mod"
+web_search,0.7777777777777778,False,35,ar_prefix,7,"TOOL: web_search
+ARGS: query=diffusion model infe"
+web_search,0.8888888888888888,True,35,ar_prefix,8,"TOOL: web_search
+ARGS: query=diffusion model inference b"
+web_search,1.0,True,35,ar_prefix,9,"TOOL: web_search
+ARGS: query=diffusion model inference batching"
 ,0.0,False,36,dllm,0,
 web_search,0.125,False,36,dllm,1,"TOOL: web_search
 :"
@@ -1117,7 +1119,7 @@ web_search,1.0,True,36,ar_prefix,8,"TOOL: web_search
 ARGS: query=""Ray actor scheduling overhead"""
 ,0.0,False,37,dllm,0,
 web_search,0.1111111111111111,False,37,dllm,1,"TOOL: web_search
-: query"
+:"
 web_search,0.2222222222222222,False,37,dllm,2,"TOOL: web_search
 ARGS: query"
 web_search,0.3333333333333333,False,37,dllm,3,"TOOL: web_search
@@ -1152,201 +1154,189 @@ ARGS: query=""GPU cache reuse in language model "
 web_search,1.0,True,37,ar_prefix,9,"TOOL: web_search
 ARGS: query=""GPU cache reuse in language model serving"""
 ,0.0,False,38,dllm,0,
-web_search,0.1,False,38,dllm,1,"TOOL: web_search
-:"
-web_search,0.2,False,38,dllm,2,"TOOL: web_search
-ARGS:"
-web_search,0.3,False,38,dllm,3,"TOOL: web_search
-ARGS: query"
-web_search,0.4,False,38,dllm,4,"TOOL: web_search
+web_search,0.125,False,38,dllm,1,"TOOL: web_search
+: query"
+web_search,0.25,False,38,dllm,2,"TOOL: web_search
 ARGS: query papers"
-web_search,0.5,False,38,dllm,5,"TOOL: web_search
-ARGS: queryEuroSys papersM"
-web_search,0.6,True,38,dllm,6,"TOOL: web_search
-ARGS: query=""EuroSys papers on LLM serving"
-web_search,0.7,True,38,dllm,7,"TOOL: web_search
+web_search,0.375,False,38,dllm,3,"TOOL: web_search
+ARGS: queryEuroSys papers"
+web_search,0.5,False,38,dllm,4,"TOOL: web_search
+ARGS: query=""EuroSys papersM"
+web_search,0.625,True,38,dllm,5,"TOOL: web_search
 ARGS: query=""EuroSys papers on LLM serving"""
-web_search,0.8,True,38,dllm,8,"TOOL: web_search
+web_search,0.75,True,38,dllm,6,"TOOL: web_search
 ARGS: query=""EuroSys papers on LLM serving"""
-web_search,0.9,True,38,dllm,9,"TOOL: web_search
+web_search,0.875,True,38,dllm,7,"TOOL: web_search
 ARGS: query=""EuroSys papers on LLM serving"""
-web_search,1.0,True,38,dllm,10,"TOOL: web_search
+web_search,1.0,True,38,dllm,8,"TOOL: web_search
 ARGS: query=""EuroSys papers on LLM serving"""
 ,0.0,False,38,ar_prefix,0,
-,0.1,False,38,ar_prefix,1,TOOL: 
-,0.2,False,38,ar_prefix,2,TOOL: web_se
-web_search,0.3,False,38,ar_prefix,3,"TOOL: web_search
-A"
-web_search,0.4,False,38,ar_prefix,4,"TOOL: web_search
-ARGS: q"
-web_search,0.5,False,38,ar_prefix,5,"TOOL: web_search
+,0.125,False,38,ar_prefix,1,TOOL: we
+,0.25,False,38,ar_prefix,2,TOOL: web_searc
+web_search,0.375,False,38,ar_prefix,3,"TOOL: web_search
+ARGS: "
+web_search,0.5,False,38,ar_prefix,4,"TOOL: web_search
 ARGS: query="""
-web_search,0.6,False,38,ar_prefix,6,"TOOL: web_search
-ARGS: query=""EuroSy"
-web_search,0.7,False,38,ar_prefix,7,"TOOL: web_search
-ARGS: query=""EuroSys pape"
-web_search,0.8,False,38,ar_prefix,8,"TOOL: web_search
-ARGS: query=""EuroSys papers on "
-web_search,0.9,True,38,ar_prefix,9,"TOOL: web_search
-ARGS: query=""EuroSys papers on LLM se"
-web_search,1.0,True,38,ar_prefix,10,"TOOL: web_search
+web_search,0.625,False,38,ar_prefix,5,"TOOL: web_search
+ARGS: query=""EuroSys "
+web_search,0.75,False,38,ar_prefix,6,"TOOL: web_search
+ARGS: query=""EuroSys papers "
+web_search,0.875,True,38,ar_prefix,7,"TOOL: web_search
+ARGS: query=""EuroSys papers on LLM s"
+web_search,1.0,True,38,ar_prefix,8,"TOOL: web_search
 ARGS: query=""EuroSys papers on LLM serving"""
 ,0.0,False,39,dllm,0,
-web_search,0.09090909090909091,False,39,dllm,1,"TOOL: web_search
+web_search,0.08333333333333333,False,39,dllm,1,"TOOL: web_search
 :"
-web_search,0.18181818181818182,False,39,dllm,2,"TOOL: web_search
-ARGS:"
-web_search,0.2727272727272727,False,39,dllm,3,"TOOL: web_search
+web_search,0.16666666666666666,False,39,dllm,2,"TOOL: web_search
 ARGS: query"
-web_search,0.36363636363636365,False,39,dllm,4,"TOOL: web_search
+web_search,0.25,False,39,dllm,3,"TOOL: web_search
 ARGS: query"
-web_search,0.45454545454545453,False,39,dllm,5,"TOOL: web_search
+web_search,0.3333333333333333,False,39,dllm,4,"TOOL: web_search
 ARGS: query papers"
-web_search,0.5454545454545454,False,39,dllm,6,"TOOL: web_search
+web_search,0.4166666666666667,False,39,dllm,5,"TOOL: web_search
 ARGS: query papers on serving"
-web_search,0.6363636363636364,True,39,dllm,7,"TOOL: web_search
-ARGS: queryATC papers on inference serving systems"
-web_search,0.7272727272727273,True,39,dllm,8,"TOOL: web_search
-ARGS: query=""ATC papers on inference serving systems"""
-web_search,0.8181818181818182,True,39,dllm,9,"TOOL: web_search
-ARGS: query=""ATC papers on inference serving systems"""
-web_search,0.9090909090909091,True,39,dllm,10,"TOOL: web_search
-ARGS: query=""ATC papers on inference serving systems"""
-web_search,1.0,True,39,dllm,11,"TOOL: web_search
-ARGS: query=""ATC papers on inference serving systems"""
+web_search,0.5,True,39,dllm,6,"TOOL: web_search
+ARGS: query papers on inference serving systems"
+web_search,0.5833333333333334,True,39,dllm,7,"TOOL: web_search
+ARGS: query papers on inference serving systems"
+web_search,0.6666666666666666,True,39,dllm,8,"TOOL: web_search
+ARGS: query= papers on inference serving systems"
+web_search,0.75,True,39,dllm,9,"TOOL: web_search
+ARGS: query=ATC papers on inference serving systems"
+web_search,0.8333333333333334,True,39,dllm,10,"TOOL: web_search
+ARGS: query=ATC papers on inference serving systems"
+web_search,0.9166666666666666,True,39,dllm,11,"TOOL: web_search
+ARGS: query=ATC papers on inference serving systems"
+web_search,1.0,True,39,dllm,12,"TOOL: web_search
+ARGS: query=ATC papers on inference serving systems"
 ,0.0,False,39,ar_prefix,0,
-,0.09090909090909091,False,39,ar_prefix,1,TOOL: w
-,0.18181818181818182,False,39,ar_prefix,2,TOOL: web_sea
-web_search,0.2727272727272727,False,39,ar_prefix,3,"TOOL: web_search
-ARG"
-web_search,0.36363636363636365,False,39,ar_prefix,4,"TOOL: web_search
-ARGS: que"
-web_search,0.45454545454545453,False,39,ar_prefix,5,"TOOL: web_search
-ARGS: query=""AT"
-web_search,0.5454545454545454,False,39,ar_prefix,6,"TOOL: web_search
-ARGS: query=""ATC paper"
-web_search,0.6363636363636364,False,39,ar_prefix,7,"TOOL: web_search
-ARGS: query=""ATC papers on i"
-web_search,0.7272727272727273,False,39,ar_prefix,8,"TOOL: web_search
-ARGS: query=""ATC papers on inferen"
-web_search,0.8181818181818182,False,39,ar_prefix,9,"TOOL: web_search
-ARGS: query=""ATC papers on inference serv"
-web_search,0.9090909090909091,True,39,ar_prefix,10,"TOOL: web_search
-ARGS: query=""ATC papers on inference serving sy"
-web_search,1.0,True,39,ar_prefix,11,"TOOL: web_search
-ARGS: query=""ATC papers on inference serving systems"""
+,0.08333333333333333,False,39,ar_prefix,1,TOOL: 
+,0.16666666666666666,False,39,ar_prefix,2,TOOL: web_se
+web_search,0.25,False,39,ar_prefix,3,"TOOL: web_search
+"
+web_search,0.3333333333333333,False,39,ar_prefix,4,"TOOL: web_search
+ARGS: "
+web_search,0.4166666666666667,False,39,ar_prefix,5,"TOOL: web_search
+ARGS: query="
+web_search,0.5,False,39,ar_prefix,6,"TOOL: web_search
+ARGS: query=ATC p"
+web_search,0.5833333333333334,False,39,ar_prefix,7,"TOOL: web_search
+ARGS: query=ATC papers "
+web_search,0.6666666666666666,False,39,ar_prefix,8,"TOOL: web_search
+ARGS: query=ATC papers on inf"
+web_search,0.75,False,39,ar_prefix,9,"TOOL: web_search
+ARGS: query=ATC papers on inferenc"
+web_search,0.8333333333333334,False,39,ar_prefix,10,"TOOL: web_search
+ARGS: query=ATC papers on inference serv"
+web_search,0.9166666666666666,True,39,ar_prefix,11,"TOOL: web_search
+ARGS: query=ATC papers on inference serving sy"
+web_search,1.0,True,39,ar_prefix,12,"TOOL: web_search
+ARGS: query=ATC papers on inference serving systems"
 ,0.0,False,40,dllm,0,
-web_search,0.1,False,40,dllm,1,"TOOL: web_search
-:"
-web_search,0.2,False,40,dllm,2,"TOOL: web_search
-ARGS:"
-web_search,0.3,False,40,dllm,3,"TOOL: web_search
-ARGS: query"
-web_search,0.4,False,40,dllm,4,"TOOL: web_search
-ARGS: queryretriev"
-web_search,0.5,True,40,dllm,5,"TOOL: web_search
+web_search,0.125,False,40,dllm,1,"TOOL: web_search
+: query"
+web_search,0.25,False,40,dllm,2,"TOOL: web_search
+ARGS: queryriev"
+web_search,0.375,True,40,dllm,3,"TOOL: web_search
 ARGS: queryretrieval augmented generation latency"
-web_search,0.6,True,40,dllm,6,"TOOL: web_search
-ARGS: query=""retrieval augmented generation latency"
-web_search,0.7,True,40,dllm,7,"TOOL: web_search
-ARGS: query=""retrieval augmented generation latency"""
-web_search,0.8,True,40,dllm,8,"TOOL: web_search
-ARGS: query=""retrieval augmented generation latency"""
-web_search,0.9,True,40,dllm,9,"TOOL: web_search
-ARGS: query=""retrieval augmented generation latency"""
-web_search,1.0,True,40,dllm,10,"TOOL: web_search
-ARGS: query=""retrieval augmented generation latency"""
+web_search,0.5,True,40,dllm,4,"TOOL: web_search
+ARGS: queryretrieval augmented generation latency"
+web_search,0.625,True,40,dllm,5,"TOOL: web_search
+ARGS: query=retrieval augmented generation latency"
+web_search,0.75,True,40,dllm,6,"TOOL: web_search
+ARGS: query=retrieval augmented generation latency"
+web_search,0.875,True,40,dllm,7,"TOOL: web_search
+ARGS: query=retrieval augmented generation latency"
+web_search,1.0,True,40,dllm,8,"TOOL: web_search
+ARGS: query=retrieval augmented generation latency"
 ,0.0,False,40,ar_prefix,0,
-,0.1,False,40,ar_prefix,1,TOOL: w
-,0.2,False,40,ar_prefix,2,TOOL: web_sear
-web_search,0.3,False,40,ar_prefix,3,"TOOL: web_search
-ARGS"
-web_search,0.4,False,40,ar_prefix,4,"TOOL: web_search
-ARGS: query"
-web_search,0.5,False,40,ar_prefix,5,"TOOL: web_search
-ARGS: query=""retri"
-web_search,0.6,False,40,ar_prefix,6,"TOOL: web_search
-ARGS: query=""retrieval au"
-web_search,0.7,False,40,ar_prefix,7,"TOOL: web_search
-ARGS: query=""retrieval augmented"
-web_search,0.8,False,40,ar_prefix,8,"TOOL: web_search
-ARGS: query=""retrieval augmented genera"
-web_search,0.9,True,40,ar_prefix,9,"TOOL: web_search
-ARGS: query=""retrieval augmented generation la"
-web_search,1.0,True,40,ar_prefix,10,"TOOL: web_search
-ARGS: query=""retrieval augmented generation latency"""
+,0.125,False,40,ar_prefix,1,TOOL: web
+web_search,0.25,False,40,ar_prefix,2,"TOOL: web_search
+"
+web_search,0.375,False,40,ar_prefix,3,"TOOL: web_search
+ARGS: que"
+web_search,0.5,False,40,ar_prefix,4,"TOOL: web_search
+ARGS: query=retri"
+web_search,0.625,False,40,ar_prefix,5,"TOOL: web_search
+ARGS: query=retrieval aug"
+web_search,0.75,False,40,ar_prefix,6,"TOOL: web_search
+ARGS: query=retrieval augmented ge"
+web_search,0.875,True,40,ar_prefix,7,"TOOL: web_search
+ARGS: query=retrieval augmented generation"
+web_search,1.0,True,40,ar_prefix,8,"TOOL: web_search
+ARGS: query=retrieval augmented generation latency"
 ,0.0,False,41,dllm,0,
-web_search,0.125,False,41,dllm,1,"TOOL: web_search
+web_search,0.1111111111111111,False,41,dllm,1,"TOOL: web_search
 :"
-web_search,0.25,False,41,dllm,2,"TOOL: web_search
+web_search,0.2222222222222222,False,41,dllm,2,"TOOL: web_search
 ARGS: query"
-web_search,0.375,False,41,dllm,3,"TOOL: web_search
+web_search,0.3333333333333333,False,41,dllm,3,"TOOL: web_search
 ARGS: query agents"
-web_search,0.5,True,41,dllm,4,"TOOL: web_search
+web_search,0.4444444444444444,True,41,dllm,4,"TOOL: web_search
 ARGS: querytool calling agents execution"
-web_search,0.625,True,41,dllm,5,"TOOL: web_search
+web_search,0.5555555555555556,True,41,dllm,5,"TOOL: web_search
 ARGS: query=""tool calling agents speculative execution"""
-web_search,0.75,True,41,dllm,6,"TOOL: web_search
+web_search,0.6666666666666666,True,41,dllm,6,"TOOL: web_search
 ARGS: query=""tool calling agents speculative execution"""
-web_search,0.875,True,41,dllm,7,"TOOL: web_search
+web_search,0.7777777777777778,True,41,dllm,7,"TOOL: web_search
 ARGS: query=""tool calling agents speculative execution"""
-web_search,1.0,True,41,dllm,8,"TOOL: web_search
+web_search,0.8888888888888888,True,41,dllm,8,"TOOL: web_search
+ARGS: query=""tool calling agents speculative execution"""
+web_search,1.0,True,41,dllm,9,"TOOL: web_search
 ARGS: query=""tool calling agents speculative execution"""
 ,0.0,False,41,ar_prefix,0,
-,0.125,False,41,ar_prefix,1,TOOL: web
-web_search,0.25,False,41,ar_prefix,2,"TOOL: web_search
-A"
-web_search,0.375,False,41,ar_prefix,3,"TOOL: web_search
-ARGS: quer"
-web_search,0.5,False,41,ar_prefix,4,"TOOL: web_search
-ARGS: query=""tool c"
-web_search,0.625,False,41,ar_prefix,5,"TOOL: web_search
-ARGS: query=""tool calling ag"
-web_search,0.75,False,41,ar_prefix,6,"TOOL: web_search
-ARGS: query=""tool calling agents spec"
-web_search,0.875,True,41,ar_prefix,7,"TOOL: web_search
-ARGS: query=""tool calling agents speculative e"
-web_search,1.0,True,41,ar_prefix,8,"TOOL: web_search
+,0.1111111111111111,False,41,ar_prefix,1,TOOL: we
+web_search,0.2222222222222222,False,41,ar_prefix,2,TOOL: web_search
+web_search,0.3333333333333333,False,41,ar_prefix,3,"TOOL: web_search
+ARGS: q"
+web_search,0.4444444444444444,False,41,ar_prefix,4,"TOOL: web_search
+ARGS: query=""to"
+web_search,0.5555555555555556,False,41,ar_prefix,5,"TOOL: web_search
+ARGS: query=""tool calli"
+web_search,0.6666666666666666,False,41,ar_prefix,6,"TOOL: web_search
+ARGS: query=""tool calling agent"
+web_search,0.7777777777777778,False,41,ar_prefix,7,"TOOL: web_search
+ARGS: query=""tool calling agents specul"
+web_search,0.8888888888888888,True,41,ar_prefix,8,"TOOL: web_search
+ARGS: query=""tool calling agents speculative ex"
+web_search,1.0,True,41,ar_prefix,9,"TOOL: web_search
 ARGS: query=""tool calling agents speculative execution"""
 ,0.0,False,42,dllm,0,
-web_search,0.1,False,42,dllm,1,"TOOL: web_search
+web_search,0.1111111111111111,False,42,dllm,1,"TOOL: web_search
 :"
-web_search,0.2,False,42,dllm,2,"TOOL: web_search
-ARGS:"
-web_search,0.3,False,42,dllm,3,"TOOL: web_search
+web_search,0.2222222222222222,False,42,dllm,2,"TOOL: web_search
 ARGS: query"
-web_search,0.4,False,42,dllm,4,"TOOL: web_search
+web_search,0.3333333333333333,False,42,dllm,3,"TOOL: web_search
 ARGS: querydynamic language serving"
-web_search,0.5,True,42,dllm,5,"TOOL: web_search
+web_search,0.4444444444444444,True,42,dllm,4,"TOOL: web_search
 ARGS: querydynamic batching language model serving"
-web_search,0.6,True,42,dllm,6,"TOOL: web_search
+web_search,0.5555555555555556,True,42,dllm,5,"TOOL: web_search
 ARGS: query=""dynamic batching language model serving"
-web_search,0.7,True,42,dllm,7,"TOOL: web_search
+web_search,0.6666666666666666,True,42,dllm,6,"TOOL: web_search
 ARGS: query=""dynamic batching language model serving"""
-web_search,0.8,True,42,dllm,8,"TOOL: web_search
+web_search,0.7777777777777778,True,42,dllm,7,"TOOL: web_search
 ARGS: query=""dynamic batching language model serving"""
-web_search,0.9,True,42,dllm,9,"TOOL: web_search
+web_search,0.8888888888888888,True,42,dllm,8,"TOOL: web_search
 ARGS: query=""dynamic batching language model serving"""
-web_search,1.0,True,42,dllm,10,"TOOL: web_search
+web_search,1.0,True,42,dllm,9,"TOOL: web_search
 ARGS: query=""dynamic batching language model serving"""
 ,0.0,False,42,ar_prefix,0,
-,0.1,False,42,ar_prefix,1,TOOL: w
-,0.2,False,42,ar_prefix,2,TOOL: web_sear
-web_search,0.3,False,42,ar_prefix,3,"TOOL: web_search
-ARGS"
-web_search,0.4,False,42,ar_prefix,4,"TOOL: web_search
-ARGS: query"
-web_search,0.5,False,42,ar_prefix,5,"TOOL: web_search
-ARGS: query=""dynam"
-web_search,0.6,False,42,ar_prefix,6,"TOOL: web_search
-ARGS: query=""dynamic batc"
-web_search,0.7,False,42,ar_prefix,7,"TOOL: web_search
-ARGS: query=""dynamic batching la"
-web_search,0.8,False,42,ar_prefix,8,"TOOL: web_search
-ARGS: query=""dynamic batching language "
-web_search,0.9,True,42,ar_prefix,9,"TOOL: web_search
+,0.1111111111111111,False,42,ar_prefix,1,TOOL: we
+web_search,0.2222222222222222,False,42,ar_prefix,2,TOOL: web_search
+web_search,0.3333333333333333,False,42,ar_prefix,3,"TOOL: web_search
+ARGS: q"
+web_search,0.4444444444444444,False,42,ar_prefix,4,"TOOL: web_search
+ARGS: query=""dy"
+web_search,0.5555555555555556,False,42,ar_prefix,5,"TOOL: web_search
+ARGS: query=""dynamic b"
+web_search,0.6666666666666666,False,42,ar_prefix,6,"TOOL: web_search
+ARGS: query=""dynamic batching "
+web_search,0.7777777777777778,False,42,ar_prefix,7,"TOOL: web_search
+ARGS: query=""dynamic batching language"
+web_search,0.8888888888888888,True,42,ar_prefix,8,"TOOL: web_search
 ARGS: query=""dynamic batching language model s"
-web_search,1.0,True,42,ar_prefix,10,"TOOL: web_search
+web_search,1.0,True,42,ar_prefix,9,"TOOL: web_search
 ARGS: query=""dynamic batching language model serving"""
 ,0.0,False,43,dllm,0,
 web_search,0.1111111111111111,False,43,dllm,1,"TOOL: web_search
@@ -1354,72 +1344,69 @@ web_search,0.1111111111111111,False,43,dllm,1,"TOOL: web_search
 web_search,0.2222222222222222,False,43,dllm,2,"TOOL: web_search
 ARGS:"
 web_search,0.3333333333333333,False,43,dllm,3,"TOOL: web_search
-ARGS: query in"
-web_search,0.4444444444444444,True,43,dllm,4,"TOOL: web_search
-ARGS: querycontinuous batching in LLM inference"
+ARGS: query"
+web_search,0.4444444444444444,False,43,dllm,4,"TOOL: web_search
+ARGS: query inM"
 web_search,0.5555555555555556,True,43,dllm,5,"TOOL: web_search
-ARGS: query=""continuous batching in LLM inference"
+ARGS: querycontinuous batching in LLM inference"
 web_search,0.6666666666666666,True,43,dllm,6,"TOOL: web_search
-ARGS: query=""continuous batching in LLM inference"""
+ARGS: query=continuous batching in LLM inference"
 web_search,0.7777777777777778,True,43,dllm,7,"TOOL: web_search
-ARGS: query=""continuous batching in LLM inference"""
+ARGS: query=continuous batching in LLM inference"
 web_search,0.8888888888888888,True,43,dllm,8,"TOOL: web_search
-ARGS: query=""continuous batching in LLM inference"""
+ARGS: query=continuous batching in LLM inference"
 web_search,1.0,True,43,dllm,9,"TOOL: web_search
-ARGS: query=""continuous batching in LLM inference"""
+ARGS: query=continuous batching in LLM inference"
 ,0.0,False,43,ar_prefix,0,
 ,0.1111111111111111,False,43,ar_prefix,1,TOOL: we
 ,0.2222222222222222,False,43,ar_prefix,2,TOOL: web_searc
 web_search,0.3333333333333333,False,43,ar_prefix,3,"TOOL: web_search
-ARGS: "
-web_search,0.4444444444444444,False,43,ar_prefix,4,"TOOL: web_search
-ARGS: query="""
-web_search,0.5555555555555556,False,43,ar_prefix,5,"TOOL: web_search
-ARGS: query=""continuo"
-web_search,0.6666666666666666,False,43,ar_prefix,6,"TOOL: web_search
-ARGS: query=""continuous batc"
-web_search,0.7777777777777778,False,43,ar_prefix,7,"TOOL: web_search
-ARGS: query=""continuous batching in "
-web_search,0.8888888888888888,True,43,ar_prefix,8,"TOOL: web_search
-ARGS: query=""continuous batching in LLM inf"
-web_search,1.0,True,43,ar_prefix,9,"TOOL: web_search
-ARGS: query=""continuous batching in LLM inference"""
-,0.0,False,44,dllm,0,
-web_search,0.1,False,44,dllm,1,"TOOL: web_search
-:"
-web_search,0.2,False,44,dllm,2,"TOOL: web_search
 ARGS:"
-web_search,0.3,False,44,dllm,3,"TOOL: web_search
+web_search,0.4444444444444444,False,43,ar_prefix,4,"TOOL: web_search
+ARGS: query="
+web_search,0.5555555555555556,False,43,ar_prefix,5,"TOOL: web_search
+ARGS: query=continuo"
+web_search,0.6666666666666666,False,43,ar_prefix,6,"TOOL: web_search
+ARGS: query=continuous batc"
+web_search,0.7777777777777778,False,43,ar_prefix,7,"TOOL: web_search
+ARGS: query=continuous batching in"
+web_search,0.8888888888888888,True,43,ar_prefix,8,"TOOL: web_search
+ARGS: query=continuous batching in LLM in"
+web_search,1.0,True,43,ar_prefix,9,"TOOL: web_search
+ARGS: query=continuous batching in LLM inference"
+,0.0,False,44,dllm,0,
+web_search,0.1111111111111111,False,44,dllm,1,"TOOL: web_search
+ARGS:"
+web_search,0.2222222222222222,False,44,dllm,2,"TOOL: web_search
 ARGS: query"
-web_search,0.4,False,44,dllm,4,"TOOL: web_search
-ARGS: queryM"
-web_search,0.5,True,44,dllm,5,"TOOL: web_search
+web_search,0.3333333333333333,False,44,dllm,3,"TOOL: web_search
+ARGS: queryusionM"
+web_search,0.4444444444444444,True,44,dllm,4,"TOOL: web_search
 ARGS: querydiffusion LLM tool use"
-web_search,0.6,True,44,dllm,6,"TOOL: web_search
+web_search,0.5555555555555556,True,44,dllm,5,"TOOL: web_search
 ARGS: query=""diffusion LLM tool use"
-web_search,0.7,True,44,dllm,7,"TOOL: web_search
+web_search,0.6666666666666666,True,44,dllm,6,"TOOL: web_search
 ARGS: query=""diffusion LLM tool use"""
-web_search,0.8,True,44,dllm,8,"TOOL: web_search
+web_search,0.7777777777777778,True,44,dllm,7,"TOOL: web_search
 ARGS: query=""diffusion LLM tool use"""
-web_search,0.9,True,44,dllm,9,"TOOL: web_search
+web_search,0.8888888888888888,True,44,dllm,8,"TOOL: web_search
 ARGS: query=""diffusion LLM tool use"""
-web_search,1.0,True,44,dllm,10,"TOOL: web_search
+web_search,1.0,True,44,dllm,9,"TOOL: web_search
 ARGS: query=""diffusion LLM tool use"""
 ,0.0,False,44,ar_prefix,0,
-,0.1,False,44,ar_prefix,1,TOOL: 
-,0.2,False,44,ar_prefix,2,TOOL: web_s
-web_search,0.3,False,44,ar_prefix,3,TOOL: web_search
-web_search,0.4,False,44,ar_prefix,4,"TOOL: web_search
-ARGS:"
-web_search,0.5,False,44,ar_prefix,5,"TOOL: web_search
-ARGS: quer"
-web_search,0.6,False,44,ar_prefix,6,"TOOL: web_search
-ARGS: query=""di"
-web_search,0.7,False,44,ar_prefix,7,"TOOL: web_search
-ARGS: query=""diffusio"
-web_search,0.8,True,44,ar_prefix,8,"TOOL: web_search
-ARGS: query=""diffusion LLM"
-web_search,0.9,True,44,ar_prefix,9,"TOOL: web_search
+,0.1111111111111111,False,44,ar_prefix,1,TOOL: 
+,0.2222222222222222,False,44,ar_prefix,2,TOOL: web_se
+web_search,0.3333333333333333,False,44,ar_prefix,3,"TOOL: web_search
+A"
+web_search,0.4444444444444444,False,44,ar_prefix,4,"TOOL: web_search
+ARGS: q"
+web_search,0.5555555555555556,False,44,ar_prefix,5,"TOOL: web_search
+ARGS: query="""
+web_search,0.6666666666666666,False,44,ar_prefix,6,"TOOL: web_search
+ARGS: query=""diffus"
+web_search,0.7777777777777778,False,44,ar_prefix,7,"TOOL: web_search
+ARGS: query=""diffusion LL"
+web_search,0.8888888888888888,True,44,ar_prefix,8,"TOOL: web_search
 ARGS: query=""diffusion LLM tool"
-web_search,1.0,True,44,ar_prefix,10,"TOOL: web_search
+web_search,1.0,True,44,ar_prefix,9,"TOOL: web_search
 ARGS: query=""diffusion LLM tool use"""
