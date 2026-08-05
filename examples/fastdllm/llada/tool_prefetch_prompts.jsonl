@@ -1,0 +1,20 @@
+{"prompt": "Find nonstop flights from SFO to Seoul on September 14, 2026.", "tool": "flight_search", "args": {"origin": "SFO", "destination": "ICN", "date": "2026-09-14"}}
+{"prompt": "Look up the weather in Tokyo for tomorrow.", "tool": "weather", "args": {"location": "Tokyo", "date": "tomorrow"}}
+{"prompt": "Search the web for recent papers about diffusion language model serving.", "tool": "web_search", "args": {"query": "diffusion language model serving recent papers"}}
+{"prompt": "Retrieve internal docs about GPU memory fragmentation in serving systems.", "tool": "vector_search", "args": {"query": "GPU memory fragmentation serving systems"}}
+{"prompt": "Query the orders table for failed payments from customer C2041.", "tool": "sql_query", "args": {"table": "orders", "filter": "failed payments customer C2041"}}
+{"prompt": "Find flights from JFK to LAX on December 3, 2026.", "tool": "flight_search", "args": {"origin": "JFK", "destination": "LAX", "date": "2026-12-03"}}
+{"prompt": "Check whether it will rain in Seattle this Friday.", "tool": "weather", "args": {"location": "Seattle", "date": "Friday"}}
+{"prompt": "Search online for OpenAI Codex API documentation.", "tool": "web_search", "args": {"query": "OpenAI Codex API documentation"}}
+{"prompt": "Retrieve documents about Ray actor scheduling overhead.", "tool": "vector_search", "args": {"query": "Ray actor scheduling overhead"}}
+{"prompt": "Query user_events for login failures from IP 10.0.4.7.", "tool": "sql_query", "args": {"table": "user_events", "filter": "login failures IP 10.0.4.7"}}
+{"prompt": "Find a flight from BOS to LHR departing January 8, 2027.", "tool": "flight_search", "args": {"origin": "BOS", "destination": "LHR", "date": "2027-01-08"}}
+{"prompt": "Get the weather forecast for Paris next Monday.", "tool": "weather", "args": {"location": "Paris", "date": "next Monday"}}
+{"prompt": "Search the web for speculative tool execution in AI agents.", "tool": "web_search", "args": {"query": "speculative tool execution AI agents"}}
+{"prompt": "Retrieve knowledge base passages about dLLM KV cache reuse.", "tool": "vector_search", "args": {"query": "dLLM KV cache reuse"}}
+{"prompt": "Query invoices where status is overdue for account A17.", "tool": "sql_query", "args": {"table": "invoices", "filter": "overdue account A17"}}
+{"prompt": "Find flights from SEA to NRT on May 20, 2027.", "tool": "flight_search", "args": {"origin": "SEA", "destination": "NRT", "date": "2027-05-20"}}
+{"prompt": "Check the weather in Austin this weekend.", "tool": "weather", "args": {"location": "Austin", "date": "this weekend"}}
+{"prompt": "Search the web for EuroSys papers on LLM serving schedulers.", "tool": "web_search", "args": {"query": "EuroSys LLM serving scheduler papers"}}
+{"prompt": "Retrieve team notes about admission control under GPU memory pressure.", "tool": "vector_search", "args": {"query": "admission control GPU memory pressure"}}
+{"prompt": "Query support_tickets for unresolved priority P0 issues.", "tool": "sql_query", "args": {"table": "support_tickets", "filter": "unresolved priority P0"}}
