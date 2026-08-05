@@ -128,8 +128,10 @@ def _query_overlap(text: str, value: str) -> float:
     return len(target & observed) / len(target)
 
 
-def _detect_tool(text: str) -> str | None:
+def _detect_tool(text: str, target_tool: str | None = None) -> str | None:
     normalized = _normalize_text(text)
+    if target_tool is not None and target_tool in normalized:
+        return target_tool
     for tool in TOOL_NAMES:
         if tool in normalized:
             return tool
@@ -143,7 +145,7 @@ def _detect_tool(text: str) -> str | None:
 
 
 def _score_extraction(text: str, target_tool: str, target_args: dict[str, str]) -> dict[str, Any]:
-    detected_tool = _detect_tool(text)
+    detected_tool = _detect_tool(text, target_tool=target_tool)
     tool_correct = detected_tool == target_tool
     arg_scores = {}
     for key, value in target_args.items():

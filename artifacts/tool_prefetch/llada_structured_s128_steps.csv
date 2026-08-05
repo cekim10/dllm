@@ -1,0 +1,1420 @@
+detected_tool,fraction,ready,request_index,source,step,text
+,0.0,False,0,dllm,0,
+sql_query,0.043478260869565216,False,0,dllm,1,"TOOL: sql_query
+:"
+sql_query,0.08695652173913043,False,0,dllm,2,"TOOL: sql_query
+ARGS: table"
+sql_query,0.13043478260869565,False,0,dllm,3,"TOOL: sql_query
+ARGS: table_number"
+sql_query,0.17391304347826086,False,0,dllm,4,"TOOL: sql_query
+ARGS: table select_number, departure_time"
+sql_query,0.21739130434782608,False,0,dllm,5,"TOOL: sql_query
+ARGS: table; select=flight_number, departure_time; where"
+sql_query,0.2608695652173913,False,0,dllm,6,"TOOL: sql_query
+ARGS: table; select=flight_number, departure_time; whereorigin"
+sql_query,0.30434782608695654,False,0,dllm,7,"TOOL: sql_query
+ARGS: table; select=flight_number, departure_time; whereoriginFO"
+sql_query,0.34782608695652173,False,0,dllm,8,"TOOL: sql_query
+ARGS: table; select=flight_number, departure_time; whereorigin='SFO'"
+sql_query,0.391304347826087,False,0,dllm,9,"TOOL: sql_query
+ARGS: table; select=flight_number, departure_time; whereorigin='SFO' AND destination='IC"
+sql_query,0.43478260869565216,False,0,dllm,10,"TOOL: sql_query
+ARGS: tableights; select=flight_number, departure_time; whereorigin='SFO' AND destination='IC"
+sql_query,0.4782608695652174,False,0,dllm,11,"TOOL: sql_query
+ARGS: table=flights; select=flight_number, departure_time; whereorigin='SFO' AND destination='IC"
+sql_query,0.5217391304347826,False,0,dllm,12,"TOOL: sql_query
+ARGS: table=flights; select=flight_number, departure_time; where=origin='SFO' AND destination='IC"
+sql_query,0.5652173913043478,False,0,dllm,13,"TOOL: sql_query
+ARGS: table=flights; select=flight_number, departure_time; where=origin='SFO' AND destination='ICN' AND"
+sql_query,0.6086956521739131,False,0,dllm,14,"TOOL: sql_query
+ARGS: table=flights; select=flight_number, departure_time; where=origin='SFO' AND destination='ICN' AND"
+sql_query,0.6521739130434783,False,0,dllm,15,"TOOL: sql_query
+ARGS: table=flights; select=flight_number, departure_time; where=origin='SFO' AND destination='ICN' AND"
+sql_query,0.6956521739130435,False,0,dllm,16,"TOOL: sql_query
+ARGS: table=flights; select=flight_number, departure_time; where=origin='SFO' AND destination='ICN' AND"
+sql_query,0.7391304347826086,False,0,dllm,17,"TOOL: sql_query
+ARGS: table=flights; select=flight_number, departure_time; where=origin='SFO' AND destination='ICN' AND"
+sql_query,0.782608695652174,False,0,dllm,18,"TOOL: sql_query
+ARGS: table=flights; select=flight_number, departure_time; where=origin='SFO' AND destination='ICN' AND order"
+sql_query,0.8260869565217391,True,0,dllm,19,"TOOL: sql_query
+ARGS: table=flights; select=flight_number, departure_time; where=origin='SFO' AND destination='ICN' AND='2026-09-14'; order_by=departure_time; limit=5"
+sql_query,0.8695652173913043,True,0,dllm,20,"TOOL: sql_query
+ARGS: table=flights; select=flight_number, departure_time; where=origin='SFO' AND destination='ICN' AND departure='2026-09-14'; order_by=departure_time; limit=5"
+sql_query,0.9130434782608695,True,0,dllm,21,"TOOL: sql_query
+ARGS: table=flights; select=flight_number, departure_time; where=origin='SFO' AND destination='ICN' AND departure_date='2026-09-14'; order_by=departure_time; limit=5"
+sql_query,0.9565217391304348,True,0,dllm,22,"TOOL: sql_query
+ARGS: table=flights; select=flight_number, departure_time; where=origin='SFO' AND destination='ICN' AND departure_date='2026-09-14'; order_by=departure_time; limit=5"
+sql_query,1.0,True,0,dllm,23,"TOOL: sql_query
+ARGS: table=flights; select=flight_number, departure_time; where=origin='SFO' AND destination='ICN' AND departure_date='2026-09-14'; order_by=departure_time; limit=5"
+,0.0,False,0,ar_prefix,0,
+,0.043478260869565216,False,0,ar_prefix,1,TOOL: sq
+sql_query,0.08695652173913043,False,0,ar_prefix,2,"TOOL: sql_query
+"
+sql_query,0.13043478260869565,False,0,ar_prefix,3,"TOOL: sql_query
+ARGS: ta"
+sql_query,0.17391304347826086,False,0,ar_prefix,4,"TOOL: sql_query
+ARGS: table=flig"
+sql_query,0.21739130434782608,False,0,ar_prefix,5,"TOOL: sql_query
+ARGS: table=flights; sel"
+sql_query,0.2608695652173913,False,0,ar_prefix,6,"TOOL: sql_query
+ARGS: table=flights; select=flig"
+sql_query,0.30434782608695654,False,0,ar_prefix,7,"TOOL: sql_query
+ARGS: table=flights; select=flight_numbe"
+sql_query,0.34782608695652173,False,0,ar_prefix,8,"TOOL: sql_query
+ARGS: table=flights; select=flight_number, depa"
+sql_query,0.391304347826087,False,0,ar_prefix,9,"TOOL: sql_query
+ARGS: table=flights; select=flight_number, departure_ti"
+sql_query,0.43478260869565216,False,0,ar_prefix,10,"TOOL: sql_query
+ARGS: table=flights; select=flight_number, departure_time; wher"
+sql_query,0.4782608695652174,False,0,ar_prefix,11,"TOOL: sql_query
+ARGS: table=flights; select=flight_number, departure_time; where=origin"
+sql_query,0.5217391304347826,False,0,ar_prefix,12,"TOOL: sql_query
+ARGS: table=flights; select=flight_number, departure_time; where=origin='SFO' A"
+sql_query,0.5652173913043478,False,0,ar_prefix,13,"TOOL: sql_query
+ARGS: table=flights; select=flight_number, departure_time; where=origin='SFO' AND desti"
+sql_query,0.6086956521739131,False,0,ar_prefix,14,"TOOL: sql_query
+ARGS: table=flights; select=flight_number, departure_time; where=origin='SFO' AND destination='"
+sql_query,0.6521739130434783,False,0,ar_prefix,15,"TOOL: sql_query
+ARGS: table=flights; select=flight_number, departure_time; where=origin='SFO' AND destination='ICN' AND"
+sql_query,0.6956521739130435,False,0,ar_prefix,16,"TOOL: sql_query
+ARGS: table=flights; select=flight_number, departure_time; where=origin='SFO' AND destination='ICN' AND depart"
+sql_query,0.7391304347826086,False,0,ar_prefix,17,"TOOL: sql_query
+ARGS: table=flights; select=flight_number, departure_time; where=origin='SFO' AND destination='ICN' AND departure_date"
+sql_query,0.782608695652174,False,0,ar_prefix,18,"TOOL: sql_query
+ARGS: table=flights; select=flight_number, departure_time; where=origin='SFO' AND destination='ICN' AND departure_date='2026-0"
+sql_query,0.8260869565217391,False,0,ar_prefix,19,"TOOL: sql_query
+ARGS: table=flights; select=flight_number, departure_time; where=origin='SFO' AND destination='ICN' AND departure_date='2026-09-14'; o"
+sql_query,0.8695652173913043,False,0,ar_prefix,20,"TOOL: sql_query
+ARGS: table=flights; select=flight_number, departure_time; where=origin='SFO' AND destination='ICN' AND departure_date='2026-09-14'; order_by="
+sql_query,0.9130434782608695,False,0,ar_prefix,21,"TOOL: sql_query
+ARGS: table=flights; select=flight_number, departure_time; where=origin='SFO' AND destination='ICN' AND departure_date='2026-09-14'; order_by=departur"
+sql_query,0.9565217391304348,False,0,ar_prefix,22,"TOOL: sql_query
+ARGS: table=flights; select=flight_number, departure_time; where=origin='SFO' AND destination='ICN' AND departure_date='2026-09-14'; order_by=departure_time; "
+sql_query,1.0,True,0,ar_prefix,23,"TOOL: sql_query
+ARGS: table=flights; select=flight_number, departure_time; where=origin='SFO' AND destination='ICN' AND departure_date='2026-09-14'; order_by=departure_time; limit=5"
+,0.0,False,1,dllm,0,
+sql_query,0.05,False,1,dllm,1,"TOOL: sql_query
+:"
+sql_query,0.1,False,1,dllm,2,"TOOL: sql_query
+ARGS: tableoices"
+sql_query,0.15,False,1,dllm,3,"TOOL: sql_query
+ARGS: table=invoices; select"
+sql_query,0.2,False,1,dllm,4,"TOOL: sql_query
+ARGS: table=invoices; selectinvoice_id, amount; where"
+sql_query,0.25,False,1,dllm,5,"TOOL: sql_query
+ARGS: table=invoices; select=invoice_id, amount; where"
+sql_query,0.3,False,1,dllm,6,"TOOL: sql_query
+ARGS: table=invoices; select=invoice_id, amount; whereaccount"
+sql_query,0.35,False,1,dllm,7,"TOOL: sql_query
+ARGS: table=invoices; select=invoice_id, amount; whereaccount_id"
+sql_query,0.4,False,1,dllm,8,"TOOL: sql_query
+ARGS: table=invoices; select=invoice_id, amount; where=account_id"
+sql_query,0.45,False,1,dllm,9,"TOOL: sql_query
+ARGS: table=invoices; select=invoice_id, amount; where=account_id7"
+sql_query,0.5,False,1,dllm,10,"TOOL: sql_query
+ARGS: table=invoices; select=invoice_id, amount; where=account_id='A17'"
+sql_query,0.55,False,1,dllm,11,"TOOL: sql_query
+ARGS: table=invoices; select=invoice_id, amount; where=account_id='A17' AND"
+sql_query,0.6,False,1,dllm,12,"TOOL: sql_query
+ARGS: table=invoices; select=invoice_id, amount; where=account_id='A17' AND status"
+sql_query,0.65,False,1,dllm,13,"TOOL: sql_query
+ARGS: table=invoices; select=invoice_id, amount; where=account_id='A17' AND status='"
+sql_query,0.7,False,1,dllm,14,"TOOL: sql_query
+ARGS: table=invoices; select=invoice_id, amount; where=account_id='A17' AND status='unpaid' AND00"
+sql_query,0.75,False,1,dllm,15,"TOOL: sql_query
+ARGS: table=invoices; select=invoice_id, amount; where=account_id='A17' AND status='unpaid' AND amount00 order"
+sql_query,0.8,True,1,dllm,16,"TOOL: sql_query
+ARGS: table=invoices; select=invoice_id, amount; where=account_id='A17' AND status='unpaid' AND amount > 1000; order_by=due_date"
+sql_query,0.85,True,1,dllm,17,"TOOL: sql_query
+ARGS: table=invoices; select=invoice_id, amount; where=account_id='A17' AND status='unpaid' AND amount > 1000; order_by=due_date;="
+sql_query,0.9,True,1,dllm,18,"TOOL: sql_query
+ARGS: table=invoices; select=invoice_id, amount; where=account_id='A17' AND status='unpaid' AND amount > 1000; order_by=due_date; limit=10"
+sql_query,0.95,True,1,dllm,19,"TOOL: sql_query
+ARGS: table=invoices; select=invoice_id, amount; where=account_id='A17' AND status='unpaid' AND amount > 1000; order_by=due_date; limit=10"
+sql_query,1.0,True,1,dllm,20,"TOOL: sql_query
+ARGS: table=invoices; select=invoice_id, amount; where=account_id='A17' AND status='unpaid' AND amount > 1000; order_by=due_date; limit=10"
+,0.0,False,1,ar_prefix,0,
+,0.05,False,1,ar_prefix,1,TOOL: sq
+sql_query,0.1,False,1,ar_prefix,2,"TOOL: sql_query
+"
+sql_query,0.15,False,1,ar_prefix,3,"TOOL: sql_query
+ARGS: ta"
+sql_query,0.2,False,1,ar_prefix,4,"TOOL: sql_query
+ARGS: table=inv"
+sql_query,0.25,False,1,ar_prefix,5,"TOOL: sql_query
+ARGS: table=invoices; s"
+sql_query,0.3,False,1,ar_prefix,6,"TOOL: sql_query
+ARGS: table=invoices; select=in"
+sql_query,0.35,False,1,ar_prefix,7,"TOOL: sql_query
+ARGS: table=invoices; select=invoice_i"
+sql_query,0.4,False,1,ar_prefix,8,"TOOL: sql_query
+ARGS: table=invoices; select=invoice_id, amoun"
+sql_query,0.45,False,1,ar_prefix,9,"TOOL: sql_query
+ARGS: table=invoices; select=invoice_id, amount; where"
+sql_query,0.5,False,1,ar_prefix,10,"TOOL: sql_query
+ARGS: table=invoices; select=invoice_id, amount; where=accoun"
+sql_query,0.55,False,1,ar_prefix,11,"TOOL: sql_query
+ARGS: table=invoices; select=invoice_id, amount; where=account_id='A1"
+sql_query,0.6,False,1,ar_prefix,12,"TOOL: sql_query
+ARGS: table=invoices; select=invoice_id, amount; where=account_id='A17' AND s"
+sql_query,0.65,False,1,ar_prefix,13,"TOOL: sql_query
+ARGS: table=invoices; select=invoice_id, amount; where=account_id='A17' AND status='u"
+sql_query,0.7,False,1,ar_prefix,14,"TOOL: sql_query
+ARGS: table=invoices; select=invoice_id, amount; where=account_id='A17' AND status='unpaid' "
+sql_query,0.75,False,1,ar_prefix,15,"TOOL: sql_query
+ARGS: table=invoices; select=invoice_id, amount; where=account_id='A17' AND status='unpaid' AND amou"
+sql_query,0.8,False,1,ar_prefix,16,"TOOL: sql_query
+ARGS: table=invoices; select=invoice_id, amount; where=account_id='A17' AND status='unpaid' AND amount > 100"
+sql_query,0.85,False,1,ar_prefix,17,"TOOL: sql_query
+ARGS: table=invoices; select=invoice_id, amount; where=account_id='A17' AND status='unpaid' AND amount > 1000; orde"
+sql_query,0.9,False,1,ar_prefix,18,"TOOL: sql_query
+ARGS: table=invoices; select=invoice_id, amount; where=account_id='A17' AND status='unpaid' AND amount > 1000; order_by=due"
+sql_query,0.95,True,1,ar_prefix,19,"TOOL: sql_query
+ARGS: table=invoices; select=invoice_id, amount; where=account_id='A17' AND status='unpaid' AND amount > 1000; order_by=due_date; l"
+sql_query,1.0,True,1,ar_prefix,20,"TOOL: sql_query
+ARGS: table=invoices; select=invoice_id, amount; where=account_id='A17' AND status='unpaid' AND amount > 1000; order_by=due_date; limit=10"
+,0.0,False,2,dllm,0,
+sql_query,0.047619047619047616,False,2,dllm,1,"TOOL: sql_query
+: table"
+sql_query,0.09523809523809523,False,2,dllm,2,"TOOL: sql_query
+ARGS: table"
+sql_query,0.14285714285714285,False,2,dllm,3,"TOOL: sql_query
+ARGS: table select"
+sql_query,0.19047619047619047,False,2,dllm,4,"TOOL: sql_query
+ARGS: table_logins selectuser_id, timestamp"
+sql_query,0.23809523809523808,False,2,dllm,5,"TOOL: sql_query
+ARGS: tablefailed_logins; selectuser_id, timestamp; where"
+sql_query,0.2857142857142857,False,2,dllm,6,"TOOL: sql_query
+ARGS: table=failed_logins; select=user_id, timestamp; where="
+sql_query,0.3333333333333333,False,2,dllm,7,"TOOL: sql_query
+ARGS: table=failed_logins; select=user_id, timestamp; where=ip"
+sql_query,0.38095238095238093,False,2,dllm,8,"TOOL: sql_query
+ARGS: table=failed_logins; select=user_id, timestamp; where=ip_address"
+sql_query,0.42857142857142855,False,2,dllm,9,"TOOL: sql_query
+ARGS: table=failed_logins; select=user_id, timestamp; where=ip_address0"
+sql_query,0.47619047619047616,False,2,dllm,10,"TOOL: sql_query
+ARGS: table=failed_logins; select=user_id, timestamp; where=ip_address='10.0.4"
+sql_query,0.5238095238095238,False,2,dllm,11,"TOOL: sql_query
+ARGS: table=failed_logins; select=user_id, timestamp; where=ip_address='10.0.4.7'"
+sql_query,0.5714285714285714,False,2,dllm,12,"TOOL: sql_query
+ARGS: table=failed_logins; select=user_id, timestamp; where=ip_address='10.0.4.7' AND"
+sql_query,0.6190476190476191,False,2,dllm,13,"TOOL: sql_query
+ARGS: table=failed_logins; select=user_id, timestamp; where=ip_address='10.0.4.7' AND"
+sql_query,0.6666666666666666,False,2,dllm,14,"TOOL: sql_query
+ARGS: table=failed_logins; select=user_id, timestamp; where=ip_address='10.0.4.7' AND order"
+sql_query,0.7142857142857143,False,2,dllm,15,"TOOL: sql_query
+ARGS: table=failed_logins; select=user_id, timestamp; where=ip_address='10.0.4.7' AND2026-08-01'; order_by=timestamp"
+sql_query,0.7619047619047619,False,2,dllm,16,"TOOL: sql_query
+ARGS: table=failed_logins; select=user_id, timestamp; where=ip_address='10.0.4.7' AND timestamp2026-08-01'; order_by=timestamp;"
+sql_query,0.8095238095238095,False,2,dllm,17,"TOOL: sql_query
+ARGS: table=failed_logins; select=user_id, timestamp; where=ip_address='10.0.4.7' AND timestamp2026-08-01'; order_by=timestamp; limit=20"
+sql_query,0.8571428571428571,False,2,dllm,18,"TOOL: sql_query
+ARGS: table=failed_logins; select=user_id, timestamp; where=ip_address='10.0.4.7' AND timestamp='2026-08-01'; order_by=timestamp; limit=20"
+sql_query,0.9047619047619048,False,2,dllm,19,"TOOL: sql_query
+ARGS: table=failed_logins; select=user_id, timestamp; where=ip_address='10.0.4.7' AND timestamp>='2026-08-01'; order_by=timestamp; limit=20"
+sql_query,0.9523809523809523,False,2,dllm,20,"TOOL: sql_query
+ARGS: table=failed_logins; select=user_id, timestamp; where=ip_address='10.0.4.7' AND timestamp>='2026-08-01'; order_by=timestamp; limit=20"
+sql_query,1.0,False,2,dllm,21,"TOOL: sql_query
+ARGS: table=failed_logins; select=user_id, timestamp; where=ip_address='10.0.4.7' AND timestamp>='2026-08-01'; order_by=timestamp; limit=20"
+,0.0,False,2,ar_prefix,0,
+,0.047619047619047616,False,2,ar_prefix,1,TOOL: sq
+sql_query,0.09523809523809523,False,2,ar_prefix,2,TOOL: sql_query
+sql_query,0.14285714285714285,False,2,ar_prefix,3,"TOOL: sql_query
+ARGS: t"
+sql_query,0.19047619047619047,False,2,ar_prefix,4,"TOOL: sql_query
+ARGS: table=fa"
+sql_query,0.23809523809523808,False,2,ar_prefix,5,"TOOL: sql_query
+ARGS: table=failed_lo"
+sql_query,0.2857142857142857,False,2,ar_prefix,6,"TOOL: sql_query
+ARGS: table=failed_logins; se"
+sql_query,0.3333333333333333,False,2,ar_prefix,7,"TOOL: sql_query
+ARGS: table=failed_logins; select=us"
+sql_query,0.38095238095238093,False,2,ar_prefix,8,"TOOL: sql_query
+ARGS: table=failed_logins; select=user_id, t"
+sql_query,0.42857142857142855,False,2,ar_prefix,9,"TOOL: sql_query
+ARGS: table=failed_logins; select=user_id, timestam"
+sql_query,0.47619047619047616,False,2,ar_prefix,10,"TOOL: sql_query
+ARGS: table=failed_logins; select=user_id, timestamp; wher"
+sql_query,0.5238095238095238,False,2,ar_prefix,11,"TOOL: sql_query
+ARGS: table=failed_logins; select=user_id, timestamp; where=ip_add"
+sql_query,0.5714285714285714,False,2,ar_prefix,12,"TOOL: sql_query
+ARGS: table=failed_logins; select=user_id, timestamp; where=ip_address='1"
+sql_query,0.6190476190476191,False,2,ar_prefix,13,"TOOL: sql_query
+ARGS: table=failed_logins; select=user_id, timestamp; where=ip_address='10.0.4.7"
+sql_query,0.6666666666666666,False,2,ar_prefix,14,"TOOL: sql_query
+ARGS: table=failed_logins; select=user_id, timestamp; where=ip_address='10.0.4.7' AND ti"
+sql_query,0.7142857142857143,False,2,ar_prefix,15,"TOOL: sql_query
+ARGS: table=failed_logins; select=user_id, timestamp; where=ip_address='10.0.4.7' AND timestamp"
+sql_query,0.7619047619047619,False,2,ar_prefix,16,"TOOL: sql_query
+ARGS: table=failed_logins; select=user_id, timestamp; where=ip_address='10.0.4.7' AND timestamp>='2026-"
+sql_query,0.8095238095238095,False,2,ar_prefix,17,"TOOL: sql_query
+ARGS: table=failed_logins; select=user_id, timestamp; where=ip_address='10.0.4.7' AND timestamp>='2026-08-01';"
+sql_query,0.8571428571428571,False,2,ar_prefix,18,"TOOL: sql_query
+ARGS: table=failed_logins; select=user_id, timestamp; where=ip_address='10.0.4.7' AND timestamp>='2026-08-01'; order_"
+sql_query,0.9047619047619048,False,2,ar_prefix,19,"TOOL: sql_query
+ARGS: table=failed_logins; select=user_id, timestamp; where=ip_address='10.0.4.7' AND timestamp>='2026-08-01'; order_by=times"
+sql_query,0.9523809523809523,False,2,ar_prefix,20,"TOOL: sql_query
+ARGS: table=failed_logins; select=user_id, timestamp; where=ip_address='10.0.4.7' AND timestamp>='2026-08-01'; order_by=timestamp; l"
+sql_query,1.0,False,2,ar_prefix,21,"TOOL: sql_query
+ARGS: table=failed_logins; select=user_id, timestamp; where=ip_address='10.0.4.7' AND timestamp>='2026-08-01'; order_by=timestamp; limit=20"
+,0.0,False,3,dllm,0,
+sql_query,0.034482758620689655,False,3,dllm,1,"TOOL: sql_query
+:"
+sql_query,0.06896551724137931,False,3,dllm,2,"TOOL: sql_query
+ARGS: table"
+sql_query,0.10344827586206896,False,3,dllm,3,"TOOL: sql_query
+ARGS: tablesupport"
+sql_query,0.13793103448275862,False,3,dllm,4,"TOOL: sql_query
+ARGS: table=support_tickets select"
+sql_query,0.1724137931034483,False,3,dllm,5,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id,; where"
+sql_query,0.20689655172413793,False,3,dllm,6,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where"
+sql_query,0.2413793103448276,False,3,dllm,7,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where="
+sql_query,0.27586206896551724,False,3,dllm,8,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=status"
+sql_query,0.3103448275862069,False,3,dllm,9,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=status='"
+sql_query,0.3448275862068966,False,3,dllm,10,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=status='open"
+sql_query,0.3793103448275862,False,3,dllm,11,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=status='open'"
+sql_query,0.41379310344827586,False,3,dllm,12,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=status='open' AND"
+sql_query,0.4482758620689655,False,3,dllm,13,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=status='open' AND='"
+sql_query,0.4827586206896552,False,3,dllm,14,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=status='open' AND='0"
+sql_query,0.5172413793103449,False,3,dllm,15,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=status='open' AND='P0"
+sql_query,0.5517241379310345,False,3,dllm,16,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=status='open' AND priority='P0"
+sql_query,0.5862068965517241,False,3,dllm,17,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=status='open' AND priority='P0' AND"
+sql_query,0.6206896551724138,False,3,dllm,18,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=status='open' AND priority='P0' AND"
+sql_query,0.6551724137931034,False,3,dllm,19,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=status='open' AND priority='P0' AND"
+sql_query,0.6896551724137931,False,3,dllm,20,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=status='open' AND priority='P0' AND"
+sql_query,0.7241379310344828,False,3,dllm,21,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=status='open' AND priority='P0' AND';"
+sql_query,0.7586206896551724,False,3,dllm,22,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=status='open' AND priority='P0' AND'; order_by=created_at"
+sql_query,0.7931034482758621,False,3,dllm,23,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=status='open' AND priority='P0' AND'; order_by=created_at; limit=15"
+sql_query,0.8275862068965517,False,3,dllm,24,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=status='open' AND priority='P0' AND=''; order_by=created_at; limit=15"
+sql_query,0.8620689655172413,True,3,dllm,25,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=status='open' AND priority='P0' AND='team'; order_by=created_at; limit=15"
+sql_query,0.896551724137931,True,3,dllm,26,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=status='open' AND priority='P0' AND='team storage'; order_by=created_at; limit=15"
+sql_query,0.9310344827586207,True,3,dllm,27,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=status='open' AND priority='P0' AND team='team storage'; order_by=created_at; limit=15"
+sql_query,0.9655172413793104,True,3,dllm,28,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=status='open' AND priority='P0' AND team='team storage'; order_by=created_at; limit=15"
+sql_query,1.0,True,3,dllm,29,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=status='open' AND priority='P0' AND team='team storage'; order_by=created_at; limit=15"
+,0.0,False,3,ar_prefix,0,
+,0.034482758620689655,False,3,ar_prefix,1,TOOL: 
+,0.06896551724137931,False,3,ar_prefix,2,TOOL: sql_qu
+sql_query,0.10344827586206896,False,3,ar_prefix,3,"TOOL: sql_query
+A"
+sql_query,0.13793103448275862,False,3,ar_prefix,4,"TOOL: sql_query
+ARGS: t"
+sql_query,0.1724137931034483,False,3,ar_prefix,5,"TOOL: sql_query
+ARGS: table="
+sql_query,0.20689655172413793,False,3,ar_prefix,6,"TOOL: sql_query
+ARGS: table=suppor"
+sql_query,0.2413793103448276,False,3,ar_prefix,7,"TOOL: sql_query
+ARGS: table=support_tick"
+sql_query,0.27586206896551724,False,3,ar_prefix,8,"TOOL: sql_query
+ARGS: table=support_tickets; "
+sql_query,0.3103448275862069,False,3,ar_prefix,9,"TOOL: sql_query
+ARGS: table=support_tickets; select"
+sql_query,0.3448275862068966,False,3,ar_prefix,10,"TOOL: sql_query
+ARGS: table=support_tickets; select=tick"
+sql_query,0.3793103448275862,False,3,ar_prefix,11,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id,"
+sql_query,0.41379310344827586,False,3,ar_prefix,12,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner"
+sql_query,0.4482758620689655,False,3,ar_prefix,13,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; whe"
+sql_query,0.4827586206896552,False,3,ar_prefix,14,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=sta"
+sql_query,0.5172413793103449,False,3,ar_prefix,15,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=status='"
+sql_query,0.5517241379310345,False,3,ar_prefix,16,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=status='open' "
+sql_query,0.5862068965517241,False,3,ar_prefix,17,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=status='open' AND p"
+sql_query,0.6206896551724138,False,3,ar_prefix,18,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=status='open' AND priorit"
+sql_query,0.6551724137931034,False,3,ar_prefix,19,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=status='open' AND priority='P0'"
+sql_query,0.6896551724137931,False,3,ar_prefix,20,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=status='open' AND priority='P0' AND "
+sql_query,0.7241379310344828,False,3,ar_prefix,21,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=status='open' AND priority='P0' AND team='"
+sql_query,0.7586206896551724,False,3,ar_prefix,22,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=status='open' AND priority='P0' AND team='team "
+sql_query,0.7931034482758621,False,3,ar_prefix,23,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=status='open' AND priority='P0' AND team='team storag"
+sql_query,0.8275862068965517,False,3,ar_prefix,24,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=status='open' AND priority='P0' AND team='team storage'; or"
+sql_query,0.8620689655172413,False,3,ar_prefix,25,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=status='open' AND priority='P0' AND team='team storage'; order_b"
+sql_query,0.896551724137931,False,3,ar_prefix,26,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=status='open' AND priority='P0' AND team='team storage'; order_by=crea"
+sql_query,0.9310344827586207,False,3,ar_prefix,27,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=status='open' AND priority='P0' AND team='team storage'; order_by=created_a"
+sql_query,0.9655172413793104,False,3,ar_prefix,28,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=status='open' AND priority='P0' AND team='team storage'; order_by=created_at; lim"
+sql_query,1.0,True,3,ar_prefix,29,"TOOL: sql_query
+ARGS: table=support_tickets; select=ticket_id, owner; where=status='open' AND priority='P0' AND team='team storage'; order_by=created_at; limit=15"
+,0.0,False,4,dllm,0,
+sql_query,0.05263157894736842,False,4,dllm,1,"TOOL: sql_query
+: table"
+sql_query,0.10526315789473684,False,4,dllm,2,"TOOL: sql_query
+ARGS: table select"
+sql_query,0.15789473684210525,False,4,dllm,3,"TOOL: sql_query
+ARGS: table_nodes select_id"
+sql_query,0.21052631578947367,False,4,dllm,4,"TOOL: sql_query
+ARGS: table_nodes selectnode_id, memory_utilization wherememory"
+sql_query,0.2631578947368421,False,4,dllm,5,"TOOL: sql_query
+ARGS: table_nodes selectnode_id, memory_utilization wherememory_utilization >9"
+sql_query,0.3157894736842105,False,4,dllm,6,"TOOL: sql_query
+ARGS: table_nodes selectnode_id, memory_utilization wherememory_utilization > 90"
+sql_query,0.3684210526315789,False,4,dllm,7,"TOOL: sql_query
+ARGS: table_nodes selectnode_id, memory_utilization where=memory_utilization > 90"
+sql_query,0.42105263157894735,False,4,dllm,8,"TOOL: sql_query
+ARGS: table_nodes select=node_id, memory_utilization where=memory_utilization > 90"
+sql_query,0.47368421052631576,False,4,dllm,9,"TOOL: sql_query
+ARGS: table_nodes select=node_id, memory_utilization; where=memory_utilization > 90"
+sql_query,0.5263157894736842,False,4,dllm,10,"TOOL: sql_query
+ARGS: table_nodes; select=node_id, memory_utilization; where=memory_utilization > 90"
+sql_query,0.5789473684210527,False,4,dllm,11,"TOOL: sql_query
+ARGS: table_nodes; select=node_id, memory_utilization; where=memory_utilization > 90 AND"
+sql_query,0.631578947368421,False,4,dllm,12,"TOOL: sql_query
+ARGS: tablepu_nodes; select=node_id, memory_utilization; where=memory_utilization > 90 AND"
+sql_query,0.6842105263157895,False,4,dllm,13,"TOOL: sql_query
+ARGS: table=gpu_nodes; select=node_id, memory_utilization; where=memory_utilization > 90 AND"
+sql_query,0.7368421052631579,False,4,dllm,14,"TOOL: sql_query
+ARGS: table=gpu_nodes; select=node_id, memory_utilization; where=memory_utilization > 90 AND cluster order"
+sql_query,0.7894736842105263,False,4,dllm,15,"TOOL: sql_query
+ARGS: table=gpu_nodes; select=node_id, memory_utilization; where=memory_utilization > 90 AND cluster = 'prod-a'; order_by=memory_utilization"
+sql_query,0.8421052631578947,False,4,dllm,16,"TOOL: sql_query
+ARGS: table=gpu_nodes; select=node_id, memory_utilization; where=memory_utilization > 90 AND cluster = 'prod-a'; order_by=memory_utilization;"
+sql_query,0.8947368421052632,True,4,dllm,17,"TOOL: sql_query
+ARGS: table=gpu_nodes; select=node_id, memory_utilization; where=memory_utilization > 90 AND cluster = 'prod-a'; order_by=memory_utilization; limit=25"
+sql_query,0.9473684210526315,True,4,dllm,18,"TOOL: sql_query
+ARGS: table=gpu_nodes; select=node_id, memory_utilization; where=memory_utilization > 90 AND cluster = 'prod-a'; order_by=memory_utilization; limit=25"
+sql_query,1.0,True,4,dllm,19,"TOOL: sql_query
+ARGS: table=gpu_nodes; select=node_id, memory_utilization; where=memory_utilization > 90 AND cluster = 'prod-a'; order_by=memory_utilization; limit=25"
+,0.0,False,4,ar_prefix,0,
+,0.05263157894736842,False,4,ar_prefix,1,TOOL: sql
+sql_query,0.10526315789473684,False,4,ar_prefix,2,"TOOL: sql_query
+AR"
+sql_query,0.15789473684210525,False,4,ar_prefix,3,"TOOL: sql_query
+ARGS: table"
+sql_query,0.21052631578947367,False,4,ar_prefix,4,"TOOL: sql_query
+ARGS: table=gpu_nod"
+sql_query,0.2631578947368421,False,4,ar_prefix,5,"TOOL: sql_query
+ARGS: table=gpu_nodes; selec"
+sql_query,0.3157894736842105,False,4,ar_prefix,6,"TOOL: sql_query
+ARGS: table=gpu_nodes; select=node_id"
+sql_query,0.3684210526315789,False,4,ar_prefix,7,"TOOL: sql_query
+ARGS: table=gpu_nodes; select=node_id, memory_"
+sql_query,0.42105263157894735,False,4,ar_prefix,8,"TOOL: sql_query
+ARGS: table=gpu_nodes; select=node_id, memory_utilizat"
+sql_query,0.47368421052631576,False,4,ar_prefix,9,"TOOL: sql_query
+ARGS: table=gpu_nodes; select=node_id, memory_utilization; wher"
+sql_query,0.5263157894736842,False,4,ar_prefix,10,"TOOL: sql_query
+ARGS: table=gpu_nodes; select=node_id, memory_utilization; where=memory_"
+sql_query,0.5789473684210527,False,4,ar_prefix,11,"TOOL: sql_query
+ARGS: table=gpu_nodes; select=node_id, memory_utilization; where=memory_utilizati"
+sql_query,0.631578947368421,False,4,ar_prefix,12,"TOOL: sql_query
+ARGS: table=gpu_nodes; select=node_id, memory_utilization; where=memory_utilization > 90 "
+sql_query,0.6842105263157895,False,4,ar_prefix,13,"TOOL: sql_query
+ARGS: table=gpu_nodes; select=node_id, memory_utilization; where=memory_utilization > 90 AND clust"
+sql_query,0.7368421052631579,False,4,ar_prefix,14,"TOOL: sql_query
+ARGS: table=gpu_nodes; select=node_id, memory_utilization; where=memory_utilization > 90 AND cluster = 'pro"
+sql_query,0.7894736842105263,False,4,ar_prefix,15,"TOOL: sql_query
+ARGS: table=gpu_nodes; select=node_id, memory_utilization; where=memory_utilization > 90 AND cluster = 'prod-a'; ord"
+sql_query,0.8421052631578947,False,4,ar_prefix,16,"TOOL: sql_query
+ARGS: table=gpu_nodes; select=node_id, memory_utilization; where=memory_utilization > 90 AND cluster = 'prod-a'; order_by=me"
+sql_query,0.8947368421052632,False,4,ar_prefix,17,"TOOL: sql_query
+ARGS: table=gpu_nodes; select=node_id, memory_utilization; where=memory_utilization > 90 AND cluster = 'prod-a'; order_by=memory_util"
+sql_query,0.9473684210526315,False,4,ar_prefix,18,"TOOL: sql_query
+ARGS: table=gpu_nodes; select=node_id, memory_utilization; where=memory_utilization > 90 AND cluster = 'prod-a'; order_by=memory_utilization; "
+sql_query,1.0,True,4,ar_prefix,19,"TOOL: sql_query
+ARGS: table=gpu_nodes; select=node_id, memory_utilization; where=memory_utilization > 90 AND cluster = 'prod-a'; order_by=memory_utilization; limit=25"
+,0.0,False,5,dllm,0,
+sql_query,0.0625,False,5,dllm,1,"TOOL: sql_query
+:"
+sql_query,0.125,False,5,dllm,2,"TOOL: sql_query
+ARGS: table select"
+sql_query,0.1875,False,5,dllm,3,"TOOL: sql_query
+ARGS: tableorders selectorder_id"
+sql_query,0.25,False,5,dllm,4,"TOOL: sql_query
+ARGS: table=orders selectorder_id,_reason where"
+sql_query,0.3125,False,5,dllm,5,"TOOL: sql_query
+ARGS: table=orders; select=order_id, failure_reason; where"
+sql_query,0.375,False,5,dllm,6,"TOOL: sql_query
+ARGS: table=orders; select=order_id, failure_reason; wherecustomer"
+sql_query,0.4375,False,5,dllm,7,"TOOL: sql_query
+ARGS: table=orders; select=order_id, failure_reason; where=customer"
+sql_query,0.5,False,5,dllm,8,"TOOL: sql_query
+ARGS: table=orders; select=order_id, failure_reason; where=customer_id"
+sql_query,0.5625,False,5,dllm,9,"TOOL: sql_query
+ARGS: table=orders; select=order_id, failure_reason; where=customer_id4"
+sql_query,0.625,False,5,dllm,10,"TOOL: sql_query
+ARGS: table=orders; select=order_id, failure_reason; where=customer_id='C2041'"
+sql_query,0.6875,False,5,dllm,11,"TOOL: sql_query
+ARGS: table=orders; select=order_id, failure_reason; where=customer_id='C2041' AND"
+sql_query,0.75,False,5,dllm,12,"TOOL: sql_query
+ARGS: table=orders; select=order_id, failure_reason; where=customer_id='C2041' AND payment_status='failed'; order_by=updated_at"
+sql_query,0.8125,False,5,dllm,13,"TOOL: sql_query
+ARGS: table=orders; select=order_id, failure_reason; where=customer_id='C2041' AND payment_status='failed'; order_by=updated_at;"
+sql_query,0.875,True,5,dllm,14,"TOOL: sql_query
+ARGS: table=orders; select=order_id, failure_reason; where=customer_id='C2041' AND payment_status='failed'; order_by=updated_at; limit=10"
+sql_query,0.9375,True,5,dllm,15,"TOOL: sql_query
+ARGS: table=orders; select=order_id, failure_reason; where=customer_id='C2041' AND payment_status='failed'; order_by=updated_at; limit=10"
+sql_query,1.0,True,5,dllm,16,"TOOL: sql_query
+ARGS: table=orders; select=order_id, failure_reason; where=customer_id='C2041' AND payment_status='failed'; order_by=updated_at; limit=10"
+,0.0,False,5,ar_prefix,0,
+,0.0625,False,5,ar_prefix,1,TOOL: sql_
+sql_query,0.125,False,5,ar_prefix,2,"TOOL: sql_query
+ARGS"
+sql_query,0.1875,False,5,ar_prefix,3,"TOOL: sql_query
+ARGS: table=o"
+sql_query,0.25,False,5,ar_prefix,4,"TOOL: sql_query
+ARGS: table=orders; sel"
+sql_query,0.3125,False,5,ar_prefix,5,"TOOL: sql_query
+ARGS: table=orders; select=order"
+sql_query,0.375,False,5,ar_prefix,6,"TOOL: sql_query
+ARGS: table=orders; select=order_id, failu"
+sql_query,0.4375,False,5,ar_prefix,7,"TOOL: sql_query
+ARGS: table=orders; select=order_id, failure_reason"
+sql_query,0.5,False,5,ar_prefix,8,"TOOL: sql_query
+ARGS: table=orders; select=order_id, failure_reason; where=cu"
+sql_query,0.5625,False,5,ar_prefix,9,"TOOL: sql_query
+ARGS: table=orders; select=order_id, failure_reason; where=customer_id="
+sql_query,0.625,False,5,ar_prefix,10,"TOOL: sql_query
+ARGS: table=orders; select=order_id, failure_reason; where=customer_id='C2041' A"
+sql_query,0.6875,False,5,ar_prefix,11,"TOOL: sql_query
+ARGS: table=orders; select=order_id, failure_reason; where=customer_id='C2041' AND payment"
+sql_query,0.75,False,5,ar_prefix,12,"TOOL: sql_query
+ARGS: table=orders; select=order_id, failure_reason; where=customer_id='C2041' AND payment_status='"
+sql_query,0.8125,False,5,ar_prefix,13,"TOOL: sql_query
+ARGS: table=orders; select=order_id, failure_reason; where=customer_id='C2041' AND payment_status='failed'; o"
+sql_query,0.875,False,5,ar_prefix,14,"TOOL: sql_query
+ARGS: table=orders; select=order_id, failure_reason; where=customer_id='C2041' AND payment_status='failed'; order_by=u"
+sql_query,0.9375,False,5,ar_prefix,15,"TOOL: sql_query
+ARGS: table=orders; select=order_id, failure_reason; where=customer_id='C2041' AND payment_status='failed'; order_by=updated_at;"
+sql_query,1.0,True,5,ar_prefix,16,"TOOL: sql_query
+ARGS: table=orders; select=order_id, failure_reason; where=customer_id='C2041' AND payment_status='failed'; order_by=updated_at; limit=10"
+,0.0,False,6,dllm,0,
+sql_query,0.058823529411764705,False,6,dllm,1,"TOOL: sql_query
+:"
+sql_query,0.11764705882352941,False,6,dllm,2,"TOOL: sql_query
+ARGS: table"
+sql_query,0.17647058823529413,False,6,dllm,3,"TOOL: sql_query
+ARGS: tableiments"
+sql_query,0.23529411764705882,False,6,dllm,4,"TOOL: sql_query
+ARGS: table=experiments; select"
+sql_query,0.29411764705882354,False,6,dllm,5,"TOOL: sql_query
+ARGS: table=experiments; selectexperiment_id, speedup where"
+sql_query,0.35294117647058826,False,6,dllm,6,"TOOL: sql_query
+ARGS: table=experiments; select=experiment_id, speedup; wheremodel"
+sql_query,0.4117647058823529,False,6,dllm,7,"TOOL: sql_query
+ARGS: table=experiments; select=experiment_id, speedup; wheremodelLL"
+sql_query,0.47058823529411764,False,6,dllm,8,"TOOL: sql_query
+ARGS: table=experiments; select=experiment_id, speedup; wheremodelLLa"
+sql_query,0.5294117647058824,False,6,dllm,9,"TOOL: sql_query
+ARGS: table=experiments; select=experiment_id, speedup; wheremodelLLaDA'"
+sql_query,0.5882352941176471,False,6,dllm,10,"TOOL: sql_query
+ARGS: table=experiments; select=experiment_id, speedup; wheremodel='LLaDA' AND speedup"
+sql_query,0.6470588235294118,False,6,dllm,11,"TOOL: sql_query
+ARGS: table=experiments; select=experiment_id, speedup; where=model='LLaDA' AND speedup"
+sql_query,0.7058823529411765,False,6,dllm,12,"TOOL: sql_query
+ARGS: table=experiments; select=experiment_id, speedup; where=model='LLaDA' AND speedup order"
+sql_query,0.7647058823529411,False,6,dllm,13,"TOOL: sql_query
+ARGS: table=experiments; select=experiment_id, speedup; where=model='LLaDA' AND speedup > 1.5; order_by=speedup"
+sql_query,0.8235294117647058,False,6,dllm,14,"TOOL: sql_query
+ARGS: table=experiments; select=experiment_id, speedup; where=model='LLaDA' AND speedup > 1.5; order_by=speedup;"
+sql_query,0.8823529411764706,False,6,dllm,15,"TOOL: sql_query
+ARGS: table=experiments; select=experiment_id, speedup; where=model='LLaDA' AND speedup > 1.5; order_by=speedup; limit=12"
+sql_query,0.9411764705882353,False,6,dllm,16,"TOOL: sql_query
+ARGS: table=experiments; select=experiment_id, speedup; where=model='LLaDA' AND speedup > 1.5; order_by=speedup; limit=12"
+sql_query,1.0,False,6,dllm,17,"TOOL: sql_query
+ARGS: table=experiments; select=experiment_id, speedup; where=model='LLaDA' AND speedup > 1.5; order_by=speedup; limit=12"
+,0.0,False,6,ar_prefix,0,
+,0.058823529411764705,False,6,ar_prefix,1,TOOL: sql
+sql_query,0.11764705882352941,False,6,ar_prefix,2,"TOOL: sql_query
+A"
+sql_query,0.17647058823529413,False,6,ar_prefix,3,"TOOL: sql_query
+ARGS: tab"
+sql_query,0.23529411764705882,False,6,ar_prefix,4,"TOOL: sql_query
+ARGS: table=exper"
+sql_query,0.29411764705882354,False,6,ar_prefix,5,"TOOL: sql_query
+ARGS: table=experiments; "
+sql_query,0.35294117647058826,False,6,ar_prefix,6,"TOOL: sql_query
+ARGS: table=experiments; select=e"
+sql_query,0.4117647058823529,False,6,ar_prefix,7,"TOOL: sql_query
+ARGS: table=experiments; select=experimen"
+sql_query,0.47058823529411764,False,6,ar_prefix,8,"TOOL: sql_query
+ARGS: table=experiments; select=experiment_id, sp"
+sql_query,0.5294117647058824,False,6,ar_prefix,9,"TOOL: sql_query
+ARGS: table=experiments; select=experiment_id, speedup; w"
+sql_query,0.5882352941176471,False,6,ar_prefix,10,"TOOL: sql_query
+ARGS: table=experiments; select=experiment_id, speedup; where=mod"
+sql_query,0.6470588235294118,False,6,ar_prefix,11,"TOOL: sql_query
+ARGS: table=experiments; select=experiment_id, speedup; where=model='LLaD"
+sql_query,0.7058823529411765,False,6,ar_prefix,12,"TOOL: sql_query
+ARGS: table=experiments; select=experiment_id, speedup; where=model='LLaDA' AND s"
+sql_query,0.7647058823529411,False,6,ar_prefix,13,"TOOL: sql_query
+ARGS: table=experiments; select=experiment_id, speedup; where=model='LLaDA' AND speedup >"
+sql_query,0.8235294117647058,False,6,ar_prefix,14,"TOOL: sql_query
+ARGS: table=experiments; select=experiment_id, speedup; where=model='LLaDA' AND speedup > 1.5; or"
+sql_query,0.8823529411764706,False,6,ar_prefix,15,"TOOL: sql_query
+ARGS: table=experiments; select=experiment_id, speedup; where=model='LLaDA' AND speedup > 1.5; order_by=s"
+sql_query,0.9411764705882353,False,6,ar_prefix,16,"TOOL: sql_query
+ARGS: table=experiments; select=experiment_id, speedup; where=model='LLaDA' AND speedup > 1.5; order_by=speedup; "
+sql_query,1.0,False,6,ar_prefix,17,"TOOL: sql_query
+ARGS: table=experiments; select=experiment_id, speedup; where=model='LLaDA' AND speedup > 1.5; order_by=speedup; limit=12"
+,0.0,False,7,dllm,0,
+sql_query,0.06666666666666667,False,7,dllm,1,"TOOL: sql_query
+:"
+sql_query,0.13333333333333333,False,7,dllm,2,"TOOL: sql_query
+ARGS:"
+sql_query,0.2,False,7,dllm,3,"TOOL: sql_query
+ARGS: table"
+sql_query,0.26666666666666666,False,7,dllm,4,"TOOL: sql_query
+ARGS: tablecache_events; select"
+sql_query,0.3333333333333333,False,7,dllm,5,"TOOL: sql_query
+ARGS: table=cache_events; select=request_id, hit_rate; wherepolicy"
+sql_query,0.4,False,7,dllm,6,"TOOL: sql_query
+ARGS: table=cache_events; select=request_id, hit_rate; wherepolicyprefix"
+sql_query,0.4666666666666667,False,7,dllm,7,"TOOL: sql_query
+ARGS: table=cache_events; select=request_id, hit_rate; wherepolicyprefix AND <"
+sql_query,0.5333333333333333,False,7,dllm,8,"TOOL: sql_query
+ARGS: table=cache_events; select=request_id, hit_rate; wherepolicy =prefix AND hit_rate <"
+sql_query,0.6,False,7,dllm,9,"TOOL: sql_query
+ARGS: table=cache_events; select=request_id, hit_rate; wherepolicy = 'prefix' AND hit_rate <"
+sql_query,0.6666666666666666,False,7,dllm,10,"TOOL: sql_query
+ARGS: table=cache_events; select=request_id, hit_rate; where=policy = 'prefix' AND hit_rate <"
+sql_query,0.7333333333333333,False,7,dllm,11,"TOOL: sql_query
+ARGS: table=cache_events; select=request_id, hit_rate; where=policy = 'prefix' AND hit_rate < 0.7; order_by=hit_rate"
+sql_query,0.8,False,7,dllm,12,"TOOL: sql_query
+ARGS: table=cache_events; select=request_id, hit_rate; where=policy = 'prefix' AND hit_rate < 0.7; order_by=hit_rate;"
+sql_query,0.8666666666666667,True,7,dllm,13,"TOOL: sql_query
+ARGS: table=cache_events; select=request_id, hit_rate; where=policy = 'prefix' AND hit_rate < 0.7; order_by=hit_rate; limit=30"
+sql_query,0.9333333333333333,True,7,dllm,14,"TOOL: sql_query
+ARGS: table=cache_events; select=request_id, hit_rate; where=policy = 'prefix' AND hit_rate < 0.7; order_by=hit_rate; limit=30"
+sql_query,1.0,True,7,dllm,15,"TOOL: sql_query
+ARGS: table=cache_events; select=request_id, hit_rate; where=policy = 'prefix' AND hit_rate < 0.7; order_by=hit_rate; limit=30"
+,0.0,False,7,ar_prefix,0,
+,0.06666666666666667,False,7,ar_prefix,1,TOOL: sql_
+sql_query,0.13333333333333333,False,7,ar_prefix,2,"TOOL: sql_query
+ARG"
+sql_query,0.2,False,7,ar_prefix,3,"TOOL: sql_query
+ARGS: table=c"
+sql_query,0.26666666666666666,False,7,ar_prefix,4,"TOOL: sql_query
+ARGS: table=cache_even"
+sql_query,0.3333333333333333,False,7,ar_prefix,5,"TOOL: sql_query
+ARGS: table=cache_events; select"
+sql_query,0.4,False,7,ar_prefix,6,"TOOL: sql_query
+ARGS: table=cache_events; select=request_"
+sql_query,0.4666666666666667,False,7,ar_prefix,7,"TOOL: sql_query
+ARGS: table=cache_events; select=request_id, hit_ra"
+sql_query,0.5333333333333333,False,7,ar_prefix,8,"TOOL: sql_query
+ARGS: table=cache_events; select=request_id, hit_rate; where"
+sql_query,0.6,False,7,ar_prefix,9,"TOOL: sql_query
+ARGS: table=cache_events; select=request_id, hit_rate; where=policy = "
+sql_query,0.6666666666666666,False,7,ar_prefix,10,"TOOL: sql_query
+ARGS: table=cache_events; select=request_id, hit_rate; where=policy = 'prefix' "
+sql_query,0.7333333333333333,False,7,ar_prefix,11,"TOOL: sql_query
+ARGS: table=cache_events; select=request_id, hit_rate; where=policy = 'prefix' AND hit_ra"
+sql_query,0.8,False,7,ar_prefix,12,"TOOL: sql_query
+ARGS: table=cache_events; select=request_id, hit_rate; where=policy = 'prefix' AND hit_rate < 0.7;"
+sql_query,0.8666666666666667,False,7,ar_prefix,13,"TOOL: sql_query
+ARGS: table=cache_events; select=request_id, hit_rate; where=policy = 'prefix' AND hit_rate < 0.7; order_by="
+sql_query,0.9333333333333333,False,7,ar_prefix,14,"TOOL: sql_query
+ARGS: table=cache_events; select=request_id, hit_rate; where=policy = 'prefix' AND hit_rate < 0.7; order_by=hit_rate;"
+sql_query,1.0,True,7,ar_prefix,15,"TOOL: sql_query
+ARGS: table=cache_events; select=request_id, hit_rate; where=policy = 'prefix' AND hit_rate < 0.7; order_by=hit_rate; limit=30"
+,0.0,False,8,dllm,0,
+sql_query,0.06666666666666667,False,8,dllm,1,"TOOL: sql_query
+ARGS:"
+sql_query,0.13333333333333333,False,8,dllm,2,"TOOL: sql_query
+ARGS: table"
+sql_query,0.2,False,8,dllm,3,"TOOL: sql_query
+ARGS: table="
+sql_query,0.26666666666666666,False,8,dllm,4,"TOOL: sql_query
+ARGS: table=tool_calls; select"
+sql_query,0.3333333333333333,False,8,dllm,5,"TOOL: sql_query
+ARGS: table=tool_calls; select=session_id,_ms; where"
+sql_query,0.4,False,8,dllm,6,"TOOL: sql_query
+ARGS: table=tool_calls; select=session_id, latency_ms; where=tool_name"
+sql_query,0.4666666666666667,False,8,dllm,7,"TOOL: sql_query
+ARGS: table=tool_calls; select=session_id, latency_ms; where=tool_name='"
+web_search,0.5333333333333333,False,8,dllm,8,"TOOL: sql_query
+ARGS: table=tool_calls; select=session_id, latency_ms; where=tool_name='web_search'"
+web_search,0.6,False,8,dllm,9,"TOOL: sql_query
+ARGS: table=tool_calls; select=session_id, latency_ms; where=tool_name='web_search' AND latency_ms"
+web_search,0.6666666666666666,False,8,dllm,10,"TOOL: sql_query
+ARGS: table=tool_calls; select=session_id, latency_ms; where=tool_name='web_search' AND latency_ms0=ency"
+web_search,0.7333333333333333,False,8,dllm,11,"TOOL: sql_query
+ARGS: table=tool_calls; select=session_id, latency_ms; where=tool_name='web_search' AND latency_ms > 300; order_by=latency_ms"
+web_search,0.8,False,8,dllm,12,"TOOL: sql_query
+ARGS: table=tool_calls; select=session_id, latency_ms; where=tool_name='web_search' AND latency_ms > 300; order_by=latency_ms;"
+web_search,0.8666666666666667,False,8,dllm,13,"TOOL: sql_query
+ARGS: table=tool_calls; select=session_id, latency_ms; where=tool_name='web_search' AND latency_ms > 300; order_by=latency_ms; limit=50"
+web_search,0.9333333333333333,False,8,dllm,14,"TOOL: sql_query
+ARGS: table=tool_calls; select=session_id, latency_ms; where=tool_name='web_search' AND latency_ms > 300; order_by=latency_ms; limit=50"
+web_search,1.0,False,8,dllm,15,"TOOL: sql_query
+ARGS: table=tool_calls; select=session_id, latency_ms; where=tool_name='web_search' AND latency_ms > 300; order_by=latency_ms; limit=50"
+,0.0,False,8,ar_prefix,0,
+,0.06666666666666667,False,8,ar_prefix,1,TOOL: sql_q
+sql_query,0.13333333333333333,False,8,ar_prefix,2,"TOOL: sql_query
+ARGS:"
+sql_query,0.2,False,8,ar_prefix,3,"TOOL: sql_query
+ARGS: table=too"
+sql_query,0.26666666666666666,False,8,ar_prefix,4,"TOOL: sql_query
+ARGS: table=tool_calls; s"
+sql_query,0.3333333333333333,False,8,ar_prefix,5,"TOOL: sql_query
+ARGS: table=tool_calls; select=sess"
+sql_query,0.4,False,8,ar_prefix,6,"TOOL: sql_query
+ARGS: table=tool_calls; select=session_id, la"
+sql_query,0.4666666666666667,False,8,ar_prefix,7,"TOOL: sql_query
+ARGS: table=tool_calls; select=session_id, latency_ms; "
+sql_query,0.5333333333333333,False,8,ar_prefix,8,"TOOL: sql_query
+ARGS: table=tool_calls; select=session_id, latency_ms; where=tool"
+sql_query,0.6,False,8,ar_prefix,9,"TOOL: sql_query
+ARGS: table=tool_calls; select=session_id, latency_ms; where=tool_name='web"
+web_search,0.6666666666666666,False,8,ar_prefix,10,"TOOL: sql_query
+ARGS: table=tool_calls; select=session_id, latency_ms; where=tool_name='web_search' A"
+web_search,0.7333333333333333,False,8,ar_prefix,11,"TOOL: sql_query
+ARGS: table=tool_calls; select=session_id, latency_ms; where=tool_name='web_search' AND latency"
+web_search,0.8,False,8,ar_prefix,12,"TOOL: sql_query
+ARGS: table=tool_calls; select=session_id, latency_ms; where=tool_name='web_search' AND latency_ms > 300;"
+web_search,0.8666666666666667,False,8,ar_prefix,13,"TOOL: sql_query
+ARGS: table=tool_calls; select=session_id, latency_ms; where=tool_name='web_search' AND latency_ms > 300; order_by="
+web_search,0.9333333333333333,False,8,ar_prefix,14,"TOOL: sql_query
+ARGS: table=tool_calls; select=session_id, latency_ms; where=tool_name='web_search' AND latency_ms > 300; order_by=latency_ms"
+web_search,1.0,False,8,ar_prefix,15,"TOOL: sql_query
+ARGS: table=tool_calls; select=session_id, latency_ms; where=tool_name='web_search' AND latency_ms > 300; order_by=latency_ms; limit=50"
+,0.0,False,9,dllm,0,
+sql_query,0.08333333333333333,False,9,dllm,1,"TOOL: sql_query
+ARGS:"
+sql_query,0.16666666666666666,False,9,dllm,2,"TOOL: sql_query
+ARGS: tablead"
+sql_query,0.25,False,9,dllm,3,"TOOL: sql_query
+ARGS: tableadmissions; select"
+sql_query,0.3333333333333333,False,9,dllm,4,"TOOL: sql_query
+ARGS: table=admissions; select=request_id, arrival_time; where"
+sql_query,0.4166666666666667,False,9,dllm,5,"TOOL: sql_query
+ARGS: table=admissions; select=request_id, arrival_time; where=rejection"
+sql_query,0.5,False,9,dllm,6,"TOOL: sql_query
+ARGS: table=admissions; select=request_id, arrival_time; where=rejection_reason"
+sql_query,0.5833333333333334,False,9,dllm,7,"TOOL: sql_query
+ARGS: table=admissions; select=request_id, arrival_time; where=rejection_reason'"
+sql_query,0.6666666666666666,False,9,dllm,8,"TOOL: sql_query
+ARGS: table=admissions; select=request_id, arrival_time; where=rejection_reason='memory_budget' AND"
+sql_query,0.75,False,9,dllm,9,"TOOL: sql_query
+ARGS: table=admissions; select=request_id, arrival_time; where=rejection_reason='memory_budget' AND workload='rare'; order_by=arrival_time;"
+sql_query,0.8333333333333334,True,9,dllm,10,"TOOL: sql_query
+ARGS: table=admissions; select=request_id, arrival_time; where=rejection_reason='memory_budget' AND workload='rare'; order_by=arrival_time; limit=40"
+sql_query,0.9166666666666666,True,9,dllm,11,"TOOL: sql_query
+ARGS: table=admissions; select=request_id, arrival_time; where=rejection_reason='memory_budget' AND workload='rare'; order_by=arrival_time; limit=40"
+sql_query,1.0,True,9,dllm,12,"TOOL: sql_query
+ARGS: table=admissions; select=request_id, arrival_time; where=rejection_reason='memory_budget' AND workload='rare'; order_by=arrival_time; limit=40"
+,0.0,False,9,ar_prefix,0,
+,0.08333333333333333,False,9,ar_prefix,1,TOOL: sql_quer
+sql_query,0.16666666666666666,False,9,ar_prefix,2,"TOOL: sql_query
+ARGS: table="
+sql_query,0.25,False,9,ar_prefix,3,"TOOL: sql_query
+ARGS: table=admissions; s"
+sql_query,0.3333333333333333,False,9,ar_prefix,4,"TOOL: sql_query
+ARGS: table=admissions; select=request_"
+sql_query,0.4166666666666667,False,9,ar_prefix,5,"TOOL: sql_query
+ARGS: table=admissions; select=request_id, arrival_ti"
+sql_query,0.5,False,9,ar_prefix,6,"TOOL: sql_query
+ARGS: table=admissions; select=request_id, arrival_time; where=rej"
+sql_query,0.5833333333333334,False,9,ar_prefix,7,"TOOL: sql_query
+ARGS: table=admissions; select=request_id, arrival_time; where=rejection_reason="
+sql_query,0.6666666666666666,False,9,ar_prefix,8,"TOOL: sql_query
+ARGS: table=admissions; select=request_id, arrival_time; where=rejection_reason='memory_budget"
+sql_query,0.75,False,9,ar_prefix,9,"TOOL: sql_query
+ARGS: table=admissions; select=request_id, arrival_time; where=rejection_reason='memory_budget' AND workloa"
+sql_query,0.8333333333333334,False,9,ar_prefix,10,"TOOL: sql_query
+ARGS: table=admissions; select=request_id, arrival_time; where=rejection_reason='memory_budget' AND workload='rare'; orde"
+sql_query,0.9166666666666666,False,9,ar_prefix,11,"TOOL: sql_query
+ARGS: table=admissions; select=request_id, arrival_time; where=rejection_reason='memory_budget' AND workload='rare'; order_by=arrival_t"
+sql_query,1.0,True,9,ar_prefix,12,"TOOL: sql_query
+ARGS: table=admissions; select=request_id, arrival_time; where=rejection_reason='memory_budget' AND workload='rare'; order_by=arrival_time; limit=40"
+,0.0,False,10,dllm,0,
+calendar_api,0.1111111111111111,False,10,dllm,1,"TOOL: calendar_api
+: calendar"
+calendar_api,0.2222222222222222,False,10,dllm,2,"TOOL: calendar_api
+ARGS: calendar"
+calendar_api,0.3333333333333333,False,10,dllm,3,"TOOL: calendar_api
+ARGS: calendar="
+calendar_api,0.4444444444444444,False,10,dllm,4,"TOOL: calendar_api
+ARGS: calendar= start"
+calendar_api,0.5555555555555556,False,10,dllm,5,"TOOL: calendar_api
+ARGS: calendar=research; start_date=2026-09-01; end_date=202"
+calendar_api,0.6666666666666666,True,10,dllm,6,"TOOL: calendar_api
+ARGS: calendar=research; start_date=2026-09-01; end_date=2026-09-07; keywordeadline"
+calendar_api,0.7777777777777778,True,10,dllm,7,"TOOL: calendar_api
+ARGS: calendar=research; start_date=2026-09-01; end_date=2026-09-07; keyword=deadline"
+calendar_api,0.8888888888888888,True,10,dllm,8,"TOOL: calendar_api
+ARGS: calendar=research; start_date=2026-09-01; end_date=2026-09-07; keyword=deadline"
+calendar_api,1.0,True,10,dllm,9,"TOOL: calendar_api
+ARGS: calendar=research; start_date=2026-09-01; end_date=2026-09-07; keyword=deadline"
+,0.0,False,10,ar_prefix,0,
+,0.1111111111111111,False,10,ar_prefix,1,TOOL: calend
+calendar_api,0.2222222222222222,False,10,ar_prefix,2,"TOOL: calendar_api
+ARGS:"
+calendar_api,0.3333333333333333,False,10,ar_prefix,3,"TOOL: calendar_api
+ARGS: calendar=r"
+calendar_api,0.4444444444444444,False,10,ar_prefix,4,"TOOL: calendar_api
+ARGS: calendar=research; sta"
+calendar_api,0.5555555555555556,False,10,ar_prefix,5,"TOOL: calendar_api
+ARGS: calendar=research; start_date=202"
+calendar_api,0.6666666666666666,False,10,ar_prefix,6,"TOOL: calendar_api
+ARGS: calendar=research; start_date=2026-09-01; end"
+calendar_api,0.7777777777777778,False,10,ar_prefix,7,"TOOL: calendar_api
+ARGS: calendar=research; start_date=2026-09-01; end_date=2026-"
+calendar_api,0.8888888888888888,False,10,ar_prefix,8,"TOOL: calendar_api
+ARGS: calendar=research; start_date=2026-09-01; end_date=2026-09-07; keywo"
+calendar_api,1.0,True,10,ar_prefix,9,"TOOL: calendar_api
+ARGS: calendar=research; start_date=2026-09-01; end_date=2026-09-07; keyword=deadline"
+,0.0,False,11,dllm,0,
+calendar_api,0.16666666666666666,False,11,dllm,1,"TOOL: calendar_api
+: calendar"
+calendar_api,0.3333333333333333,False,11,dllm,2,"TOOL: calendar_api
+ARGS: calendar=teaching"
+calendar_api,0.5,False,11,dllm,3,"TOOL: calendar_api
+ARGS: calendar=teaching; start_date=2026-10-10; end_date=20"
+calendar_api,0.6666666666666666,True,11,dllm,4,"TOOL: calendar_api
+ARGS: calendar=teaching; start_date=2026-10-10; end_date=2026-10-17; keyword=exam"
+calendar_api,0.8333333333333334,True,11,dllm,5,"TOOL: calendar_api
+ARGS: calendar=teaching; start_date=2026-10-10; end_date=2026-10-17; keyword=exam"
+calendar_api,1.0,True,11,dllm,6,"TOOL: calendar_api
+ARGS: calendar=teaching; start_date=2026-10-10; end_date=2026-10-17; keyword=exam"
+,0.0,False,11,ar_prefix,0,
+calendar_api,0.16666666666666666,False,11,ar_prefix,1,TOOL: calendar_ap
+calendar_api,0.3333333333333333,False,11,ar_prefix,2,"TOOL: calendar_api
+ARGS: calendar="
+calendar_api,0.5,False,11,ar_prefix,3,"TOOL: calendar_api
+ARGS: calendar=teaching; start_"
+calendar_api,0.6666666666666666,False,11,ar_prefix,4,"TOOL: calendar_api
+ARGS: calendar=teaching; start_date=2026-10-10; "
+calendar_api,0.8333333333333334,False,11,ar_prefix,5,"TOOL: calendar_api
+ARGS: calendar=teaching; start_date=2026-10-10; end_date=2026-10-"
+calendar_api,1.0,True,11,ar_prefix,6,"TOOL: calendar_api
+ARGS: calendar=teaching; start_date=2026-10-10; end_date=2026-10-17; keyword=exam"
+,0.0,False,12,dllm,0,
+calendar_api,0.14285714285714285,False,12,dllm,1,"TOOL: calendar_api
+ARGS: calendar"
+calendar_api,0.2857142857142857,False,12,dllm,2,"TOOL: calendar_api
+ARGS: calendar; start0"
+calendar_api,0.42857142857142855,False,12,dllm,3,"TOOL: calendar_api
+ARGS: calendarsystems-lab; start_date=2027-01-03; end_date=20"
+calendar_api,0.5714285714285714,False,12,dllm,4,"TOOL: calendar_api
+ARGS: calendar=systems-lab; start_date=2027-01-03; end_date=20"
+calendar_api,0.7142857142857143,True,12,dllm,5,"TOOL: calendar_api
+ARGS: calendar=systems-lab; start_date=2027-01-03; end_date=2027-01-10; keyword=meeting"
+calendar_api,0.8571428571428571,True,12,dllm,6,"TOOL: calendar_api
+ARGS: calendar=systems-lab; start_date=2027-01-03; end_date=2027-01-10; keyword=meeting"
+calendar_api,1.0,True,12,dllm,7,"TOOL: calendar_api
+ARGS: calendar=systems-lab; start_date=2027-01-03; end_date=2027-01-10; keyword=meeting"
+,0.0,False,12,ar_prefix,0,
+calendar_api,0.14285714285714285,False,12,ar_prefix,1,TOOL: calendar_a
+calendar_api,0.2857142857142857,False,12,ar_prefix,2,"TOOL: calendar_api
+ARGS: calend"
+calendar_api,0.42857142857142855,False,12,ar_prefix,3,"TOOL: calendar_api
+ARGS: calendar=systems-lab;"
+calendar_api,0.5714285714285714,False,12,ar_prefix,4,"TOOL: calendar_api
+ARGS: calendar=systems-lab; start_date=202"
+calendar_api,0.7142857142857143,False,12,ar_prefix,5,"TOOL: calendar_api
+ARGS: calendar=systems-lab; start_date=2027-01-03; end_da"
+calendar_api,0.8571428571428571,False,12,ar_prefix,6,"TOOL: calendar_api
+ARGS: calendar=systems-lab; start_date=2027-01-03; end_date=2027-01-10; "
+calendar_api,1.0,True,12,ar_prefix,7,"TOOL: calendar_api
+ARGS: calendar=systems-lab; start_date=2027-01-03; end_date=2027-01-10; keyword=meeting"
+,0.0,False,13,dllm,0,
+calendar_api,0.06666666666666667,False,13,dllm,1,"TOOL: calendar_api
+: calendar"
+calendar_api,0.13333333333333333,False,13,dllm,2,"TOOL: calendar_api
+ARGS: calendar"
+calendar_api,0.2,False,13,dllm,3,"TOOL: calendar_api
+ARGS: calendartravel"
+calendar_api,0.26666666666666666,False,13,dllm,4,"TOOL: calendar_api
+ARGS: calendartravel_cal"
+calendar_api,0.3333333333333333,False,13,dllm,5,"TOOL: calendar_api
+ARGS: calendartravel_calendar start_date202-1-_date"
+calendar_api,0.4,False,13,dllm,6,"TOOL: calendar_api
+ARGS: calendartravel_calendar start_date2026-12-20 end_date2"
+calendar_api,0.4666666666666667,False,13,dllm,7,"TOOL: calendar_api
+ARGS: calendartravel_calendar start_date2026-12-20 end_date=2"
+calendar_api,0.5333333333333333,False,13,dllm,8,"TOOL: calendar_api
+ARGS: calendartravel_calendar start_date=2026-12-20 end_date=2"
+calendar_api,0.6,False,13,dllm,9,"TOOL: calendar_api
+ARGS: calendar=travel_calendar start_date=2026-12-20 end_date=2"
+calendar_api,0.6666666666666666,False,13,dllm,10,"TOOL: calendar_api
+ARGS: calendar=travel_calendar; start_date=2026-12-20 end_date=2"
+calendar_api,0.7333333333333333,False,13,dllm,11,"TOOL: calendar_api
+ARGS: calendar=travel_calendar; start_date=2026-12-20; end_date=2"
+calendar_api,0.8,False,13,dllm,12,"TOOL: calendar_api
+ARGS: calendar=travel_calendar; start_date=2026-12-20; end_date=2026-12-31; keywordlight"
+calendar_api,0.8666666666666667,True,13,dllm,13,"TOOL: calendar_api
+ARGS: calendar=travel_calendar; start_date=2026-12-20; end_date=2026-12-31; keyword=flight"
+calendar_api,0.9333333333333333,True,13,dllm,14,"TOOL: calendar_api
+ARGS: calendar=travel_calendar; start_date=2026-12-20; end_date=2026-12-31; keyword=flight"
+calendar_api,1.0,True,13,dllm,15,"TOOL: calendar_api
+ARGS: calendar=travel_calendar; start_date=2026-12-20; end_date=2026-12-31; keyword=flight"
+,0.0,False,13,ar_prefix,0,
+,0.06666666666666667,False,13,ar_prefix,1,TOOL: ca
+calendar_api,0.13333333333333333,False,13,ar_prefix,2,TOOL: calendar_
+calendar_api,0.2,False,13,ar_prefix,3,"TOOL: calendar_api
+ARG"
+calendar_api,0.26666666666666666,False,13,ar_prefix,4,"TOOL: calendar_api
+ARGS: calen"
+calendar_api,0.3333333333333333,False,13,ar_prefix,5,"TOOL: calendar_api
+ARGS: calendar=tra"
+calendar_api,0.4,False,13,ar_prefix,6,"TOOL: calendar_api
+ARGS: calendar=travel_cal"
+calendar_api,0.4666666666666667,False,13,ar_prefix,7,"TOOL: calendar_api
+ARGS: calendar=travel_calendar; "
+calendar_api,0.5333333333333333,False,13,ar_prefix,8,"TOOL: calendar_api
+ARGS: calendar=travel_calendar; start_da"
+calendar_api,0.6,False,13,ar_prefix,9,"TOOL: calendar_api
+ARGS: calendar=travel_calendar; start_date=2026"
+calendar_api,0.6666666666666666,False,13,ar_prefix,10,"TOOL: calendar_api
+ARGS: calendar=travel_calendar; start_date=2026-12-20;"
+calendar_api,0.7333333333333333,False,13,ar_prefix,11,"TOOL: calendar_api
+ARGS: calendar=travel_calendar; start_date=2026-12-20; end_da"
+calendar_api,0.8,False,13,ar_prefix,12,"TOOL: calendar_api
+ARGS: calendar=travel_calendar; start_date=2026-12-20; end_date=2026-"
+calendar_api,0.8666666666666667,False,13,ar_prefix,13,"TOOL: calendar_api
+ARGS: calendar=travel_calendar; start_date=2026-12-20; end_date=2026-12-31; "
+calendar_api,0.9333333333333333,False,13,ar_prefix,14,"TOOL: calendar_api
+ARGS: calendar=travel_calendar; start_date=2026-12-20; end_date=2026-12-31; keyword"
+calendar_api,1.0,True,13,ar_prefix,15,"TOOL: calendar_api
+ARGS: calendar=travel_calendar; start_date=2026-12-20; end_date=2026-12-31; keyword=flight"
+,0.0,False,14,dllm,0,
+calendar_api,0.07142857142857142,False,14,dllm,1,"TOOL: calendar_api
+: calendar"
+calendar_api,0.14285714285714285,False,14,dllm,2,"TOOL: calendar_api
+ARGS: calendar"
+calendar_api,0.21428571428571427,False,14,dllm,3,"TOOL: calendar_api
+ARGS: calendar="
+calendar_api,0.2857142857142857,False,14,dllm,4,"TOOL: calendar_api
+ARGS: calendar=2"
+calendar_api,0.35714285714285715,False,14,dllm,5,"TOOL: calendar_api
+ARGS: calendar=2="
+calendar_api,0.42857142857142855,False,14,dllm,6,"TOOL: calendar_api
+ARGS: calendar=; start_date=2027-03-01; end_date=2"
+calendar_api,0.5,False,14,dllm,7,"TOOL: calendar_api
+ARGS: calendar=_cal; start_date=2027-03-01; end_date=2"
+calendar_api,0.5714285714285714,False,14,dllm,8,"TOOL: calendar_api
+ARGS: calendar=_calendar; start_date=2027-03-01; end_date=2"
+calendar_api,0.6428571428571429,False,14,dllm,9,"TOOL: calendar_api
+ARGS: calendar=my_calendar; start_date=2027-03-01; end_date=2"
+calendar_api,0.7142857142857143,False,14,dllm,10,"TOOL: calendar_api
+ARGS: calendar=my_calendar; start_date=2027-03-01; end_date=2027-03-15; keyword=mission"
+calendar_api,0.7857142857142857,False,14,dllm,11,"TOOL: calendar_api
+ARGS: calendar=my_calendar; start_date=2027-03-01; end_date=2027-03-15; keyword=mission"
+calendar_api,0.8571428571428571,False,14,dllm,12,"TOOL: calendar_api
+ARGS: calendar=my_calendar; start_date=2027-03-01; end_date=2027-03-15; keyword=submission"
+calendar_api,0.9285714285714286,False,14,dllm,13,"TOOL: calendar_api
+ARGS: calendar=my_calendar; start_date=2027-03-01; end_date=2027-03-15; keyword=submission"
+calendar_api,1.0,False,14,dllm,14,"TOOL: calendar_api
+ARGS: calendar=my_calendar; start_date=2027-03-01; end_date=2027-03-15; keyword=submission"
+,0.0,False,14,ar_prefix,0,
+,0.07142857142857142,False,14,ar_prefix,1,TOOL: ca
+calendar_api,0.14285714285714285,False,14,ar_prefix,2,TOOL: calendar_a
+calendar_api,0.21428571428571427,False,14,ar_prefix,3,"TOOL: calendar_api
+ARGS:"
+calendar_api,0.2857142857142857,False,14,ar_prefix,4,"TOOL: calendar_api
+ARGS: calenda"
+calendar_api,0.35714285714285715,False,14,ar_prefix,5,"TOOL: calendar_api
+ARGS: calendar=my_ca"
+calendar_api,0.42857142857142855,False,14,ar_prefix,6,"TOOL: calendar_api
+ARGS: calendar=my_calendar; "
+calendar_api,0.5,False,14,ar_prefix,7,"TOOL: calendar_api
+ARGS: calendar=my_calendar; start_da"
+calendar_api,0.5714285714285714,False,14,ar_prefix,8,"TOOL: calendar_api
+ARGS: calendar=my_calendar; start_date=2027-"
+calendar_api,0.6428571428571429,False,14,ar_prefix,9,"TOOL: calendar_api
+ARGS: calendar=my_calendar; start_date=2027-03-01; e"
+calendar_api,0.7142857142857143,False,14,ar_prefix,10,"TOOL: calendar_api
+ARGS: calendar=my_calendar; start_date=2027-03-01; end_date"
+calendar_api,0.7857142857142857,False,14,ar_prefix,11,"TOOL: calendar_api
+ARGS: calendar=my_calendar; start_date=2027-03-01; end_date=2027-03"
+calendar_api,0.8571428571428571,False,14,ar_prefix,12,"TOOL: calendar_api
+ARGS: calendar=my_calendar; start_date=2027-03-01; end_date=2027-03-15; key"
+calendar_api,0.9285714285714286,False,14,ar_prefix,13,"TOOL: calendar_api
+ARGS: calendar=my_calendar; start_date=2027-03-01; end_date=2027-03-15; keyword=sub"
+calendar_api,1.0,False,14,ar_prefix,14,"TOOL: calendar_api
+ARGS: calendar=my_calendar; start_date=2027-03-01; end_date=2027-03-15; keyword=submission"
+,0.0,False,15,dllm,0,
+calendar_api,0.125,False,15,dllm,1,"TOOL: calendar_api
+: calendar-cluster"
+calendar_api,0.25,False,15,dllm,2,"TOOL: calendar_api
+ARGS: calendar ""gpu-cluster start1"
+calendar_api,0.375,False,15,dllm,3,"TOOL: calendar_api
+ARGS: calendar = ""gpu-cluster""; start_date ""2026-11-01 end_date ="
+calendar_api,0.5,False,15,dllm,4,"TOOL: calendar_api
+ARGS: calendar = ""gpu-cluster""; start_date = ""2026-11-01""; end_date ="
+calendar_api,0.625,True,15,dllm,5,"TOOL: calendar_api
+ARGS: calendar = ""gpu-cluster""; start_date = ""2026-11-01""; end_date = ""2026-11-05""; keyword = ""maintenance"
+calendar_api,0.75,True,15,dllm,6,"TOOL: calendar_api
+ARGS: calendar = ""gpu-cluster""; start_date = ""2026-11-01""; end_date = ""2026-11-05""; keyword = ""maintenance"""
+calendar_api,0.875,True,15,dllm,7,"TOOL: calendar_api
+ARGS: calendar = ""gpu-cluster""; start_date = ""2026-11-01""; end_date = ""2026-11-05""; keyword = ""maintenance"""
+calendar_api,1.0,True,15,dllm,8,"TOOL: calendar_api
+ARGS: calendar = ""gpu-cluster""; start_date = ""2026-11-01""; end_date = ""2026-11-05""; keyword = ""maintenance"""
+,0.0,False,15,ar_prefix,0,
+calendar_api,0.125,False,15,ar_prefix,1,TOOL: calendar_a
+calendar_api,0.25,False,15,ar_prefix,2,"TOOL: calendar_api
+ARGS: calenda"
+calendar_api,0.375,False,15,ar_prefix,3,"TOOL: calendar_api
+ARGS: calendar = ""gpu-cluster"
+calendar_api,0.5,False,15,ar_prefix,4,"TOOL: calendar_api
+ARGS: calendar = ""gpu-cluster""; start_date ="
+calendar_api,0.625,False,15,ar_prefix,5,"TOOL: calendar_api
+ARGS: calendar = ""gpu-cluster""; start_date = ""2026-11-01""; e"
+calendar_api,0.75,False,15,ar_prefix,6,"TOOL: calendar_api
+ARGS: calendar = ""gpu-cluster""; start_date = ""2026-11-01""; end_date = ""2026-"
+calendar_api,0.875,False,15,ar_prefix,7,"TOOL: calendar_api
+ARGS: calendar = ""gpu-cluster""; start_date = ""2026-11-01""; end_date = ""2026-11-05""; keyword "
+calendar_api,1.0,True,15,ar_prefix,8,"TOOL: calendar_api
+ARGS: calendar = ""gpu-cluster""; start_date = ""2026-11-01""; end_date = ""2026-11-05""; keyword = ""maintenance"""
+,0.0,False,16,dllm,0,
+calendar_api,0.09090909090909091,False,16,dllm,1,"TOOL: calendar_api
+: calendar"
+calendar_api,0.18181818181818182,False,16,dllm,2,"TOOL: calendar_api
+ARGS: calendar"
+calendar_api,0.2727272727272727,False,16,dllm,3,"TOOL: calendar_api
+ARGS: calendar="
+calendar_api,0.36363636363636365,False,16,dllm,4,"TOOL: calendar_api
+ARGS: calendar=_product"
+calendar_api,0.45454545454545453,False,16,dllm,5,"TOOL: calendar_api
+ARGS: calendar=calendar_product"
+calendar_api,0.5454545454545454,False,16,dllm,6,"TOOL: calendar_api
+ARGS: calendar=calendar_product2"
+calendar_api,0.6363636363636364,False,16,dllm,7,"TOOL: calendar_api
+ARGS: calendar=calendar_product start_date202702-"
+calendar_api,0.7272727272727273,False,16,dllm,8,"TOOL: calendar_api
+ARGS: calendar=calendar_product; start_date=2027-02-01; end_date=20"
+calendar_api,0.8181818181818182,True,16,dllm,9,"TOOL: calendar_api
+ARGS: calendar=calendar_product; start_date=2027-02-01; end_date=2027-02-14; keyword=launch"
+calendar_api,0.9090909090909091,True,16,dllm,10,"TOOL: calendar_api
+ARGS: calendar=calendar_product; start_date=2027-02-01; end_date=2027-02-14; keyword=launch"
+calendar_api,1.0,True,16,dllm,11,"TOOL: calendar_api
+ARGS: calendar=calendar_product; start_date=2027-02-01; end_date=2027-02-14; keyword=launch"
+,0.0,False,16,ar_prefix,0,
+,0.09090909090909091,False,16,ar_prefix,1,TOOL: cale
+calendar_api,0.18181818181818182,False,16,ar_prefix,2,"TOOL: calendar_api
+A"
+calendar_api,0.2727272727272727,False,16,ar_prefix,3,"TOOL: calendar_api
+ARGS: calen"
+calendar_api,0.36363636363636365,False,16,ar_prefix,4,"TOOL: calendar_api
+ARGS: calendar=calend"
+calendar_api,0.45454545454545453,False,16,ar_prefix,5,"TOOL: calendar_api
+ARGS: calendar=calendar_product"
+calendar_api,0.5454545454545454,False,16,ar_prefix,6,"TOOL: calendar_api
+ARGS: calendar=calendar_product; start_da"
+calendar_api,0.6363636363636364,False,16,ar_prefix,7,"TOOL: calendar_api
+ARGS: calendar=calendar_product; start_date=2027-02"
+calendar_api,0.7272727272727273,False,16,ar_prefix,8,"TOOL: calendar_api
+ARGS: calendar=calendar_product; start_date=2027-02-01; end_d"
+calendar_api,0.8181818181818182,False,16,ar_prefix,9,"TOOL: calendar_api
+ARGS: calendar=calendar_product; start_date=2027-02-01; end_date=2027-0"
+calendar_api,0.9090909090909091,False,16,ar_prefix,10,"TOOL: calendar_api
+ARGS: calendar=calendar_product; start_date=2027-02-01; end_date=2027-02-14; keyw"
+calendar_api,1.0,True,16,ar_prefix,11,"TOOL: calendar_api
+ARGS: calendar=calendar_product; start_date=2027-02-01; end_date=2027-02-14; keyword=launch"
+,0.0,False,17,dllm,0,
+calendar_api,0.14285714285714285,False,17,dllm,1,"TOOL: calendar_api
+: calendar"
+calendar_api,0.2857142857142857,False,17,dllm,2,"TOOL: calendar_api
+ARGS: calendar="
+calendar_api,0.42857142857142855,False,17,dllm,3,"TOOL: calendar_api
+ARGS: calendar=inter; start=202-0-0 end20"
+calendar_api,0.5714285714285714,False,17,dllm,4,"TOOL: calendar_api
+ARGS: calendar=interviews; start_date=2026-09-20; end_date=20"
+calendar_api,0.7142857142857143,True,17,dllm,5,"TOOL: calendar_api
+ARGS: calendar=interviews; start_date=2026-09-20; end_date=2026-09-25; keyword=candidate"
+calendar_api,0.8571428571428571,True,17,dllm,6,"TOOL: calendar_api
+ARGS: calendar=interviews; start_date=2026-09-20; end_date=2026-09-25; keyword=candidate"
+calendar_api,1.0,True,17,dllm,7,"TOOL: calendar_api
+ARGS: calendar=interviews; start_date=2026-09-20; end_date=2026-09-25; keyword=candidate"
+,0.0,False,17,ar_prefix,0,
+calendar_api,0.14285714285714285,False,17,ar_prefix,1,TOOL: calendar_a
+calendar_api,0.2857142857142857,False,17,ar_prefix,2,"TOOL: calendar_api
+ARGS: calend"
+calendar_api,0.42857142857142855,False,17,ar_prefix,3,"TOOL: calendar_api
+ARGS: calendar=interviews; "
+calendar_api,0.5714285714285714,False,17,ar_prefix,4,"TOOL: calendar_api
+ARGS: calendar=interviews; start_date=2026-"
+calendar_api,0.7142857142857143,False,17,ar_prefix,5,"TOOL: calendar_api
+ARGS: calendar=interviews; start_date=2026-09-20; end_date"
+calendar_api,0.8571428571428571,False,17,ar_prefix,6,"TOOL: calendar_api
+ARGS: calendar=interviews; start_date=2026-09-20; end_date=2026-09-25; ke"
+calendar_api,1.0,True,17,ar_prefix,7,"TOOL: calendar_api
+ARGS: calendar=interviews; start_date=2026-09-20; end_date=2026-09-25; keyword=candidate"
+,0.0,False,18,dllm,0,
+calendar_api,0.14285714285714285,False,18,dllm,1,"TOOL: calendar_api
+: calendar"
+calendar_api,0.2857142857142857,False,18,dllm,2,"TOOL: calendar_api
+ARGS: calendarants"
+calendar_api,0.42857142857142855,False,18,dllm,3,"TOOL: calendar_api
+ARGS: calendar=grants start2"
+calendar_api,0.5714285714285714,False,18,dllm,4,"TOOL: calendar_api
+ARGS: calendar=grants; start_date=2027-04-01; end_date=20"
+calendar_api,0.7142857142857143,True,18,dllm,5,"TOOL: calendar_api
+ARGS: calendar=grants; start_date=2027-04-01; end_date=2027-04-30; keyword=report"
+calendar_api,0.8571428571428571,True,18,dllm,6,"TOOL: calendar_api
+ARGS: calendar=grants; start_date=2027-04-01; end_date=2027-04-30; keyword=report"
+calendar_api,1.0,True,18,dllm,7,"TOOL: calendar_api
+ARGS: calendar=grants; start_date=2027-04-01; end_date=2027-04-30; keyword=report"
+,0.0,False,18,ar_prefix,0,
+calendar_api,0.14285714285714285,False,18,ar_prefix,1,TOOL: calendar_
+calendar_api,0.2857142857142857,False,18,ar_prefix,2,"TOOL: calendar_api
+ARGS: cale"
+calendar_api,0.42857142857142855,False,18,ar_prefix,3,"TOOL: calendar_api
+ARGS: calendar=grants; s"
+calendar_api,0.5714285714285714,False,18,ar_prefix,4,"TOOL: calendar_api
+ARGS: calendar=grants; start_date=2027-"
+calendar_api,0.7142857142857143,False,18,ar_prefix,5,"TOOL: calendar_api
+ARGS: calendar=grants; start_date=2027-04-01; end_dat"
+calendar_api,0.8571428571428571,False,18,ar_prefix,6,"TOOL: calendar_api
+ARGS: calendar=grants; start_date=2027-04-01; end_date=2027-04-30; "
+calendar_api,1.0,True,18,ar_prefix,7,"TOOL: calendar_api
+ARGS: calendar=grants; start_date=2027-04-01; end_date=2027-04-30; keyword=report"
+,0.0,False,19,dllm,0,
+calendar_api,0.1111111111111111,False,19,dllm,1,"TOOL: calendar_api
+: calendar"
+calendar_api,0.2222222222222222,False,19,dllm,2,"TOOL: calendar_api
+ARGS: calendar"
+calendar_api,0.3333333333333333,False,19,dllm,3,"TOOL: calendar_api
+ARGS: calendar="
+calendar_api,0.4444444444444444,False,19,dllm,4,"TOOL: calendar_api
+ARGS: calendar=0"
+calendar_api,0.5555555555555556,False,19,dllm,5,"TOOL: calendar_api
+ARGS: calendar=_operations; start_date=2026-08-15; end_date=20"
+calendar_api,0.6666666666666666,False,19,dllm,6,"TOOL: calendar_api
+ARGS: calendar=calendar_operations; start_date=2026-08-15; end_date=20"
+calendar_api,0.7777777777777778,True,19,dllm,7,"TOOL: calendar_api
+ARGS: calendar=calendar_operations; start_date=2026-08-15; end_date=2026-08-22; keyword=outage"
+calendar_api,0.8888888888888888,True,19,dllm,8,"TOOL: calendar_api
+ARGS: calendar=calendar_operations; start_date=2026-08-15; end_date=2026-08-22; keyword=outage"
+calendar_api,1.0,True,19,dllm,9,"TOOL: calendar_api
+ARGS: calendar=calendar_operations; start_date=2026-08-15; end_date=2026-08-22; keyword=outage"
+,0.0,False,19,ar_prefix,0,
+,0.1111111111111111,False,19,ar_prefix,1,TOOL: calenda
+calendar_api,0.2222222222222222,False,19,ar_prefix,2,"TOOL: calendar_api
+ARGS: c"
+calendar_api,0.3333333333333333,False,19,ar_prefix,3,"TOOL: calendar_api
+ARGS: calendar=cale"
+calendar_api,0.4444444444444444,False,19,ar_prefix,4,"TOOL: calendar_api
+ARGS: calendar=calendar_operatio"
+calendar_api,0.5555555555555556,False,19,ar_prefix,5,"TOOL: calendar_api
+ARGS: calendar=calendar_operations; start_da"
+calendar_api,0.6666666666666666,False,19,ar_prefix,6,"TOOL: calendar_api
+ARGS: calendar=calendar_operations; start_date=2026-08-15"
+calendar_api,0.7777777777777778,False,19,ar_prefix,7,"TOOL: calendar_api
+ARGS: calendar=calendar_operations; start_date=2026-08-15; end_date=2"
+calendar_api,0.8888888888888888,False,19,ar_prefix,8,"TOOL: calendar_api
+ARGS: calendar=calendar_operations; start_date=2026-08-15; end_date=2026-08-22; ke"
+calendar_api,1.0,True,19,ar_prefix,9,"TOOL: calendar_api
+ARGS: calendar=calendar_operations; start_date=2026-08-15; end_date=2026-08-22; keyword=outage"
+,0.0,False,20,dllm,0,
+crm_api,0.16666666666666666,False,20,dllm,1,"TOOL: crm_api
+ARGS: company"
+crm_api,0.3333333333333333,False,20,dllm,2,"TOOL: crm_api
+ARGS: company=OpenAI; role=rese"
+crm_api,0.5,True,20,dllm,3,"TOOL: crm_api
+ARGS: company=OpenAI; role=researcher; city=San Francisco"
+crm_api,0.6666666666666666,True,20,dllm,4,"TOOL: crm_api
+ARGS: company=OpenAI; role=researcher; city=San Francisco"
+crm_api,0.8333333333333334,True,20,dllm,5,"TOOL: crm_api
+ARGS: company=OpenAI; role=researcher; city=San Francisco"
+crm_api,1.0,True,20,dllm,6,"TOOL: crm_api
+ARGS: company=OpenAI; role=researcher; city=San Francisco"
+,0.0,False,20,ar_prefix,0,
+crm_api,0.16666666666666666,False,20,ar_prefix,1,TOOL: crm_ap
+crm_api,0.3333333333333333,False,20,ar_prefix,2,"TOOL: crm_api
+ARGS: comp"
+crm_api,0.5,False,20,ar_prefix,3,"TOOL: crm_api
+ARGS: company=OpenAI; "
+crm_api,0.6666666666666666,False,20,ar_prefix,4,"TOOL: crm_api
+ARGS: company=OpenAI; role=researc"
+crm_api,0.8333333333333334,False,20,ar_prefix,5,"TOOL: crm_api
+ARGS: company=OpenAI; role=researcher; city=Sa"
+crm_api,1.0,True,20,ar_prefix,6,"TOOL: crm_api
+ARGS: company=OpenAI; role=researcher; city=San Francisco"
+,0.0,False,21,dllm,0,
+crm_api,0.14285714285714285,False,21,dllm,1,"TOOL: crm_api
+: company"
+crm_api,0.2857142857142857,False,21,dllm,2,"TOOL: crm_api
+ARGS: companyGoogle; role=engine"
+crm_api,0.42857142857142855,False,21,dllm,3,"TOOL: crm_api
+ARGS: company=Google; role=engineer; city= View"
+crm_api,0.5714285714285714,True,21,dllm,4,"TOOL: crm_api
+ARGS: company=Google; role=engineer; city=Mountain View"
+crm_api,0.7142857142857143,True,21,dllm,5,"TOOL: crm_api
+ARGS: company=Google; role=engineer; city=Mountain View"
+crm_api,0.8571428571428571,True,21,dllm,6,"TOOL: crm_api
+ARGS: company=Google; role=engineer; city=Mountain View"
+crm_api,1.0,True,21,dllm,7,"TOOL: crm_api
+ARGS: company=Google; role=engineer; city=Mountain View"
+,0.0,False,21,ar_prefix,0,
+crm_api,0.14285714285714285,False,21,ar_prefix,1,TOOL: crm_
+crm_api,0.2857142857142857,False,21,ar_prefix,2,"TOOL: crm_api
+ARGS: "
+crm_api,0.42857142857142855,False,21,ar_prefix,3,"TOOL: crm_api
+ARGS: company=Go"
+crm_api,0.5714285714285714,False,21,ar_prefix,4,"TOOL: crm_api
+ARGS: company=Google; role"
+crm_api,0.7142857142857143,False,21,ar_prefix,5,"TOOL: crm_api
+ARGS: company=Google; role=engineer;"
+crm_api,0.8571428571428571,False,21,ar_prefix,6,"TOOL: crm_api
+ARGS: company=Google; role=engineer; city=Moun"
+crm_api,1.0,True,21,ar_prefix,7,"TOOL: crm_api
+ARGS: company=Google; role=engineer; city=Mountain View"
+,0.0,False,22,dllm,0,
+crm_api,0.14285714285714285,False,22,dllm,1,"TOOL: crm_api
+: company"
+crm_api,0.2857142857142857,False,22,dllm,2,"TOOL: crm_api
+ARGS: company roleRedmond"
+crm_api,0.42857142857142855,False,22,dllm,3,"TOOL: crm_api
+ARGS: company=Microsoft; roleprogram city=Redmond"
+crm_api,0.5714285714285714,True,22,dllm,4,"TOOL: crm_api
+ARGS: company=Microsoft; role=program manager; city=Redmond"
+crm_api,0.7142857142857143,True,22,dllm,5,"TOOL: crm_api
+ARGS: company=Microsoft; role=program manager; city=Redmond"
+crm_api,0.8571428571428571,True,22,dllm,6,"TOOL: crm_api
+ARGS: company=Microsoft; role=program manager; city=Redmond"
+crm_api,1.0,True,22,dllm,7,"TOOL: crm_api
+ARGS: company=Microsoft; role=program manager; city=Redmond"
+,0.0,False,22,ar_prefix,0,
+crm_api,0.14285714285714285,False,22,ar_prefix,1,TOOL: crm_a
+crm_api,0.2857142857142857,False,22,ar_prefix,2,"TOOL: crm_api
+ARGS: c"
+crm_api,0.42857142857142855,False,22,ar_prefix,3,"TOOL: crm_api
+ARGS: company=Micr"
+crm_api,0.5714285714285714,False,22,ar_prefix,4,"TOOL: crm_api
+ARGS: company=Microsoft; rol"
+crm_api,0.7142857142857143,False,22,ar_prefix,5,"TOOL: crm_api
+ARGS: company=Microsoft; role=program m"
+crm_api,0.8571428571428571,False,22,ar_prefix,6,"TOOL: crm_api
+ARGS: company=Microsoft; role=program manager; ci"
+crm_api,1.0,True,22,ar_prefix,7,"TOOL: crm_api
+ARGS: company=Microsoft; role=program manager; city=Redmond"
+,0.0,False,23,dllm,0,
+crm_api,0.14285714285714285,False,23,dllm,1,"TOOL: crm_api
+: company"
+crm_api,0.2857142857142857,False,23,dllm,2,"TOOL: crm_api
+ARGS: companyVIDIA"
+crm_api,0.42857142857142855,False,23,dllm,3,"TOOL: crm_api
+ARGS: company=NVIDIA; role=architectSanta"
+crm_api,0.5714285714285714,True,23,dllm,4,"TOOL: crm_api
+ARGS: company=NVIDIA; role=architect; city=Santa Clara"
+crm_api,0.7142857142857143,True,23,dllm,5,"TOOL: crm_api
+ARGS: company=NVIDIA; role=architect; city=Santa Clara"
+crm_api,0.8571428571428571,True,23,dllm,6,"TOOL: crm_api
+ARGS: company=NVIDIA; role=architect; city=Santa Clara"
+crm_api,1.0,True,23,dllm,7,"TOOL: crm_api
+ARGS: company=NVIDIA; role=architect; city=Santa Clara"
+,0.0,False,23,ar_prefix,0,
+crm_api,0.14285714285714285,False,23,ar_prefix,1,TOOL: crm_
+crm_api,0.2857142857142857,False,23,ar_prefix,2,"TOOL: crm_api
+ARGS: "
+crm_api,0.42857142857142855,False,23,ar_prefix,3,"TOOL: crm_api
+ARGS: company=NV"
+crm_api,0.5714285714285714,False,23,ar_prefix,4,"TOOL: crm_api
+ARGS: company=NVIDIA; rol"
+crm_api,0.7142857142857143,False,23,ar_prefix,5,"TOOL: crm_api
+ARGS: company=NVIDIA; role=architec"
+crm_api,0.8571428571428571,False,23,ar_prefix,6,"TOOL: crm_api
+ARGS: company=NVIDIA; role=architect; city=Sa"
+crm_api,1.0,True,23,ar_prefix,7,"TOOL: crm_api
+ARGS: company=NVIDIA; role=architect; city=Santa Clara"
+,0.0,False,24,dllm,0,
+crm_api,0.1111111111111111,False,24,dllm,1,"TOOL: crm_api
+: company"
+crm_api,0.2222222222222222,False,24,dllm,2,"TOOL: crm_api
+ARGS: companyAmazon role"
+crm_api,0.3333333333333333,False,24,dllm,3,"TOOL: crm_api
+ARGS: company=Amazon; roleproduct city=Seattle"
+crm_api,0.4444444444444444,False,24,dllm,4,"TOOL: crm_api
+ARGS: company=Amazon; roleproduct; city=Seattle"
+crm_api,0.5555555555555556,False,24,dllm,5,"TOOL: crm_api
+ARGS: company=Amazon; role=product; city=Seattle"
+crm_api,0.6666666666666666,True,24,dllm,6,"TOOL: crm_api
+ARGS: company=Amazon; role=product manager; city=Seattle"
+crm_api,0.7777777777777778,True,24,dllm,7,"TOOL: crm_api
+ARGS: company=Amazon; role=product manager; city=Seattle"
+crm_api,0.8888888888888888,True,24,dllm,8,"TOOL: crm_api
+ARGS: company=Amazon; role=product manager; city=Seattle"
+crm_api,1.0,True,24,dllm,9,"TOOL: crm_api
+ARGS: company=Amazon; role=product manager; city=Seattle"
+,0.0,False,24,ar_prefix,0,
+,0.1111111111111111,False,24,ar_prefix,1,TOOL: cr
+crm_api,0.2222222222222222,False,24,ar_prefix,2,"TOOL: crm_api
+AR"
+crm_api,0.3333333333333333,False,24,ar_prefix,3,"TOOL: crm_api
+ARGS: comp"
+crm_api,0.4444444444444444,False,24,ar_prefix,4,"TOOL: crm_api
+ARGS: company=Amaz"
+crm_api,0.5555555555555556,False,24,ar_prefix,5,"TOOL: crm_api
+ARGS: company=Amazon; rol"
+crm_api,0.6666666666666666,False,24,ar_prefix,6,"TOOL: crm_api
+ARGS: company=Amazon; role=produc"
+crm_api,0.7777777777777778,False,24,ar_prefix,7,"TOOL: crm_api
+ARGS: company=Amazon; role=product manage"
+crm_api,0.8888888888888888,False,24,ar_prefix,8,"TOOL: crm_api
+ARGS: company=Amazon; role=product manager; city="
+crm_api,1.0,True,24,ar_prefix,9,"TOOL: crm_api
+ARGS: company=Amazon; role=product manager; city=Seattle"
+,0.0,False,25,dllm,0,
+crm_api,0.16666666666666666,False,25,dllm,1,"TOOL: crm_api
+ARGS: company"
+crm_api,0.3333333333333333,False,25,dllm,2,"TOOL: crm_api
+ARGS: companyMeta; role=sc"
+crm_api,0.5,True,25,dllm,3,"TOOL: crm_api
+ARGS: company=Meta; role=scientist; city=Menlo Park"
+crm_api,0.6666666666666666,True,25,dllm,4,"TOOL: crm_api
+ARGS: company=Meta; role=scientist; city=Menlo Park"
+crm_api,0.8333333333333334,True,25,dllm,5,"TOOL: crm_api
+ARGS: company=Meta; role=scientist; city=Menlo Park"
+crm_api,1.0,True,25,dllm,6,"TOOL: crm_api
+ARGS: company=Meta; role=scientist; city=Menlo Park"
+,0.0,False,25,ar_prefix,0,
+crm_api,0.16666666666666666,False,25,ar_prefix,1,TOOL: crm_a
+crm_api,0.3333333333333333,False,25,ar_prefix,2,"TOOL: crm_api
+ARGS: co"
+crm_api,0.5,False,25,ar_prefix,3,"TOOL: crm_api
+ARGS: company=Meta;"
+crm_api,0.6666666666666666,False,25,ar_prefix,4,"TOOL: crm_api
+ARGS: company=Meta; role=scien"
+crm_api,0.8333333333333334,False,25,ar_prefix,5,"TOOL: crm_api
+ARGS: company=Meta; role=scientist; city="
+crm_api,1.0,True,25,ar_prefix,6,"TOOL: crm_api
+ARGS: company=Meta; role=scientist; city=Menlo Park"
+,0.0,False,26,dllm,0,
+crm_api,0.16666666666666666,False,26,dllm,1,"TOOL: crm_api
+ARGS: company"
+crm_api,0.3333333333333333,False,26,dllm,2,"TOOL: crm_api
+ARGS: company=Databricks; role= engineer; city Francisco"
+crm_api,0.5,True,26,dllm,3,"TOOL: crm_api
+ARGS: company=Databricks; role=platform engineer; city=San Francisco"
+crm_api,0.6666666666666666,True,26,dllm,4,"TOOL: crm_api
+ARGS: company=Databricks; role=platform engineer; city=San Francisco"
+crm_api,0.8333333333333334,True,26,dllm,5,"TOOL: crm_api
+ARGS: company=Databricks; role=platform engineer; city=San Francisco"
+crm_api,1.0,True,26,dllm,6,"TOOL: crm_api
+ARGS: company=Databricks; role=platform engineer; city=San Francisco"
+,0.0,False,26,ar_prefix,0,
+crm_api,0.16666666666666666,False,26,ar_prefix,1,"TOOL: crm_api
+"
+crm_api,0.3333333333333333,False,26,ar_prefix,2,"TOOL: crm_api
+ARGS: company="
+crm_api,0.5,False,26,ar_prefix,3,"TOOL: crm_api
+ARGS: company=Databricks; r"
+crm_api,0.6666666666666666,False,26,ar_prefix,4,"TOOL: crm_api
+ARGS: company=Databricks; role=platform e"
+crm_api,0.8333333333333334,False,26,ar_prefix,5,"TOOL: crm_api
+ARGS: company=Databricks; role=platform engineer; city="
+crm_api,1.0,True,26,ar_prefix,6,"TOOL: crm_api
+ARGS: company=Databricks; role=platform engineer; city=San Francisco"
+,0.0,False,27,dllm,0,
+crm_api,0.16666666666666666,False,27,dllm,1,"TOOL: crm_api
+: company"
+crm_api,0.3333333333333333,False,27,dllm,2,"TOOL: crm_api
+ARGS: companySnowflake; role= engineer; citySan"
+crm_api,0.5,True,27,dllm,3,"TOOL: crm_api
+ARGS: company=Snowflake; role=database engineer; city=San Mateo"
+crm_api,0.6666666666666666,True,27,dllm,4,"TOOL: crm_api
+ARGS: company=Snowflake; role=database engineer; city=San Mateo"
+crm_api,0.8333333333333334,True,27,dllm,5,"TOOL: crm_api
+ARGS: company=Snowflake; role=database engineer; city=San Mateo"
+crm_api,1.0,True,27,dllm,6,"TOOL: crm_api
+ARGS: company=Snowflake; role=database engineer; city=San Mateo"
+,0.0,False,27,ar_prefix,0,
+crm_api,0.16666666666666666,False,27,ar_prefix,1,TOOL: crm_api
+crm_api,0.3333333333333333,False,27,ar_prefix,2,"TOOL: crm_api
+ARGS: compan"
+crm_api,0.5,False,27,ar_prefix,3,"TOOL: crm_api
+ARGS: company=Snowflake; "
+crm_api,0.6666666666666666,False,27,ar_prefix,4,"TOOL: crm_api
+ARGS: company=Snowflake; role=database"
+crm_api,0.8333333333333334,False,27,ar_prefix,5,"TOOL: crm_api
+ARGS: company=Snowflake; role=database engineer; ci"
+crm_api,1.0,True,27,ar_prefix,6,"TOOL: crm_api
+ARGS: company=Snowflake; role=database engineer; city=San Mateo"
+,0.0,False,28,dllm,0,
+crm_api,0.14285714285714285,False,28,dllm,1,"TOOL: crm_api
+ARGS: company"
+crm_api,0.2857142857142857,False,28,dllm,2,"TOOL: crm_api
+ARGS: companyAnth; role"
+crm_api,0.42857142857142855,False,28,dllm,3,"TOOL: crm_api
+ARGS: company=Anthropic; roleafety"
+crm_api,0.5714285714285714,True,28,dllm,4,"TOOL: crm_api
+ARGS: company=Anthropic; role=safety researcher; city=San Francisco"
+crm_api,0.7142857142857143,True,28,dllm,5,"TOOL: crm_api
+ARGS: company=Anthropic; role=safety researcher; city=San Francisco"
+crm_api,0.8571428571428571,True,28,dllm,6,"TOOL: crm_api
+ARGS: company=Anthropic; role=safety researcher; city=San Francisco"
+crm_api,1.0,True,28,dllm,7,"TOOL: crm_api
+ARGS: company=Anthropic; role=safety researcher; city=San Francisco"
+,0.0,False,28,ar_prefix,0,
+crm_api,0.14285714285714285,False,28,ar_prefix,1,TOOL: crm_ap
+crm_api,0.2857142857142857,False,28,ar_prefix,2,"TOOL: crm_api
+ARGS: comp"
+crm_api,0.42857142857142855,False,28,ar_prefix,3,"TOOL: crm_api
+ARGS: company=Anthrop"
+crm_api,0.5714285714285714,False,28,ar_prefix,4,"TOOL: crm_api
+ARGS: company=Anthropic; role=saf"
+crm_api,0.7142857142857143,False,28,ar_prefix,5,"TOOL: crm_api
+ARGS: company=Anthropic; role=safety researc"
+crm_api,0.8571428571428571,False,28,ar_prefix,6,"TOOL: crm_api
+ARGS: company=Anthropic; role=safety researcher; city=Sa"
+crm_api,1.0,True,28,ar_prefix,7,"TOOL: crm_api
+ARGS: company=Anthropic; role=safety researcher; city=San Francisco"
+,0.0,False,29,dllm,0,
+crm_api,0.14285714285714285,False,29,dllm,1,"TOOL: crm_api
+: company"
+crm_api,0.2857142857142857,False,29,dllm,2,"TOOL: crm_api
+ARGS: companyApple; role"
+crm_api,0.42857142857142855,False,29,dllm,3,"TOOL: crm_api
+ARGS: company=Apple; role= engineer cityupertino"
+crm_api,0.5714285714285714,True,29,dllm,4,"TOOL: crm_api
+ARGS: company=Apple; role=systems engineer; city=Cupertino"
+crm_api,0.7142857142857143,True,29,dllm,5,"TOOL: crm_api
+ARGS: company=Apple; role=systems engineer; city=Cupertino"
+crm_api,0.8571428571428571,True,29,dllm,6,"TOOL: crm_api
+ARGS: company=Apple; role=systems engineer; city=Cupertino"
+crm_api,1.0,True,29,dllm,7,"TOOL: crm_api
+ARGS: company=Apple; role=systems engineer; city=Cupertino"
+,0.0,False,29,ar_prefix,0,
+crm_api,0.14285714285714285,False,29,ar_prefix,1,TOOL: crm_a
+crm_api,0.2857142857142857,False,29,ar_prefix,2,"TOOL: crm_api
+ARGS: c"
+crm_api,0.42857142857142855,False,29,ar_prefix,3,"TOOL: crm_api
+ARGS: company=App"
+crm_api,0.5714285714285714,False,29,ar_prefix,4,"TOOL: crm_api
+ARGS: company=Apple; role=sy"
+crm_api,0.7142857142857143,False,29,ar_prefix,5,"TOOL: crm_api
+ARGS: company=Apple; role=systems engi"
+crm_api,0.8571428571428571,False,29,ar_prefix,6,"TOOL: crm_api
+ARGS: company=Apple; role=systems engineer; city"
+crm_api,1.0,True,29,ar_prefix,7,"TOOL: crm_api
+ARGS: company=Apple; role=systems engineer; city=Cupertino"
