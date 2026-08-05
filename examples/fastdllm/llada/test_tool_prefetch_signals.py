@@ -239,6 +239,40 @@ def _first_ready_fraction(
     return None, None, None
 
 
+def _stable_ready_fraction(
+    *,
+    texts: list[str],
+    target_tool: str,
+    target_args: dict[str, str],
+) -> tuple[int | None, float | None]:
+    ready = [
+        bool(_score_extraction(text, target_tool, target_args)["ready"])
+        for text in texts
+    ]
+    denominator = max(len(texts) - 1, 1)
+    for index, is_ready in enumerate(ready):
+        if is_ready and all(ready[index:]):
+            return index, index / denominator
+    return None, None
+
+
+def _false_start_count(
+    *,
+    texts: list[str],
+    target_tool: str,
+    target_args: dict[str, str],
+) -> int:
+    ready = [
+        bool(_score_extraction(text, target_tool, target_args)["ready"])
+        for text in texts
+    ]
+    false_starts = 0
+    for current, following in zip(ready, ready[1:]):
+        if current and not following:
+            false_starts += 1
+    return false_starts
+
+
 def _ar_prefix_texts(final_text: str, num_steps: int) -> list[str]:
     if num_steps <= 1:
         return [final_text]
@@ -368,6 +402,26 @@ def main() -> None:
             target_tool=target_tool,
             target_args=target_args,
         )
+        dllm_stable_step, dllm_stable_fraction = _stable_ready_fraction(
+            texts=dllm_texts,
+            target_tool=target_tool,
+            target_args=target_args,
+        )
+        ar_stable_step, ar_stable_fraction = _stable_ready_fraction(
+            texts=ar_texts,
+            target_tool=target_tool,
+            target_args=target_args,
+        )
+        dllm_false_starts = _false_start_count(
+            texts=dllm_texts,
+            target_tool=target_tool,
+            target_args=target_args,
+        )
+        ar_false_starts = _false_start_count(
+            texts=ar_texts,
+            target_tool=target_tool,
+            target_args=target_args,
+        )
 
         row: dict[str, Any] = {
             "request_index": request_index,
@@ -380,8 +434,14 @@ def main() -> None:
             "final_detected_tool": final_score["detected_tool"],
             "dllm_ready_step": dllm_step,
             "dllm_ready_fraction": dllm_fraction,
+            "dllm_stable_step": dllm_stable_step,
+            "dllm_stable_fraction": dllm_stable_fraction,
+            "dllm_false_starts": dllm_false_starts,
             "ar_ready_step": ar_step,
             "ar_ready_fraction": ar_fraction,
+            "ar_stable_step": ar_stable_step,
+            "ar_stable_fraction": ar_stable_fraction,
+            "ar_false_starts": ar_false_starts,
             "dllm_beats_ar": (
                 dllm_fraction is not None
                 and (ar_fraction is None or dllm_fraction < ar_fraction)
@@ -449,7 +509,10 @@ def main() -> None:
                     "request_index": request_index,
                     "final_ready": final_score["ready"],
                     "dllm_ready_fraction": dllm_fraction,
+                    "dllm_stable_fraction": dllm_stable_fraction,
+                    "dllm_false_starts": dllm_false_starts,
                     "ar_ready_fraction": ar_fraction,
+                    "ar_stable_fraction": ar_stable_fraction,
                     "dllm_beats_ar": row["dllm_beats_ar"],
                 },
                 ensure_ascii=True,
@@ -481,6 +544,26 @@ def main() -> None:
         aggregate["mean_ar_ready_fraction"] = statistics.mean(
             [float(row["ar_ready_fraction"]) for row in ar_ready]
         ) if ar_ready else None
+        dllm_stable = [
+            row for row in valid_rows if row["dllm_stable_fraction"] is not None
+        ]
+        ar_stable = [
+            row for row in valid_rows if row["ar_stable_fraction"] is not None
+        ]
+        aggregate["dllm_stable_rate"] = len(dllm_stable) / len(valid_rows)
+        aggregate["ar_stable_rate"] = len(ar_stable) / len(valid_rows)
+        aggregate["mean_dllm_stable_fraction"] = statistics.mean(
+            [float(row["dllm_stable_fraction"]) for row in dllm_stable]
+        ) if dllm_stable else None
+        aggregate["mean_ar_stable_fraction"] = statistics.mean(
+            [float(row["ar_stable_fraction"]) for row in ar_stable]
+        ) if ar_stable else None
+        aggregate["mean_dllm_false_starts"] = statistics.mean(
+            [float(row["dllm_false_starts"]) for row in valid_rows]
+        )
+        aggregate["mean_ar_false_starts"] = statistics.mean(
+            [float(row["ar_false_starts"]) for row in valid_rows]
+        )
         leads = [
             float(row["dllm_lead_fraction"])
             for row in valid_rows

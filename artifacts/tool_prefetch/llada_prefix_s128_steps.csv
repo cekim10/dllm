@@ -1,0 +1,951 @@
+detected_tool,fraction,ready,request_index,source,step,text
+,0.0,False,0,dllm,0,
+flight_search,0.1111111111111111,False,0,dllm,1,"TOOL: flight_search
+: originFO"
+flight_search,0.2222222222222222,False,0,dllm,2,"TOOL: flight_search
+ARGS: origin ""SFO destinationSeoul"
+flight_search,0.3333333333333333,False,0,dllm,3,"TOOL: flight_search
+ARGS: origin ""SFO destination ""Seoul""; date ""--"
+flight_search,0.4444444444444444,False,0,dllm,4,"TOOL: flight_search
+ARGS: origin ""SFO""; destination ""Seoul""; date ""2026-09-1"
+flight_search,0.5555555555555556,False,0,dllm,5,"TOOL: flight_search
+ARGS: origin = ""SFO""; destination ""Seoul""; date ""2026-09-1"
+flight_search,0.6666666666666666,False,0,dllm,6,"TOOL: flight_search
+ARGS: origin = ""SFO""; destination = ""Seoul""; date = ""2026-09-1"
+flight_search,0.7777777777777778,False,0,dllm,7,"TOOL: flight_search
+ARGS: origin = ""SFO""; destination = ""Seoul""; date = ""2026-09-14"""
+flight_search,0.8888888888888888,False,0,dllm,8,"TOOL: flight_search
+ARGS: origin = ""SFO""; destination = ""Seoul""; date = ""2026-09-14"""
+flight_search,1.0,False,0,dllm,9,"TOOL: flight_search
+ARGS: origin = ""SFO""; destination = ""Seoul""; date = ""2026-09-14"""
+,0.0,False,0,ar_prefix,0,
+,0.1111111111111111,False,0,ar_prefix,1,TOOL: flig
+flight_search,0.2222222222222222,False,0,ar_prefix,2,TOOL: flight_search
+flight_search,0.3333333333333333,False,0,ar_prefix,3,"TOOL: flight_search
+ARGS: or"
+flight_search,0.4444444444444444,False,0,ar_prefix,4,"TOOL: flight_search
+ARGS: origin = ""SF"
+flight_search,0.5555555555555556,False,0,ar_prefix,5,"TOOL: flight_search
+ARGS: origin = ""SFO""; desti"
+flight_search,0.6666666666666666,False,0,ar_prefix,6,"TOOL: flight_search
+ARGS: origin = ""SFO""; destination = "
+flight_search,0.7777777777777778,False,0,ar_prefix,7,"TOOL: flight_search
+ARGS: origin = ""SFO""; destination = ""Seoul""; d"
+flight_search,0.8888888888888888,False,0,ar_prefix,8,"TOOL: flight_search
+ARGS: origin = ""SFO""; destination = ""Seoul""; date = ""20"
+flight_search,1.0,False,0,ar_prefix,9,"TOOL: flight_search
+ARGS: origin = ""SFO""; destination = ""Seoul""; date = ""2026-09-14"""
+,0.0,False,1,dllm,0,
+weather,0.14285714285714285,False,1,dllm,1,"TOOL: weather
+:"
+weather,0.2857142857142857,False,1,dllm,2,"TOOL: weather
+ARGS: locationTokyo"
+weather,0.42857142857142855,False,1,dllm,3,"TOOL: weather
+ARGS: location=Tokyo; dateorrow"
+weather,0.5714285714285714,True,1,dllm,4,"TOOL: weather
+ARGS: location=Tokyo; date=tomorrow"
+weather,0.7142857142857143,True,1,dllm,5,"TOOL: weather
+ARGS: location=Tokyo; date=tomorrow"
+weather,0.8571428571428571,True,1,dllm,6,"TOOL: weather
+ARGS: location=Tokyo; date=tomorrow"
+weather,1.0,True,1,dllm,7,"TOOL: weather
+ARGS: location=Tokyo; date=tomorrow"
+,0.0,False,1,ar_prefix,0,
+,0.14285714285714285,False,1,ar_prefix,1,TOOL: w
+weather,0.2857142857142857,False,1,ar_prefix,2,"TOOL: weather
+"
+weather,0.42857142857142855,False,1,ar_prefix,3,"TOOL: weather
+ARGS: l"
+weather,0.5714285714285714,False,1,ar_prefix,4,"TOOL: weather
+ARGS: location"
+weather,0.7142857142857143,False,1,ar_prefix,5,"TOOL: weather
+ARGS: location=Tokyo;"
+weather,0.8571428571428571,False,1,ar_prefix,6,"TOOL: weather
+ARGS: location=Tokyo; date=t"
+weather,1.0,True,1,ar_prefix,7,"TOOL: weather
+ARGS: location=Tokyo; date=tomorrow"
+,0.0,False,2,dllm,0,
+web_search,0.1111111111111111,False,2,dllm,1,TOOL: web_search
+web_search,0.2222222222222222,False,2,dllm,2,"TOOL: web_search
+ARGS: query"
+web_search,0.3333333333333333,False,2,dllm,3,"TOOL: web_search
+ARGS: queryrecent"
+web_search,0.4444444444444444,False,2,dllm,4,"TOOL: web_search
+ARGS: query=""recent papers"
+web_search,0.5555555555555556,True,2,dllm,5,"TOOL: web_search
+ARGS: query=""recent papers diffusion language model serving"""
+web_search,0.6666666666666666,True,2,dllm,6,"TOOL: web_search
+ARGS: query=""recent papers about diffusion language model serving"""
+web_search,0.7777777777777778,True,2,dllm,7,"TOOL: web_search
+ARGS: query=""recent papers about diffusion language model serving"""
+web_search,0.8888888888888888,True,2,dllm,8,"TOOL: web_search
+ARGS: query=""recent papers about diffusion language model serving"""
+web_search,1.0,True,2,dllm,9,"TOOL: web_search
+ARGS: query=""recent papers about diffusion language model serving"""
+,0.0,False,2,ar_prefix,0,
+,0.1111111111111111,False,2,ar_prefix,1,TOOL: web_
+web_search,0.2222222222222222,False,2,ar_prefix,2,"TOOL: web_search
+AR"
+web_search,0.3333333333333333,False,2,ar_prefix,3,"TOOL: web_search
+ARGS: query"
+web_search,0.4444444444444444,False,2,ar_prefix,4,"TOOL: web_search
+ARGS: query=""recent "
+web_search,0.5555555555555556,False,2,ar_prefix,5,"TOOL: web_search
+ARGS: query=""recent papers abo"
+web_search,0.6666666666666666,False,2,ar_prefix,6,"TOOL: web_search
+ARGS: query=""recent papers about diffus"
+web_search,0.7777777777777778,False,2,ar_prefix,7,"TOOL: web_search
+ARGS: query=""recent papers about diffusion langu"
+web_search,0.8888888888888888,True,2,ar_prefix,8,"TOOL: web_search
+ARGS: query=""recent papers about diffusion language model"
+web_search,1.0,True,2,ar_prefix,9,"TOOL: web_search
+ARGS: query=""recent papers about diffusion language model serving"""
+,0.0,False,3,dllm,0,
+web_search,0.08333333333333333,False,3,dllm,1,TOOL: web_search
+web_search,0.16666666666666666,False,3,dllm,2,"TOOL: web_search
+ARGS: query"
+web_search,0.25,False,3,dllm,3,"TOOL: web_search
+ARGS: query"
+web_search,0.3333333333333333,False,3,dllm,4,"TOOL: web_search
+ARGS: query"
+web_search,0.4166666666666667,False,3,dllm,5,"TOOL: web_search
+ARGS: query"
+web_search,0.5,False,3,dllm,6,"TOOL: web_search
+ARGS: query"
+web_search,0.5833333333333334,False,3,dllm,7,"TOOL: web_search
+ARGS: query fragmentation"
+web_search,0.6666666666666666,False,3,dllm,8,"TOOL: web_search
+ARGS: queryGPU memory fragmentation in serving"
+web_search,0.75,False,3,dllm,9,"TOOL: web_search
+ARGS: query=""GPU memory fragmentation in serving systems"""
+web_search,0.8333333333333334,False,3,dllm,10,"TOOL: web_search
+ARGS: query=""GPU memory fragmentation in serving systems"""
+web_search,0.9166666666666666,False,3,dllm,11,"TOOL: web_search
+ARGS: query=""GPU memory fragmentation in serving systems"""
+web_search,1.0,False,3,dllm,12,"TOOL: web_search
+ARGS: query=""GPU memory fragmentation in serving systems"""
+,0.0,False,3,ar_prefix,0,
+,0.08333333333333333,False,3,ar_prefix,1,TOOL: w
+,0.16666666666666666,False,3,ar_prefix,2,TOOL: web_sea
+web_search,0.25,False,3,ar_prefix,3,"TOOL: web_search
+AR"
+web_search,0.3333333333333333,False,3,ar_prefix,4,"TOOL: web_search
+ARGS: qu"
+web_search,0.4166666666666667,False,3,ar_prefix,5,"TOOL: web_search
+ARGS: query=""G"
+web_search,0.5,False,3,ar_prefix,6,"TOOL: web_search
+ARGS: query=""GPU mem"
+web_search,0.5833333333333334,False,3,ar_prefix,7,"TOOL: web_search
+ARGS: query=""GPU memory fra"
+web_search,0.6666666666666666,False,3,ar_prefix,8,"TOOL: web_search
+ARGS: query=""GPU memory fragmenta"
+web_search,0.75,False,3,ar_prefix,9,"TOOL: web_search
+ARGS: query=""GPU memory fragmentation i"
+web_search,0.8333333333333334,False,3,ar_prefix,10,"TOOL: web_search
+ARGS: query=""GPU memory fragmentation in serv"
+web_search,0.9166666666666666,False,3,ar_prefix,11,"TOOL: web_search
+ARGS: query=""GPU memory fragmentation in serving sy"
+web_search,1.0,False,3,ar_prefix,12,"TOOL: web_search
+ARGS: query=""GPU memory fragmentation in serving systems"""
+,0.0,False,4,dllm,0,
+sql_query,0.04,False,4,dllm,1,TOOL: sql_query:
+sql_query,0.08,False,4,dllm,2,"TOOL: sql_query
+ARGS: table"
+sql_query,0.12,False,4,dllm,3,"TOOL: sql_query
+ARGS: table=orders; filter"
+sql_query,0.16,False,4,dllm,4,"TOOL: sql_query
+ARGS: table=orders; filter="
+sql_query,0.2,False,4,dllm,5,"TOOL: sql_query
+ARGS: table=orders; filter="
+sql_query,0.24,False,4,dllm,6,"TOOL: sql_query
+ARGS: table=orders; filter="
+sql_query,0.28,False,4,dllm,7,"TOOL: sql_query
+ARGS: table=orders; filter="
+sql_query,0.32,False,4,dllm,8,"TOOL: sql_query
+ARGS: table=orders; filter="
+sql_query,0.36,False,4,dllm,9,"TOOL: sql_query
+ARGS: table=orders; filter="
+sql_query,0.4,False,4,dllm,10,"TOOL: sql_query
+ARGS: table=orders; filter="
+sql_query,0.44,False,4,dllm,11,"TOOL: sql_query
+ARGS: table=orders; filter="
+sql_query,0.48,False,4,dllm,12,"TOOL: sql_query
+ARGS: table=orders; filter="
+sql_query,0.52,False,4,dllm,13,"TOOL: sql_query
+ARGS: table=orders; filter="
+sql_query,0.56,False,4,dllm,14,"TOOL: sql_query
+ARGS: table=orders; filter="
+sql_query,0.6,False,4,dllm,15,"TOOL: sql_query
+ARGS: table=orders; filter="
+sql_query,0.64,False,4,dllm,16,"TOOL: sql_query
+ARGS: table=orders; filter="
+sql_query,0.68,False,4,dllm,17,"TOOL: sql_query
+ARGS: table=orders; filter="
+sql_query,0.72,False,4,dllm,18,"TOOL: sql_query
+ARGS: table=orders; filter="
+sql_query,0.76,False,4,dllm,19,"TOOL: sql_query
+ARGS: table=orders; filter="
+sql_query,0.8,False,4,dllm,20,"TOOL: sql_query
+ARGS: table=orders; filter=failed"
+sql_query,0.84,False,4,dllm,21,"TOOL: sql_query
+ARGS: table=orders; filter=failed"
+sql_query,0.88,False,4,dllm,22,"TOOL: sql_query
+ARGS: table=orders; filter=failed_payment"
+sql_query,0.92,False,4,dllm,23,"TOOL: sql_query
+ARGS: table=orders; filter=failed_payment"
+sql_query,0.96,False,4,dllm,24,"TOOL: sql_query
+ARGS: table=orders; filter=failed_payment"
+sql_query,1.0,False,4,dllm,25,"TOOL: sql_query
+ARGS: table=orders; filter=failed_payment"
+,0.0,False,4,ar_prefix,0,
+,0.04,False,4,ar_prefix,1,TOO
+,0.08,False,4,ar_prefix,2,TOOL:
+,0.12,False,4,ar_prefix,3,TOOL: s
+,0.16,False,4,ar_prefix,4,TOOL: sql_
+,0.2,False,4,ar_prefix,5,TOOL: sql_qu
+,0.24,False,4,ar_prefix,6,TOOL: sql_quer
+sql_query,0.28,False,4,ar_prefix,7,"TOOL: sql_query
+"
+sql_query,0.32,False,4,ar_prefix,8,"TOOL: sql_query
+ARG"
+sql_query,0.36,False,4,ar_prefix,9,"TOOL: sql_query
+ARGS:"
+sql_query,0.4,False,4,ar_prefix,10,"TOOL: sql_query
+ARGS: t"
+sql_query,0.44,False,4,ar_prefix,11,"TOOL: sql_query
+ARGS: tabl"
+sql_query,0.48,False,4,ar_prefix,12,"TOOL: sql_query
+ARGS: table="
+sql_query,0.52,False,4,ar_prefix,13,"TOOL: sql_query
+ARGS: table=or"
+sql_query,0.56,False,4,ar_prefix,14,"TOOL: sql_query
+ARGS: table=orde"
+sql_query,0.6,False,4,ar_prefix,15,"TOOL: sql_query
+ARGS: table=orders;"
+sql_query,0.64,False,4,ar_prefix,16,"TOOL: sql_query
+ARGS: table=orders; f"
+sql_query,0.68,False,4,ar_prefix,17,"TOOL: sql_query
+ARGS: table=orders; fil"
+sql_query,0.72,False,4,ar_prefix,18,"TOOL: sql_query
+ARGS: table=orders; filter"
+sql_query,0.76,False,4,ar_prefix,19,"TOOL: sql_query
+ARGS: table=orders; filter=f"
+sql_query,0.8,False,4,ar_prefix,20,"TOOL: sql_query
+ARGS: table=orders; filter=fai"
+sql_query,0.84,False,4,ar_prefix,21,"TOOL: sql_query
+ARGS: table=orders; filter=faile"
+sql_query,0.88,False,4,ar_prefix,22,"TOOL: sql_query
+ARGS: table=orders; filter=failed_p"
+sql_query,0.92,False,4,ar_prefix,23,"TOOL: sql_query
+ARGS: table=orders; filter=failed_pay"
+sql_query,0.96,False,4,ar_prefix,24,"TOOL: sql_query
+ARGS: table=orders; filter=failed_payme"
+sql_query,1.0,False,4,ar_prefix,25,"TOOL: sql_query
+ARGS: table=orders; filter=failed_payment"
+,0.0,False,5,dllm,0,
+flight_search,0.1111111111111111,False,5,dllm,1,"TOOL: flight_search
+: origin"
+flight_search,0.2222222222222222,False,5,dllm,2,"TOOL: flight_search
+ARGS: originFK"
+flight_search,0.3333333333333333,False,5,dllm,3,"TOOL: flight_search
+ARGS: origin=JFK; destination-"
+flight_search,0.4444444444444444,False,5,dllm,4,"TOOL: flight_search
+ARGS: origin=JFK; destination=AX; date=2026-12-03"
+flight_search,0.5555555555555556,False,5,dllm,5,"TOOL: flight_search
+ARGS: origin=JFK; destination=AX; date=2026-12-03"
+flight_search,0.6666666666666666,True,5,dllm,6,"TOOL: flight_search
+ARGS: origin=JFK; destination=LAX; date=2026-12-03"
+flight_search,0.7777777777777778,True,5,dllm,7,"TOOL: flight_search
+ARGS: origin=JFK; destination=LAX; date=2026-12-03"
+flight_search,0.8888888888888888,True,5,dllm,8,"TOOL: flight_search
+ARGS: origin=JFK; destination=LAX; date=2026-12-03"
+flight_search,1.0,True,5,dllm,9,"TOOL: flight_search
+ARGS: origin=JFK; destination=LAX; date=2026-12-03"
+,0.0,False,5,ar_prefix,0,
+,0.1111111111111111,False,5,ar_prefix,1,TOOL: fl
+flight_search,0.2222222222222222,False,5,ar_prefix,2,TOOL: flight_sea
+flight_search,0.3333333333333333,False,5,ar_prefix,3,"TOOL: flight_search
+ARGS"
+flight_search,0.4444444444444444,False,5,ar_prefix,4,"TOOL: flight_search
+ARGS: origin"
+flight_search,0.5555555555555556,False,5,ar_prefix,5,"TOOL: flight_search
+ARGS: origin=JFK; d"
+flight_search,0.6666666666666666,False,5,ar_prefix,6,"TOOL: flight_search
+ARGS: origin=JFK; destinati"
+flight_search,0.7777777777777778,False,5,ar_prefix,7,"TOOL: flight_search
+ARGS: origin=JFK; destination=LAX; "
+flight_search,0.8888888888888888,False,5,ar_prefix,8,"TOOL: flight_search
+ARGS: origin=JFK; destination=LAX; date=202"
+flight_search,1.0,True,5,ar_prefix,9,"TOOL: flight_search
+ARGS: origin=JFK; destination=LAX; date=2026-12-03"
+,0.0,False,6,dllm,0,
+weather,0.08333333333333333,False,6,dllm,1,"TOOL: weather
+:"
+weather,0.16666666666666666,False,6,dllm,2,"TOOL: weather
+ARGS: location date"
+weather,0.25,False,6,dllm,3,"TOOL: weather
+ARGS: locationSeattle; date"
+weather,0.3333333333333333,False,6,dllm,4,"TOOL: weather
+ARGS: location=Seattle; date"
+weather,0.4166666666666667,False,6,dllm,5,"TOOL: weather
+ARGS: location=Seattle; date"
+weather,0.5,True,6,dllm,6,"TOOL: weather
+ARGS: location=Seattle; dateFriday"
+weather,0.5833333333333334,True,6,dllm,7,"TOOL: weather
+ARGS: location=Seattle; dateFriday"
+weather,0.6666666666666666,True,6,dllm,8,"TOOL: weather
+ARGS: location=Seattle; dateFriday"
+weather,0.75,True,6,dllm,9,"TOOL: weather
+ARGS: location=Seattle; date=Friday"
+weather,0.8333333333333334,True,6,dllm,10,"TOOL: weather
+ARGS: location=Seattle; date=Friday"
+weather,0.9166666666666666,True,6,dllm,11,"TOOL: weather
+ARGS: location=Seattle; date=Friday"
+weather,1.0,True,6,dllm,12,"TOOL: weather
+ARGS: location=Seattle; date=Friday"
+,0.0,False,6,ar_prefix,0,
+,0.08333333333333333,False,6,ar_prefix,1,TOOL:
+,0.16666666666666666,False,6,ar_prefix,2,TOOL: wea
+weather,0.25,False,6,ar_prefix,3,TOOL: weather
+weather,0.3333333333333333,False,6,ar_prefix,4,"TOOL: weather
+ARG"
+weather,0.4166666666666667,False,6,ar_prefix,5,"TOOL: weather
+ARGS: l"
+weather,0.5,False,6,ar_prefix,6,"TOOL: weather
+ARGS: locat"
+weather,0.5833333333333334,False,6,ar_prefix,7,"TOOL: weather
+ARGS: location="
+weather,0.6666666666666666,False,6,ar_prefix,8,"TOOL: weather
+ARGS: location=Seat"
+weather,0.75,False,6,ar_prefix,9,"TOOL: weather
+ARGS: location=Seattle;"
+weather,0.8333333333333334,False,6,ar_prefix,10,"TOOL: weather
+ARGS: location=Seattle; dat"
+weather,0.9166666666666666,False,6,ar_prefix,11,"TOOL: weather
+ARGS: location=Seattle; date=Fr"
+weather,1.0,True,6,ar_prefix,12,"TOOL: weather
+ARGS: location=Seattle; date=Friday"
+,0.0,False,7,dllm,0,
+web_search,0.1111111111111111,False,7,dllm,1,TOOL: web_search
+web_search,0.2222222222222222,False,7,dllm,2,"TOOL: web_search
+ARGS: query"
+web_search,0.3333333333333333,False,7,dllm,3,"TOOL: web_search
+ARGS: queryAI Codex documentation"
+web_search,0.4444444444444444,True,7,dllm,4,"TOOL: web_search
+ARGS: queryOpenAI Codex API documentation"
+web_search,0.5555555555555556,True,7,dllm,5,"TOOL: web_search
+ARGS: query=""OpenAI Codex API documentation"""
+web_search,0.6666666666666666,True,7,dllm,6,"TOOL: web_search
+ARGS: query=""OpenAI Codex API documentation"""
+web_search,0.7777777777777778,True,7,dllm,7,"TOOL: web_search
+ARGS: query=""OpenAI Codex API documentation"""
+web_search,0.8888888888888888,True,7,dllm,8,"TOOL: web_search
+ARGS: query=""OpenAI Codex API documentation"""
+web_search,1.0,True,7,dllm,9,"TOOL: web_search
+ARGS: query=""OpenAI Codex API documentation"""
+,0.0,False,7,ar_prefix,0,
+,0.1111111111111111,False,7,ar_prefix,1,TOOL: w
+,0.2222222222222222,False,7,ar_prefix,2,TOOL: web_sear
+web_search,0.3333333333333333,False,7,ar_prefix,3,"TOOL: web_search
+ARGS"
+web_search,0.4444444444444444,False,7,ar_prefix,4,"TOOL: web_search
+ARGS: query"
+web_search,0.5555555555555556,False,7,ar_prefix,5,"TOOL: web_search
+ARGS: query=""Open"
+web_search,0.6666666666666666,False,7,ar_prefix,6,"TOOL: web_search
+ARGS: query=""OpenAI Code"
+web_search,0.7777777777777778,True,7,ar_prefix,7,"TOOL: web_search
+ARGS: query=""OpenAI Codex API d"
+web_search,0.8888888888888888,True,7,ar_prefix,8,"TOOL: web_search
+ARGS: query=""OpenAI Codex API document"
+web_search,1.0,True,7,ar_prefix,9,"TOOL: web_search
+ARGS: query=""OpenAI Codex API documentation"""
+,0.0,False,8,dllm,0,
+web_search,0.125,False,8,dllm,1,"TOOL: web_search
+:"
+web_search,0.25,False,8,dllm,2,"TOOL: web_search
+ARGS:"
+web_search,0.375,False,8,dllm,3,"TOOL: web_search
+ARGS: query"
+web_search,0.5,False,8,dllm,4,"TOOL: web_search
+ARGS: queryRay overhead"
+web_search,0.625,False,8,dllm,5,"TOOL: web_search
+ARGS: query=""Ray actor scheduling overhead"""
+web_search,0.75,False,8,dllm,6,"TOOL: web_search
+ARGS: query=""Ray actor scheduling overhead"""
+web_search,0.875,False,8,dllm,7,"TOOL: web_search
+ARGS: query=""Ray actor scheduling overhead"""
+web_search,1.0,False,8,dllm,8,"TOOL: web_search
+ARGS: query=""Ray actor scheduling overhead"""
+,0.0,False,8,ar_prefix,0,
+,0.125,False,8,ar_prefix,1,TOOL: we
+,0.25,False,8,ar_prefix,2,TOOL: web_searc
+web_search,0.375,False,8,ar_prefix,3,"TOOL: web_search
+ARGS: "
+web_search,0.5,False,8,ar_prefix,4,"TOOL: web_search
+ARGS: query="""
+web_search,0.625,False,8,ar_prefix,5,"TOOL: web_search
+ARGS: query=""Ray acto"
+web_search,0.75,False,8,ar_prefix,6,"TOOL: web_search
+ARGS: query=""Ray actor sched"
+web_search,0.875,False,8,ar_prefix,7,"TOOL: web_search
+ARGS: query=""Ray actor scheduling ov"
+web_search,1.0,False,8,ar_prefix,8,"TOOL: web_search
+ARGS: query=""Ray actor scheduling overhead"""
+,0.0,False,9,dllm,0,
+sql_query,0.058823529411764705,False,9,dllm,1,TOOL: sql_query:
+sql_query,0.11764705882352941,False,9,dllm,2,"TOOL: sql_query
+ARGS: table"
+sql_query,0.17647058823529413,False,9,dllm,3,"TOOL: sql_query
+ARGS: table=user_events; filter"
+sql_query,0.23529411764705882,False,9,dllm,4,"TOOL: sql_query
+ARGS: table=user_events; filter="
+sql_query,0.29411764705882354,False,9,dllm,5,"TOOL: sql_query
+ARGS: table=user_events; filter="
+sql_query,0.35294117647058826,False,9,dllm,6,"TOOL: sql_query
+ARGS: table=user_events; filter="
+sql_query,0.4117647058823529,False,9,dllm,7,"TOOL: sql_query
+ARGS: table=user_events; filter="
+sql_query,0.47058823529411764,False,9,dllm,8,"TOOL: sql_query
+ARGS: table=user_events; filter="
+sql_query,0.5294117647058824,False,9,dllm,9,"TOOL: sql_query
+ARGS: table=user_events; filter=4"
+sql_query,0.5882352941176471,False,9,dllm,10,"TOOL: sql_query
+ARGS: table=user_events; filter=10.0.4.7"
+sql_query,0.6470588235294118,False,9,dllm,11,"TOOL: sql_query
+ARGS: table=user_events; filter=='10.0.4.7"
+sql_query,0.7058823529411765,False,9,dllm,12,"TOOL: sql_query
+ARGS: table=user_events; filter=='10.0.4.7'"
+sql_query,0.7647058823529411,False,9,dllm,13,"TOOL: sql_query
+ARGS: table=user_events; filter=_address='10.0.4.7'"
+sql_query,0.8235294117647058,False,9,dllm,14,"TOOL: sql_query
+ARGS: table=user_events; filter=ip_address='10.0.4.7'"
+sql_query,0.8823529411764706,False,9,dllm,15,"TOOL: sql_query
+ARGS: table=user_events; filter=ip_address='10.0.4.7'"
+sql_query,0.9411764705882353,False,9,dllm,16,"TOOL: sql_query
+ARGS: table=user_events; filter=ip_address='10.0.4.7'"
+sql_query,1.0,False,9,dllm,17,"TOOL: sql_query
+ARGS: table=user_events; filter=ip_address='10.0.4.7'"
+,0.0,False,9,ar_prefix,0,
+,0.058823529411764705,False,9,ar_prefix,1,TOOL:
+,0.11764705882352941,False,9,ar_prefix,2,TOOL: sql
+,0.17647058823529413,False,9,ar_prefix,3,TOOL: sql_que
+sql_query,0.23529411764705882,False,9,ar_prefix,4,"TOOL: sql_query
+A"
+sql_query,0.29411764705882354,False,9,ar_prefix,5,"TOOL: sql_query
+ARGS:"
+sql_query,0.35294117647058826,False,9,ar_prefix,6,"TOOL: sql_query
+ARGS: tab"
+sql_query,0.4117647058823529,False,9,ar_prefix,7,"TOOL: sql_query
+ARGS: table=u"
+sql_query,0.47058823529411764,False,9,ar_prefix,8,"TOOL: sql_query
+ARGS: table=user_"
+sql_query,0.5294117647058824,False,9,ar_prefix,9,"TOOL: sql_query
+ARGS: table=user_even"
+sql_query,0.5882352941176471,False,9,ar_prefix,10,"TOOL: sql_query
+ARGS: table=user_events; "
+sql_query,0.6470588235294118,False,9,ar_prefix,11,"TOOL: sql_query
+ARGS: table=user_events; filt"
+sql_query,0.7058823529411765,False,9,ar_prefix,12,"TOOL: sql_query
+ARGS: table=user_events; filter=i"
+sql_query,0.7647058823529411,False,9,ar_prefix,13,"TOOL: sql_query
+ARGS: table=user_events; filter=ip_ad"
+sql_query,0.8235294117647058,False,9,ar_prefix,14,"TOOL: sql_query
+ARGS: table=user_events; filter=ip_addres"
+sql_query,0.8823529411764706,False,9,ar_prefix,15,"TOOL: sql_query
+ARGS: table=user_events; filter=ip_address='1"
+sql_query,0.9411764705882353,False,9,ar_prefix,16,"TOOL: sql_query
+ARGS: table=user_events; filter=ip_address='10.0."
+sql_query,1.0,False,9,ar_prefix,17,"TOOL: sql_query
+ARGS: table=user_events; filter=ip_address='10.0.4.7'"
+,0.0,False,10,dllm,0,
+flight_search,0.125,False,10,dllm,1,"TOOL: flight_search
+ARGS: origin"
+flight_search,0.25,False,10,dllm,2,"TOOL: flight_search
+ARGS: origin"
+flight_search,0.375,False,10,dllm,3,"TOOL: flight_search
+ARGS: originOS;"
+flight_search,0.5,False,10,dllm,4,"TOOL: flight_search
+ARGS: origin=BOS; destinationHR; date=202-0"
+flight_search,0.625,True,10,dllm,5,"TOOL: flight_search
+ARGS: origin=BOS; destination=LHR; date=2027-01-08"
+flight_search,0.75,True,10,dllm,6,"TOOL: flight_search
+ARGS: origin=BOS; destination=LHR; date=2027-01-08"
+flight_search,0.875,True,10,dllm,7,"TOOL: flight_search
+ARGS: origin=BOS; destination=LHR; date=2027-01-08"
+flight_search,1.0,True,10,dllm,8,"TOOL: flight_search
+ARGS: origin=BOS; destination=LHR; date=2027-01-08"
+,0.0,False,10,ar_prefix,0,
+,0.125,False,10,ar_prefix,1,TOOL: fli
+flight_search,0.25,False,10,ar_prefix,2,TOOL: flight_searc
+flight_search,0.375,False,10,ar_prefix,3,"TOOL: flight_search
+ARGS: o"
+flight_search,0.5,False,10,ar_prefix,4,"TOOL: flight_search
+ARGS: origin=BO"
+flight_search,0.625,False,10,ar_prefix,5,"TOOL: flight_search
+ARGS: origin=BOS; destin"
+flight_search,0.75,False,10,ar_prefix,6,"TOOL: flight_search
+ARGS: origin=BOS; destination=LHR"
+flight_search,0.875,False,10,ar_prefix,7,"TOOL: flight_search
+ARGS: origin=BOS; destination=LHR; date=20"
+flight_search,1.0,True,10,ar_prefix,8,"TOOL: flight_search
+ARGS: origin=BOS; destination=LHR; date=2027-01-08"
+,0.0,False,11,dllm,0,
+weather,0.1,False,11,dllm,1,"TOOL: weather
+: location"
+weather,0.2,False,11,dllm,2,"TOOL: weather
+ARGS: locationParis date"
+weather,0.3,False,11,dllm,3,"TOOL: weather
+ARGS: location=Paris; date"
+weather,0.4,False,11,dllm,4,"TOOL: weather
+ARGS: location=Paris; date="
+weather,0.5,False,11,dllm,5,"TOOL: weather
+ARGS: location=Paris; date="
+weather,0.6,False,11,dllm,6,"TOOL: weather
+ARGS: location=Paris; date= Monday"
+weather,0.7,True,11,dllm,7,"TOOL: weather
+ARGS: location=Paris; date=next Monday"
+weather,0.8,True,11,dllm,8,"TOOL: weather
+ARGS: location=Paris; date=next Monday"
+weather,0.9,True,11,dllm,9,"TOOL: weather
+ARGS: location=Paris; date=next Monday"
+weather,1.0,True,11,dllm,10,"TOOL: weather
+ARGS: location=Paris; date=next Monday"
+,0.0,False,11,ar_prefix,0,
+,0.1,False,11,ar_prefix,1,TOOL: 
+,0.2,False,11,ar_prefix,2,TOOL: weath
+weather,0.3,False,11,ar_prefix,3,"TOOL: weather
+AR"
+weather,0.4,False,11,ar_prefix,4,"TOOL: weather
+ARGS: l"
+weather,0.5,False,11,ar_prefix,5,"TOOL: weather
+ARGS: locati"
+weather,0.6,False,11,ar_prefix,6,"TOOL: weather
+ARGS: location=Par"
+weather,0.7,False,11,ar_prefix,7,"TOOL: weather
+ARGS: location=Paris; d"
+weather,0.8,False,11,ar_prefix,8,"TOOL: weather
+ARGS: location=Paris; date=n"
+weather,0.9,False,11,ar_prefix,9,"TOOL: weather
+ARGS: location=Paris; date=next M"
+weather,1.0,True,11,ar_prefix,10,"TOOL: weather
+ARGS: location=Paris; date=next Monday"
+,0.0,False,12,dllm,0,
+web_search,0.1111111111111111,False,12,dllm,1,TOOL: web_search:
+web_search,0.2222222222222222,False,12,dllm,2,"TOOL: web_search
+ARGS: query"
+web_search,0.3333333333333333,False,12,dllm,3,"TOOL: web_search
+ARGS: queryulative"
+web_search,0.4444444444444444,True,12,dllm,4,"TOOL: web_search
+ARGS: queryspeculative tool execution in AI agents"
+web_search,0.5555555555555556,True,12,dllm,5,"TOOL: web_search
+ARGS: query=""speculative tool execution in AI agents"""
+web_search,0.6666666666666666,True,12,dllm,6,"TOOL: web_search
+ARGS: query=""speculative tool execution in AI agents"""
+web_search,0.7777777777777778,True,12,dllm,7,"TOOL: web_search
+ARGS: query=""speculative tool execution in AI agents"""
+web_search,0.8888888888888888,True,12,dllm,8,"TOOL: web_search
+ARGS: query=""speculative tool execution in AI agents"""
+web_search,1.0,True,12,dllm,9,"TOOL: web_search
+ARGS: query=""speculative tool execution in AI agents"""
+,0.0,False,12,ar_prefix,0,
+,0.1111111111111111,False,12,ar_prefix,1,TOOL: we
+web_search,0.2222222222222222,False,12,ar_prefix,2,TOOL: web_search
+web_search,0.3333333333333333,False,12,ar_prefix,3,"TOOL: web_search
+ARGS: q"
+web_search,0.4444444444444444,False,12,ar_prefix,4,"TOOL: web_search
+ARGS: query=""sp"
+web_search,0.5555555555555556,False,12,ar_prefix,5,"TOOL: web_search
+ARGS: query=""speculati"
+web_search,0.6666666666666666,False,12,ar_prefix,6,"TOOL: web_search
+ARGS: query=""speculative tool "
+web_search,0.7777777777777778,False,12,ar_prefix,7,"TOOL: web_search
+ARGS: query=""speculative tool executio"
+web_search,0.8888888888888888,True,12,ar_prefix,8,"TOOL: web_search
+ARGS: query=""speculative tool execution in AI "
+web_search,1.0,True,12,ar_prefix,9,"TOOL: web_search
+ARGS: query=""speculative tool execution in AI agents"""
+,0.0,False,13,dllm,0,
+,0.1111111111111111,False,13,dllm,1,TOOL:_search
+,0.2222222222222222,False,13,dllm,2,"TOOL:_search
+ARGS:"
+sql_query,0.3333333333333333,False,13,dllm,3,"TOOL:_search
+ARGS: query K"
+sql_query,0.4444444444444444,False,13,dllm,4,"TOOL:_search
+ARGS: query ""dLLM KV cache reuse"""
+sql_query,0.5555555555555556,False,13,dllm,5,"TOOL:_search
+ARGS: query = ""dLLM KV cache reuse"""
+web_search,0.6666666666666666,False,13,dllm,6,"TOOL: web_search
+ARGS: query = ""dLLM KV cache reuse"""
+web_search,0.7777777777777778,False,13,dllm,7,"TOOL: web_search
+ARGS: query = ""dLLM KV cache reuse"""
+web_search,0.8888888888888888,False,13,dllm,8,"TOOL: web_search
+ARGS: query = ""dLLM KV cache reuse"""
+web_search,1.0,False,13,dllm,9,"TOOL: web_search
+ARGS: query = ""dLLM KV cache reuse"""
+,0.0,False,13,ar_prefix,0,
+,0.1111111111111111,False,13,ar_prefix,1,TOOL: 
+,0.2222222222222222,False,13,ar_prefix,2,TOOL: web_se
+web_search,0.3333333333333333,False,13,ar_prefix,3,"TOOL: web_search
+A"
+web_search,0.4444444444444444,False,13,ar_prefix,4,"TOOL: web_search
+ARGS: q"
+web_search,0.5555555555555556,False,13,ar_prefix,5,"TOOL: web_search
+ARGS: query "
+web_search,0.6666666666666666,False,13,ar_prefix,6,"TOOL: web_search
+ARGS: query = ""dLL"
+web_search,0.7777777777777778,False,13,ar_prefix,7,"TOOL: web_search
+ARGS: query = ""dLLM KV c"
+web_search,0.8888888888888888,False,13,ar_prefix,8,"TOOL: web_search
+ARGS: query = ""dLLM KV cache r"
+web_search,1.0,False,13,ar_prefix,9,"TOOL: web_search
+ARGS: query = ""dLLM KV cache reuse"""
+,0.0,False,14,dllm,0,
+sql_query,0.0625,False,14,dllm,1,TOOL: sql_query:
+sql_query,0.125,False,14,dllm,2,"TOOL: sql_query
+ARGS: table"
+sql_query,0.1875,False,14,dllm,3,"TOOL: sql_query
+ARGS: table=invoices"
+sql_query,0.25,False,14,dllm,4,"TOOL: sql_query
+ARGS: table=invoices; filter"
+sql_query,0.3125,False,14,dllm,5,"TOOL: sql_query
+ARGS: table=invoices; filterstatus"
+sql_query,0.375,False,14,dllm,6,"TOOL: sql_query
+ARGS: table=invoices; filterstatusover"
+sql_query,0.4375,False,14,dllm,7,"TOOL: sql_query
+ARGS: table=invoices; filterstatusoverdue"
+sql_query,0.5,False,14,dllm,8,"TOOL: sql_query
+ARGS: table=invoices; filterstatus='overdue"
+sql_query,0.5625,False,14,dllm,9,"TOOL: sql_query
+ARGS: table=invoices; filterstatus='overdue AND"
+sql_query,0.625,False,14,dllm,10,"TOOL: sql_query
+ARGS: table=invoices; filterstatus='overdue' AND account"
+sql_query,0.6875,True,14,dllm,11,"TOOL: sql_query
+ARGS: table=invoices; filterstatus='overdue' AND account='A17"
+sql_query,0.75,True,14,dllm,12,"TOOL: sql_query
+ARGS: table=invoices; filterstatus='overdue' AND account='A17'"""
+sql_query,0.8125,True,14,dllm,13,"TOOL: sql_query
+ARGS: table=invoices; filter=""status='overdue' AND account='A17'"""
+sql_query,0.875,True,14,dllm,14,"TOOL: sql_query
+ARGS: table=invoices; filter=""status='overdue' AND account='A17'"""
+sql_query,0.9375,True,14,dllm,15,"TOOL: sql_query
+ARGS: table=invoices; filter=""status='overdue' AND account='A17'"""
+sql_query,1.0,True,14,dllm,16,"TOOL: sql_query
+ARGS: table=invoices; filter=""status='overdue' AND account='A17'"""
+,0.0,False,14,ar_prefix,0,
+,0.0625,False,14,ar_prefix,1,TOOL: 
+,0.125,False,14,ar_prefix,2,TOOL: sql_q
+sql_query,0.1875,False,14,ar_prefix,3,"TOOL: sql_query
+"
+sql_query,0.25,False,14,ar_prefix,4,"TOOL: sql_query
+ARGS:"
+sql_query,0.3125,False,14,ar_prefix,5,"TOOL: sql_query
+ARGS: tabl"
+sql_query,0.375,False,14,ar_prefix,6,"TOOL: sql_query
+ARGS: table=inv"
+sql_query,0.4375,False,14,ar_prefix,7,"TOOL: sql_query
+ARGS: table=invoices"
+sql_query,0.5,False,14,ar_prefix,8,"TOOL: sql_query
+ARGS: table=invoices; fil"
+sql_query,0.5625,False,14,ar_prefix,9,"TOOL: sql_query
+ARGS: table=invoices; filter="""
+sql_query,0.625,False,14,ar_prefix,10,"TOOL: sql_query
+ARGS: table=invoices; filter=""statu"
+sql_query,0.6875,False,14,ar_prefix,11,"TOOL: sql_query
+ARGS: table=invoices; filter=""status='ov"
+sql_query,0.75,False,14,ar_prefix,12,"TOOL: sql_query
+ARGS: table=invoices; filter=""status='overdue"
+sql_query,0.8125,False,14,ar_prefix,13,"TOOL: sql_query
+ARGS: table=invoices; filter=""status='overdue' AND"
+sql_query,0.875,False,14,ar_prefix,14,"TOOL: sql_query
+ARGS: table=invoices; filter=""status='overdue' AND acco"
+sql_query,0.9375,False,14,ar_prefix,15,"TOOL: sql_query
+ARGS: table=invoices; filter=""status='overdue' AND account='"
+sql_query,1.0,True,14,ar_prefix,16,"TOOL: sql_query
+ARGS: table=invoices; filter=""status='overdue' AND account='A17'"""
+,0.0,False,15,dllm,0,
+flight_search,0.1111111111111111,False,15,dllm,1,"TOOL: flight_search
+: originSEA"
+flight_search,0.2222222222222222,False,15,dllm,2,"TOOL: flight_search
+ARGS: origin ""SEAN"
+flight_search,0.3333333333333333,False,15,dllm,3,"TOOL: flight_search
+ARGS: origin ""SEA destination ""NRT""; date ""202-05-"
+flight_search,0.4444444444444444,True,15,dllm,4,"TOOL: flight_search
+ARGS: origin ""SEA""; destination ""NRT""; date ""2027-05-20"
+flight_search,0.5555555555555556,True,15,dllm,5,"TOOL: flight_search
+ARGS: origin = ""SEA""; destination ""NRT""; date ""2027-05-20"
+flight_search,0.6666666666666666,True,15,dllm,6,"TOOL: flight_search
+ARGS: origin = ""SEA""; destination = ""NRT""; date = ""2027-05-20"
+flight_search,0.7777777777777778,True,15,dllm,7,"TOOL: flight_search
+ARGS: origin = ""SEA""; destination = ""NRT""; date = ""2027-05-20"""
+flight_search,0.8888888888888888,True,15,dllm,8,"TOOL: flight_search
+ARGS: origin = ""SEA""; destination = ""NRT""; date = ""2027-05-20"""
+flight_search,1.0,True,15,dllm,9,"TOOL: flight_search
+ARGS: origin = ""SEA""; destination = ""NRT""; date = ""2027-05-20"""
+,0.0,False,15,ar_prefix,0,
+,0.1111111111111111,False,15,ar_prefix,1,TOOL: flig
+flight_search,0.2222222222222222,False,15,ar_prefix,2,TOOL: flight_search
+flight_search,0.3333333333333333,False,15,ar_prefix,3,"TOOL: flight_search
+ARGS: or"
+flight_search,0.4444444444444444,False,15,ar_prefix,4,"TOOL: flight_search
+ARGS: origin = ""S"
+flight_search,0.5555555555555556,False,15,ar_prefix,5,"TOOL: flight_search
+ARGS: origin = ""SEA""; dest"
+flight_search,0.6666666666666666,False,15,ar_prefix,6,"TOOL: flight_search
+ARGS: origin = ""SEA""; destination ="
+flight_search,0.7777777777777778,False,15,ar_prefix,7,"TOOL: flight_search
+ARGS: origin = ""SEA""; destination = ""NRT""; d"
+flight_search,0.8888888888888888,False,15,ar_prefix,8,"TOOL: flight_search
+ARGS: origin = ""SEA""; destination = ""NRT""; date = ""20"
+flight_search,1.0,True,15,ar_prefix,9,"TOOL: flight_search
+ARGS: origin = ""SEA""; destination = ""NRT""; date = ""2027-05-20"""
+,0.0,False,16,dllm,0,
+weather,0.1111111111111111,False,16,dllm,1,"TOOL: weather
+:"
+weather,0.2222222222222222,False,16,dllm,2,"TOOL: weather
+ARGS: location="" date"
+weather,0.3333333333333333,False,16,dllm,3,"TOOL: weather
+ARGS: location=""Austin""; date="""
+weather,0.4444444444444444,False,16,dllm,4,"TOOL: weather
+ARGS: location=""Austin""; date="""
+weather,0.5555555555555556,False,16,dllm,5,"TOOL: weather
+ARGS: location=""Austin""; date=""this"
+weather,0.6666666666666666,True,16,dllm,6,"TOOL: weather
+ARGS: location=""Austin""; date=""this weekend"""
+weather,0.7777777777777778,True,16,dllm,7,"TOOL: weather
+ARGS: location=""Austin""; date=""this weekend"""
+weather,0.8888888888888888,True,16,dllm,8,"TOOL: weather
+ARGS: location=""Austin""; date=""this weekend"""
+weather,1.0,True,16,dllm,9,"TOOL: weather
+ARGS: location=""Austin""; date=""this weekend"""
+,0.0,False,16,ar_prefix,0,
+,0.1111111111111111,False,16,ar_prefix,1,TOOL: w
+weather,0.2222222222222222,False,16,ar_prefix,2,TOOL: weather
+weather,0.3333333333333333,False,16,ar_prefix,3,"TOOL: weather
+ARGS: "
+weather,0.4444444444444444,False,16,ar_prefix,4,"TOOL: weather
+ARGS: locati"
+weather,0.5555555555555556,False,16,ar_prefix,5,"TOOL: weather
+ARGS: location=""Aus"
+weather,0.6666666666666666,False,16,ar_prefix,6,"TOOL: weather
+ARGS: location=""Austin""; "
+weather,0.7777777777777778,False,16,ar_prefix,7,"TOOL: weather
+ARGS: location=""Austin""; date=""t"
+weather,0.8888888888888888,False,16,ar_prefix,8,"TOOL: weather
+ARGS: location=""Austin""; date=""this we"
+weather,1.0,True,16,ar_prefix,9,"TOOL: weather
+ARGS: location=""Austin""; date=""this weekend"""
+,0.0,False,17,dllm,0,
+web_search,0.125,False,17,dllm,1,TOOL: web_search
+web_search,0.25,False,17,dllm,2,"TOOL: web_search
+ARGS:"
+web_search,0.375,False,17,dllm,3,"TOOL: web_search
+ARGS: queryEuro papers LL"
+web_search,0.5,True,17,dllm,4,"TOOL: web_search
+ARGS: query ""EuroSys papers on LLM serving schedulers"""
+web_search,0.625,True,17,dllm,5,"TOOL: web_search
+ARGS: query = ""EuroSys papers on LLM serving schedulers"""
+web_search,0.75,True,17,dllm,6,"TOOL: web_search
+ARGS: query = ""EuroSys papers on LLM serving schedulers"""
+web_search,0.875,True,17,dllm,7,"TOOL: web_search
+ARGS: query = ""EuroSys papers on LLM serving schedulers"""
+web_search,1.0,True,17,dllm,8,"TOOL: web_search
+ARGS: query = ""EuroSys papers on LLM serving schedulers"""
+,0.0,False,17,ar_prefix,0,
+,0.125,False,17,ar_prefix,1,TOOL: web_
+web_search,0.25,False,17,ar_prefix,2,"TOOL: web_search
+AR"
+web_search,0.375,False,17,ar_prefix,3,"TOOL: web_search
+ARGS: query"
+web_search,0.5,False,17,ar_prefix,4,"TOOL: web_search
+ARGS: query = ""EuroS"
+web_search,0.625,False,17,ar_prefix,5,"TOOL: web_search
+ARGS: query = ""EuroSys papers"
+web_search,0.75,False,17,ar_prefix,6,"TOOL: web_search
+ARGS: query = ""EuroSys papers on LLM s"
+web_search,0.875,True,17,ar_prefix,7,"TOOL: web_search
+ARGS: query = ""EuroSys papers on LLM serving sc"
+web_search,1.0,True,17,ar_prefix,8,"TOOL: web_search
+ARGS: query = ""EuroSys papers on LLM serving schedulers"""
+,0.0,False,18,dllm,0,
+,0.041666666666666664,False,18,dllm,1,TOOL:
+,0.08333333333333333,False,18,dllm,2,TOOL:
+,0.125,False,18,dllm,3,TOOL:
+,0.16666666666666666,False,18,dllm,4,TOOL:
+,0.20833333333333334,False,18,dllm,5,TOOL:
+,0.25,False,18,dllm,6,TOOL:
+,0.2916666666666667,False,18,dllm,7,TOOL:
+,0.3333333333333333,False,18,dllm,8,TOOL:
+,0.375,False,18,dllm,9,TOOL:
+,0.4166666666666667,False,18,dllm,10,TOOL:
+,0.4583333333333333,False,18,dllm,11,TOOL::
+,0.5,False,18,dllm,12,"TOOL:
+ARGS:"
+,0.5416666666666666,False,18,dllm,13,"TOOL:_search
+ARGS:"
+web_search,0.5833333333333334,False,18,dllm,14,"TOOL: web_search
+ARGS:"
+web_search,0.625,False,18,dllm,15,"TOOL: web_search
+ARGS: query"
+web_search,0.6666666666666666,False,18,dllm,16,"TOOL: web_search
+ARGS: query="""
+web_search,0.7083333333333334,False,18,dllm,17,"TOOL: web_search
+ARGS: query="" notes"
+web_search,0.75,False,18,dllm,18,"TOOL: web_search
+ARGS: query=""team notes"
+web_search,0.7916666666666666,False,18,dllm,19,"TOOL: web_search
+ARGS: query=""team notes pressure"
+web_search,0.8333333333333334,False,18,dllm,20,"TOOL: web_search
+ARGS: query=""team notes under memory pressure"""
+web_search,0.875,False,18,dllm,21,"TOOL: web_search
+ARGS: query=""team notes admission control under GPU memory pressure"""
+web_search,0.9166666666666666,False,18,dllm,22,"TOOL: web_search
+ARGS: query=""team notes admission control under GPU memory pressure"""
+web_search,0.9583333333333334,False,18,dllm,23,"TOOL: web_search
+ARGS: query=""team notes admission control under GPU memory pressure"""
+web_search,1.0,False,18,dllm,24,"TOOL: web_search
+ARGS: query=""team notes admission control under GPU memory pressure"""
+,0.0,False,18,ar_prefix,0,
+,0.041666666666666664,False,18,ar_prefix,1,TOOL
+,0.08333333333333333,False,18,ar_prefix,2,TOOL: we
+,0.125,False,18,ar_prefix,3,TOOL: web_s
+,0.16666666666666666,False,18,ar_prefix,4,TOOL: web_searc
+web_search,0.20833333333333334,False,18,ar_prefix,5,"TOOL: web_search
+A"
+web_search,0.25,False,18,ar_prefix,6,"TOOL: web_search
+ARGS:"
+web_search,0.2916666666666667,False,18,ar_prefix,7,"TOOL: web_search
+ARGS: qu"
+web_search,0.3333333333333333,False,18,ar_prefix,8,"TOOL: web_search
+ARGS: query="
+web_search,0.375,False,18,ar_prefix,9,"TOOL: web_search
+ARGS: query=""te"
+web_search,0.4166666666666667,False,18,ar_prefix,10,"TOOL: web_search
+ARGS: query=""team n"
+web_search,0.4583333333333333,False,18,ar_prefix,11,"TOOL: web_search
+ARGS: query=""team note"
+web_search,0.5,False,18,ar_prefix,12,"TOOL: web_search
+ARGS: query=""team notes ad"
+web_search,0.5416666666666666,False,18,ar_prefix,13,"TOOL: web_search
+ARGS: query=""team notes admiss"
+web_search,0.5833333333333334,False,18,ar_prefix,14,"TOOL: web_search
+ARGS: query=""team notes admission"
+web_search,0.625,False,18,ar_prefix,15,"TOOL: web_search
+ARGS: query=""team notes admission con"
+web_search,0.6666666666666666,False,18,ar_prefix,16,"TOOL: web_search
+ARGS: query=""team notes admission contro"
+web_search,0.7083333333333334,False,18,ar_prefix,17,"TOOL: web_search
+ARGS: query=""team notes admission control un"
+web_search,0.75,False,18,ar_prefix,18,"TOOL: web_search
+ARGS: query=""team notes admission control under"
+web_search,0.7916666666666666,False,18,ar_prefix,19,"TOOL: web_search
+ARGS: query=""team notes admission control under GPU"
+web_search,0.8333333333333334,False,18,ar_prefix,20,"TOOL: web_search
+ARGS: query=""team notes admission control under GPU me"
+web_search,0.875,False,18,ar_prefix,21,"TOOL: web_search
+ARGS: query=""team notes admission control under GPU memory"
+web_search,0.9166666666666666,False,18,ar_prefix,22,"TOOL: web_search
+ARGS: query=""team notes admission control under GPU memory pr"
+web_search,0.9583333333333334,False,18,ar_prefix,23,"TOOL: web_search
+ARGS: query=""team notes admission control under GPU memory pressu"
+web_search,1.0,False,18,ar_prefix,24,"TOOL: web_search
+ARGS: query=""team notes admission control under GPU memory pressure"""
+,0.0,False,19,dllm,0,
+sql_query,0.038461538461538464,False,19,dllm,1,TOOL: sql_query
+sql_query,0.07692307692307693,False,19,dllm,2,"TOOL: sql_query
+ARGS:"
+sql_query,0.11538461538461539,False,19,dllm,3,"TOOL: sql_query
+ARGS: table"
+sql_query,0.15384615384615385,False,19,dllm,4,"TOOL: sql_query
+ARGS: table_tickets filter"
+sql_query,0.19230769230769232,False,19,dllm,5,"TOOL: sql_query
+ARGS: tablesupport_tickets; filter"
+sql_query,0.23076923076923078,False,19,dllm,6,"TOOL: sql_query
+ARGS: table=support_tickets; filter"
+sql_query,0.2692307692307692,False,19,dllm,7,"TOOL: sql_query
+ARGS: table=support_tickets; filter"
+sql_query,0.3076923076923077,False,19,dllm,8,"TOOL: sql_query
+ARGS: table=support_tickets; filter"
+sql_query,0.34615384615384615,False,19,dllm,9,"TOOL: sql_query
+ARGS: table=support_tickets; filter"
+sql_query,0.38461538461538464,False,19,dllm,10,"TOOL: sql_query
+ARGS: table=support_tickets; filter"
+sql_query,0.4230769230769231,False,19,dllm,11,"TOOL: sql_query
+ARGS: table=support_tickets; filter"
+sql_query,0.46153846153846156,False,19,dllm,12,"TOOL: sql_query
+ARGS: table=support_tickets; filter"
+sql_query,0.5,False,19,dllm,13,"TOOL: sql_query
+ARGS: table=support_tickets; filter"
+sql_query,0.5384615384615384,False,19,dllm,14,"TOOL: sql_query
+ARGS: table=support_tickets; filter"
+sql_query,0.5769230769230769,False,19,dllm,15,"TOOL: sql_query
+ARGS: table=support_tickets; filter"
+sql_query,0.6153846153846154,False,19,dllm,16,"TOOL: sql_query
+ARGS: table=support_tickets; filter"
+sql_query,0.6538461538461539,False,19,dllm,17,"TOOL: sql_query
+ARGS: table=support_tickets; filter"
+sql_query,0.6923076923076923,False,19,dllm,18,"TOOL: sql_query
+ARGS: table=support_tickets; filter="
+sql_query,0.7307692307692307,False,19,dllm,19,"TOOL: sql_query
+ARGS: table=support_tickets; filter="
+sql_query,0.7692307692307693,False,19,dllm,20,"TOOL: sql_query
+ARGS: table=support_tickets; filter="
+sql_query,0.8076923076923077,False,19,dllm,21,"TOOL: sql_query
+ARGS: table=support_tickets; filter=0"
+sql_query,0.8461538461538461,False,19,dllm,22,"TOOL: sql_query
+ARGS: table=support_tickets; filter= P0"
+sql_query,0.8846153846153846,False,19,dllm,23,"TOOL: sql_query
+ARGS: table=support_tickets; filter=resolved P0"
+sql_query,0.9230769230769231,False,19,dllm,24,"TOOL: sql_query
+ARGS: table=support_tickets; filter=resolved P0"
+sql_query,0.9615384615384616,False,19,dllm,25,"TOOL: sql_query
+ARGS: table=support_tickets; filter=resolved P0"
+sql_query,1.0,False,19,dllm,26,"TOOL: sql_query
+ARGS: table=support_tickets; filter=resolved P0"
+,0.0,False,19,ar_prefix,0,
+,0.038461538461538464,False,19,ar_prefix,1,TOO
+,0.07692307692307693,False,19,ar_prefix,2,TOOL:
+,0.11538461538461539,False,19,ar_prefix,3,TOOL: sq
+,0.15384615384615385,False,19,ar_prefix,4,TOOL: sql_
+,0.19230769230769232,False,19,ar_prefix,5,TOOL: sql_que
+sql_query,0.23076923076923078,False,19,ar_prefix,6,TOOL: sql_query
+sql_query,0.2692307692307692,False,19,ar_prefix,7,"TOOL: sql_query
+A"
+sql_query,0.3076923076923077,False,19,ar_prefix,8,"TOOL: sql_query
+ARGS"
+sql_query,0.34615384615384615,False,19,ar_prefix,9,"TOOL: sql_query
+ARGS: "
+sql_query,0.38461538461538464,False,19,ar_prefix,10,"TOOL: sql_query
+ARGS: tab"
+sql_query,0.4230769230769231,False,19,ar_prefix,11,"TOOL: sql_query
+ARGS: table"
+sql_query,0.46153846153846156,False,19,ar_prefix,12,"TOOL: sql_query
+ARGS: table=su"
+sql_query,0.5,False,19,ar_prefix,13,"TOOL: sql_query
+ARGS: table=supp"
+sql_query,0.5384615384615384,False,19,ar_prefix,14,"TOOL: sql_query
+ARGS: table=suppor"
+sql_query,0.5769230769230769,False,19,ar_prefix,15,"TOOL: sql_query
+ARGS: table=support_t"
+sql_query,0.6153846153846154,False,19,ar_prefix,16,"TOOL: sql_query
+ARGS: table=support_tic"
+sql_query,0.6538461538461539,False,19,ar_prefix,17,"TOOL: sql_query
+ARGS: table=support_ticket"
+sql_query,0.6923076923076923,False,19,ar_prefix,18,"TOOL: sql_query
+ARGS: table=support_tickets;"
+sql_query,0.7307692307692307,False,19,ar_prefix,19,"TOOL: sql_query
+ARGS: table=support_tickets; fi"
+sql_query,0.7692307692307693,False,19,ar_prefix,20,"TOOL: sql_query
+ARGS: table=support_tickets; filt"
+sql_query,0.8076923076923077,False,19,ar_prefix,21,"TOOL: sql_query
+ARGS: table=support_tickets; filter"
+sql_query,0.8461538461538461,False,19,ar_prefix,22,"TOOL: sql_query
+ARGS: table=support_tickets; filter=re"
+sql_query,0.8846153846153846,False,19,ar_prefix,23,"TOOL: sql_query
+ARGS: table=support_tickets; filter=reso"
+sql_query,0.9230769230769231,False,19,ar_prefix,24,"TOOL: sql_query
+ARGS: table=support_tickets; filter=resolve"
+sql_query,0.9615384615384616,False,19,ar_prefix,25,"TOOL: sql_query
+ARGS: table=support_tickets; filter=resolved "
+sql_query,1.0,False,19,ar_prefix,26,"TOOL: sql_query
+ARGS: table=support_tickets; filter=resolved P0"

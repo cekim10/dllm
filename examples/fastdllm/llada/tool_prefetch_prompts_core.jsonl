@@ -1,0 +1,45 @@
+{"prompt": "Use the flight_search tool to find flights from airport SFO to airport ICN on 2026-09-14.", "tool": "flight_search", "args": {"origin": "SFO", "destination": "ICN", "date": "2026-09-14"}}
+{"prompt": "Use the flight_search tool to find flights from airport JFK to airport LAX on 2026-12-03.", "tool": "flight_search", "args": {"origin": "JFK", "destination": "LAX", "date": "2026-12-03"}}
+{"prompt": "Use the flight_search tool to find flights from airport BOS to airport LHR on 2027-01-08.", "tool": "flight_search", "args": {"origin": "BOS", "destination": "LHR", "date": "2027-01-08"}}
+{"prompt": "Use the flight_search tool to find flights from airport SEA to airport NRT on 2027-05-20.", "tool": "flight_search", "args": {"origin": "SEA", "destination": "NRT", "date": "2027-05-20"}}
+{"prompt": "Use the flight_search tool to find flights from airport ORD to airport CDG on 2026-11-18.", "tool": "flight_search", "args": {"origin": "ORD", "destination": "CDG", "date": "2026-11-18"}}
+{"prompt": "Use the flight_search tool to find flights from airport LAX to airport HND on 2027-02-22.", "tool": "flight_search", "args": {"origin": "LAX", "destination": "HND", "date": "2027-02-22"}}
+{"prompt": "Use the flight_search tool to find flights from airport DFW to airport AMS on 2026-10-05.", "tool": "flight_search", "args": {"origin": "DFW", "destination": "AMS", "date": "2026-10-05"}}
+{"prompt": "Use the flight_search tool to find flights from airport MIA to airport MAD on 2027-03-12.", "tool": "flight_search", "args": {"origin": "MIA", "destination": "MAD", "date": "2027-03-12"}}
+{"prompt": "Use the flight_search tool to find flights from airport ATL to airport FCO on 2026-08-30.", "tool": "flight_search", "args": {"origin": "ATL", "destination": "FCO", "date": "2026-08-30"}}
+{"prompt": "Use the flight_search tool to find flights from airport DEN to airport FRA on 2027-04-09.", "tool": "flight_search", "args": {"origin": "DEN", "destination": "FRA", "date": "2027-04-09"}}
+{"prompt": "Use the flight_search tool to find flights from airport SJC to airport TPE on 2026-09-25.", "tool": "flight_search", "args": {"origin": "SJC", "destination": "TPE", "date": "2026-09-25"}}
+{"prompt": "Use the flight_search tool to find flights from airport IAD to airport DXB on 2027-06-16.", "tool": "flight_search", "args": {"origin": "IAD", "destination": "DXB", "date": "2027-06-16"}}
+{"prompt": "Use the flight_search tool to find flights from airport EWR to airport ZRH on 2026-12-21.", "tool": "flight_search", "args": {"origin": "EWR", "destination": "ZRH", "date": "2026-12-21"}}
+{"prompt": "Use the flight_search tool to find flights from airport PDX to airport YYZ on 2027-01-27.", "tool": "flight_search", "args": {"origin": "PDX", "destination": "YYZ", "date": "2027-01-27"}}
+{"prompt": "Use the flight_search tool to find flights from airport SAN to airport MEX on 2026-10-11.", "tool": "flight_search", "args": {"origin": "SAN", "destination": "MEX", "date": "2026-10-11"}}
+{"prompt": "Use the weather tool to get the forecast for Tokyo on 2026-09-14.", "tool": "weather", "args": {"location": "Tokyo", "date": "2026-09-14"}}
+{"prompt": "Use the weather tool to get the forecast for Seattle on 2026-12-03.", "tool": "weather", "args": {"location": "Seattle", "date": "2026-12-03"}}
+{"prompt": "Use the weather tool to get the forecast for Paris on 2027-01-08.", "tool": "weather", "args": {"location": "Paris", "date": "2027-01-08"}}
+{"prompt": "Use the weather tool to get the forecast for Austin on 2027-05-20.", "tool": "weather", "args": {"location": "Austin", "date": "2027-05-20"}}
+{"prompt": "Use the weather tool to get the forecast for London on 2026-11-18.", "tool": "weather", "args": {"location": "London", "date": "2026-11-18"}}
+{"prompt": "Use the weather tool to get the forecast for Seoul on 2027-02-22.", "tool": "weather", "args": {"location": "Seoul", "date": "2027-02-22"}}
+{"prompt": "Use the weather tool to get the forecast for Amsterdam on 2026-10-05.", "tool": "weather", "args": {"location": "Amsterdam", "date": "2026-10-05"}}
+{"prompt": "Use the weather tool to get the forecast for Madrid on 2027-03-12.", "tool": "weather", "args": {"location": "Madrid", "date": "2027-03-12"}}
+{"prompt": "Use the weather tool to get the forecast for Rome on 2026-08-30.", "tool": "weather", "args": {"location": "Rome", "date": "2026-08-30"}}
+{"prompt": "Use the weather tool to get the forecast for Berlin on 2027-04-09.", "tool": "weather", "args": {"location": "Berlin", "date": "2027-04-09"}}
+{"prompt": "Use the weather tool to get the forecast for Taipei on 2026-09-25.", "tool": "weather", "args": {"location": "Taipei", "date": "2026-09-25"}}
+{"prompt": "Use the weather tool to get the forecast for Dubai on 2027-06-16.", "tool": "weather", "args": {"location": "Dubai", "date": "2027-06-16"}}
+{"prompt": "Use the weather tool to get the forecast for Zurich on 2026-12-21.", "tool": "weather", "args": {"location": "Zurich", "date": "2026-12-21"}}
+{"prompt": "Use the weather tool to get the forecast for Toronto on 2027-01-27.", "tool": "weather", "args": {"location": "Toronto", "date": "2027-01-27"}}
+{"prompt": "Use the weather tool to get the forecast for Mexico City on 2026-10-11.", "tool": "weather", "args": {"location": "Mexico City", "date": "2026-10-11"}}
+{"prompt": "Use the web_search tool to search for diffusion language model serving systems.", "tool": "web_search", "args": {"query": "diffusion language model serving systems"}}
+{"prompt": "Use the web_search tool to search for speculative tool execution in AI agents.", "tool": "web_search", "args": {"query": "speculative tool execution AI agents"}}
+{"prompt": "Use the web_search tool to search for LLM serving scheduler tail latency.", "tool": "web_search", "args": {"query": "LLM serving scheduler tail latency"}}
+{"prompt": "Use the web_search tool to search for GPU memory admission control serving.", "tool": "web_search", "args": {"query": "GPU memory admission control serving"}}
+{"prompt": "Use the web_search tool to search for autoregressive speculative decoding systems.", "tool": "web_search", "args": {"query": "autoregressive speculative decoding systems"}}
+{"prompt": "Use the web_search tool to search for diffusion model inference batching.", "tool": "web_search", "args": {"query": "diffusion model inference batching"}}
+{"prompt": "Use the web_search tool to search for Ray actor scheduling overhead.", "tool": "web_search", "args": {"query": "Ray actor scheduling overhead"}}
+{"prompt": "Use the web_search tool to search for GPU cache reuse in language model serving.", "tool": "web_search", "args": {"query": "GPU cache reuse language model serving"}}
+{"prompt": "Use the web_search tool to search for EuroSys papers on LLM serving.", "tool": "web_search", "args": {"query": "EuroSys papers LLM serving"}}
+{"prompt": "Use the web_search tool to search for ATC papers on inference serving systems.", "tool": "web_search", "args": {"query": "ATC papers inference serving systems"}}
+{"prompt": "Use the web_search tool to search for retrieval augmented generation latency.", "tool": "web_search", "args": {"query": "retrieval augmented generation latency"}}
+{"prompt": "Use the web_search tool to search for tool calling agents speculative execution.", "tool": "web_search", "args": {"query": "tool calling agents speculative execution"}}
+{"prompt": "Use the web_search tool to search for dynamic batching language model serving.", "tool": "web_search", "args": {"query": "dynamic batching language model serving"}}
+{"prompt": "Use the web_search tool to search for continuous batching in LLM inference.", "tool": "web_search", "args": {"query": "continuous batching LLM inference"}}
+{"prompt": "Use the web_search tool to search for diffusion LLM tool use.", "tool": "web_search", "args": {"query": "diffusion LLM tool use"}}

@@ -41,6 +41,12 @@ def main() -> None:
         "dllm_beats_ar_rate",
         "mean_dllm_ready_fraction",
         "mean_ar_ready_fraction",
+        "dllm_stable_rate",
+        "ar_stable_rate",
+        "mean_dllm_stable_fraction",
+        "mean_ar_stable_fraction",
+        "mean_dllm_false_starts",
+        "mean_ar_false_starts",
         "mean_dllm_lead_fraction",
         "p50_dllm_lead_fraction",
     ]:
@@ -69,6 +75,11 @@ def main() -> None:
         if row.get("dllm_ready_fraction") is not None
         and float(row["dllm_ready_fraction"]) <= 0.5
     ]
+    stable_early = [
+        row for row in valid
+        if row.get("dllm_stable_fraction") is not None
+        and float(row["dllm_stable_fraction"]) <= 0.7
+    ]
     beats = [row for row in valid if row.get("dllm_beats_ar")]
     print("\nGo/no-go")
     if not valid:
@@ -80,12 +91,23 @@ def main() -> None:
         "mean_ar_saving_tool300ms",
         0.0,
     )
-    if early_rate >= 0.70 and beats_rate >= 0.50 and saving_delta_300 >= 0.10:
+    stable_early_rate = len(stable_early) / len(valid)
+    if (
+        early_rate >= 0.70
+        and stable_early_rate >= 0.60
+        and beats_rate >= 0.50
+        and saving_delta_300 >= 0.10
+    ):
         print(
             "STRONG GO: dLLM intermediate states expose usable tool intent early "
             "and beat optimistic AR prefixes."
         )
-    elif early_rate >= 0.50 and beats_rate >= 0.30 and saving_delta_300 >= 0.05:
+    elif (
+        early_rate >= 0.50
+        and stable_early_rate >= 0.40
+        and beats_rate >= 0.30
+        and saving_delta_300 >= 0.05
+    ):
         print(
             "CONDITIONAL GO: signal exists, but needs better extractor/runtime "
             "and AR baseline before committing."
@@ -96,6 +118,7 @@ def main() -> None:
             "under this workload."
         )
     print(f"early_ready_rate_le_0p5\t{early_rate:.3f}")
+    print(f"stable_ready_rate_le_0p7\t{stable_early_rate:.3f}")
     print(f"dllm_beats_ar_valid_rate\t{beats_rate:.3f}")
     print(f"saving_delta_300ms\t{saving_delta_300:.3f}")
 
