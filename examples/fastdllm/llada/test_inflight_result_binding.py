@@ -17,8 +17,11 @@ Run from repo root on a GPU server:
 
 This is an upper-bound mechanism test. The runtime knows the intended RESULT
 span layout and clamps external result tokens into that span while denoising
-continues. Start with use_cache=none so later model calls always see the bound
-tokens; cached modes require cache invalidation or refresh after binding.
+continues. It also tests a reserved-slot policy where the runtime owns the
+RESULT span from the beginning, keeps it masked until the external result
+arrives, then binds the result while the ANSWER span continues denoising.
+Start with use_cache=none so later model calls always see the bound tokens;
+cached modes require cache invalidation or refresh after binding.
 """
 
 from __future__ import annotations
@@ -82,13 +85,12 @@ def _format_args(args: dict[str, Any]) -> str:
 def _target_output(record: dict[str, Any]) -> tuple[str, str, str]:
     args_text = _format_args(record["args"])
     result = str(record["result"])
-    answer_terms = ", ".join(str(term) for term in record.get("answer_terms", []))
     prefix = (
         f"TOOL: {record['tool']}\n"
         f"ARGS: {args_text}\n"
         "RESULT: "
     )
-    suffix = f"\nANSWER: Use the result: {answer_terms}."
+    suffix = "\nANSWER: "
     return prefix + result + suffix, prefix, result
 
 
@@ -139,8 +141,10 @@ def _result_binding_plan(
     max_new_tokens: int,
 ) -> dict[str, Any]:
     _, prefix, result = _target_output(record)
+    suffix = "\nANSWER: "
     prefix_tokens = _encode_no_special(tokenizer, prefix)
     result_tokens = _encode_no_special(tokenizer, result)
+    suffix_tokens = _encode_no_special(tokenizer, suffix)
     start = prompt_len + len(prefix_tokens)
     positions = [
         start + offset
@@ -148,12 +152,30 @@ def _result_binding_plan(
         if start + offset < prompt_len + max_new_tokens
     ]
     token_ids = result_tokens[: len(positions)]
+    prefix_positions = [
+        prompt_len + offset
+        for offset in range(len(prefix_tokens))
+        if prompt_len + offset < prompt_len + max_new_tokens
+    ]
+    prefix_token_ids = prefix_tokens[: len(prefix_positions)]
+    suffix_start = start + len(result_tokens)
+    suffix_positions = [
+        suffix_start + offset
+        for offset in range(len(suffix_tokens))
+        if suffix_start + offset < prompt_len + max_new_tokens
+    ]
+    suffix_token_ids = suffix_tokens[: len(suffix_positions)]
     return {
         "result": result,
         "positions": positions,
         "token_ids": token_ids,
+        "prefix_positions": prefix_positions,
+        "prefix_token_ids": prefix_token_ids,
+        "suffix_positions": suffix_positions,
+        "suffix_token_ids": suffix_token_ids,
         "prefix_token_count": len(prefix_tokens),
         "result_token_count": len(result_tokens),
+        "suffix_token_count": len(suffix_tokens),
     }
 
 
@@ -179,6 +201,83 @@ def _make_binding_hook(
         if valid.any():
             x = x.clone()
             x[:, position_tensor[valid]] = token_tensor[valid]
+        return x
+
+    return hook
+
+
+def _make_reserved_slot_hook(
+    *,
+    mask_id: int,
+    prefix_positions: list[int],
+    prefix_token_ids: list[int],
+    slot_positions: list[int],
+    slot_token_ids: list[int],
+    suffix_positions: list[int],
+    suffix_token_ids: list[int],
+    bind_update_index: int,
+) -> Any:
+    prefix_position_tensor = None
+    prefix_token_tensor = None
+    slot_position_tensor = None
+    slot_token_tensor = None
+    suffix_position_tensor = None
+    suffix_token_tensor = None
+
+    def _ensure_tensors(x: torch.Tensor) -> None:
+        nonlocal prefix_position_tensor, prefix_token_tensor
+        nonlocal slot_position_tensor, slot_token_tensor
+        nonlocal suffix_position_tensor, suffix_token_tensor
+        if prefix_position_tensor is not None and prefix_position_tensor.device == x.device:
+            return
+        prefix_position_tensor = torch.tensor(
+            prefix_positions, dtype=torch.long, device=x.device
+        )
+        prefix_token_tensor = torch.tensor(
+            prefix_token_ids, dtype=torch.long, device=x.device
+        )
+        slot_position_tensor = torch.tensor(
+            slot_positions, dtype=torch.long, device=x.device
+        )
+        slot_token_tensor = torch.tensor(
+            slot_token_ids, dtype=torch.long, device=x.device
+        )
+        suffix_position_tensor = torch.tensor(
+            suffix_positions, dtype=torch.long, device=x.device
+        )
+        suffix_token_tensor = torch.tensor(
+            suffix_token_ids, dtype=torch.long, device=x.device
+        )
+
+    def _clamp(
+        x: torch.Tensor,
+        positions: torch.Tensor,
+        token_ids: torch.Tensor,
+    ) -> None:
+        if positions.numel() == 0:
+            return
+        valid = positions < x.shape[1]
+        if valid.any():
+            x[:, positions[valid]] = token_ids[valid]
+
+    def hook(x: torch.Tensor, context: dict[str, Any]) -> torch.Tensor:
+        _ensure_tensors(x)
+        x = x.clone()
+        assert prefix_position_tensor is not None
+        assert prefix_token_tensor is not None
+        assert slot_position_tensor is not None
+        assert slot_token_tensor is not None
+        assert suffix_position_tensor is not None
+        assert suffix_token_tensor is not None
+        _clamp(x, prefix_position_tensor, prefix_token_tensor)
+        _clamp(x, suffix_position_tensor, suffix_token_tensor)
+        if slot_position_tensor.numel() > 0:
+            valid = slot_position_tensor < x.shape[1]
+            if valid.any():
+                if int(context["canvas_update_index"]) < bind_update_index:
+                    x[:, slot_position_tensor[valid]] = int(mask_id)
+                else:
+                    x[:, slot_position_tensor[valid]] = slot_token_tensor[valid]
         return x
 
     return hook
@@ -296,6 +395,8 @@ def main() -> None:
     )
     model = dllm.utils.get_model(model_args=script_args, config=fastdllm_config).eval()
     tokenizer = dllm.utils.get_tokenizer(model_args=script_args)
+    if tokenizer.mask_token_id is None:
+        raise RuntimeError("Tokenizer does not define mask_token_id.")
     sampler = dllm.pipelines.fastdllm.llada.FastdLLMLLaDASampler(
         model=model,
         tokenizer=tokenizer,
@@ -481,16 +582,24 @@ def main() -> None:
                 sequential_ms = float(action_ready_ms) + float(tool_latency_ms) + float(
                     restart_ms
                 )
+                tool_result_ready_ms = float(action_ready_ms) + float(tool_latency_ms)
+                estimated_bind_ms = float(baseline_ms) * float(fraction)
                 optimistic_bind_ms = max(
                     float(bound_ms),
-                    float(action_ready_ms) + float(tool_latency_ms),
+                    tool_result_ready_ms,
                 )
                 latency_rows.append(
                     {
+                        "policy": "bind",
                         "request_index": request_index,
                         "bind_fraction": fraction,
                         "tool_latency_ms": tool_latency_ms,
                         "action_ready_ms": action_ready_ms,
+                        "tool_result_ready_ms": tool_result_ready_ms,
+                        "estimated_bind_ms": estimated_bind_ms,
+                        "bind_not_before_tool_ready": (
+                            estimated_bind_ms >= tool_result_ready_ms
+                        ),
                         "no_bind_elapsed_ms": baseline_ms,
                         "restart_with_result_ms": restart_ms,
                         "bind_elapsed_ms": bound_ms,
@@ -503,6 +612,103 @@ def main() -> None:
                             else None
                         ),
                         "bind_success": bound["success"],
+                        "restart_success": restart["success"],
+                    }
+                )
+
+            reserved_hook = _make_reserved_slot_hook(
+                mask_id=int(tokenizer.mask_token_id),
+                prefix_positions=plan["prefix_positions"],
+                prefix_token_ids=plan["prefix_token_ids"],
+                slot_positions=plan["positions"],
+                slot_token_ids=plan["token_ids"],
+                suffix_positions=plan["suffix_positions"],
+                suffix_token_ids=plan["suffix_token_ids"],
+                bind_update_index=bind_update_index,
+            )
+            reserved_outputs, _, reserved_ms = _run_sample(
+                sampler=sampler,
+                tokenizer=tokenizer,
+                model=model,
+                record=record,
+                sampler_config=sampler_config,
+                canvas_update_hook=reserved_hook,
+                result_available=False,
+            )
+            reserved = _analyze(
+                tokenizer=tokenizer,
+                outputs=reserved_outputs,
+                prompt_len=len(prompt_ids),
+                max_new_tokens=sampler_config.max_new_tokens,
+                record=record,
+            )
+            request_rows.append(
+                {
+                    "request_index": request_index,
+                    "policy": "reserved_slot",
+                    "bind_fraction": fraction,
+                    "bind_update_index": bind_update_index,
+                    "target_tool": record["tool"],
+                    "elapsed_ms": reserved_ms,
+                    "action_ready_step": action_ready_step,
+                    "action_ready_fraction": action_ready_fraction,
+                    "estimated_action_ready_ms": action_ready_ms,
+                    "result_token_count": plan["result_token_count"],
+                    "bound_token_count": len(plan["positions"]),
+                    "reserved_prefix_token_count": len(plan["prefix_positions"]),
+                    "reserved_suffix_token_count": len(plan["suffix_positions"]),
+                    "action_ready": reserved["action_ready"],
+                    "result_present": reserved["result_present"],
+                    "result_terms_present": reserved["result_terms_present"],
+                    "success": reserved["success"],
+                }
+            )
+            decoded_rows.append(
+                {
+                    "request_index": request_index,
+                    "policy": f"reserved_slot_{fraction}",
+                    "prompt": record["prompt"],
+                    "target_tool": record["tool"],
+                    "result": record["result"],
+                    "final_text": reserved["final_text"],
+                }
+            )
+            for tool_latency_ms in tool_latencies_ms:
+                if action_ready_ms is None:
+                    continue
+                sequential_ms = float(action_ready_ms) + float(tool_latency_ms) + float(
+                    restart_ms
+                )
+                tool_result_ready_ms = float(action_ready_ms) + float(tool_latency_ms)
+                estimated_bind_ms = float(baseline_ms) * float(fraction)
+                optimistic_reserved_ms = max(
+                    float(reserved_ms),
+                    tool_result_ready_ms,
+                )
+                latency_rows.append(
+                    {
+                        "policy": "reserved_slot",
+                        "request_index": request_index,
+                        "bind_fraction": fraction,
+                        "tool_latency_ms": tool_latency_ms,
+                        "action_ready_ms": action_ready_ms,
+                        "tool_result_ready_ms": tool_result_ready_ms,
+                        "estimated_bind_ms": estimated_bind_ms,
+                        "bind_not_before_tool_ready": (
+                            estimated_bind_ms >= tool_result_ready_ms
+                        ),
+                        "no_bind_elapsed_ms": baseline_ms,
+                        "restart_with_result_ms": restart_ms,
+                        "bind_elapsed_ms": reserved_ms,
+                        "sequential_restart_path_ms": sequential_ms,
+                        "inflight_binding_upper_bound_ms": optimistic_reserved_ms,
+                        "saved_ms": sequential_ms - optimistic_reserved_ms,
+                        "speedup": (
+                            sequential_ms / optimistic_reserved_ms
+                            if optimistic_reserved_ms > 0
+                            else None
+                        ),
+                        "bind_success": reserved["success"],
                         "restart_success": restart["success"],
                     }
                 )
@@ -546,27 +752,33 @@ def main() -> None:
         )
     for tool_latency_ms in tool_latencies_ms:
         for fraction in bind_fractions:
-            rows = [
-                row
-                for row in latency_rows
-                if float(row["tool_latency_ms"]) == float(tool_latency_ms)
-                and float(row["bind_fraction"]) == float(fraction)
-            ]
-            if not rows:
-                continue
-            key = f"latency_tool{tool_latency_ms:g}_bind{fraction:g}"
-            aggregate[f"{key}_mean_sequential_restart_ms"] = statistics.mean(
-                [float(row["sequential_restart_path_ms"]) for row in rows]
-            )
-            aggregate[f"{key}_mean_inflight_upper_bound_ms"] = statistics.mean(
-                [float(row["inflight_binding_upper_bound_ms"]) for row in rows]
-            )
-            aggregate[f"{key}_mean_saved_ms"] = statistics.mean(
-                [float(row["saved_ms"]) for row in rows]
-            )
-            aggregate[f"{key}_mean_speedup"] = statistics.mean(
-                [float(row["speedup"]) for row in rows if row["speedup"] is not None]
-            )
+            for policy in ("bind", "reserved_slot"):
+                rows = [
+                    row
+                    for row in latency_rows
+                    if row["policy"] == policy
+                    and float(row["tool_latency_ms"]) == float(tool_latency_ms)
+                    and float(row["bind_fraction"]) == float(fraction)
+                ]
+                if not rows:
+                    continue
+                key = f"latency_{policy}_tool{tool_latency_ms:g}_bind{fraction:g}"
+                aggregate[f"{key}_mean_sequential_restart_ms"] = statistics.mean(
+                    [float(row["sequential_restart_path_ms"]) for row in rows]
+                )
+                aggregate[f"{key}_mean_inflight_upper_bound_ms"] = statistics.mean(
+                    [float(row["inflight_binding_upper_bound_ms"]) for row in rows]
+                )
+                aggregate[f"{key}_mean_saved_ms"] = statistics.mean(
+                    [float(row["saved_ms"]) for row in rows]
+                )
+                aggregate[f"{key}_mean_speedup"] = statistics.mean(
+                    [
+                        float(row["speedup"])
+                        for row in rows
+                        if row["speedup"] is not None
+                    ]
+                )
 
     prefix = Path(script_args.output_prefix)
     prefix.parent.mkdir(parents=True, exist_ok=True)
@@ -605,6 +817,8 @@ def _group_rows(rows: list[dict[str, Any]]) -> dict[str, list[dict[str, Any]]]:
             key = "no_bind"
         elif row["policy"] == "restart_with_result":
             key = "restart_with_result"
+        elif row["policy"] == "reserved_slot":
+            key = f"reserved_slot_{float(row['bind_fraction']):g}"
         else:
             key = f"bind_{float(row['bind_fraction']):g}"
         grouped.setdefault(key, []).append(row)
