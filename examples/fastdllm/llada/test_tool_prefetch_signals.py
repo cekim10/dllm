@@ -168,8 +168,11 @@ def _score_extraction(text: str, target_tool: str, target_args: dict[str, str]) 
 
 
 def _format_prompt(record: dict[str, Any]) -> list[dict[str, str]]:
-    tools = "\n".join(
-        [
+    available_tools = record.get("available_tools")
+    if isinstance(available_tools, list) and available_tools:
+        tool_lines = [f"- {tool}" for tool in available_tools]
+    else:
+        tool_lines = [
             "- flight_search(origin, destination, date)",
             "- weather(location, date)",
             "- web_search(query)",
@@ -178,7 +181,11 @@ def _format_prompt(record: dict[str, Any]) -> list[dict[str, str]]:
             "- calendar_api(calendar, start_date, end_date, keyword)",
             "- crm_api(company, role, city)",
         ]
-    )
+    target_tool = str(record["tool"])
+    if not any(target_tool in line for line in tool_lines):
+        arg_names = ", ".join(str(key) for key in record.get("args", {}))
+        tool_lines.append(f"- {target_tool}({arg_names})")
+    tools = "\n".join(tool_lines)
     content = (
         "You are a tool router. Select exactly one read-only tool for the user request.\n"
         f"Available tools:\n{tools}\n\n"

@@ -102,35 +102,102 @@ def _is_compact_structured(args: dict[str, str], min_fields: int, max_fields: in
     return True
 
 
-def _last_user_text(messages: list[dict[str, Any]], before_index: int) -> str:
-    for index in range(before_index - 1, -1, -1):
-        message = messages[index]
-        if message.get("role") == "user":
-            content = message.get("content")
-            if isinstance(content, str):
-                return content
-            if isinstance(content, list):
-                return " ".join(
-                    str(part.get("text", part))
-                    for part in content
-                    if isinstance(part, (str, dict))
-                )
-    for message in messages:
-        if message.get("role") == "user" and isinstance(message.get("content"), str):
-            return str(message["content"])
-    return ""
+def _content_to_text(content: Any) -> str:
+    if isinstance(content, str):
+        return content
+    if isinstance(content, list):
+        return " ".join(
+            str(part.get("text", part))
+            for part in content
+            if isinstance(part, (str, dict))
+        )
+    if content is None:
+        return ""
+    return str(content)
 
 
-def _extract_openai_wire(record: dict[str, Any]) -> list[dict[str, Any]]:
+def _tool_call_text(tool_calls: Any) -> str:
+    if not isinstance(tool_calls, list):
+        return ""
+    parts = []
+    for tool_call in tool_calls:
+        if not isinstance(tool_call, dict):
+            continue
+        function = tool_call.get("function", {})
+        name = function.get("name") or tool_call.get("name")
+        arguments = function.get("arguments") or tool_call.get("arguments")
+        if name:
+            parts.append(f"{name}({arguments})")
+    return "; ".join(parts)
+
+
+def _conversation_context(
+    messages: list[dict[str, Any]],
+    before_index: int,
+    *,
+    context_turns: int,
+    max_context_chars: int,
+) -> str:
+    selected = messages[max(0, before_index - context_turns) : before_index]
+    lines = []
+    for message in selected:
+        role = message.get("role", "unknown")
+        if role == "system":
+            continue
+        content = _content_to_text(message.get("content"))
+        if role == "assistant" and message.get("tool_calls"):
+            call_text = _tool_call_text(message.get("tool_calls"))
+            content = f"{content} TOOL_CALLS: {call_text}".strip()
+        if role == "tool":
+            content = f"TOOL_RESULT: {content}"
+        content = re.sub(r"\s+", " ", content).strip()
+        if content:
+            lines.append(f"{role.upper()}: {content}")
+    text = "\n".join(lines)
+    if len(text) > max_context_chars:
+        text = text[-max_context_chars:]
+    return text
+
+
+def _tool_signatures(record: dict[str, Any]) -> list[str]:
+    signatures = []
+    tools = record.get("tools")
+    if not isinstance(tools, list):
+        return signatures
+    for tool in tools:
+        function = tool.get("function", {}) if isinstance(tool, dict) else {}
+        name = function.get("name")
+        parameters = function.get("parameters", {})
+        properties = parameters.get("properties", {}) if isinstance(parameters, dict) else {}
+        required = parameters.get("required", []) if isinstance(parameters, dict) else []
+        arg_names = list(properties) or list(required)
+        if name:
+            signature = f"{name}({', '.join(str(arg) for arg in arg_names)})"
+            signatures.append(signature)
+    return signatures
+
+
+def _extract_openai_wire(
+    record: dict[str, Any],
+    *,
+    context_turns: int,
+    max_context_chars: int,
+) -> list[dict[str, Any]]:
     messages = record.get("messages")
     if not isinstance(messages, list):
         return []
     extracted = []
+    available_tools = _tool_signatures(record)
     for index, message in enumerate(messages):
         tool_calls = message.get("tool_calls")
         if not isinstance(tool_calls, list):
             continue
-        prompt = _last_user_text(messages, index)
+        prompt = _conversation_context(
+            messages,
+            index,
+            context_turns=context_turns,
+            max_context_chars=max_context_chars,
+        )
         for tool_call in tool_calls:
             function = tool_call.get("function", {}) if isinstance(tool_call, dict) else {}
             name = function.get("name") or tool_call.get("name")
@@ -141,6 +208,7 @@ def _extract_openai_wire(record: dict[str, Any]) -> list[dict[str, Any]]:
                         "prompt": prompt,
                         "tool": str(name),
                         "args": _flatten_args(args),
+                        "available_tools": available_tools,
                         "source": "openai_wire",
                     }
                 )
@@ -199,6 +267,8 @@ def main() -> None:
     parser.add_argument("--min_fields", type=int, default=2)
     parser.add_argument("--max_fields", type=int, default=6)
     parser.add_argument("--max_arg_tokens", type=int, default=32)
+    parser.add_argument("--context_turns", type=int, default=10)
+    parser.add_argument("--max_context_chars", type=int, default=5000)
     parser.add_argument("--explicit_tool_prompt", action="store_true")
     args = parser.parse_args()
 
@@ -209,7 +279,11 @@ def main() -> None:
     output_rows = []
     seen = set()
     for record in records:
-        candidates = _extract_openai_wire(record) or _extract_generic(record)
+        candidates = _extract_openai_wire(
+            record,
+            context_turns=args.context_turns,
+            max_context_chars=args.max_context_chars,
+        ) or _extract_generic(record)
         for candidate in candidates:
             compact_args = {
                 key: value
@@ -239,6 +313,7 @@ def main() -> None:
                     ),
                     "tool": candidate["tool"],
                     "args": compact_args,
+                    "available_tools": candidate.get("available_tools", []),
                     "source": candidate["source"],
                 }
             )
