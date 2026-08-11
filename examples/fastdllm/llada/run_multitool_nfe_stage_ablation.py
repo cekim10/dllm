@@ -15,7 +15,6 @@ Run from repo root on a GPU server:
     --max_new_tokens 64 \
     --block_size 32 \
     --use_cache prefix \
-    --threshold 0.9 \
     --output_prefix artifacts/nfe_stage_ablation/multitool_3call_h128_l32
 
   # If submitting through Slurm from a login node:
@@ -30,8 +29,11 @@ Run from repo root on a GPU server:
     --max_new_tokens 64 \
     --block_size 32 \
     --use_cache prefix \
-    --threshold 0.9 \
     --output_prefix artifacts/nfe_stage_ablation/multitool_3call_h128_l32
+
+Do not pass --threshold or --factor for this ablation. In threshold/factor
+mode the sampler ignores the fixed per-step transfer quota, so the --steps
+argument is not a clean NFE knob.
 """
 
 from __future__ import annotations
@@ -130,7 +132,7 @@ class SamplerConfig(dllm.pipelines.fastdllm.llada.FastdLLMLLaDASamplerConfig):
     temperature: float = 0.0
     remasking: str = "low_confidence"
     use_cache: str = "prefix"
-    threshold: float | None = 0.9
+    threshold: float | None = None
     factor: float | None = None
     begin_suppress_tokens: list[int] | None = None
 

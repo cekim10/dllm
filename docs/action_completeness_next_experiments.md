@@ -92,12 +92,13 @@ python -u examples/fastdllm/llada/run_multitool_nfe_stage_ablation.py \
   --max_new_tokens 64 \
   --block_size 32 \
   --use_cache prefix \
-  --threshold 0.9 \
   --output_prefix artifacts/nfe_stage_ablation/multitool_3call_h128_l32
 ```
 
 Use the direct `python` command when already inside an allocated GPU node. Use
 `srun` only on Slurm clusters where the command is available from a login node.
+Do not pass `--threshold` or `--factor` for this ablation; those modes ignore
+the fixed transfer quota, so `--steps` is not a clean NFE knob.
 
 Decision criteria:
 
