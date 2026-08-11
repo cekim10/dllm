@@ -4,6 +4,21 @@ Run a stage-level NFE ablation on multi-tool LLaDA workflow prompts.
 Run from repo root on a GPU server:
   source ~/.zshrc
   conda activate ~/miniconda3/envs/dllm
+
+  # If already inside an allocated GPU node:
+  python -u examples/fastdllm/llada/run_multitool_nfe_stage_ablation.py \
+    --model_name_or_path "GSAI-ML/LLaDA-8B-Instruct" \
+    --input_path examples/fastdllm/llada/multitool_prefetch_prompts_3call_120.jsonl \
+    --limit 20 \
+    --high_steps 128 \
+    --low_steps 32 \
+    --max_new_tokens 64 \
+    --block_size 32 \
+    --use_cache prefix \
+    --threshold 0.9 \
+    --output_prefix artifacts/nfe_stage_ablation/multitool_3call_h128_l32
+
+  # If submitting through Slurm from a login node:
   srun -p $PARTITION --quotatype=$QUOTATYPE --gres=gpu:1 --cpus-per-task=24 \
     --time=03:00:00 python -u \
     examples/fastdllm/llada/run_multitool_nfe_stage_ablation.py \

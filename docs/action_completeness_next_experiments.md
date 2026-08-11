@@ -83,9 +83,7 @@ and low NFE once, then compares `all_high`, `low_stage_0`, `low_stage_1`,
 `low_stage_2`, and `all_low` schedules.
 
 ```bash
-srun -p $PARTITION --quotatype=$QUOTATYPE --gres=gpu:1 --cpus-per-task=24 \
-  --time=03:00:00 python -u \
-  examples/fastdllm/llada/run_multitool_nfe_stage_ablation.py \
+python -u examples/fastdllm/llada/run_multitool_nfe_stage_ablation.py \
   --model_name_or_path "GSAI-ML/LLaDA-8B-Instruct" \
   --input_path examples/fastdllm/llada/multitool_prefetch_prompts_3call_120.jsonl \
   --limit 20 \
@@ -97,6 +95,9 @@ srun -p $PARTITION --quotatype=$QUOTATYPE --gres=gpu:1 --cpus-per-task=24 \
   --threshold 0.9 \
   --output_prefix artifacts/nfe_stage_ablation/multitool_3call_h128_l32
 ```
+
+Use the direct `python` command when already inside an allocated GPU node. Use
+`srun` only on Slurm clusters where the command is available from a login node.
 
 Decision criteria:
 
