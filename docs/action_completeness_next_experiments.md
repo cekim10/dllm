@@ -75,7 +75,37 @@ Plot:
 Repeat a smaller `n=20-30` run on Dream or another available dLLM. This is not
 for final numbers; it answers whether the readiness signal is LLaDA-specific.
 
-## 4. Metrics to Report
+## 4. NFE Stage Sensitivity
+
+Run the stage-level fidelity ablation on the 3-call workflow proxy. This treats
+each required tool action as one workflow stage, generates each stage with high
+and low NFE once, then compares `all_high`, `low_stage_0`, `low_stage_1`,
+`low_stage_2`, and `all_low` schedules.
+
+```bash
+srun -p $PARTITION --quotatype=$QUOTATYPE --gres=gpu:1 --cpus-per-task=24 \
+  --time=03:00:00 python -u \
+  examples/fastdllm/llada/run_multitool_nfe_stage_ablation.py \
+  --model_name_or_path "GSAI-ML/LLaDA-8B-Instruct" \
+  --input_path examples/fastdllm/llada/multitool_prefetch_prompts_3call_120.jsonl \
+  --limit 20 \
+  --high_steps 128 \
+  --low_steps 32 \
+  --max_new_tokens 64 \
+  --block_size 32 \
+  --use_cache prefix \
+  --threshold 0.9 \
+  --output_prefix artifacts/nfe_stage_ablation/multitool_3call_h128_l32
+```
+
+Decision criteria:
+
+- Strong: one `low_stage_i` schedule has a materially larger drop in
+  `final_all_ready_rate` than the others while `all_high` remains high.
+- Weak: all low-stage schedules degrade by similar amounts.
+- No-go: `all_high` is already poor, or `low_steps` causes every stage to fail.
+
+## 5. Metrics to Report
 
 - final all-ready rate.
 - per-call ready/stable fraction by call index.
@@ -83,3 +113,5 @@ for final numbers; it answers whether the readiness signal is LLaDA-specific.
 - AR optimistic versus AR verified readiness.
 - probe latency, output tokens, and full-action accuracy.
 - speedup under tool latency and tool capacity assumptions.
+- NFE stage sensitivity: `low_stage_i_final_all_ready_delta_vs_all_high`,
+  per-stage high/low ready rate, and per-stage high/low generation time.
