@@ -217,16 +217,25 @@ def _summarize(
         rows = [row for row in request_rows if row["variant"] == variant]
         final_rate = sum(bool(row["final_all_ready"]) for row in rows) / max(len(rows), 1)
         ready_counts = [float(row["final_ready_count"]) for row in rows]
+        generation_ms_values = [float(row["total_generation_ms"]) for row in rows]
         aggregate[f"{variant}_num_requests"] = len(rows)
         aggregate[f"{variant}_final_all_ready_rate"] = final_rate
         aggregate[f"{variant}_final_all_ready_delta_vs_all_high"] = (
             final_rate - baseline_rate
         )
         aggregate[f"{variant}_mean_final_ready_count"] = statistics.mean(ready_counts)
-        aggregate[f"{variant}_p95_generation_ms"] = _percentile(
-            [float(row["total_generation_ms"]) for row in rows],
-            0.95,
+        aggregate[f"{variant}_mean_generation_ms"] = statistics.mean(
+            generation_ms_values
         )
+        aggregate[f"{variant}_p95_generation_ms"] = _percentile(generation_ms_values, 0.95)
+    baseline_generation = aggregate.get("all_high_mean_generation_ms")
+    if baseline_generation:
+        for variant in sorted({str(row["variant"]) for row in request_rows}):
+            mean_generation = aggregate.get(f"{variant}_mean_generation_ms")
+            if mean_generation:
+                aggregate[f"{variant}_latency_speedup_vs_all_high"] = (
+                    baseline_generation / mean_generation
+                )
 
     for stage_index in sorted({int(row["stage_index"]) for row in stage_rows}):
         for steps in (high_steps, low_steps):
