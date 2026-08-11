@@ -1,0 +1,207 @@
+{
+  "aggregate": {
+    "ar_model_name_or_path": "Qwen/Qwen2.5-7B-Instruct",
+    "input_path": "examples/fastdllm/llada/multitool_prefetch_prompts_3call_120.jsonl",
+    "num_requests": 20,
+    "num_stages": 60,
+    "max_new_tokens": 64,
+    "request_all_ready_rate": 0.4,
+    "mean_request_ready_count": 2.3,
+    "mean_request_latency_ms": 2574.452883488266,
+    "p95_request_latency_ms": 3324.578046263196,
+    "stage0_ready_rate": 0.95,
+    "stage0_tool_correct_rate": 0.95,
+    "stage0_args_correct_rate": 0.95,
+    "stage0_mean_latency_ms": 859.611486736685,
+    "stage1_ready_rate": 0.6,
+    "stage1_tool_correct_rate": 0.65,
+    "stage1_args_correct_rate": 0.6,
+    "stage1_mean_latency_ms": 834.6908443956636,
+    "stage2_ready_rate": 0.75,
+    "stage2_tool_correct_rate": 0.9,
+    "stage2_args_correct_rate": 0.75,
+    "stage2_mean_latency_ms": 880.1505523559172
+  },
+  "requests": [
+    {
+      "request_index": 0,
+      "num_stages": 3,
+      "prompt": "Prepare for the Seoul visit: find flights from DFW to FCO on 2026-01-03, check weather in Seoul on 2026-01-01, and check weather in Rome on 2026-01-03.",
+      "all_ready": false,
+      "ready_count": 2,
+      "total_latency_ms": 2728.9204499684274,
+      "total_output_tokens": 93
+    },
+    {
+      "request_index": 1,
+      "num_stages": 3,
+      "prompt": "Plan the Tokyo trip: find flights from JFK to BER on 2027-06-10, list ops calendar events from 2027-06-08 to 2027-06-10 with keyword interview, and find flights from DFW to NRT on 2027-06-07.",
+      "all_ready": true,
+      "ready_count": 3,
+      "total_latency_ms": 2926.810070988722,
+      "total_output_tokens": 116
+    },
+    {
+      "request_index": 2,
+      "num_stages": 3,
+      "prompt": "Set up the Paris customer meeting: find flights from IAD to CDG on 2026-11-14, find flights from DFW to DXB on 2026-11-17, and check weather in Paris on 2026-11-15.",
+      "all_ready": false,
+      "ready_count": 2,
+      "total_latency_ms": 2300.6959637859836,
+      "total_output_tokens": 91
+    },
+    {
+      "request_index": 3,
+      "num_stages": 3,
+      "prompt": "Organize the Austin project stop: find flights from JFK to BOS on 2027-04-24, check weather in Boston on 2027-04-24, and check weather in Austin on 2027-04-22.",
+      "all_ready": true,
+      "ready_count": 3,
+      "total_latency_ms": 2274.4148269994184,
+      "total_output_tokens": 90
+    },
+    {
+      "request_index": 4,
+      "num_stages": 3,
+      "prompt": "Prepare the London partner update: check weather in Toronto on 2026-09-07, fetch CRM contacts at company SAP with role manager in city London, and check weather in London on 2026-09-05.",
+      "all_ready": false,
+      "ready_count": 2,
+      "total_latency_ms": 2149.639646988362,
+      "total_output_tokens": 84
+    },
+    {
+      "request_index": 5,
+      "num_stages": 3,
+      "prompt": "Prepare for the Amsterdam visit: check weather in Amsterdam on 2027-02-12, find flights from JFK to SIN on 2027-02-14, and find flights from ATL to AMS on 2027-02-11.",
+      "all_ready": false,
+      "ready_count": 2,
+      "total_latency_ms": 2587.9620912019163,
+      "total_output_tokens": 102
+    },
+    {
+      "request_index": 6,
+      "num_stages": 3,
+      "prompt": "Plan the Madrid trip: find flights from JFK to MAD on 2026-07-18, check weather in Sydney on 2026-07-21, and check weather in Madrid on 2026-07-19.",
+      "all_ready": true,
+      "ready_count": 3,
+      "total_latency_ms": 2318.74166498892,
+      "total_output_tokens": 92
+    },
+    {
+      "request_index": 7,
+      "num_stages": 3,
+      "prompt": "Set up the Rome customer meeting: check weather in Zurich on 2027-12-04, find flights from BOS to FCO on 2027-12-01, and fetch CRM contacts at company Stripe with role director in city Rome.",
+      "all_ready": false,
+      "ready_count": 2,
+      "total_latency_ms": 2151.5316260047257,
+      "total_output_tokens": 85
+    },
+    {
+      "request_index": 8,
+      "num_stages": 3,
+      "prompt": "Organize the Berlin project stop: find flights from MIA to BER on 2026-05-08, fetch CRM contacts at company Toyota with role analyst in city Berlin, and list research calendar events from 2026-05-09 to 2026-05-11 with keyword interview.",
+      "all_ready": false,
+      "ready_count": 2,
+      "total_latency_ms": 2700.6825319258496,
+      "total_output_tokens": 107
+    },
+    {
+      "request_index": 9,
+      "num_stages": 3,
+      "prompt": "Prepare the Dubai partner update: check weather in Dubai on 2027-10-16, find flights from LAX to DXB on 2027-10-15, and fetch CRM contacts at company Airbus with role recruiter in city Dubai.",
+      "all_ready": true,
+      "ready_count": 3,
+      "total_latency_ms": 2325.0741499941796,
+      "total_output_tokens": 92
+    },
+    {
+      "request_index": 10,
+      "num_stages": 3,
+      "prompt": "Prepare for the Boston visit: list research calendar events from 2026-03-23 to 2026-03-25 with keyword workshop, find flights from DFW to SFO on 2026-03-25, and find flights from SEA to BOS on 2026-03-22.",
+      "all_ready": false,
+      "ready_count": 2,
+      "total_latency_ms": 3298.428837908432,
+      "total_output_tokens": 131
+    },
+    {
+      "request_index": 11,
+      "num_stages": 3,
+      "prompt": "Plan the Toronto trip: find flights from DFW to YYZ on 2027-08-05, list ops calendar events from 2027-08-06 to 2027-08-08 with keyword review, and check weather in Toronto on 2027-08-06.",
+      "all_ready": true,
+      "ready_count": 3,
+      "total_latency_ms": 2809.888244140893,
+      "total_output_tokens": 111
+    },
+    {
+      "request_index": 12,
+      "num_stages": 3,
+      "prompt": "Set up the Singapore customer meeting: check weather in Singapore on 2026-01-13, fetch CRM contacts at company HSBC with role partner in city Singapore, and find flights from DFW to LAX on 2026-01-15.",
+      "all_ready": true,
+      "ready_count": 3,
+      "total_latency_ms": 2224.524507066235,
+      "total_output_tokens": 88
+    },
+    {
+      "request_index": 13,
+      "num_stages": 3,
+      "prompt": "Organize the Sydney project stop: list ops calendar events from 2027-06-20 to 2027-06-22 with keyword call, find flights from JFK to ICN on 2027-06-22, and check weather in Seoul on 2027-06-22.",
+      "all_ready": false,
+      "ready_count": 1,
+      "total_latency_ms": 3821.4130050037056,
+      "total_output_tokens": 152
+    },
+    {
+      "request_index": 14,
+      "num_stages": 3,
+      "prompt": "Prepare the Zurich partner update: check weather in Zurich on 2026-11-03, fetch CRM contacts at company SAP with role director in city Zurich, and find flights from DFW to NRT on 2026-11-05.",
+      "all_ready": false,
+      "ready_count": 2,
+      "total_latency_ms": 2126.8877489492297,
+      "total_output_tokens": 84
+    },
+    {
+      "request_index": 15,
+      "num_stages": 3,
+      "prompt": "Prepare for the Chicago visit: fetch CRM contacts at company Emirates with role analyst in city Chicago, check weather in Chicago on 2027-04-10, and list ops calendar events from 2027-04-10 to 2027-04-12 with keyword interview.",
+      "all_ready": true,
+      "ready_count": 3,
+      "total_latency_ms": 2599.893888924271,
+      "total_output_tokens": 103
+    },
+    {
+      "request_index": 16,
+      "num_stages": 3,
+      "prompt": "Plan the New York trip: find flights from DFW to AUS on 2026-09-19, check weather in Austin on 2026-09-19, and list research calendar events from 2026-09-17 to 2026-09-19 with keyword demo.",
+      "all_ready": true,
+      "ready_count": 3,
+      "total_latency_ms": 2786.717996932566,
+      "total_output_tokens": 110
+    },
+    {
+      "request_index": 17,
+      "num_stages": 3,
+      "prompt": "Set up the San Francisco customer meeting: check weather in London on 2027-02-26, find flights from BOS to SFO on 2027-02-23, and check weather in San Francisco on 2027-02-24.",
+      "all_ready": false,
+      "ready_count": 2,
+      "total_latency_ms": 2225.404886994511,
+      "total_output_tokens": 88
+    },
+    {
+      "request_index": 18,
+      "num_stages": 3,
+      "prompt": "Organize the Seattle project stop: check weather in Seattle on 2026-07-07, find flights from MIA to SEA on 2026-07-06, and list research calendar events from 2026-07-07 to 2026-07-09 with keyword review.",
+      "all_ready": false,
+      "ready_count": 1,
+      "total_latency_ms": 2678.366996929981,
+      "total_output_tokens": 106
+    },
+    {
+      "request_index": 19,
+      "num_stages": 3,
+      "prompt": "Prepare the Los Angeles partner update: check weather in Los Angeles on 2027-12-14, find flights from JFK to LAX on 2027-12-13, and find flights from JFK to MAD on 2027-12-16.",
+      "all_ready": false,
+      "ready_count": 2,
+      "total_latency_ms": 2453.058534068987,
+      "total_output_tokens": 97
+    }
+  ]
+}

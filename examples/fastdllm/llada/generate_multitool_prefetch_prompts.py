@@ -8,8 +8,9 @@ Run from repo root:
     --num_calls 3 \
     --seed 42
 
-The output schema matches test_multitool_prefetch_signals.py:
-  {"prompt": "...", "calls": [{"tool": "...", "args": {...}}, ...]}
+The output schema matches test_multitool_prefetch_signals.py and additionally
+keeps each source phrase for stage-local experiments:
+  {"prompt": "...", "calls": [{"tool": "...", "args": {...}, "phrase": "..."}, ...]}
 """
 
 from __future__ import annotations
@@ -145,7 +146,7 @@ def _record(index: int, rng: random.Random, num_calls: int) -> dict[str, object]
     return {
         "prompt": prompt,
         "calls": [
-            {"tool": call["tool"], "args": call["args"]}
+            {"tool": call["tool"], "args": call["args"], "phrase": call["phrase"]}
             for call in selected
         ],
     }

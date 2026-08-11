@@ -6,7 +6,7 @@ Run from repo root on a GPU server:
   conda activate ~/miniconda3/envs/dllm
   python -u examples/fastdllm/llada/benchmark_stage_action_ar.py \
     --ar_model_name_or_path Qwen/Qwen2.5-7B-Instruct \
-    --input_path examples/fastdllm/llada/multitool_prefetch_prompts_3call_120.jsonl \
+    --input_path examples/fastdllm/llada/multitool_prefetch_prompts_3call_120_phrases.jsonl \
     --limit 20 \
     --max_new_tokens 64 \
     --output_prefix artifacts/nfe_stage_ablation/ar_stage_qwen2_5_7b_3call
@@ -183,6 +183,7 @@ def main() -> None:
     parser.add_argument("--input_path", required=True)
     parser.add_argument("--limit", type=int, default=100)
     parser.add_argument("--max_new_tokens", type=int, default=64)
+    parser.add_argument("--stage_prompt_source", default="phrase")
     parser.add_argument(
         "--torch_dtype",
         default="bfloat16",
@@ -217,8 +218,10 @@ def main() -> None:
         for stage_index, call in enumerate(calls):
             messages = _stage_prompt(
                 record,
+                call,
                 stage_index=stage_index,
                 num_stages=len(calls),
+                stage_prompt_source=args.stage_prompt_source,
             )
             result = _run_stage(
                 model=model,

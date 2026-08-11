@@ -8,7 +8,7 @@ Run from repo root on a GPU server:
   # If already inside an allocated GPU node:
   python -u examples/fastdllm/llada/run_multitool_nfe_stage_ablation.py \
     --model_name_or_path "GSAI-ML/LLaDA-8B-Instruct" \
-    --input_path examples/fastdllm/llada/multitool_prefetch_prompts_3call_120.jsonl \
+    --input_path examples/fastdllm/llada/multitool_prefetch_prompts_3call_120_phrases.jsonl \
     --limit 20 \
     --high_steps 128 \
     --low_steps 32 \
@@ -22,7 +22,7 @@ Run from repo root on a GPU server:
     --time=03:00:00 python -u \
     examples/fastdllm/llada/run_multitool_nfe_stage_ablation.py \
     --model_name_or_path "GSAI-ML/LLaDA-8B-Instruct" \
-    --input_path examples/fastdllm/llada/multitool_prefetch_prompts_3call_120.jsonl \
+    --input_path examples/fastdllm/llada/multitool_prefetch_prompts_3call_120_phrases.jsonl \
     --limit 20 \
     --high_steps 128 \
     --low_steps 32 \
@@ -80,10 +80,37 @@ def _write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
 
 def _stage_prompt(
     record: dict[str, Any],
+    call: dict[str, Any],
     *,
     stage_index: int,
     num_stages: int,
+    stage_prompt_source: str,
 ) -> list[dict[str, str]]:
+    if stage_prompt_source == "phrase":
+        phrase = call.get("phrase")
+        if not phrase:
+            raise ValueError(
+                "stage_prompt_source='phrase' requires each call to include "
+                "a 'phrase' field. Regenerate prompts with "
+                "generate_multitool_prefetch_prompts.py."
+            )
+        content = (
+            "You are executing one stage of a multi-tool workflow. "
+            "Return the read-only action required by this stage.\n"
+            "Available tools:\n"
+            + "\n".join(TOOL_LINES)
+            + "\n\n"
+            "Return only this format:\n"
+            "TOOL: <tool_name>\n"
+            "ARGS: key=value; key=value\n\n"
+            f"Stage request: {phrase}"
+        )
+        return [{"role": "user", "content": content}]
+    if stage_prompt_source != "ordinal":
+        raise ValueError(
+            f"Unknown stage_prompt_source: {stage_prompt_source}. "
+            "Expected 'phrase' or 'ordinal'."
+        )
     content = (
         "You are executing one stage of a multi-tool workflow. "
         f"The user request requires {num_stages} independent read-only actions. "
@@ -111,11 +138,12 @@ def _variant_schedules(num_stages: int) -> dict[str, set[int]]:
 @dataclass
 class ScriptArguments:
     model_name_or_path: str = "GSAI-ML/LLaDA-8B-Instruct"
-    input_path: str = "examples/fastdllm/llada/multitool_prefetch_prompts_3call_120.jsonl"
+    input_path: str = "examples/fastdllm/llada/multitool_prefetch_prompts_3call_120_phrases.jsonl"
     limit: int = 10
     seed: int = 42
     high_steps: int = 128
     low_steps: int = 32
+    stage_prompt_source: str = "phrase"
     output_prefix: str = "artifacts/nfe_stage_ablation/multitool_3call_h128_l32"
 
     def __post_init__(self):
@@ -147,11 +175,14 @@ def _run_stage(
     stage_index: int,
     num_stages: int,
     steps: int,
+    stage_prompt_source: str,
 ) -> dict[str, Any]:
     messages = _stage_prompt(
         record,
+        call,
         stage_index=stage_index,
         num_stages=num_stages,
+        stage_prompt_source=stage_prompt_source,
     )
     inputs = tokenizer.apply_chat_template(
         [messages],
@@ -298,6 +329,7 @@ def main() -> None:
                     stage_index=stage_index,
                     num_stages=num_stages,
                     steps=steps,
+                    stage_prompt_source=script_args.stage_prompt_source,
                 )
                 result.update(
                     {

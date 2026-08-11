@@ -1,0 +1,61 @@
+args_correct,detected_tool,latency_ms,output_tokens,prompt_tokens,ready,request_index,stage_index,target_args,target_tool,tool_correct
+True,flight_search,1260.5075429892167,35,202,True,0,0,"{""date"": ""2026-01-03"", ""destination"": ""FCO"", ""origin"": ""DFW""}",flight_search,True
+True,weather,734.3891329364851,29,202,True,0,1,"{""date"": ""2026-01-01"", ""location"": ""Seoul""}",weather,True
+False,weather,734.0237740427256,29,202,False,0,2,"{""date"": ""2026-01-03"", ""location"": ""Rome""}",weather,True
+True,flight_search,860.2297540055588,34,218,True,1,0,"{""date"": ""2027-06-10"", ""destination"": ""BER"", ""origin"": ""JFK""}",flight_search,True
+True,calendar_api,1207.8619139501825,48,218,True,1,1,"{""calendar"": ""ops"", ""end_date"": ""2027-06-10"", ""keyword"": ""interview"", ""start_date"": ""2027-06-08""}",calendar_api,True
+True,flight_search,858.7184030329809,34,218,True,1,2,"{""date"": ""2027-06-07"", ""destination"": ""NRT"", ""origin"": ""DFW""}",flight_search,True
+True,flight_search,882.7656249050051,35,207,True,2,0,"{""date"": ""2026-11-14"", ""destination"": ""CDG"", ""origin"": ""IAD""}",flight_search,True
+False,weather,709.4005859689787,28,207,False,2,1,"{""date"": ""2026-11-17"", ""destination"": ""DXB"", ""origin"": ""DFW""}",flight_search,False
+True,weather,708.5297529119998,28,207,True,2,2,"{""date"": ""2026-11-15"", ""location"": ""Paris""}",weather,True
+True,flight_search,857.2016520192847,34,202,True,3,0,"{""date"": ""2027-04-24"", ""destination"": ""BOS"", ""origin"": ""JFK""}",flight_search,True
+True,weather,708.6898440029472,28,202,True,3,1,"{""date"": ""2027-04-24"", ""location"": ""Boston""}",weather,True
+True,weather,708.5233309771866,28,202,True,3,2,"{""date"": ""2027-04-22"", ""location"": ""Austin""}",weather,True
+True,weather,723.4435860300437,28,194,True,4,0,"{""date"": ""2026-09-07"", ""location"": ""Toronto""}",weather,True
+False,weather,713.2822279818356,28,194,False,4,1,"{""city"": ""London"", ""company"": ""SAP"", ""role"": ""manager""}",crm_api,False
+True,weather,712.9138329764828,28,194,True,4,2,"{""date"": ""2026-09-05"", ""location"": ""London""}",weather,True
+False,flight_search,857.4512830236927,34,202,False,5,0,"{""date"": ""2027-02-12"", ""location"": ""Amsterdam""}",weather,False
+True,flight_search,874.0885060979053,34,202,True,5,1,"{""date"": ""2027-02-14"", ""destination"": ""SIN"", ""origin"": ""JFK""}",flight_search,True
+True,flight_search,856.4223020803183,34,202,True,5,2,"{""date"": ""2027-02-11"", ""destination"": ""AMS"", ""origin"": ""ATL""}",flight_search,True
+True,flight_search,855.4230770096183,34,199,True,6,0,"{""date"": ""2026-07-18"", ""destination"": ""MAD"", ""origin"": ""JFK""}",flight_search,True
+True,weather,731.0462379828095,29,199,True,6,1,"{""date"": ""2026-07-21"", ""location"": ""Sydney""}",weather,True
+True,weather,732.2723499964923,29,199,True,6,2,"{""date"": ""2026-07-19"", ""location"": ""Madrid""}",weather,True
+True,weather,758.3137839101255,30,199,True,7,0,"{""date"": ""2027-12-04"", ""location"": ""Zurich""}",weather,True
+False,weather,759.1892550699413,30,199,False,7,1,"{""date"": ""2027-12-01"", ""destination"": ""FCO"", ""origin"": ""BOS""}",flight_search,False
+True,crm_api,634.0285870246589,25,199,True,7,2,"{""city"": ""Rome"", ""company"": ""Stripe"", ""role"": ""director""}",crm_api,True
+True,flight_search,834.1836109757423,33,213,True,8,0,"{""date"": ""2026-05-08"", ""destination"": ""BER"", ""origin"": ""MIA""}",flight_search,True
+True,crm_api,659.4023109646514,26,213,True,8,1,"{""city"": ""Berlin"", ""company"": ""Toyota"", ""role"": ""analyst""}",crm_api,True
+False,calendar_api,1207.0966099854559,48,213,False,8,2,"{""calendar"": ""research"", ""end_date"": ""2026-05-11"", ""keyword"": ""interview"", ""start_date"": ""2026-05-09""}",calendar_api,True
+True,weather,733.546192990616,29,198,True,9,0,"{""date"": ""2027-10-16"", ""location"": ""Dubai""}",weather,True
+True,flight_search,858.1224889494479,34,198,True,9,1,"{""date"": ""2027-10-15"", ""destination"": ""DXB"", ""origin"": ""LAX""}",flight_search,True
+True,crm_api,733.4054680541158,29,198,True,9,2,"{""city"": ""Dubai"", ""company"": ""Airbus"", ""role"": ""recruiter""}",crm_api,True
+True,calendar_api,1232.2093419497833,49,220,True,10,0,"{""calendar"": ""research"", ""end_date"": ""2026-03-25"", ""keyword"": ""workshop"", ""start_date"": ""2026-03-23""}",calendar_api,True
+False,calendar_api,1232.3758359998465,49,220,False,10,1,"{""date"": ""2026-03-25"", ""destination"": ""SFO"", ""origin"": ""DFW""}",flight_search,False
+True,flight_search,833.8436599588022,33,220,True,10,2,"{""date"": ""2026-03-22"", ""destination"": ""BOS"", ""origin"": ""SEA""}",flight_search,True
+True,flight_search,891.7682970641181,35,216,True,11,0,"{""date"": ""2027-08-05"", ""destination"": ""YYZ"", ""origin"": ""DFW""}",flight_search,True
+True,calendar_api,1208.6463730083779,48,216,True,11,1,"{""calendar"": ""ops"", ""end_date"": ""2027-08-08"", ""keyword"": ""review"", ""start_date"": ""2027-08-06""}",calendar_api,True
+True,weather,709.4735740683973,28,216,True,11,2,"{""date"": ""2027-08-06"", ""location"": ""Toronto""}",weather,True
+True,weather,709.0074740117416,28,200,True,12,0,"{""date"": ""2026-01-13"", ""location"": ""Singapore""}",weather,True
+True,crm_api,658.6052080383524,26,200,True,12,1,"{""city"": ""Singapore"", ""company"": ""HSBC"", ""role"": ""partner""}",crm_api,True
+True,flight_search,856.9118250161409,34,200,True,12,2,"{""date"": ""2026-01-15"", ""destination"": ""LAX"", ""origin"": ""DFW""}",flight_search,True
+True,calendar_api,1280.8299280004576,51,217,True,13,0,"{""calendar"": ""ops"", ""end_date"": ""2027-06-22"", ""keyword"": ""call"", ""start_date"": ""2027-06-20""}",calendar_api,True
+False,calendar_api,1257.5294950511307,50,217,False,13,1,"{""date"": ""2027-06-22"", ""destination"": ""ICN"", ""origin"": ""JFK""}",flight_search,False
+False,calendar_api,1283.0535819521174,51,217,False,13,2,"{""date"": ""2027-06-22"", ""location"": ""Seoul""}",weather,False
+True,weather,758.9475089916959,30,198,True,14,0,"{""date"": ""2026-11-03"", ""location"": ""Zurich""}",weather,True
+True,crm_api,684.0582609875128,27,198,True,14,1,"{""city"": ""Zurich"", ""company"": ""SAP"", ""role"": ""director""}",crm_api,True
+False,crm_api,683.881978970021,27,198,False,14,2,"{""date"": ""2026-11-05"", ""destination"": ""NRT"", ""origin"": ""DFW""}",flight_search,False
+True,crm_api,684.5121670048684,27,209,True,15,0,"{""city"": ""Chicago"", ""company"": ""Emirates"", ""role"": ""analyst""}",crm_api,True
+True,weather,709.1466969577596,28,209,True,15,1,"{""date"": ""2027-04-10"", ""location"": ""Chicago""}",weather,True
+True,calendar_api,1206.235024961643,48,209,True,15,2,"{""calendar"": ""ops"", ""end_date"": ""2027-04-12"", ""keyword"": ""interview"", ""start_date"": ""2027-04-10""}",calendar_api,True
+True,flight_search,858.1086329650134,34,217,True,16,0,"{""date"": ""2026-09-19"", ""destination"": ""AUS"", ""origin"": ""DFW""}",flight_search,True
+True,weather,710.4443949647248,28,217,True,16,1,"{""date"": ""2026-09-19"", ""location"": ""Austin""}",weather,True
+True,calendar_api,1218.164969002828,48,217,True,16,2,"{""calendar"": ""research"", ""end_date"": ""2026-09-19"", ""keyword"": ""demo"", ""start_date"": ""2026-09-17""}",calendar_api,True
+True,weather,708.4699099650607,28,205,True,17,0,"{""date"": ""2027-02-26"", ""location"": ""London""}",weather,True
+False,weather,708.3470380166546,28,205,False,17,1,"{""date"": ""2027-02-23"", ""destination"": ""SFO"", ""origin"": ""BOS""}",flight_search,False
+True,weather,808.5879390127957,32,205,True,17,2,"{""date"": ""2027-02-24"", ""location"": ""San Francisco""}",weather,True
+True,weather,710.2033699629828,28,217,True,18,0,"{""date"": ""2026-07-07"", ""location"": ""Seattle""}",weather,True
+False,weather,710.0045549450442,28,217,False,18,1,"{""date"": ""2026-07-06"", ""destination"": ""SEA"", ""origin"": ""MIA""}",flight_search,False
+False,calendar_api,1258.1590720219538,50,217,False,18,2,"{""calendar"": ""research"", ""end_date"": ""2026-07-09"", ""keyword"": ""review"", ""start_date"": ""2026-07-07""}",calendar_api,True
+True,weather,735.1069969590753,29,205,True,19,0,"{""date"": ""2027-12-14"", ""location"": ""Los Angeles""}",weather,True
+False,flight_search,859.186526038684,34,205,False,19,1,"{""date"": ""2027-12-13"", ""destination"": ""LAX"", ""origin"": ""JFK""}",flight_search,True
+True,flight_search,858.7650110712275,34,205,True,19,2,"{""date"": ""2027-12-16"", ""destination"": ""MAD"", ""origin"": ""JFK""}",flight_search,True
