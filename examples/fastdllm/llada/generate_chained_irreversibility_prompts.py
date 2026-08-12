@@ -14,7 +14,9 @@ Each record uses the same three-stage workflow:
 
 The `hard_stage` field controls where generated fields become irreversible in
 the chained run. Stages before that point have oracle fallback in downstream
-prompts; the hard stage does not.
+prompts; the hard stage does not. Each base request is emitted three times,
+once per hard stage, so hard-stage effects are not confounded with request
+difficulty.
 """
 
 from __future__ import annotations
@@ -59,24 +61,24 @@ def _date(index: int) -> str:
     return f"{year:04d}-{month:02d}-{day:02d}"
 
 
-def _record(index: int, rng: random.Random) -> dict[str, object]:
+def _base_record(base_index: int, rng: random.Random) -> dict[str, object]:
     cities = list(CITY_TO_AIRPORT)
     priorities = list(PRIORITY_TO_SLA)
-    city = cities[index % len(cities)]
-    priority = priorities[(index + rng.randrange(len(priorities))) % len(priorities)]
-    date = _date(index)
+    city = cities[base_index % len(cities)]
+    priority = priorities[
+        (base_index + rng.randrange(len(priorities))) % len(priorities)
+    ]
+    date = _date(base_index)
     airport = CITY_TO_AIRPORT[city]
     sla = PRIORITY_TO_SLA[priority]
     dispatch = f"{airport}-{date.replace('-', '')}-{sla}"
-    hard_stage = index % 3
-    request = REQUEST_TEMPLATES[index % len(REQUEST_TEMPLATES)].format(
+    request = REQUEST_TEMPLATES[base_index % len(REQUEST_TEMPLATES)].format(
         city=city,
         date=date,
         priority=priority,
     )
     return {
-        "request_id": index,
-        "hard_stage": hard_stage,
+        "base_request_id": base_index,
         "request": request,
         "targets": {
             "city": city,
@@ -89,6 +91,20 @@ def _record(index: int, rng: random.Random) -> dict[str, object]:
     }
 
 
+def _record(
+    base: dict[str, object],
+    request_id: int,
+    hard_stage: int,
+) -> dict[str, object]:
+    return {
+        "request_id": request_id,
+        "base_request_id": base["base_request_id"],
+        "hard_stage": hard_stage,
+        "request": base["request"],
+        "targets": base["targets"],
+    }
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output_path", required=True)
@@ -97,7 +113,19 @@ def main() -> None:
     args = parser.parse_args()
 
     rng = random.Random(args.seed)
-    rows = [_record(index, rng) for index in range(args.num_records)]
+    if args.num_records % 3 != 0:
+        raise ValueError("--num_records must be divisible by 3 for paired hard stages")
+    rows = []
+    for base_index in range(args.num_records // 3):
+        base = _base_record(base_index, rng)
+        for hard_stage in range(3):
+            rows.append(
+                _record(
+                    base=base,
+                    request_id=len(rows),
+                    hard_stage=hard_stage,
+                )
+            )
     output_path = Path(args.output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with output_path.open("w", encoding="utf-8") as f:

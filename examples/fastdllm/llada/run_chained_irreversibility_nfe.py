@@ -77,6 +77,26 @@ def _load_records(path: str, limit: int) -> list[dict[str, Any]]:
     return rows
 
 
+def _validate_paired_records(records: list[dict[str, Any]]) -> None:
+    if not any("base_request_id" in record for record in records):
+        return
+    hard_stages_by_base: dict[Any, set[int]] = {}
+    for record in records:
+        base_id = record.get("base_request_id")
+        hard_stages_by_base.setdefault(base_id, set()).add(int(record["hard_stage"]))
+    incomplete = {
+        base_id: sorted(hard_stages)
+        for base_id, hard_stages in hard_stages_by_base.items()
+        if hard_stages != {0, 1, 2}
+    }
+    if incomplete:
+        sample = dict(list(incomplete.items())[:5])
+        raise ValueError(
+            "Paired chained-irrev records must include hard stages 0, 1, and 2 "
+            f"for every base_request_id. Check --limit. Incomplete sample: {sample}"
+        )
+
+
 def _write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
     if not rows:
         return
@@ -227,6 +247,10 @@ def _variant_schedules() -> dict[str, set[int]]:
         "low_stage_1": {1},
         "low_stage_2": {2},
     }
+
+
+def _base_request_id(record: dict[str, Any], fallback: int) -> Any:
+    return record.get("base_request_id", fallback)
 
 
 @dataclass
@@ -421,6 +445,12 @@ def _summarize(
         "low_steps": low_steps,
         "num_isolated_stage_rows": len(isolated_rows),
         "num_chain_variant_rows": len(chain_request_rows),
+        "num_base_requests": len(
+            {
+                row.get("base_request_id", row.get("request_index"))
+                for row in chain_request_rows
+            }
+        ),
     }
     by_variant: dict[str, list[dict[str, Any]]] = {}
     for row in chain_request_rows:
@@ -524,6 +554,7 @@ def main() -> None:
     script_args, sampler_config = parser.parse_args_into_dataclasses()
     transformers.set_seed(script_args.seed)
     records = _load_records(script_args.input_path, script_args.limit)
+    _validate_paired_records(records)
 
     fastdllm_config = dllm.pipelines.fastdllm.llada.FastdLLMLLaDAConfig.from_pretrained(
         script_args.model_name_or_path
@@ -541,6 +572,7 @@ def main() -> None:
     decoded_rows: list[dict[str, Any]] = []
 
     for request_index, record in enumerate(records):
+        base_request_id = _base_request_id(record, request_index)
         for stage_index in range(3):
             for steps in (script_args.high_steps, script_args.low_steps):
                 row = _run_isolated_stage(
@@ -554,6 +586,7 @@ def main() -> None:
                 row.update(
                     {
                         "request_index": request_index,
+                        "base_request_id": base_request_id,
                         "hard_stage": int(record["hard_stage"]),
                         "request": record["request"],
                     }
@@ -575,6 +608,7 @@ def main() -> None:
             request_row.update(
                 {
                     "request_index": request_index,
+                    "base_request_id": base_request_id,
                     "request": record["request"],
                     "targets": json.dumps(record["targets"], sort_keys=True),
                 }
@@ -584,6 +618,7 @@ def main() -> None:
                 full_stage_row = {
                     **stage_row,
                     "request_index": request_index,
+                    "base_request_id": base_request_id,
                     "hard_stage": int(record["hard_stage"]),
                     "request": record["request"],
                 }
@@ -595,6 +630,7 @@ def main() -> None:
                 json.dumps(
                     {
                         "request_index": request_index,
+                        "base_request_id": base_request_id,
                         "hard_stage": int(record["hard_stage"]),
                         "variant": variant,
                         "final_success": request_row["final_success"],
