@@ -1,0 +1,7 @@
+field,shape,dtype,device,bytes,changes_every_step,required_for_exact_resume,required_only_for_performance,can_be_recomputed,recompute_cost_known
+x,"(1, 153)",torch.int64,cuda:0,1224,True,True,False,False,False
+attention_mask,"(1, 153)",torch.int64,cuda:0,1224,False,False,False,True,False
+current_schedule,"(1, 32)",torch.int64,cuda:0,256,False,True,False,False,False
+block_index,(),int,cpu_metadata,8,False,True,False,False,False
+inner_step,(),int,cpu_metadata,8,True,True,False,False,False
+prompt_lens/generation_metadata/config,"(1,)",metadata,cpu_metadata,96,False,True,False,False,False

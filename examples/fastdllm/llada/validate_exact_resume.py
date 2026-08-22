@@ -519,7 +519,7 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument("--temperature", type=float, default=0.0)
     parser.add_argument("--remasking", default="low_confidence")
     parser.add_argument("--stochastic_transfer", action="store_true")
-    parser.add_argument("--threshold", type=float, default=0.9)
+    parser.add_argument("--threshold", type=float, default=None)
     parser.add_argument("--factor", type=float, default=None)
     parser.add_argument("--right_shift_logits", action="store_true")
     parser.add_argument("--use_cache", default="none", choices=["none", "prefix", "dual"])
@@ -683,6 +683,7 @@ def main() -> None:
         "steps": args.steps,
         "max_new_tokens": args.max_new_tokens,
         "block_size": args.block_size,
+        "threshold": args.threshold,
         "num_baseline_steps": len(baseline_records),
         "checkpoint_count": len(checkpoint_indices),
         "all_checkpoints_ok": all(row["ok"] for row in result_rows),

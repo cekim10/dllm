@@ -5,7 +5,7 @@ reference: https://github.com/NVlabs/Fast-dLLM/blob/main/llada/generate.py
 import math
 import time
 from dataclasses import dataclass
-from typing import Any, Optional, Tuple, List, Union
+from typing import Any, Callable, Optional, Tuple, List, Union
 
 import torch
 import torch.nn.functional as F
@@ -184,6 +184,37 @@ class FastdLLMLLaDASamplerConfig(BaseSamplerConfig):
 
 
 @dataclass
+class FastdLLMLLaDAResumeState:
+    """Per-request state captured immediately before a refinement step.
+
+    Immutable request configuration remains in ``FastdLLMLLaDASamplerConfig``.
+    Optional fields let the validation harness remove and reconstruct candidate
+    state components instead of assuming every Python local is required.
+    """
+
+    x: torch.Tensor
+    prompt_lens: tuple[int, ...]
+    block_index: int | None
+    inner_step: int | None
+    attention_mask: torch.Tensor | None = None
+    num_transfer_tokens: torch.Tensor | None = None
+    past_key_values: List[Tuple[torch.Tensor, torch.Tensor]] | None = None
+    replace_position: torch.Tensor | None = None
+    cache_mode: str = "none"
+
+
+class FastdLLMLLaDAPaused(RuntimeError):
+    """Control-flow exception carrying a real sampler checkpoint."""
+
+    def __init__(self, state: FastdLLMLLaDAResumeState):
+        super().__init__(
+            f"Fast LLaDA paused before block={state.block_index}, "
+            f"inner_step={state.inner_step}"
+        )
+        self.state = state
+
+
+@dataclass
 class FastdLLMLLaDASampler(BaseSampler):
     @torch.no_grad()
     def sample(
@@ -226,6 +257,18 @@ class FastdLLMLLaDASampler(BaseSampler):
         model_call_observer = kwargs.get("model_call_observer")
         transfer_bias = kwargs.get("transfer_bias")
         canvas_update_hook = kwargs.get("canvas_update_hook")
+        resume_state: FastdLLMLLaDAResumeState | None = kwargs.get("resume_state")
+        pause_at: tuple[int, int] | None = kwargs.get("pause_at")
+        step_observer: Callable[[dict[str, Any]], None] | None = kwargs.get(
+            "step_observer"
+        )
+
+        if use_cache == "none":
+            use_cache = None
+        if use_cache not in (None, "prefix", "dual"):
+            raise RuntimeError(
+                f"Unknown use_cache mode: {use_cache}. Expected None, 'prefix', or 'dual'."
+            )
 
         assert block_size >= 1
         assert steps >= 1
@@ -297,6 +340,29 @@ class FastdLLMLLaDASampler(BaseSampler):
             x[i, pl:gen_end] = mask_id
             attention_mask[i, :gen_end] = 1
 
+        if resume_state is not None:
+            if tuple(prompt_lens) != tuple(resume_state.prompt_lens):
+                raise ValueError(
+                    "resume_state prompt lengths do not match the supplied request: "
+                    f"state={resume_state.prompt_lens}, request={tuple(prompt_lens)}"
+                )
+            expected_cache_mode = "none" if use_cache is None else use_cache
+            if resume_state.cache_mode != expected_cache_mode:
+                raise ValueError(
+                    "resume_state cache mode does not match sampler configuration: "
+                    f"state={resume_state.cache_mode!r}, config={expected_cache_mode!r}"
+                )
+            if tuple(resume_state.x.shape) != tuple(x.shape):
+                raise ValueError(
+                    "resume_state canvas shape does not match request configuration: "
+                    f"state={tuple(resume_state.x.shape)}, expected={tuple(x.shape)}"
+                )
+            x = resume_state.x.to(device=self.model.device, dtype=torch.long).clone()
+            if resume_state.attention_mask is not None:
+                attention_mask = resume_state.attention_mask.to(
+                    device=self.model.device, dtype=torch.long
+                ).clone()
+
         histories = [x.clone()] if return_dict else None
         observer_call_index = 0
 
@@ -306,12 +372,6 @@ class FastdLLMLLaDASampler(BaseSampler):
         canvas_update_index = 0
 
         # Cache modes assume a single shared prompt length (like NVLabs reference code)
-        if use_cache == "none":
-            use_cache = None
-        if use_cache not in (None, "prefix", "dual"):
-            raise RuntimeError(
-                f"Unknown use_cache mode: {use_cache}. Expected None, 'prefix', or 'dual'."
-            )
         # Fast-dLLM cache modes require batchsize = 1 or equal prompt lengths
         if use_cache is None:
             prompt_len = None
@@ -448,10 +508,103 @@ class FastdLLMLLaDASampler(BaseSampler):
             hooked = canvas_update_hook(x_, context)
             return x_ if hooked is None else hooked
 
+        cache_mode_label = "none" if use_cache is None else use_cache
+
+        def _move_past_key_values(
+            values: List[Tuple[torch.Tensor, torch.Tensor]] | None,
+        ) -> List[Tuple[torch.Tensor, torch.Tensor]] | None:
+            if values is None:
+                return None
+            return [
+                tuple(tensor.to(device=self.model.device) for tensor in layer)  # type: ignore[misc]
+                for layer in values
+            ]
+
+        def _derive_block_index() -> int:
+            for candidate in range(num_blocks):
+                for row, pl in enumerate(prompt_lens):
+                    start = pl + candidate * block_size
+                    end = min(start + block_size, pl + max_new_tokens, T)
+                    if start < end and (x[row, start:end] == mask_id).any():
+                        return candidate
+            return num_blocks
+
+        start_block = 0
+        if resume_state is not None:
+            start_block = (
+                _derive_block_index()
+                if resume_state.block_index is None
+                else int(resume_state.block_index)
+            )
+
+        def _checkpoint_state(
+            *,
+            block_index: int,
+            inner_step: int,
+            schedule: torch.Tensor | None,
+            past_key_values: List[Tuple[torch.Tensor, torch.Tensor]] | None,
+            replace_position: torch.Tensor | None,
+        ) -> FastdLLMLLaDAResumeState:
+            return FastdLLMLLaDAResumeState(
+                x=x.detach(),
+                prompt_lens=tuple(int(length) for length in prompt_lens),
+                attention_mask=attention_mask.detach(),
+                block_index=int(block_index),
+                inner_step=int(inner_step),
+                num_transfer_tokens=(
+                    None if schedule is None else schedule.detach()
+                ),
+                past_key_values=past_key_values,
+                replace_position=(
+                    None if replace_position is None else replace_position.detach()
+                ),
+                cache_mode=cache_mode_label,
+            )
+
+        def _maybe_pause(
+            *,
+            block_index: int,
+            inner_step: int,
+            schedule: torch.Tensor | None,
+            past_key_values: List[Tuple[torch.Tensor, torch.Tensor]] | None = None,
+            replace_position: torch.Tensor | None = None,
+        ) -> None:
+            if pause_at != (block_index, inner_step):
+                return
+            raise FastdLLMLLaDAPaused(
+                _checkpoint_state(
+                    block_index=block_index,
+                    inner_step=inner_step,
+                    schedule=schedule,
+                    past_key_values=past_key_values,
+                    replace_position=replace_position,
+                )
+            )
+
+        def _observe_step(
+            *,
+            phase: str,
+            block_index: int,
+            inner_step: int,
+            transfer_index: torch.Tensor,
+        ) -> None:
+            if step_observer is None:
+                return
+            step_observer(
+                {
+                    "phase": phase,
+                    "cache_mode": cache_mode_label,
+                    "block_index": int(block_index),
+                    "inner_step": int(inner_step),
+                    "x": x.detach(),
+                    "transfer_index": transfer_index.detach(),
+                }
+            )
+
         # =============================
         # Main block loop
         # =============================
-        for b in range(num_blocks):
+        for b in range(start_block, num_blocks):
             # Compute block boundaries
             if prompt_len is not None:
                 # cache modes: shared boundaries
@@ -484,20 +637,98 @@ class FastdLLMLLaDASampler(BaseSampler):
                     if width_j > 0:
                         block_mask_index[j, :width_j] = x[j, start_j:end_j] == mask_id
 
-            # quotas for this block
-            num_transfer_tokens = get_num_transfer_tokens(
-                mask_index=block_mask_index,
-                steps=steps_per_block,
-                scheduler=self.scheduler,
-                stochastic=stochastic_transfer,
-            )
+            resume_here = resume_state is not None and b == start_block
+            resume_inner_step = 0
+            if resume_here:
+                if resume_state.inner_step is not None:
+                    resume_inner_step = int(resume_state.inner_step)
+                elif threshold is not None or factor is not None:
+                    if prompt_len is not None:
+                        block_is_untouched = bool(
+                            (block_mask_index.sum(dim=1) == block_len).all()
+                        )
+                    else:
+                        block_is_untouched = all(
+                            int(block_mask_index[row].sum().item()) == width
+                            for row, (_, _, width) in enumerate(widths)
+                        )
+                    if block_is_untouched:
+                        resume_inner_step = 0
+                    else:
+                        raise ValueError(
+                            "inner_step is not derivable from a threshold/dynamic canvas"
+                        )
+                else:
+                    # In deterministic quota mode, completed transfer count maps
+                    # exactly to one cumulative quota prefix.
+                    original_mask = torch.zeros_like(block_mask_index)
+                    if prompt_len is not None:
+                        original_mask[:, :block_len] = True
+                    else:
+                        for row, (_, _, width) in enumerate(widths):
+                            original_mask[row, :width] = True
+                    derivation_schedule = (
+                        resume_state.num_transfer_tokens.to(device=x.device)
+                        if resume_state.num_transfer_tokens is not None
+                        else get_num_transfer_tokens(
+                            mask_index=original_mask,
+                            steps=steps_per_block,
+                            scheduler=self.scheduler,
+                            stochastic=False,
+                        )
+                    )
+                    completed = original_mask.sum(dim=1) - block_mask_index.sum(dim=1)
+                    if bool((completed == 0).all()):
+                        resume_inner_step = 0
+                    else:
+                        cumulative = derivation_schedule.cumsum(dim=1)
+                        matches = (cumulative == completed.unsqueeze(1)).all(dim=0)
+                        indices = matches.nonzero(as_tuple=False).flatten()
+                        if indices.numel() == 0:
+                            raise ValueError(
+                                "inner_step cannot be reconstructed from quota progress"
+                            )
+                        resume_inner_step = int(indices[0].item()) + 1
+
+            if resume_inner_step == 0:
+                _maybe_pause(
+                    block_index=b,
+                    inner_step=0,
+                    schedule=None,
+                )
+
+            # Quotas are based on the block-start mask. For a deterministic
+            # mid-block resume they can be reconstructed from request metadata.
+            schedule_mask_index = block_mask_index
+            if resume_here and resume_inner_step > 0:
+                schedule_mask_index = torch.zeros_like(block_mask_index)
+                if prompt_len is not None:
+                    schedule_mask_index[:, :block_len] = True
+                else:
+                    for row, (_, _, width) in enumerate(widths):
+                        schedule_mask_index[row, :width] = True
+
+            if (
+                resume_here
+                and resume_state.num_transfer_tokens is not None
+            ):
+                num_transfer_tokens = resume_state.num_transfer_tokens.to(
+                    device=x.device
+                )
+            else:
+                num_transfer_tokens = get_num_transfer_tokens(
+                    mask_index=schedule_mask_index,
+                    steps=steps_per_block,
+                    scheduler=self.scheduler,
+                    stochastic=stochastic_transfer,
+                )
             effective_steps = num_transfer_tokens.size(1)
 
             # -------------------------
             # Mode 1: No cache
             # -------------------------
             if use_cache is None:
-                i = 0
+                i = resume_inner_step
                 while True:
                     # mask only within current block (per-sample)
                     mask_allowed = torch.zeros_like(x, dtype=torch.bool)
@@ -512,6 +743,13 @@ class FastdLLMLLaDASampler(BaseSampler):
 
                     if mask_allowed.sum() == 0:
                         break
+
+                    if i > 0:
+                        _maybe_pause(
+                            block_index=b,
+                            inner_step=i,
+                            schedule=num_transfer_tokens,
+                        )
 
                     block_ranges = [(start_j, end_j) for start_j, end_j, _ in widths]
                     mask_counts = [
@@ -559,6 +797,12 @@ class FastdLLMLLaDASampler(BaseSampler):
                         block_index=b,
                         step_index=i,
                     )
+                    _observe_step(
+                        phase="refine",
+                        block_index=b,
+                        inner_step=i,
+                        transfer_index=transfer_idx,
+                    )
                     i += 1
 
                     if histories is not None:
@@ -570,73 +814,102 @@ class FastdLLMLLaDASampler(BaseSampler):
             # Mode 2: Prefix cache
             # -------------------------
             if use_cache == "prefix":
-                # Warm cache on full x once per block
                 shared_ranges = [(s, e) for _ in range(B)]
-                out_full = _call_model(
-                    input_ids=x,
-                    attention_mask=attention_mask,
-                    use_cache=True,
-                    output_hidden_states=block_observer is not None,
-                    block_observer=block_observer,
-                    observer_context=_make_observer_context(
-                        phase="warmup",
-                        cache_mode="prefix",
-                        block_index=b,
-                        step_index=0,
-                        block_ranges=shared_ranges,
-                        mask_counts=[
-                            int((x[row, s:e] == mask_id).sum().item())
-                            for row in range(B)
-                        ],
-                    ),
+                past_key_values = (
+                    _move_past_key_values(resume_state.past_key_values)
+                    if resume_here
+                    else None
                 )
-                logits_full = out_full.logits
-                past_key_values = out_full.past_key_values
 
-                _apply_suppressions(logits_full)
-                if right_shift_logits:
-                    logits_full = torch.cat(
-                        [logits_full[:, :1], logits_full[:, :-1]], dim=1
+                if resume_inner_step == 0:
+                    # Warm cache on full x once per block and consume step 0.
+                    out_full = _call_model(
+                        input_ids=x,
+                        attention_mask=attention_mask,
+                        use_cache=True,
+                        output_hidden_states=block_observer is not None,
+                        block_observer=block_observer,
+                        observer_context=_make_observer_context(
+                            phase="warmup",
+                            cache_mode="prefix",
+                            block_index=b,
+                            step_index=0,
+                            block_ranges=shared_ranges,
+                            mask_counts=[
+                                int((x[row, s:e] == mask_id).sum().item())
+                                for row in range(B)
+                            ],
+                        ),
                     )
+                    logits_full = out_full.logits
+                    past_key_values = out_full.past_key_values
 
-                # Step 0 update on full logits, restricted to [s:e]
-                mask_allowed = torch.zeros_like(x, dtype=torch.bool)
-                mask_allowed[:, s:e] = x[:, s:e] == mask_id
+                    _apply_suppressions(logits_full)
+                    if right_shift_logits:
+                        logits_full = torch.cat(
+                            [logits_full[:, :1], logits_full[:, :-1]], dim=1
+                        )
 
-                if mask_allowed.sum() > 0:
-                    quota = None if threshold is not None else num_transfer_tokens[:, 0]
-                    x0, transfer_idx = _get_transfer_index(
-                        logits=logits_full,
-                        temperature=temperature,
-                        remasking=remasking,
-                        mask_index=mask_allowed,
-                        x=x,
-                        num_transfer_tokens=quota,
-                        threshold=threshold,
-                        factor=factor,
-                        transfer_bias=transfer_bias,
-                    )
+                    mask_allowed = torch.zeros_like(x, dtype=torch.bool)
+                    mask_allowed[:, s:e] = x[:, s:e] == mask_id
+                    if mask_allowed.sum() > 0:
+                        quota = (
+                            None
+                            if threshold is not None
+                            else num_transfer_tokens[:, 0]
+                        )
+                        x0, transfer_idx = _get_transfer_index(
+                            logits=logits_full,
+                            temperature=temperature,
+                            remasking=remasking,
+                            mask_index=mask_allowed,
+                            x=x,
+                            num_transfer_tokens=quota,
+                            threshold=threshold,
+                            factor=factor,
+                            transfer_bias=transfer_bias,
+                        )
 
-                    x = torch.where(transfer_idx, x0, x)
-                    x = _apply_canvas_update_hook(
-                        x,
-                        phase="warmup",
-                        cache_mode="prefix",
-                        block_index=b,
-                        step_index=0,
-                    )
-                    if histories is not None:
-                        histories.append(x.clone())
+                        x = torch.where(transfer_idx, x0, x)
+                        x = _apply_canvas_update_hook(
+                            x,
+                            phase="warmup",
+                            cache_mode="prefix",
+                            block_index=b,
+                            step_index=0,
+                        )
+                        _observe_step(
+                            phase="warmup",
+                            block_index=b,
+                            inner_step=0,
+                            transfer_index=transfer_idx,
+                        )
+                        if histories is not None:
+                            histories.append(x.clone())
 
-                # Trim cache to prefix only (up to s)
-                if past_key_values is None:
-                    raise RuntimeError(
-                        "Model did not return past_key_values with use_cache=True"
-                    )
-                past_key_values = _trim_past_key_values(past_key_values, s)
+                    if past_key_values is None:
+                        raise RuntimeError(
+                            "Model did not return past_key_values with use_cache=True"
+                        )
+                    past_key_values = _trim_past_key_values(past_key_values, s)
+                elif past_key_values is None:
+                    # Prefix K/V at deeper layers can depend on the bidirectional
+                    # suffix. Recreate the exact block-start canvas before trim.
+                    block_start_x = x.clone()
+                    block_start_x[:, s:e] = mask_id
+                    rebuilt = _call_model(
+                        input_ids=block_start_x,
+                        attention_mask=attention_mask,
+                        use_cache=True,
+                    ).past_key_values
+                    if rebuilt is None:
+                        raise RuntimeError(
+                            "Model did not return past_key_values while rebuilding prefix cache"
+                        )
+                    past_key_values = _trim_past_key_values(rebuilt, s)
 
                 # Refinement steps on suffix with prefix cache
-                i = 1
+                i = max(1, resume_inner_step)
                 while True:
                     if (x[:, s:e] == mask_id).sum() == 0:
                         break
@@ -649,6 +922,13 @@ class FastdLLMLLaDASampler(BaseSampler):
 
                     if mask_suffix.sum() == 0:
                         break
+
+                    _maybe_pause(
+                        block_index=b,
+                        inner_step=i,
+                        schedule=num_transfer_tokens,
+                        past_key_values=past_key_values,
+                    )
 
                     suffix_ranges = [
                         (0, min(block_len, int(x_suffix.shape[1]))) for _ in range(B)
@@ -706,6 +986,12 @@ class FastdLLMLLaDASampler(BaseSampler):
                         block_index=b,
                         step_index=i,
                     )
+                    _observe_step(
+                        phase="refine",
+                        block_index=b,
+                        inner_step=i,
+                        transfer_index=transfer_suf,
+                    )
 
                     i += 1
                     if histories is not None:
@@ -717,78 +1003,114 @@ class FastdLLMLLaDASampler(BaseSampler):
             # Mode 3: Dual cache
             # -------------------------
             if use_cache == "dual":
-                # Warm cache on full x once per block
                 shared_ranges = [(s, e) for _ in range(B)]
-                out_full = _call_model(
-                    input_ids=x,
-                    attention_mask=attention_mask,
-                    use_cache=True,
-                    output_hidden_states=block_observer is not None,
-                    block_observer=block_observer,
-                    observer_context=_make_observer_context(
-                        phase="warmup",
-                        cache_mode="dual",
-                        block_index=b,
-                        step_index=0,
-                        block_ranges=shared_ranges,
-                        mask_counts=[
-                            int((x[row, s:e] == mask_id).sum().item())
-                            for row in range(B)
-                        ],
-                    ),
-                )
-                logits_full = out_full.logits
-                past_key_values = out_full.past_key_values
-                if past_key_values is None:
-                    raise RuntimeError(
-                        "Model did not return past_key_values with use_cache=True"
-                    )
-
-                _apply_suppressions(logits_full)
-                if right_shift_logits:
-                    logits_full = torch.cat(
-                        [logits_full[:, :1], logits_full[:, :-1]], dim=1
-                    )
-
                 # replace_position mask for this block (B, T)
                 replace_position = torch.zeros_like(x, dtype=torch.bool)
                 replace_position[:, s:e] = True
+                past_key_values = (
+                    _move_past_key_values(resume_state.past_key_values)
+                    if resume_here
+                    else None
+                )
 
-                # Step 0 update on full logits, restricted to [s:e]
-                mask_allowed = torch.zeros_like(x, dtype=torch.bool)
-                mask_allowed[:, s:e] = x[:, s:e] == mask_id
-
-                if mask_allowed.sum() > 0:
-                    quota = None if threshold is not None else num_transfer_tokens[:, 0]
-                    x0, transfer_idx = _get_transfer_index(
-                        logits=logits_full,
-                        temperature=temperature,
-                        remasking=remasking,
-                        mask_index=mask_allowed,
-                        x=x,
-                        num_transfer_tokens=quota,
-                        threshold=threshold,
-                        factor=factor,
-                        transfer_bias=transfer_bias,
+                if resume_inner_step == 0:
+                    # Warm cache on the block-start canvas and consume step 0.
+                    out_full = _call_model(
+                        input_ids=x,
+                        attention_mask=attention_mask,
+                        use_cache=True,
+                        output_hidden_states=block_observer is not None,
+                        block_observer=block_observer,
+                        observer_context=_make_observer_context(
+                            phase="warmup",
+                            cache_mode="dual",
+                            block_index=b,
+                            step_index=0,
+                            block_ranges=shared_ranges,
+                            mask_counts=[
+                                int((x[row, s:e] == mask_id).sum().item())
+                                for row in range(B)
+                            ],
+                        ),
                     )
+                    logits_full = out_full.logits
+                    past_key_values = out_full.past_key_values
+                    if past_key_values is None:
+                        raise RuntimeError(
+                            "Model did not return past_key_values with use_cache=True"
+                        )
 
-                    x = torch.where(transfer_idx, x0, x)
-                    x = _apply_canvas_update_hook(
-                        x,
-                        phase="warmup",
-                        cache_mode="dual",
-                        block_index=b,
-                        step_index=0,
-                    )
-                    if histories is not None:
-                        histories.append(x.clone())
+                    _apply_suppressions(logits_full)
+                    if right_shift_logits:
+                        logits_full = torch.cat(
+                            [logits_full[:, :1], logits_full[:, :-1]], dim=1
+                        )
+
+                    mask_allowed = torch.zeros_like(x, dtype=torch.bool)
+                    mask_allowed[:, s:e] = x[:, s:e] == mask_id
+                    if mask_allowed.sum() > 0:
+                        quota = (
+                            None
+                            if threshold is not None
+                            else num_transfer_tokens[:, 0]
+                        )
+                        x0, transfer_idx = _get_transfer_index(
+                            logits=logits_full,
+                            temperature=temperature,
+                            remasking=remasking,
+                            mask_index=mask_allowed,
+                            x=x,
+                            num_transfer_tokens=quota,
+                            threshold=threshold,
+                            factor=factor,
+                            transfer_bias=transfer_bias,
+                        )
+
+                        x = torch.where(transfer_idx, x0, x)
+                        x = _apply_canvas_update_hook(
+                            x,
+                            phase="warmup",
+                            cache_mode="dual",
+                            block_index=b,
+                            step_index=0,
+                        )
+                        _observe_step(
+                            phase="warmup",
+                            block_index=b,
+                            inner_step=0,
+                            transfer_index=transfer_idx,
+                        )
+                        if histories is not None:
+                            histories.append(x.clone())
+                elif past_key_values is None:
+                    # The dual cache is the cache of the block-start canvas.
+                    # Recreate that canvas by remasking the current block.
+                    block_start_x = x.clone()
+                    block_start_x[:, s:e] = mask_id
+                    past_key_values = _call_model(
+                        input_ids=block_start_x,
+                        attention_mask=attention_mask,
+                        use_cache=True,
+                    ).past_key_values
+                    if past_key_values is None:
+                        raise RuntimeError(
+                            "Model did not return past_key_values while rebuilding dual cache"
+                        )
 
                 # Use for loop here for better compilation performance according to original implementation
-                for i_step in range(1, effective_steps):
+                for i_step in range(max(1, resume_inner_step), effective_steps):
                     blk = x[:, s:e]
                     mask_blk = blk == mask_id
                     if mask_blk.sum() == 0:
                         break
+
+                    _maybe_pause(
+                        block_index=b,
+                        inner_step=i_step,
+                        schedule=num_transfer_tokens,
+                        past_key_values=past_key_values,
+                        replace_position=replace_position,
+                    )
 
                     # This requires model forward supports replace_position (as in your first modeling_llada.py)
                     out_blk = _call_model(
@@ -843,6 +1165,12 @@ class FastdLLMLLaDASampler(BaseSampler):
                         cache_mode="dual",
                         block_index=b,
                         step_index=i_step,
+                    )
+                    _observe_step(
+                        phase="refine",
+                        block_index=b,
+                        inner_step=i_step,
+                        transfer_index=transfer_blk,
                     )
 
                     if histories is not None:
