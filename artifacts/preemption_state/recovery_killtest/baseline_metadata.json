@@ -1,0 +1,134 @@
+{
+  "shape0_p25_g128/prefix": {
+    "steps": 128,
+    "median_iteration_ms": 32.65765099786222,
+    "points": [
+      {
+        "block": 0,
+        "inner_step": 0,
+        "progress": 0.0
+      },
+      {
+        "block": 0,
+        "inner_step": 1,
+        "progress": 0.0078125
+      },
+      {
+        "block": 0,
+        "inner_step": 13,
+        "progress": 0.1015625
+      },
+      {
+        "block": 0,
+        "inner_step": 16,
+        "progress": 0.125
+      },
+      {
+        "block": 0,
+        "inner_step": 31,
+        "progress": 0.2421875
+      },
+      {
+        "block": 1,
+        "inner_step": 0,
+        "progress": 0.25
+      },
+      {
+        "block": 1,
+        "inner_step": 1,
+        "progress": 0.2578125
+      },
+      {
+        "block": 1,
+        "inner_step": 16,
+        "progress": 0.375
+      },
+      {
+        "block": 2,
+        "inner_step": 0,
+        "progress": 0.5
+      },
+      {
+        "block": 3,
+        "inner_step": 0,
+        "progress": 0.75
+      },
+      {
+        "block": 3,
+        "inner_step": 19,
+        "progress": 0.8984375
+      },
+      {
+        "block": 3,
+        "inner_step": 31,
+        "progress": 0.9921875
+      }
+    ]
+  },
+  "shape0_p25_g128/dual": {
+    "steps": 128,
+    "median_iteration_ms": 46.38578549202066,
+    "points": [
+      {
+        "block": 0,
+        "inner_step": 0,
+        "progress": 0.0
+      },
+      {
+        "block": 0,
+        "inner_step": 1,
+        "progress": 0.0078125
+      },
+      {
+        "block": 0,
+        "inner_step": 13,
+        "progress": 0.1015625
+      },
+      {
+        "block": 0,
+        "inner_step": 16,
+        "progress": 0.125
+      },
+      {
+        "block": 0,
+        "inner_step": 31,
+        "progress": 0.2421875
+      },
+      {
+        "block": 1,
+        "inner_step": 0,
+        "progress": 0.25
+      },
+      {
+        "block": 1,
+        "inner_step": 1,
+        "progress": 0.2578125
+      },
+      {
+        "block": 1,
+        "inner_step": 16,
+        "progress": 0.375
+      },
+      {
+        "block": 2,
+        "inner_step": 0,
+        "progress": 0.5
+      },
+      {
+        "block": 3,
+        "inner_step": 0,
+        "progress": 0.75
+      },
+      {
+        "block": 3,
+        "inner_step": 19,
+        "progress": 0.8984375
+      },
+      {
+        "block": 3,
+        "inner_step": 31,
+        "progress": 0.9921875
+      }
+    ]
+  }
+}

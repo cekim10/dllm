@@ -31,6 +31,15 @@ def _median(values: list[float]) -> float:
     return statistics.median(values)
 
 
+def _percentile(values: list[float], quantile: float) -> float:
+    ordered = sorted(values)
+    position = (len(ordered) - 1) * quantile
+    lower = int(position)
+    upper = min(lower + 1, len(ordered) - 1)
+    weight = position - lower
+    return ordered[lower] * (1.0 - weight) + ordered[upper] * weight
+
+
 def _group(
     rows: list[dict[str, str]], keys: tuple[str, ...], value: str
 ) -> dict[tuple[str, ...], list[float]]:
@@ -280,9 +289,37 @@ def main() -> None:
     full_rows = [row for row in rows if row["strategy"] == "full_offload_pinned"]
     semantic_rows = [row for row in rows if row["strategy"] == "semantic_only"]
     restart_rows = [row for row in rows if row["strategy"] == "drop_restart"]
-    full_costs = [float(row["total_recovery_ms"]) for row in full_rows]
-    rebuild_costs = [float(row["rebuild_ms"]) for row in semantic_rows]
-    restart_costs = [float(row["recompute_ms"]) for row in restart_rows]
+    strategy_groups = {
+        strategy: _group(
+            [row for row in rows if row["strategy"] == strategy],
+            ("request_id", "cache_mode", "block", "inner_step"),
+            "total_recovery_ms",
+        )
+        for strategy in ACTIVE_STRATEGIES
+    }
+    strategy_medians = {
+        strategy: [_median(values) for values in groups.values()]
+        for strategy, groups in strategy_groups.items()
+    }
+    strategy_p95s = {
+        strategy: [_percentile(values, 0.95) for values in groups.values()]
+        for strategy, groups in strategy_groups.items()
+    }
+    rebuild_groups = _group(
+        semantic_rows,
+        ("request_id", "cache_mode", "block", "inner_step"),
+        "rebuild_ms",
+    )
+    rebuild_medians = [_median(values) for values in rebuild_groups.values()]
+    raw_winners = {point["winner"] for point in points}
+    nonmeaningful_winners = raw_winners - meaningful_winners
+
+    full_medians = strategy_medians["full_offload_pinned"]
+    full_p95s = strategy_p95s["full_offload_pinned"]
+    semantic_medians = strategy_medians["semantic_only"]
+    semantic_p95s = strategy_p95s["semantic_only"]
+    restart_medians = strategy_medians["drop_restart"]
+    restart_p95s = strategy_p95s["drop_restart"]
 
     lines = [
         "# dLLM Preemption Recovery Decision Space",
@@ -290,9 +327,10 @@ def main() -> None:
         "## CONFIRMED",
         "",
         f"- Matched recovery points: {len(points)} across {len(request_shapes)} request shape(s).",
-        f"- Full-offload total recovery range: {min(full_costs):.2f}–{max(full_costs):.2f} ms.",
-        f"- Semantic-only cache rebuild range: {min(rebuild_costs):.2f}–{max(rebuild_costs):.2f} ms.",
-        f"- Drop/restart recomputation range: {min(restart_costs):.2f}–{max(restart_costs):.2f} ms.",
+        f"- Full-offload point-median recovery range: {min(full_medians):.2f}–{max(full_medians):.2f} ms; point p95 range: {min(full_p95s):.2f}–{max(full_p95s):.2f} ms.",
+        f"- Semantic-only point-median total recovery range: {min(semantic_medians):.2f}–{max(semantic_medians):.2f} ms; cache-rebuild component: {min(rebuild_medians):.2f}–{max(rebuild_medians):.2f} ms.",
+        f"- Semantic-only point p95 range: {min(semantic_p95s):.2f}–{max(semantic_p95s):.2f} ms.",
+        f"- Drop/restart point-median recomputation range: {min(restart_medians):.2f}–{max(restart_medians):.2f} ms; point p95 range: {min(restart_p95s):.2f}–{max(restart_p95s):.2f} ms.",
         f"- Meaningful measured strategy winners: {', '.join(sorted(meaningful_winners)) or 'none'}.",
         f"- Prefix winners: {', '.join(winners_by_cache['prefix']) or 'none'}.",
         f"- Dual winners: {', '.join(winners_by_cache['dual']) or 'none'}.",
@@ -305,6 +343,12 @@ def main() -> None:
         lines.append(f"- One strategy won every sampled point: {points[0]['winner']}.")
     else:
         lines.append("- No single strategy won every sampled point.")
+    if nonmeaningful_winners:
+        lines.append(
+            "- Non-meaningful raw winners (margin below half an iteration): "
+            + ", ".join(sorted(nonmeaningful_winners))
+            + "."
+        )
     if boundary_winners <= {"immediate"}:
         lines.append("- Waiting for a block boundary never beat immediate recovery.")
     elif boundary_winners <= {"boundary"}:
@@ -321,10 +365,10 @@ def main() -> None:
             "",
             "## Explicit Answers",
             "",
-            f"- Q1: Full-state offload cost spans {min(full_costs):.2f}–{max(full_costs):.2f} ms over measured cache sizes.",
-            f"- Q2: Semantic-only reconstruction model work spans {min(rebuild_costs):.2f}–{max(rebuild_costs):.2f} ms.",
-            f"- Q3: Lost-progress recomputation spans {min(restart_costs):.2f}–{max(restart_costs):.2f} ms.",
-            f"- Q4: Winners across progress are {', '.join(sorted({point['winner'] for point in points}))}.",
+            f"- Q1: Full-state offload point medians span {min(full_medians):.2f}–{max(full_medians):.2f} ms over measured cache sizes.",
+            f"- Q2: Semantic-only total recovery point medians span {min(semantic_medians):.2f}–{max(semantic_medians):.2f} ms; measured cache-rebuild work spans {min(rebuild_medians):.2f}–{max(rebuild_medians):.2f} ms.",
+            f"- Q3: Lost-progress recomputation point medians span {min(restart_medians):.2f}–{max(restart_medians):.2f} ms.",
+            f"- Q4: Raw winners across progress are {', '.join(sorted(raw_winners))}; meaningful winners are {', '.join(sorted(meaningful_winners)) or 'none'}.",
             f"- Q5: Prefix winners are {winners_by_cache['prefix']}; dual winners are {winners_by_cache['dual']}.",
             f"- Q6: Boundary outcomes are {sorted(boundary_winners)}.",
             f"- Q7: Measurements cover {len(request_shapes)} request shape(s): {sorted(request_shapes)}.",
