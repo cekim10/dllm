@@ -1,0 +1,14 @@
+{
+  "model": "GSAI-ML/LLaDA-8B-Instruct",
+  "baseline_steps": {
+    "none/threshold": 119,
+    "none/quota": 128,
+    "prefix/threshold": 118,
+    "prefix/quota": 128,
+    "dual/threshold": 117,
+    "dual/quota": 128
+  },
+  "mode_failures": [],
+  "full_exact": true,
+  "judgment": "CONDITIONAL GO"
+}

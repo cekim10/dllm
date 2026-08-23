@@ -1,0 +1,6 @@
+cache_mode,schedule_mode,prompt_length,generation_length,block_size,progress,semantic_bytes,performance_bytes,total_bytes
+none,quota,25,128,32,0.0,1224,0,2464
+none,quota,25,128,32,0.25,1224,0,2464
+none,quota,25,128,32,0.5,1224,0,2464
+none,quota,25,128,32,0.75,1224,0,2464
+none,quota,25,128,32,0.9921875,1224,0,2720

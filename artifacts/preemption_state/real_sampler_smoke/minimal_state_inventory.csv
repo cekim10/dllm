@@ -1,0 +1,41 @@
+cache_mode,schedule_mode,progress,state_component,required,reconstructable,bytes,evidence
+none,quota,0.0,x,True,False,1224,semantic canvas; removal is not a valid continuation
+none,quota,0.0,attention_mask,False,True,1224,removal preserved exact trajectory
+none,quota,0.0,current_schedule,False,True,0,component absent at this checkpoint
+none,quota,0.0,block_index,False,True,8,removal preserved exact trajectory
+none,quota,0.0,inner_step,False,True,8,removal preserved exact trajectory
+none,quota,0.0,past_key_values,False,True,0,component absent at this checkpoint
+none,quota,0.0,replace_position,False,True,0,component absent at this checkpoint
+none,quota,0.0,request_metadata_and_config,False,True,0,reused from immutable original request/config
+none,quota,0.25,x,True,False,1224,semantic canvas; removal is not a valid continuation
+none,quota,0.25,attention_mask,False,True,1224,removal preserved exact trajectory
+none,quota,0.25,current_schedule,False,True,0,component absent at this checkpoint
+none,quota,0.25,block_index,False,True,8,removal preserved exact trajectory
+none,quota,0.25,inner_step,False,True,8,removal preserved exact trajectory
+none,quota,0.25,past_key_values,False,True,0,component absent at this checkpoint
+none,quota,0.25,replace_position,False,True,0,component absent at this checkpoint
+none,quota,0.25,request_metadata_and_config,False,True,0,reused from immutable original request/config
+none,quota,0.5,x,True,False,1224,semantic canvas; removal is not a valid continuation
+none,quota,0.5,attention_mask,False,True,1224,removal preserved exact trajectory
+none,quota,0.5,current_schedule,False,True,0,component absent at this checkpoint
+none,quota,0.5,block_index,False,True,8,removal preserved exact trajectory
+none,quota,0.5,inner_step,False,True,8,removal preserved exact trajectory
+none,quota,0.5,past_key_values,False,True,0,component absent at this checkpoint
+none,quota,0.5,replace_position,False,True,0,component absent at this checkpoint
+none,quota,0.5,request_metadata_and_config,False,True,0,reused from immutable original request/config
+none,quota,0.75,x,True,False,1224,semantic canvas; removal is not a valid continuation
+none,quota,0.75,attention_mask,False,True,1224,removal preserved exact trajectory
+none,quota,0.75,current_schedule,False,True,0,component absent at this checkpoint
+none,quota,0.75,block_index,False,True,8,removal preserved exact trajectory
+none,quota,0.75,inner_step,False,True,8,removal preserved exact trajectory
+none,quota,0.75,past_key_values,False,True,0,component absent at this checkpoint
+none,quota,0.75,replace_position,False,True,0,component absent at this checkpoint
+none,quota,0.75,request_metadata_and_config,False,True,0,reused from immutable original request/config
+none,quota,0.9921875,x,True,False,1224,semantic canvas; removal is not a valid continuation
+none,quota,0.9921875,attention_mask,False,True,1224,removal preserved exact trajectory
+none,quota,0.9921875,current_schedule,False,True,256,removal preserved exact trajectory
+none,quota,0.9921875,block_index,False,True,8,removal preserved exact trajectory
+none,quota,0.9921875,inner_step,False,True,8,removal preserved exact trajectory
+none,quota,0.9921875,past_key_values,False,True,0,component absent at this checkpoint
+none,quota,0.9921875,replace_position,False,True,0,component absent at this checkpoint
+none,quota,0.9921875,request_metadata_and_config,False,True,0,reused from immutable original request/config

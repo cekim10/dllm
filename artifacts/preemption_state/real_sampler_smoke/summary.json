@@ -1,0 +1,9 @@
+{
+  "model": "GSAI-ML/LLaDA-8B-Instruct",
+  "baseline_steps": {
+    "none/quota": 128
+  },
+  "mode_failures": [],
+  "full_exact": true,
+  "judgment": "CONDITIONAL GO"
+}

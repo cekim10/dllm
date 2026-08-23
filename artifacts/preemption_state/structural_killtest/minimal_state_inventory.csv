@@ -1,0 +1,577 @@
+cache_mode,schedule_mode,progress,state_component,required,reconstructable,bytes,evidence
+none,threshold,0.0,x,True,False,1224,semantic canvas; removal is not a valid continuation
+none,threshold,0.0,attention_mask,False,True,1224,removal preserved exact trajectory
+none,threshold,0.0,current_schedule,False,True,0,component absent at this checkpoint
+none,threshold,0.0,block_index,False,True,8,removal preserved exact trajectory
+none,threshold,0.0,inner_step,False,True,8,removal preserved exact trajectory
+none,threshold,0.0,past_key_values,False,True,0,component absent at this checkpoint
+none,threshold,0.0,replace_position,False,True,0,component absent at this checkpoint
+none,threshold,0.0,request_metadata_and_config,False,True,0,reused from immutable original request/config
+none,threshold,0.008403361344537815,x,True,False,1224,semantic canvas; removal is not a valid continuation
+none,threshold,0.008403361344537815,attention_mask,False,True,1224,removal preserved exact trajectory
+none,threshold,0.008403361344537815,current_schedule,False,True,256,removal preserved exact trajectory
+none,threshold,0.008403361344537815,block_index,False,True,8,removal preserved exact trajectory
+none,threshold,0.008403361344537815,inner_step,True,False,8,resume error: ValueError: inner_step is not derivable from a threshold/dynamic canvas
+none,threshold,0.008403361344537815,past_key_values,False,True,0,component absent at this checkpoint
+none,threshold,0.008403361344537815,replace_position,False,True,0,component absent at this checkpoint
+none,threshold,0.008403361344537815,request_metadata_and_config,False,True,0,reused from immutable original request/config
+none,threshold,0.01680672268907563,x,True,False,1224,semantic canvas; removal is not a valid continuation
+none,threshold,0.01680672268907563,attention_mask,False,True,1224,removal preserved exact trajectory
+none,threshold,0.01680672268907563,current_schedule,False,True,256,removal preserved exact trajectory
+none,threshold,0.01680672268907563,block_index,False,True,8,removal preserved exact trajectory
+none,threshold,0.01680672268907563,inner_step,True,False,8,resume error: ValueError: inner_step is not derivable from a threshold/dynamic canvas
+none,threshold,0.01680672268907563,past_key_values,False,True,0,component absent at this checkpoint
+none,threshold,0.01680672268907563,replace_position,False,True,0,component absent at this checkpoint
+none,threshold,0.01680672268907563,request_metadata_and_config,False,True,0,reused from immutable original request/config
+none,threshold,0.025210084033613446,x,True,False,1224,semantic canvas; removal is not a valid continuation
+none,threshold,0.025210084033613446,attention_mask,False,True,1224,removal preserved exact trajectory
+none,threshold,0.025210084033613446,current_schedule,False,True,256,removal preserved exact trajectory
+none,threshold,0.025210084033613446,block_index,False,True,8,removal preserved exact trajectory
+none,threshold,0.025210084033613446,inner_step,True,False,8,resume error: ValueError: inner_step is not derivable from a threshold/dynamic canvas
+none,threshold,0.025210084033613446,past_key_values,False,True,0,component absent at this checkpoint
+none,threshold,0.025210084033613446,replace_position,False,True,0,component absent at this checkpoint
+none,threshold,0.025210084033613446,request_metadata_and_config,False,True,0,reused from immutable original request/config
+none,threshold,0.09243697478991597,x,True,False,1224,semantic canvas; removal is not a valid continuation
+none,threshold,0.09243697478991597,attention_mask,False,True,1224,removal preserved exact trajectory
+none,threshold,0.09243697478991597,current_schedule,False,True,256,removal preserved exact trajectory
+none,threshold,0.09243697478991597,block_index,False,True,8,removal preserved exact trajectory
+none,threshold,0.09243697478991597,inner_step,True,False,8,resume error: ValueError: inner_step is not derivable from a threshold/dynamic canvas
+none,threshold,0.09243697478991597,past_key_values,False,True,0,component absent at this checkpoint
+none,threshold,0.09243697478991597,replace_position,False,True,0,component absent at this checkpoint
+none,threshold,0.09243697478991597,request_metadata_and_config,False,True,0,reused from immutable original request/config
+none,threshold,0.23529411764705882,x,True,False,1224,semantic canvas; removal is not a valid continuation
+none,threshold,0.23529411764705882,attention_mask,False,True,1224,removal preserved exact trajectory
+none,threshold,0.23529411764705882,current_schedule,False,True,0,component absent at this checkpoint
+none,threshold,0.23529411764705882,block_index,False,True,8,removal preserved exact trajectory
+none,threshold,0.23529411764705882,inner_step,False,True,8,removal preserved exact trajectory
+none,threshold,0.23529411764705882,past_key_values,False,True,0,component absent at this checkpoint
+none,threshold,0.23529411764705882,replace_position,False,True,0,component absent at this checkpoint
+none,threshold,0.23529411764705882,request_metadata_and_config,False,True,0,reused from immutable original request/config
+none,threshold,0.24369747899159663,x,True,False,1224,semantic canvas; removal is not a valid continuation
+none,threshold,0.24369747899159663,attention_mask,False,True,1224,removal preserved exact trajectory
+none,threshold,0.24369747899159663,current_schedule,False,True,256,removal preserved exact trajectory
+none,threshold,0.24369747899159663,block_index,False,True,8,removal preserved exact trajectory
+none,threshold,0.24369747899159663,inner_step,True,False,8,resume error: ValueError: inner_step is not derivable from a threshold/dynamic canvas
+none,threshold,0.24369747899159663,past_key_values,False,True,0,component absent at this checkpoint
+none,threshold,0.24369747899159663,replace_position,False,True,0,component absent at this checkpoint
+none,threshold,0.24369747899159663,request_metadata_and_config,False,True,0,reused from immutable original request/config
+none,threshold,0.25210084033613445,x,True,False,1224,semantic canvas; removal is not a valid continuation
+none,threshold,0.25210084033613445,attention_mask,False,True,1224,removal preserved exact trajectory
+none,threshold,0.25210084033613445,current_schedule,False,True,256,removal preserved exact trajectory
+none,threshold,0.25210084033613445,block_index,False,True,8,removal preserved exact trajectory
+none,threshold,0.25210084033613445,inner_step,True,False,8,resume error: ValueError: inner_step is not derivable from a threshold/dynamic canvas
+none,threshold,0.25210084033613445,past_key_values,False,True,0,component absent at this checkpoint
+none,threshold,0.25210084033613445,replace_position,False,True,0,component absent at this checkpoint
+none,threshold,0.25210084033613445,request_metadata_and_config,False,True,0,reused from immutable original request/config
+none,threshold,0.2605042016806723,x,True,False,1224,semantic canvas; removal is not a valid continuation
+none,threshold,0.2605042016806723,attention_mask,False,True,1224,removal preserved exact trajectory
+none,threshold,0.2605042016806723,current_schedule,False,True,256,removal preserved exact trajectory
+none,threshold,0.2605042016806723,block_index,False,True,8,removal preserved exact trajectory
+none,threshold,0.2605042016806723,inner_step,True,False,8,resume error: ValueError: inner_step is not derivable from a threshold/dynamic canvas
+none,threshold,0.2605042016806723,past_key_values,False,True,0,component absent at this checkpoint
+none,threshold,0.2605042016806723,replace_position,False,True,0,component absent at this checkpoint
+none,threshold,0.2605042016806723,request_metadata_and_config,False,True,0,reused from immutable original request/config
+none,threshold,0.4957983193277311,x,True,False,1224,semantic canvas; removal is not a valid continuation
+none,threshold,0.4957983193277311,attention_mask,False,True,1224,removal preserved exact trajectory
+none,threshold,0.4957983193277311,current_schedule,False,True,0,component absent at this checkpoint
+none,threshold,0.4957983193277311,block_index,False,True,8,removal preserved exact trajectory
+none,threshold,0.4957983193277311,inner_step,False,True,8,removal preserved exact trajectory
+none,threshold,0.4957983193277311,past_key_values,False,True,0,component absent at this checkpoint
+none,threshold,0.4957983193277311,replace_position,False,True,0,component absent at this checkpoint
+none,threshold,0.4957983193277311,request_metadata_and_config,False,True,0,reused from immutable original request/config
+none,threshold,0.7478991596638656,x,True,False,1224,semantic canvas; removal is not a valid continuation
+none,threshold,0.7478991596638656,attention_mask,False,True,1224,removal preserved exact trajectory
+none,threshold,0.7478991596638656,current_schedule,False,True,256,removal preserved exact trajectory
+none,threshold,0.7478991596638656,block_index,False,True,8,removal preserved exact trajectory
+none,threshold,0.7478991596638656,inner_step,True,False,8,resume error: ValueError: inner_step is not derivable from a threshold/dynamic canvas
+none,threshold,0.7478991596638656,past_key_values,False,True,0,component absent at this checkpoint
+none,threshold,0.7478991596638656,replace_position,False,True,0,component absent at this checkpoint
+none,threshold,0.7478991596638656,request_metadata_and_config,False,True,0,reused from immutable original request/config
+none,threshold,0.9915966386554622,x,True,False,1224,semantic canvas; removal is not a valid continuation
+none,threshold,0.9915966386554622,attention_mask,False,True,1224,removal preserved exact trajectory
+none,threshold,0.9915966386554622,current_schedule,False,True,256,removal preserved exact trajectory
+none,threshold,0.9915966386554622,block_index,False,True,8,removal preserved exact trajectory
+none,threshold,0.9915966386554622,inner_step,True,False,8,resume error: ValueError: inner_step is not derivable from a threshold/dynamic canvas
+none,threshold,0.9915966386554622,past_key_values,False,True,0,component absent at this checkpoint
+none,threshold,0.9915966386554622,replace_position,False,True,0,component absent at this checkpoint
+none,threshold,0.9915966386554622,request_metadata_and_config,False,True,0,reused from immutable original request/config
+none,quota,0.0,x,True,False,1224,semantic canvas; removal is not a valid continuation
+none,quota,0.0,attention_mask,False,True,1224,removal preserved exact trajectory
+none,quota,0.0,current_schedule,False,True,0,component absent at this checkpoint
+none,quota,0.0,block_index,False,True,8,removal preserved exact trajectory
+none,quota,0.0,inner_step,False,True,8,removal preserved exact trajectory
+none,quota,0.0,past_key_values,False,True,0,component absent at this checkpoint
+none,quota,0.0,replace_position,False,True,0,component absent at this checkpoint
+none,quota,0.0,request_metadata_and_config,False,True,0,reused from immutable original request/config
+none,quota,0.0078125,x,True,False,1224,semantic canvas; removal is not a valid continuation
+none,quota,0.0078125,attention_mask,False,True,1224,removal preserved exact trajectory
+none,quota,0.0078125,current_schedule,False,True,256,removal preserved exact trajectory
+none,quota,0.0078125,block_index,False,True,8,removal preserved exact trajectory
+none,quota,0.0078125,inner_step,False,True,8,removal preserved exact trajectory
+none,quota,0.0078125,past_key_values,False,True,0,component absent at this checkpoint
+none,quota,0.0078125,replace_position,False,True,0,component absent at this checkpoint
+none,quota,0.0078125,request_metadata_and_config,False,True,0,reused from immutable original request/config
+none,quota,0.015625,x,True,False,1224,semantic canvas; removal is not a valid continuation
+none,quota,0.015625,attention_mask,False,True,1224,removal preserved exact trajectory
+none,quota,0.015625,current_schedule,False,True,256,removal preserved exact trajectory
+none,quota,0.015625,block_index,False,True,8,removal preserved exact trajectory
+none,quota,0.015625,inner_step,False,True,8,removal preserved exact trajectory
+none,quota,0.015625,past_key_values,False,True,0,component absent at this checkpoint
+none,quota,0.015625,replace_position,False,True,0,component absent at this checkpoint
+none,quota,0.015625,request_metadata_and_config,False,True,0,reused from immutable original request/config
+none,quota,0.0234375,x,True,False,1224,semantic canvas; removal is not a valid continuation
+none,quota,0.0234375,attention_mask,False,True,1224,removal preserved exact trajectory
+none,quota,0.0234375,current_schedule,False,True,256,removal preserved exact trajectory
+none,quota,0.0234375,block_index,False,True,8,removal preserved exact trajectory
+none,quota,0.0234375,inner_step,False,True,8,removal preserved exact trajectory
+none,quota,0.0234375,past_key_values,False,True,0,component absent at this checkpoint
+none,quota,0.0234375,replace_position,False,True,0,component absent at this checkpoint
+none,quota,0.0234375,request_metadata_and_config,False,True,0,reused from immutable original request/config
+none,quota,0.09375,x,True,False,1224,semantic canvas; removal is not a valid continuation
+none,quota,0.09375,attention_mask,False,True,1224,removal preserved exact trajectory
+none,quota,0.09375,current_schedule,False,True,256,removal preserved exact trajectory
+none,quota,0.09375,block_index,False,True,8,removal preserved exact trajectory
+none,quota,0.09375,inner_step,False,True,8,removal preserved exact trajectory
+none,quota,0.09375,past_key_values,False,True,0,component absent at this checkpoint
+none,quota,0.09375,replace_position,False,True,0,component absent at this checkpoint
+none,quota,0.09375,request_metadata_and_config,False,True,0,reused from immutable original request/config
+none,quota,0.25,x,True,False,1224,semantic canvas; removal is not a valid continuation
+none,quota,0.25,attention_mask,False,True,1224,removal preserved exact trajectory
+none,quota,0.25,current_schedule,False,True,0,component absent at this checkpoint
+none,quota,0.25,block_index,False,True,8,removal preserved exact trajectory
+none,quota,0.25,inner_step,False,True,8,removal preserved exact trajectory
+none,quota,0.25,past_key_values,False,True,0,component absent at this checkpoint
+none,quota,0.25,replace_position,False,True,0,component absent at this checkpoint
+none,quota,0.25,request_metadata_and_config,False,True,0,reused from immutable original request/config
+none,quota,0.2578125,x,True,False,1224,semantic canvas; removal is not a valid continuation
+none,quota,0.2578125,attention_mask,False,True,1224,removal preserved exact trajectory
+none,quota,0.2578125,current_schedule,False,True,256,removal preserved exact trajectory
+none,quota,0.2578125,block_index,False,True,8,removal preserved exact trajectory
+none,quota,0.2578125,inner_step,False,True,8,removal preserved exact trajectory
+none,quota,0.2578125,past_key_values,False,True,0,component absent at this checkpoint
+none,quota,0.2578125,replace_position,False,True,0,component absent at this checkpoint
+none,quota,0.2578125,request_metadata_and_config,False,True,0,reused from immutable original request/config
+none,quota,0.265625,x,True,False,1224,semantic canvas; removal is not a valid continuation
+none,quota,0.265625,attention_mask,False,True,1224,removal preserved exact trajectory
+none,quota,0.265625,current_schedule,False,True,256,removal preserved exact trajectory
+none,quota,0.265625,block_index,False,True,8,removal preserved exact trajectory
+none,quota,0.265625,inner_step,False,True,8,removal preserved exact trajectory
+none,quota,0.265625,past_key_values,False,True,0,component absent at this checkpoint
+none,quota,0.265625,replace_position,False,True,0,component absent at this checkpoint
+none,quota,0.265625,request_metadata_and_config,False,True,0,reused from immutable original request/config
+none,quota,0.2734375,x,True,False,1224,semantic canvas; removal is not a valid continuation
+none,quota,0.2734375,attention_mask,False,True,1224,removal preserved exact trajectory
+none,quota,0.2734375,current_schedule,False,True,256,removal preserved exact trajectory
+none,quota,0.2734375,block_index,False,True,8,removal preserved exact trajectory
+none,quota,0.2734375,inner_step,False,True,8,removal preserved exact trajectory
+none,quota,0.2734375,past_key_values,False,True,0,component absent at this checkpoint
+none,quota,0.2734375,replace_position,False,True,0,component absent at this checkpoint
+none,quota,0.2734375,request_metadata_and_config,False,True,0,reused from immutable original request/config
+none,quota,0.5,x,True,False,1224,semantic canvas; removal is not a valid continuation
+none,quota,0.5,attention_mask,False,True,1224,removal preserved exact trajectory
+none,quota,0.5,current_schedule,False,True,0,component absent at this checkpoint
+none,quota,0.5,block_index,False,True,8,removal preserved exact trajectory
+none,quota,0.5,inner_step,False,True,8,removal preserved exact trajectory
+none,quota,0.5,past_key_values,False,True,0,component absent at this checkpoint
+none,quota,0.5,replace_position,False,True,0,component absent at this checkpoint
+none,quota,0.5,request_metadata_and_config,False,True,0,reused from immutable original request/config
+none,quota,0.75,x,True,False,1224,semantic canvas; removal is not a valid continuation
+none,quota,0.75,attention_mask,False,True,1224,removal preserved exact trajectory
+none,quota,0.75,current_schedule,False,True,0,component absent at this checkpoint
+none,quota,0.75,block_index,False,True,8,removal preserved exact trajectory
+none,quota,0.75,inner_step,False,True,8,removal preserved exact trajectory
+none,quota,0.75,past_key_values,False,True,0,component absent at this checkpoint
+none,quota,0.75,replace_position,False,True,0,component absent at this checkpoint
+none,quota,0.75,request_metadata_and_config,False,True,0,reused from immutable original request/config
+none,quota,0.9921875,x,True,False,1224,semantic canvas; removal is not a valid continuation
+none,quota,0.9921875,attention_mask,False,True,1224,removal preserved exact trajectory
+none,quota,0.9921875,current_schedule,False,True,256,removal preserved exact trajectory
+none,quota,0.9921875,block_index,False,True,8,removal preserved exact trajectory
+none,quota,0.9921875,inner_step,False,True,8,removal preserved exact trajectory
+none,quota,0.9921875,past_key_values,False,True,0,component absent at this checkpoint
+none,quota,0.9921875,replace_position,False,True,0,component absent at this checkpoint
+none,quota,0.9921875,request_metadata_and_config,False,True,0,reused from immutable original request/config
+prefix,threshold,0.0,x,True,False,1224,semantic canvas; removal is not a valid continuation
+prefix,threshold,0.0,attention_mask,False,True,1224,removal preserved exact trajectory
+prefix,threshold,0.0,current_schedule,False,True,0,component absent at this checkpoint
+prefix,threshold,0.0,block_index,False,True,8,removal preserved exact trajectory
+prefix,threshold,0.0,inner_step,False,True,8,removal preserved exact trajectory
+prefix,threshold,0.0,past_key_values,False,True,0,component absent at this checkpoint
+prefix,threshold,0.0,replace_position,False,True,0,component absent at this checkpoint
+prefix,threshold,0.0,request_metadata_and_config,False,True,0,reused from immutable original request/config
+prefix,threshold,0.00847457627118644,x,True,False,1224,semantic canvas; removal is not a valid continuation
+prefix,threshold,0.00847457627118644,attention_mask,False,True,1224,removal preserved exact trajectory
+prefix,threshold,0.00847457627118644,current_schedule,False,True,256,removal preserved exact trajectory
+prefix,threshold,0.00847457627118644,block_index,False,True,8,removal preserved exact trajectory
+prefix,threshold,0.00847457627118644,inner_step,True,False,8,resume error: ValueError: inner_step is not derivable from a threshold/dynamic canvas
+prefix,threshold,0.00847457627118644,past_key_values,False,True,13107200,removal preserved exact trajectory
+prefix,threshold,0.00847457627118644,replace_position,False,True,0,component absent at this checkpoint
+prefix,threshold,0.00847457627118644,request_metadata_and_config,False,True,0,reused from immutable original request/config
+prefix,threshold,0.01694915254237288,x,True,False,1224,semantic canvas; removal is not a valid continuation
+prefix,threshold,0.01694915254237288,attention_mask,False,True,1224,removal preserved exact trajectory
+prefix,threshold,0.01694915254237288,current_schedule,False,True,256,removal preserved exact trajectory
+prefix,threshold,0.01694915254237288,block_index,False,True,8,removal preserved exact trajectory
+prefix,threshold,0.01694915254237288,inner_step,True,False,8,resume error: ValueError: inner_step is not derivable from a threshold/dynamic canvas
+prefix,threshold,0.01694915254237288,past_key_values,False,True,13107200,removal preserved exact trajectory
+prefix,threshold,0.01694915254237288,replace_position,False,True,0,component absent at this checkpoint
+prefix,threshold,0.01694915254237288,request_metadata_and_config,False,True,0,reused from immutable original request/config
+prefix,threshold,0.025423728813559324,x,True,False,1224,semantic canvas; removal is not a valid continuation
+prefix,threshold,0.025423728813559324,attention_mask,False,True,1224,removal preserved exact trajectory
+prefix,threshold,0.025423728813559324,current_schedule,False,True,256,removal preserved exact trajectory
+prefix,threshold,0.025423728813559324,block_index,False,True,8,removal preserved exact trajectory
+prefix,threshold,0.025423728813559324,inner_step,True,False,8,resume error: ValueError: inner_step is not derivable from a threshold/dynamic canvas
+prefix,threshold,0.025423728813559324,past_key_values,False,True,13107200,removal preserved exact trajectory
+prefix,threshold,0.025423728813559324,replace_position,False,True,0,component absent at this checkpoint
+prefix,threshold,0.025423728813559324,request_metadata_and_config,False,True,0,reused from immutable original request/config
+prefix,threshold,0.09322033898305085,x,True,False,1224,semantic canvas; removal is not a valid continuation
+prefix,threshold,0.09322033898305085,attention_mask,False,True,1224,removal preserved exact trajectory
+prefix,threshold,0.09322033898305085,current_schedule,False,True,256,removal preserved exact trajectory
+prefix,threshold,0.09322033898305085,block_index,False,True,8,removal preserved exact trajectory
+prefix,threshold,0.09322033898305085,inner_step,True,False,8,resume error: ValueError: inner_step is not derivable from a threshold/dynamic canvas
+prefix,threshold,0.09322033898305085,past_key_values,False,True,13107200,removal preserved exact trajectory
+prefix,threshold,0.09322033898305085,replace_position,False,True,0,component absent at this checkpoint
+prefix,threshold,0.09322033898305085,request_metadata_and_config,False,True,0,reused from immutable original request/config
+prefix,threshold,0.2288135593220339,x,True,False,1224,semantic canvas; removal is not a valid continuation
+prefix,threshold,0.2288135593220339,attention_mask,False,True,1224,removal preserved exact trajectory
+prefix,threshold,0.2288135593220339,current_schedule,False,True,0,component absent at this checkpoint
+prefix,threshold,0.2288135593220339,block_index,False,True,8,removal preserved exact trajectory
+prefix,threshold,0.2288135593220339,inner_step,False,True,8,removal preserved exact trajectory
+prefix,threshold,0.2288135593220339,past_key_values,False,True,0,component absent at this checkpoint
+prefix,threshold,0.2288135593220339,replace_position,False,True,0,component absent at this checkpoint
+prefix,threshold,0.2288135593220339,request_metadata_and_config,False,True,0,reused from immutable original request/config
+prefix,threshold,0.23728813559322035,x,True,False,1224,semantic canvas; removal is not a valid continuation
+prefix,threshold,0.23728813559322035,attention_mask,False,True,1224,removal preserved exact trajectory
+prefix,threshold,0.23728813559322035,current_schedule,False,True,256,removal preserved exact trajectory
+prefix,threshold,0.23728813559322035,block_index,False,True,8,removal preserved exact trajectory
+prefix,threshold,0.23728813559322035,inner_step,True,False,8,resume error: ValueError: inner_step is not derivable from a threshold/dynamic canvas
+prefix,threshold,0.23728813559322035,past_key_values,False,True,29884416,removal preserved exact trajectory
+prefix,threshold,0.23728813559322035,replace_position,False,True,0,component absent at this checkpoint
+prefix,threshold,0.23728813559322035,request_metadata_and_config,False,True,0,reused from immutable original request/config
+prefix,threshold,0.2457627118644068,x,True,False,1224,semantic canvas; removal is not a valid continuation
+prefix,threshold,0.2457627118644068,attention_mask,False,True,1224,removal preserved exact trajectory
+prefix,threshold,0.2457627118644068,current_schedule,False,True,256,removal preserved exact trajectory
+prefix,threshold,0.2457627118644068,block_index,False,True,8,removal preserved exact trajectory
+prefix,threshold,0.2457627118644068,inner_step,True,False,8,resume error: ValueError: inner_step is not derivable from a threshold/dynamic canvas
+prefix,threshold,0.2457627118644068,past_key_values,False,True,29884416,removal preserved exact trajectory
+prefix,threshold,0.2457627118644068,replace_position,False,True,0,component absent at this checkpoint
+prefix,threshold,0.2457627118644068,request_metadata_and_config,False,True,0,reused from immutable original request/config
+prefix,threshold,0.2542372881355932,x,True,False,1224,semantic canvas; removal is not a valid continuation
+prefix,threshold,0.2542372881355932,attention_mask,False,True,1224,removal preserved exact trajectory
+prefix,threshold,0.2542372881355932,current_schedule,False,True,256,removal preserved exact trajectory
+prefix,threshold,0.2542372881355932,block_index,False,True,8,removal preserved exact trajectory
+prefix,threshold,0.2542372881355932,inner_step,True,False,8,resume error: ValueError: inner_step is not derivable from a threshold/dynamic canvas
+prefix,threshold,0.2542372881355932,past_key_values,False,True,29884416,removal preserved exact trajectory
+prefix,threshold,0.2542372881355932,replace_position,False,True,0,component absent at this checkpoint
+prefix,threshold,0.2542372881355932,request_metadata_and_config,False,True,0,reused from immutable original request/config
+prefix,threshold,0.5,x,True,False,1224,semantic canvas; removal is not a valid continuation
+prefix,threshold,0.5,attention_mask,False,True,1224,removal preserved exact trajectory
+prefix,threshold,0.5,current_schedule,False,True,0,component absent at this checkpoint
+prefix,threshold,0.5,block_index,False,True,8,removal preserved exact trajectory
+prefix,threshold,0.5,inner_step,False,True,8,removal preserved exact trajectory
+prefix,threshold,0.5,past_key_values,False,True,0,component absent at this checkpoint
+prefix,threshold,0.5,replace_position,False,True,0,component absent at this checkpoint
+prefix,threshold,0.5,request_metadata_and_config,False,True,0,reused from immutable original request/config
+prefix,threshold,0.7457627118644068,x,True,False,1224,semantic canvas; removal is not a valid continuation
+prefix,threshold,0.7457627118644068,attention_mask,False,True,1224,removal preserved exact trajectory
+prefix,threshold,0.7457627118644068,current_schedule,False,True,256,removal preserved exact trajectory
+prefix,threshold,0.7457627118644068,block_index,False,True,8,removal preserved exact trajectory
+prefix,threshold,0.7457627118644068,inner_step,True,False,8,resume error: ValueError: inner_step is not derivable from a threshold/dynamic canvas
+prefix,threshold,0.7457627118644068,past_key_values,False,True,46661632,removal preserved exact trajectory
+prefix,threshold,0.7457627118644068,replace_position,False,True,0,component absent at this checkpoint
+prefix,threshold,0.7457627118644068,request_metadata_and_config,False,True,0,reused from immutable original request/config
+prefix,threshold,0.9915254237288136,x,True,False,1224,semantic canvas; removal is not a valid continuation
+prefix,threshold,0.9915254237288136,attention_mask,False,True,1224,removal preserved exact trajectory
+prefix,threshold,0.9915254237288136,current_schedule,False,True,256,removal preserved exact trajectory
+prefix,threshold,0.9915254237288136,block_index,False,True,8,removal preserved exact trajectory
+prefix,threshold,0.9915254237288136,inner_step,True,False,8,resume error: ValueError: inner_step is not derivable from a threshold/dynamic canvas
+prefix,threshold,0.9915254237288136,past_key_values,False,True,63438848,removal preserved exact trajectory
+prefix,threshold,0.9915254237288136,replace_position,False,True,0,component absent at this checkpoint
+prefix,threshold,0.9915254237288136,request_metadata_and_config,False,True,0,reused from immutable original request/config
+prefix,quota,0.0,x,True,False,1224,semantic canvas; removal is not a valid continuation
+prefix,quota,0.0,attention_mask,False,True,1224,removal preserved exact trajectory
+prefix,quota,0.0,current_schedule,False,True,0,component absent at this checkpoint
+prefix,quota,0.0,block_index,False,True,8,removal preserved exact trajectory
+prefix,quota,0.0,inner_step,False,True,8,removal preserved exact trajectory
+prefix,quota,0.0,past_key_values,False,True,0,component absent at this checkpoint
+prefix,quota,0.0,replace_position,False,True,0,component absent at this checkpoint
+prefix,quota,0.0,request_metadata_and_config,False,True,0,reused from immutable original request/config
+prefix,quota,0.0078125,x,True,False,1224,semantic canvas; removal is not a valid continuation
+prefix,quota,0.0078125,attention_mask,False,True,1224,removal preserved exact trajectory
+prefix,quota,0.0078125,current_schedule,False,True,256,removal preserved exact trajectory
+prefix,quota,0.0078125,block_index,False,True,8,removal preserved exact trajectory
+prefix,quota,0.0078125,inner_step,False,True,8,removal preserved exact trajectory
+prefix,quota,0.0078125,past_key_values,False,True,13107200,removal preserved exact trajectory
+prefix,quota,0.0078125,replace_position,False,True,0,component absent at this checkpoint
+prefix,quota,0.0078125,request_metadata_and_config,False,True,0,reused from immutable original request/config
+prefix,quota,0.015625,x,True,False,1224,semantic canvas; removal is not a valid continuation
+prefix,quota,0.015625,attention_mask,False,True,1224,removal preserved exact trajectory
+prefix,quota,0.015625,current_schedule,False,True,256,removal preserved exact trajectory
+prefix,quota,0.015625,block_index,False,True,8,removal preserved exact trajectory
+prefix,quota,0.015625,inner_step,False,True,8,removal preserved exact trajectory
+prefix,quota,0.015625,past_key_values,False,True,13107200,removal preserved exact trajectory
+prefix,quota,0.015625,replace_position,False,True,0,component absent at this checkpoint
+prefix,quota,0.015625,request_metadata_and_config,False,True,0,reused from immutable original request/config
+prefix,quota,0.0234375,x,True,False,1224,semantic canvas; removal is not a valid continuation
+prefix,quota,0.0234375,attention_mask,False,True,1224,removal preserved exact trajectory
+prefix,quota,0.0234375,current_schedule,False,True,256,removal preserved exact trajectory
+prefix,quota,0.0234375,block_index,False,True,8,removal preserved exact trajectory
+prefix,quota,0.0234375,inner_step,False,True,8,removal preserved exact trajectory
+prefix,quota,0.0234375,past_key_values,False,True,13107200,removal preserved exact trajectory
+prefix,quota,0.0234375,replace_position,False,True,0,component absent at this checkpoint
+prefix,quota,0.0234375,request_metadata_and_config,False,True,0,reused from immutable original request/config
+prefix,quota,0.09375,x,True,False,1224,semantic canvas; removal is not a valid continuation
+prefix,quota,0.09375,attention_mask,False,True,1224,removal preserved exact trajectory
+prefix,quota,0.09375,current_schedule,False,True,256,removal preserved exact trajectory
+prefix,quota,0.09375,block_index,False,True,8,removal preserved exact trajectory
+prefix,quota,0.09375,inner_step,False,True,8,removal preserved exact trajectory
+prefix,quota,0.09375,past_key_values,False,True,13107200,removal preserved exact trajectory
+prefix,quota,0.09375,replace_position,False,True,0,component absent at this checkpoint
+prefix,quota,0.09375,request_metadata_and_config,False,True,0,reused from immutable original request/config
+prefix,quota,0.25,x,True,False,1224,semantic canvas; removal is not a valid continuation
+prefix,quota,0.25,attention_mask,False,True,1224,removal preserved exact trajectory
+prefix,quota,0.25,current_schedule,False,True,0,component absent at this checkpoint
+prefix,quota,0.25,block_index,False,True,8,removal preserved exact trajectory
+prefix,quota,0.25,inner_step,False,True,8,removal preserved exact trajectory
+prefix,quota,0.25,past_key_values,False,True,0,component absent at this checkpoint
+prefix,quota,0.25,replace_position,False,True,0,component absent at this checkpoint
+prefix,quota,0.25,request_metadata_and_config,False,True,0,reused from immutable original request/config
+prefix,quota,0.2578125,x,True,False,1224,semantic canvas; removal is not a valid continuation
+prefix,quota,0.2578125,attention_mask,False,True,1224,removal preserved exact trajectory
+prefix,quota,0.2578125,current_schedule,False,True,256,removal preserved exact trajectory
+prefix,quota,0.2578125,block_index,False,True,8,removal preserved exact trajectory
+prefix,quota,0.2578125,inner_step,False,True,8,removal preserved exact trajectory
+prefix,quota,0.2578125,past_key_values,False,True,29884416,removal preserved exact trajectory
+prefix,quota,0.2578125,replace_position,False,True,0,component absent at this checkpoint
+prefix,quota,0.2578125,request_metadata_and_config,False,True,0,reused from immutable original request/config
+prefix,quota,0.265625,x,True,False,1224,semantic canvas; removal is not a valid continuation
+prefix,quota,0.265625,attention_mask,False,True,1224,removal preserved exact trajectory
+prefix,quota,0.265625,current_schedule,False,True,256,removal preserved exact trajectory
+prefix,quota,0.265625,block_index,False,True,8,removal preserved exact trajectory
+prefix,quota,0.265625,inner_step,False,True,8,removal preserved exact trajectory
+prefix,quota,0.265625,past_key_values,False,True,29884416,removal preserved exact trajectory
+prefix,quota,0.265625,replace_position,False,True,0,component absent at this checkpoint
+prefix,quota,0.265625,request_metadata_and_config,False,True,0,reused from immutable original request/config
+prefix,quota,0.2734375,x,True,False,1224,semantic canvas; removal is not a valid continuation
+prefix,quota,0.2734375,attention_mask,False,True,1224,removal preserved exact trajectory
+prefix,quota,0.2734375,current_schedule,False,True,256,removal preserved exact trajectory
+prefix,quota,0.2734375,block_index,False,True,8,removal preserved exact trajectory
+prefix,quota,0.2734375,inner_step,False,True,8,removal preserved exact trajectory
+prefix,quota,0.2734375,past_key_values,False,True,29884416,removal preserved exact trajectory
+prefix,quota,0.2734375,replace_position,False,True,0,component absent at this checkpoint
+prefix,quota,0.2734375,request_metadata_and_config,False,True,0,reused from immutable original request/config
+prefix,quota,0.5,x,True,False,1224,semantic canvas; removal is not a valid continuation
+prefix,quota,0.5,attention_mask,False,True,1224,removal preserved exact trajectory
+prefix,quota,0.5,current_schedule,False,True,0,component absent at this checkpoint
+prefix,quota,0.5,block_index,False,True,8,removal preserved exact trajectory
+prefix,quota,0.5,inner_step,False,True,8,removal preserved exact trajectory
+prefix,quota,0.5,past_key_values,False,True,0,component absent at this checkpoint
+prefix,quota,0.5,replace_position,False,True,0,component absent at this checkpoint
+prefix,quota,0.5,request_metadata_and_config,False,True,0,reused from immutable original request/config
+prefix,quota,0.75,x,True,False,1224,semantic canvas; removal is not a valid continuation
+prefix,quota,0.75,attention_mask,False,True,1224,removal preserved exact trajectory
+prefix,quota,0.75,current_schedule,False,True,0,component absent at this checkpoint
+prefix,quota,0.75,block_index,False,True,8,removal preserved exact trajectory
+prefix,quota,0.75,inner_step,False,True,8,removal preserved exact trajectory
+prefix,quota,0.75,past_key_values,False,True,0,component absent at this checkpoint
+prefix,quota,0.75,replace_position,False,True,0,component absent at this checkpoint
+prefix,quota,0.75,request_metadata_and_config,False,True,0,reused from immutable original request/config
+prefix,quota,0.9921875,x,True,False,1224,semantic canvas; removal is not a valid continuation
+prefix,quota,0.9921875,attention_mask,False,True,1224,removal preserved exact trajectory
+prefix,quota,0.9921875,current_schedule,False,True,256,removal preserved exact trajectory
+prefix,quota,0.9921875,block_index,False,True,8,removal preserved exact trajectory
+prefix,quota,0.9921875,inner_step,False,True,8,removal preserved exact trajectory
+prefix,quota,0.9921875,past_key_values,False,True,63438848,removal preserved exact trajectory
+prefix,quota,0.9921875,replace_position,False,True,0,component absent at this checkpoint
+prefix,quota,0.9921875,request_metadata_and_config,False,True,0,reused from immutable original request/config
+dual,threshold,0.0,x,True,False,1224,semantic canvas; removal is not a valid continuation
+dual,threshold,0.0,attention_mask,False,True,1224,removal preserved exact trajectory
+dual,threshold,0.0,current_schedule,False,True,0,component absent at this checkpoint
+dual,threshold,0.0,block_index,False,True,8,removal preserved exact trajectory
+dual,threshold,0.0,inner_step,False,True,8,removal preserved exact trajectory
+dual,threshold,0.0,past_key_values,False,True,0,component absent at this checkpoint
+dual,threshold,0.0,replace_position,False,True,0,component absent at this checkpoint
+dual,threshold,0.0,request_metadata_and_config,False,True,0,reused from immutable original request/config
+dual,threshold,0.008547008547008548,x,True,False,1224,semantic canvas; removal is not a valid continuation
+dual,threshold,0.008547008547008548,attention_mask,False,True,1224,removal preserved exact trajectory
+dual,threshold,0.008547008547008548,current_schedule,False,True,256,removal preserved exact trajectory
+dual,threshold,0.008547008547008548,block_index,False,True,8,removal preserved exact trajectory
+dual,threshold,0.008547008547008548,inner_step,True,False,8,resume error: ValueError: inner_step is not derivable from a threshold/dynamic canvas
+dual,threshold,0.008547008547008548,past_key_values,False,True,80216064,removal preserved exact trajectory
+dual,threshold,0.008547008547008548,replace_position,False,True,153,removal preserved exact trajectory
+dual,threshold,0.008547008547008548,request_metadata_and_config,False,True,0,reused from immutable original request/config
+dual,threshold,0.017094017094017096,x,True,False,1224,semantic canvas; removal is not a valid continuation
+dual,threshold,0.017094017094017096,attention_mask,False,True,1224,removal preserved exact trajectory
+dual,threshold,0.017094017094017096,current_schedule,False,True,256,removal preserved exact trajectory
+dual,threshold,0.017094017094017096,block_index,False,True,8,removal preserved exact trajectory
+dual,threshold,0.017094017094017096,inner_step,True,False,8,resume error: ValueError: inner_step is not derivable from a threshold/dynamic canvas
+dual,threshold,0.017094017094017096,past_key_values,False,True,80216064,removal preserved exact trajectory
+dual,threshold,0.017094017094017096,replace_position,False,True,153,removal preserved exact trajectory
+dual,threshold,0.017094017094017096,request_metadata_and_config,False,True,0,reused from immutable original request/config
+dual,threshold,0.02564102564102564,x,True,False,1224,semantic canvas; removal is not a valid continuation
+dual,threshold,0.02564102564102564,attention_mask,False,True,1224,removal preserved exact trajectory
+dual,threshold,0.02564102564102564,current_schedule,False,True,256,removal preserved exact trajectory
+dual,threshold,0.02564102564102564,block_index,False,True,8,removal preserved exact trajectory
+dual,threshold,0.02564102564102564,inner_step,True,False,8,resume error: ValueError: inner_step is not derivable from a threshold/dynamic canvas
+dual,threshold,0.02564102564102564,past_key_values,False,True,80216064,removal preserved exact trajectory
+dual,threshold,0.02564102564102564,replace_position,False,True,153,removal preserved exact trajectory
+dual,threshold,0.02564102564102564,request_metadata_and_config,False,True,0,reused from immutable original request/config
+dual,threshold,0.09401709401709402,x,True,False,1224,semantic canvas; removal is not a valid continuation
+dual,threshold,0.09401709401709402,attention_mask,False,True,1224,removal preserved exact trajectory
+dual,threshold,0.09401709401709402,current_schedule,False,True,256,removal preserved exact trajectory
+dual,threshold,0.09401709401709402,block_index,False,True,8,removal preserved exact trajectory
+dual,threshold,0.09401709401709402,inner_step,True,False,8,resume error: ValueError: inner_step is not derivable from a threshold/dynamic canvas
+dual,threshold,0.09401709401709402,past_key_values,False,True,80216064,removal preserved exact trajectory
+dual,threshold,0.09401709401709402,replace_position,False,True,153,removal preserved exact trajectory
+dual,threshold,0.09401709401709402,request_metadata_and_config,False,True,0,reused from immutable original request/config
+dual,threshold,0.23076923076923078,x,True,False,1224,semantic canvas; removal is not a valid continuation
+dual,threshold,0.23076923076923078,attention_mask,False,True,1224,removal preserved exact trajectory
+dual,threshold,0.23076923076923078,current_schedule,False,True,0,component absent at this checkpoint
+dual,threshold,0.23076923076923078,block_index,False,True,8,removal preserved exact trajectory
+dual,threshold,0.23076923076923078,inner_step,False,True,8,removal preserved exact trajectory
+dual,threshold,0.23076923076923078,past_key_values,False,True,0,component absent at this checkpoint
+dual,threshold,0.23076923076923078,replace_position,False,True,0,component absent at this checkpoint
+dual,threshold,0.23076923076923078,request_metadata_and_config,False,True,0,reused from immutable original request/config
+dual,threshold,0.23931623931623933,x,True,False,1224,semantic canvas; removal is not a valid continuation
+dual,threshold,0.23931623931623933,attention_mask,False,True,1224,removal preserved exact trajectory
+dual,threshold,0.23931623931623933,current_schedule,False,True,256,removal preserved exact trajectory
+dual,threshold,0.23931623931623933,block_index,False,True,8,removal preserved exact trajectory
+dual,threshold,0.23931623931623933,inner_step,True,False,8,resume error: ValueError: inner_step is not derivable from a threshold/dynamic canvas
+dual,threshold,0.23931623931623933,past_key_values,False,True,80216064,removal preserved exact trajectory
+dual,threshold,0.23931623931623933,replace_position,False,True,153,removal preserved exact trajectory
+dual,threshold,0.23931623931623933,request_metadata_and_config,False,True,0,reused from immutable original request/config
+dual,threshold,0.24786324786324787,x,True,False,1224,semantic canvas; removal is not a valid continuation
+dual,threshold,0.24786324786324787,attention_mask,False,True,1224,removal preserved exact trajectory
+dual,threshold,0.24786324786324787,current_schedule,False,True,256,removal preserved exact trajectory
+dual,threshold,0.24786324786324787,block_index,False,True,8,removal preserved exact trajectory
+dual,threshold,0.24786324786324787,inner_step,True,False,8,resume error: ValueError: inner_step is not derivable from a threshold/dynamic canvas
+dual,threshold,0.24786324786324787,past_key_values,False,True,80216064,removal preserved exact trajectory
+dual,threshold,0.24786324786324787,replace_position,False,True,153,removal preserved exact trajectory
+dual,threshold,0.24786324786324787,request_metadata_and_config,False,True,0,reused from immutable original request/config
+dual,threshold,0.2564102564102564,x,True,False,1224,semantic canvas; removal is not a valid continuation
+dual,threshold,0.2564102564102564,attention_mask,False,True,1224,removal preserved exact trajectory
+dual,threshold,0.2564102564102564,current_schedule,False,True,256,removal preserved exact trajectory
+dual,threshold,0.2564102564102564,block_index,False,True,8,removal preserved exact trajectory
+dual,threshold,0.2564102564102564,inner_step,True,False,8,resume error: ValueError: inner_step is not derivable from a threshold/dynamic canvas
+dual,threshold,0.2564102564102564,past_key_values,False,True,80216064,removal preserved exact trajectory
+dual,threshold,0.2564102564102564,replace_position,False,True,153,removal preserved exact trajectory
+dual,threshold,0.2564102564102564,request_metadata_and_config,False,True,0,reused from immutable original request/config
+dual,threshold,0.49572649572649574,x,True,False,1224,semantic canvas; removal is not a valid continuation
+dual,threshold,0.49572649572649574,attention_mask,False,True,1224,removal preserved exact trajectory
+dual,threshold,0.49572649572649574,current_schedule,False,True,256,removal preserved exact trajectory
+dual,threshold,0.49572649572649574,block_index,False,True,8,removal preserved exact trajectory
+dual,threshold,0.49572649572649574,inner_step,True,False,8,resume error: ValueError: inner_step is not derivable from a threshold/dynamic canvas
+dual,threshold,0.49572649572649574,past_key_values,False,True,80216064,removal preserved exact trajectory
+dual,threshold,0.49572649572649574,replace_position,False,True,153,removal preserved exact trajectory
+dual,threshold,0.49572649572649574,request_metadata_and_config,False,True,0,reused from immutable original request/config
+dual,threshold,0.7435897435897436,x,True,False,1224,semantic canvas; removal is not a valid continuation
+dual,threshold,0.7435897435897436,attention_mask,False,True,1224,removal preserved exact trajectory
+dual,threshold,0.7435897435897436,current_schedule,False,True,256,removal preserved exact trajectory
+dual,threshold,0.7435897435897436,block_index,False,True,8,removal preserved exact trajectory
+dual,threshold,0.7435897435897436,inner_step,True,False,8,resume error: ValueError: inner_step is not derivable from a threshold/dynamic canvas
+dual,threshold,0.7435897435897436,past_key_values,False,True,80216064,removal preserved exact trajectory
+dual,threshold,0.7435897435897436,replace_position,False,True,153,removal preserved exact trajectory
+dual,threshold,0.7435897435897436,request_metadata_and_config,False,True,0,reused from immutable original request/config
+dual,threshold,0.9914529914529915,x,True,False,1224,semantic canvas; removal is not a valid continuation
+dual,threshold,0.9914529914529915,attention_mask,False,True,1224,removal preserved exact trajectory
+dual,threshold,0.9914529914529915,current_schedule,False,True,256,removal preserved exact trajectory
+dual,threshold,0.9914529914529915,block_index,False,True,8,removal preserved exact trajectory
+dual,threshold,0.9914529914529915,inner_step,True,False,8,resume error: ValueError: inner_step is not derivable from a threshold/dynamic canvas
+dual,threshold,0.9914529914529915,past_key_values,False,True,80216064,removal preserved exact trajectory
+dual,threshold,0.9914529914529915,replace_position,False,True,153,removal preserved exact trajectory
+dual,threshold,0.9914529914529915,request_metadata_and_config,False,True,0,reused from immutable original request/config
+dual,quota,0.0,x,True,False,1224,semantic canvas; removal is not a valid continuation
+dual,quota,0.0,attention_mask,False,True,1224,removal preserved exact trajectory
+dual,quota,0.0,current_schedule,False,True,0,component absent at this checkpoint
+dual,quota,0.0,block_index,False,True,8,removal preserved exact trajectory
+dual,quota,0.0,inner_step,False,True,8,removal preserved exact trajectory
+dual,quota,0.0,past_key_values,False,True,0,component absent at this checkpoint
+dual,quota,0.0,replace_position,False,True,0,component absent at this checkpoint
+dual,quota,0.0,request_metadata_and_config,False,True,0,reused from immutable original request/config
+dual,quota,0.0078125,x,True,False,1224,semantic canvas; removal is not a valid continuation
+dual,quota,0.0078125,attention_mask,False,True,1224,removal preserved exact trajectory
+dual,quota,0.0078125,current_schedule,False,True,256,removal preserved exact trajectory
+dual,quota,0.0078125,block_index,False,True,8,removal preserved exact trajectory
+dual,quota,0.0078125,inner_step,False,True,8,removal preserved exact trajectory
+dual,quota,0.0078125,past_key_values,False,True,80216064,removal preserved exact trajectory
+dual,quota,0.0078125,replace_position,False,True,153,removal preserved exact trajectory
+dual,quota,0.0078125,request_metadata_and_config,False,True,0,reused from immutable original request/config
+dual,quota,0.015625,x,True,False,1224,semantic canvas; removal is not a valid continuation
+dual,quota,0.015625,attention_mask,False,True,1224,removal preserved exact trajectory
+dual,quota,0.015625,current_schedule,False,True,256,removal preserved exact trajectory
+dual,quota,0.015625,block_index,False,True,8,removal preserved exact trajectory
+dual,quota,0.015625,inner_step,False,True,8,removal preserved exact trajectory
+dual,quota,0.015625,past_key_values,False,True,80216064,removal preserved exact trajectory
+dual,quota,0.015625,replace_position,False,True,153,removal preserved exact trajectory
+dual,quota,0.015625,request_metadata_and_config,False,True,0,reused from immutable original request/config
+dual,quota,0.0234375,x,True,False,1224,semantic canvas; removal is not a valid continuation
+dual,quota,0.0234375,attention_mask,False,True,1224,removal preserved exact trajectory
+dual,quota,0.0234375,current_schedule,False,True,256,removal preserved exact trajectory
+dual,quota,0.0234375,block_index,False,True,8,removal preserved exact trajectory
+dual,quota,0.0234375,inner_step,False,True,8,removal preserved exact trajectory
+dual,quota,0.0234375,past_key_values,False,True,80216064,removal preserved exact trajectory
+dual,quota,0.0234375,replace_position,False,True,153,removal preserved exact trajectory
+dual,quota,0.0234375,request_metadata_and_config,False,True,0,reused from immutable original request/config
+dual,quota,0.09375,x,True,False,1224,semantic canvas; removal is not a valid continuation
+dual,quota,0.09375,attention_mask,False,True,1224,removal preserved exact trajectory
+dual,quota,0.09375,current_schedule,False,True,256,removal preserved exact trajectory
+dual,quota,0.09375,block_index,False,True,8,removal preserved exact trajectory
+dual,quota,0.09375,inner_step,False,True,8,removal preserved exact trajectory
+dual,quota,0.09375,past_key_values,False,True,80216064,removal preserved exact trajectory
+dual,quota,0.09375,replace_position,False,True,153,removal preserved exact trajectory
+dual,quota,0.09375,request_metadata_and_config,False,True,0,reused from immutable original request/config
+dual,quota,0.25,x,True,False,1224,semantic canvas; removal is not a valid continuation
+dual,quota,0.25,attention_mask,False,True,1224,removal preserved exact trajectory
+dual,quota,0.25,current_schedule,False,True,0,component absent at this checkpoint
+dual,quota,0.25,block_index,False,True,8,removal preserved exact trajectory
+dual,quota,0.25,inner_step,False,True,8,removal preserved exact trajectory
+dual,quota,0.25,past_key_values,False,True,0,component absent at this checkpoint
+dual,quota,0.25,replace_position,False,True,0,component absent at this checkpoint
+dual,quota,0.25,request_metadata_and_config,False,True,0,reused from immutable original request/config
+dual,quota,0.2578125,x,True,False,1224,semantic canvas; removal is not a valid continuation
+dual,quota,0.2578125,attention_mask,False,True,1224,removal preserved exact trajectory
+dual,quota,0.2578125,current_schedule,False,True,256,removal preserved exact trajectory
+dual,quota,0.2578125,block_index,False,True,8,removal preserved exact trajectory
+dual,quota,0.2578125,inner_step,False,True,8,removal preserved exact trajectory
+dual,quota,0.2578125,past_key_values,False,True,80216064,removal preserved exact trajectory
+dual,quota,0.2578125,replace_position,False,True,153,removal preserved exact trajectory
+dual,quota,0.2578125,request_metadata_and_config,False,True,0,reused from immutable original request/config
+dual,quota,0.265625,x,True,False,1224,semantic canvas; removal is not a valid continuation
+dual,quota,0.265625,attention_mask,False,True,1224,removal preserved exact trajectory
+dual,quota,0.265625,current_schedule,False,True,256,removal preserved exact trajectory
+dual,quota,0.265625,block_index,False,True,8,removal preserved exact trajectory
+dual,quota,0.265625,inner_step,False,True,8,removal preserved exact trajectory
+dual,quota,0.265625,past_key_values,False,True,80216064,removal preserved exact trajectory
+dual,quota,0.265625,replace_position,False,True,153,removal preserved exact trajectory
+dual,quota,0.265625,request_metadata_and_config,False,True,0,reused from immutable original request/config
+dual,quota,0.2734375,x,True,False,1224,semantic canvas; removal is not a valid continuation
+dual,quota,0.2734375,attention_mask,False,True,1224,removal preserved exact trajectory
+dual,quota,0.2734375,current_schedule,False,True,256,removal preserved exact trajectory
+dual,quota,0.2734375,block_index,False,True,8,removal preserved exact trajectory
+dual,quota,0.2734375,inner_step,False,True,8,removal preserved exact trajectory
+dual,quota,0.2734375,past_key_values,False,True,80216064,removal preserved exact trajectory
+dual,quota,0.2734375,replace_position,False,True,153,removal preserved exact trajectory
+dual,quota,0.2734375,request_metadata_and_config,False,True,0,reused from immutable original request/config
+dual,quota,0.5,x,True,False,1224,semantic canvas; removal is not a valid continuation
+dual,quota,0.5,attention_mask,False,True,1224,removal preserved exact trajectory
+dual,quota,0.5,current_schedule,False,True,0,component absent at this checkpoint
+dual,quota,0.5,block_index,False,True,8,removal preserved exact trajectory
+dual,quota,0.5,inner_step,False,True,8,removal preserved exact trajectory
+dual,quota,0.5,past_key_values,False,True,0,component absent at this checkpoint
+dual,quota,0.5,replace_position,False,True,0,component absent at this checkpoint
+dual,quota,0.5,request_metadata_and_config,False,True,0,reused from immutable original request/config
+dual,quota,0.75,x,True,False,1224,semantic canvas; removal is not a valid continuation
+dual,quota,0.75,attention_mask,False,True,1224,removal preserved exact trajectory
+dual,quota,0.75,current_schedule,False,True,0,component absent at this checkpoint
+dual,quota,0.75,block_index,False,True,8,removal preserved exact trajectory
+dual,quota,0.75,inner_step,False,True,8,removal preserved exact trajectory
+dual,quota,0.75,past_key_values,False,True,0,component absent at this checkpoint
+dual,quota,0.75,replace_position,False,True,0,component absent at this checkpoint
+dual,quota,0.75,request_metadata_and_config,False,True,0,reused from immutable original request/config
+dual,quota,0.9921875,x,True,False,1224,semantic canvas; removal is not a valid continuation
+dual,quota,0.9921875,attention_mask,False,True,1224,removal preserved exact trajectory
+dual,quota,0.9921875,current_schedule,False,True,256,removal preserved exact trajectory
+dual,quota,0.9921875,block_index,False,True,8,removal preserved exact trajectory
+dual,quota,0.9921875,inner_step,False,True,8,removal preserved exact trajectory
+dual,quota,0.9921875,past_key_values,False,True,80216064,removal preserved exact trajectory
+dual,quota,0.9921875,replace_position,False,True,153,removal preserved exact trajectory
+dual,quota,0.9921875,request_metadata_and_config,False,True,0,reused from immutable original request/config
