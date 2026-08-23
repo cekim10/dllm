@@ -272,7 +272,10 @@ def main() -> None:
         if abs(immediate - boundary) >= 0.5 * iteration:
             meaningful_boundary_winners.add(winner)
 
-    all_one_winner = len({point["winner"] for point in points}) == 1
+    raw_winner_set = {point["winner"] for point in points}
+    all_one_winner = len(raw_winner_set) == 1
+    one_meaningful_winner = len(meaningful_winners) == 1
+    boundary_crossover = len(meaningful_boundary_winners) >= 2
     if (
         len(request_shapes) >= 2
         and (
@@ -281,7 +284,12 @@ def main() -> None:
         )
     ):
         judgment = "STRONG GO"
-    elif len(request_shapes) >= 3 and all_one_winner and boundary_winners <= {"immediate"}:
+    elif (
+        len(request_shapes) >= 3
+        and one_meaningful_winner
+        and bool(boundaries)
+        and not boundary_crossover
+    ):
         judgment = "NO-GO"
     else:
         judgment = "CONDITIONAL GO"
@@ -311,7 +319,7 @@ def main() -> None:
         "rebuild_ms",
     )
     rebuild_medians = [_median(values) for values in rebuild_groups.values()]
-    raw_winners = {point["winner"] for point in points}
+    raw_winners = raw_winner_set
     nonmeaningful_winners = raw_winners - meaningful_winners
 
     full_medians = strategy_medians["full_offload_pinned"]
@@ -339,17 +347,24 @@ def main() -> None:
         "## NEGATIVE RESULTS",
         "",
     ]
-    if all_one_winner:
+    if one_meaningful_winner:
+        lines.append(
+            "- One strategy was the only meaningful winner across all sampled "
+            f"points: {next(iter(meaningful_winners))}."
+        )
+    elif all_one_winner:
         lines.append(f"- One strategy won every sampled point: {points[0]['winner']}.")
     else:
-        lines.append("- No single strategy won every sampled point.")
+        lines.append("- Multiple strategies had meaningful wins across sampled points.")
     if nonmeaningful_winners:
         lines.append(
             "- Non-meaningful raw winners (margin below half an iteration): "
             + ", ".join(sorted(nonmeaningful_winners))
             + "."
         )
-    if boundary_winners <= {"immediate"}:
+    if not boundaries:
+        lines.append("- Boundary deferral was not measured in this run.")
+    elif boundary_winners <= {"immediate"}:
         lines.append("- Waiting for a block boundary never beat immediate recovery.")
     elif boundary_winners <= {"boundary"}:
         lines.append("- Waiting for a block boundary beat immediate recovery at every sampled inner step.")
@@ -362,6 +377,11 @@ def main() -> None:
             "",
             "- KEEP opportunity cost under real multi-request memory contention.",
             "- Generalization beyond the tested model and request shapes.",
+            *(
+                ["- Immediate-versus-boundary recovery for the scaled request shapes."]
+                if not boundaries
+                else []
+            ),
             "",
             "## Explicit Answers",
             "",
@@ -370,7 +390,7 @@ def main() -> None:
             f"- Q3: Lost-progress recomputation point medians span {min(restart_medians):.2f}–{max(restart_medians):.2f} ms.",
             f"- Q4: Raw winners across progress are {', '.join(sorted(raw_winners))}; meaningful winners are {', '.join(sorted(meaningful_winners)) or 'none'}.",
             f"- Q5: Prefix winners are {winners_by_cache['prefix']}; dual winners are {winners_by_cache['dual']}.",
-            f"- Q6: Boundary outcomes are {sorted(boundary_winners)}.",
+            f"- Q6: Boundary outcomes are {sorted(boundary_winners) if boundaries else 'not measured in this run'}.",
             f"- Q7: Measurements cover {len(request_shapes)} request shape(s): {sorted(request_shapes)}.",
             f"- Q8: Overall measured decision-space judgment is {judgment}.",
             "",
